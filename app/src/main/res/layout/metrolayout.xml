@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/steelblue" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal" >
+
+        <com.wyq.firehelper.myWidget.MyImageView
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="0.8"
+            android:background="@color/deeppink"
+            android:scaleType="matrix"
+            android:src="@mipmap/pic" />
+
+        <TableLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.2"
+            android:orientation="vertical" >
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <com.wyq.firehelper.myWidget.MyImageView
+                    android:id="@+id/metro_browser"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/blueviolet"
+                    android:scaleType="matrix"
+                    android:src="@mipmap/browser" />
+
+                <com.wyq.firehelper.myWidget.MyImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/darkgreen"
+                    android:scaleType="matrix"
+                    android:src="@mipmap/camera" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal" >
+
+                <com.wyq.firehelper.myWidget.MyImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/yellow"
+                    android:scaleType="matrix"
+                    android:src="@mipmap/message" />
+
+                <com.wyq.firehelper.myWidget.MyImageView
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:background="@color/aqua"
+                    android:scaleType="matrix"
+                    android:src="@mipmap/music" />
+            </TableRow>
+        </TableLayout>
+    </LinearLayout>
+
+</RelativeLayout>
