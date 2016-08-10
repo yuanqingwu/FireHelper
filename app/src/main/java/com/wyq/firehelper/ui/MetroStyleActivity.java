@@ -1,4 +1,4 @@
-package com.wyq.firehelper.activity;
+package com.wyq.firehelper.ui;
 
 
 import com.wyq.firehelper.R;
@@ -8,8 +8,6 @@ import com.wyq.firehelper.myWidget.MyImageView;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.Window;
 import android.widget.Toast;
 

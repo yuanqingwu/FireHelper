@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_blue_dark" >
+
+        <Button
+            android:id="@+id/bluetooth_back_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:text="back" />
+
+        <Button
+            android:id="@+id/bluetooth_discoverable_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="canDiscover  "
+            android:background="@null"
+            android:layout_alignParentRight="true"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/bluetooth_start_scan_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="start scan" />
+
+    <Button
+        android:id="@+id/bluetooth_close_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="close bluetooth" />
+
+    <ListView
+        android:id="@+id/bluetooth_finded_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp" >
+    </ListView>
+
+</LinearLayout>

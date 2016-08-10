@@ -10,12 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
+import com.wyq.firehelper.ui.CircleBlurImageViewActivity;
+import com.wyq.firehelper.ui.MetroStyleActivity;
+import com.wyq.firehelper.ui.UiMainActivity;
+import com.wyq.firehelper.ui.ZoomImageViewActivity;
 
+/**
+ * Created by Uni.W on 2016/8/10.
+ */
 public class MainActivity extends Activity {
 
-    private String[] items = { "MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]"};
+    private String[] items = { "UI" ,"Connectivity"};
 
-    private ListView home_list;
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,27 +31,24 @@ public class MainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
-        home_list=(ListView)findViewById(R.id.home_list);
+        listView =(ListView)findViewById(R.id.activity_main_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 MainActivity.this, android.R.layout.simple_list_item_1,
                 items);
-        home_list.setAdapter(adapter);
-        home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setAdapter(adapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
                         startActivity(new Intent(MainActivity.this,
-                                MetroStyleActivity.class));
+                            UiMainActivity.class));
                         break;
                     case 1:
                         startActivity(new Intent(MainActivity.this,
-                                ZoomImageViewActivity.class));
+                                BtActivity.class));
                         break;
-                    case 2:
-                        startActivity(new Intent(MainActivity.this,
-                                CircleBlurImageViewActivity.class));
-                        break;
+
                 }
 
             }

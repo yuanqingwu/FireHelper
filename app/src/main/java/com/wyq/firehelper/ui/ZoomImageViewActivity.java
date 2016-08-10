@@ -1,4 +1,4 @@
-package com.wyq.firehelper.activity;
+package com.wyq.firehelper.ui;
 
 
 import com.wyq.firehelper.R;

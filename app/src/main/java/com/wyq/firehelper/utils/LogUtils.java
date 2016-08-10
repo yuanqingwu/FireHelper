@@ -15,8 +15,7 @@ import java.util.Locale;
 
 /**
  * 调试日志的统一输出
- * 
- * @author Xue Wenchao
+ *
  */
 public class LogUtils {
     // 是否输出日志的开关
