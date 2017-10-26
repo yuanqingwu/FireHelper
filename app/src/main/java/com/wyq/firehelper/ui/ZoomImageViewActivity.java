@@ -2,7 +2,7 @@ package com.wyq.firehelper.ui;
 
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.myWidget.MyZoomImageView;
+import com.wyq.firehelper.widget.ZoomImageView;
 
 
 import android.app.Activity;
@@ -37,7 +37,7 @@ public class ZoomImageViewActivity extends Activity {
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
 
-                MyZoomImageView imageView = new MyZoomImageView(
+                ZoomImageView imageView = new ZoomImageView(
                         getApplicationContext());
                 imageView.setImageResource(mImgs[position]);
                 container.addView(imageView);

@@ -10,7 +10,7 @@
         android:layout_centerInParent="true"
         android:orientation="horizontal" >
 
-        <com.wyq.firehelper.myWidget.MyImageView
+        <com.wyq.firehelper.widget.MetroImageView
             android:layout_width="0dp"
             android:layout_height="200dp"
             android:layout_weight="0.8"
@@ -30,7 +30,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
 
-                <com.wyq.firehelper.myWidget.MyImageView
+                <com.wyq.firehelper.widget.MetroImageView
                     android:id="@+id/metro_browser"
                     android:layout_width="0dp"
                     android:layout_height="100dp"
@@ -39,7 +39,7 @@
                     android:scaleType="matrix"
                     android:src="@mipmap/browser" />
 
-                <com.wyq.firehelper.myWidget.MyImageView
+                <com.wyq.firehelper.widget.MetroImageView
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -54,7 +54,7 @@
                 android:layout_weight="1"
                 android:orientation="horizontal" >
 
-                <com.wyq.firehelper.myWidget.MyImageView
+                <com.wyq.firehelper.widget.MetroImageView
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"
@@ -62,7 +62,7 @@
                     android:scaleType="matrix"
                     android:src="@mipmap/message" />
 
-                <com.wyq.firehelper.myWidget.MyImageView
+                <com.wyq.firehelper.widget.MetroImageView
                     android:layout_width="0dp"
                     android:layout_height="100dp"
                     android:layout_weight="1"

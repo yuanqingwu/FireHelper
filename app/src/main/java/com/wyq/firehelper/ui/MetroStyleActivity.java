@@ -2,7 +2,7 @@ package com.wyq.firehelper.ui;
 
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.myWidget.MyImageView;
+import com.wyq.firehelper.widget.MetroImageView;
 
 
 import android.app.Activity;
@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 public class MetroStyleActivity extends Activity {
 
-    private MyImageView metro_browser;
+    private MetroImageView metro_browser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,11 +22,11 @@ public class MetroStyleActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.metrolayout);
 
-        metro_browser = (MyImageView) findViewById(R.id.metro_browser);
-        metro_browser.setOnClickIntent(new MyImageView.OnViewClickListener() {
+        metro_browser = (MetroImageView) findViewById(R.id.metro_browser);
+        metro_browser.setOnClickIntent(new MetroImageView.OnViewClickListener() {
 
             @Override
-            public void onViewClick(MyImageView view) {
+            public void onViewClick(MetroImageView view) {
                 // TODO Auto-generated method stub
                 Toast.makeText(MetroStyleActivity.this, "网页",
                         Toast.LENGTH_SHORT).show();

@@ -1,4 +1,4 @@
-package com.wyq.firehelper.myWidget;
+package com.wyq.firehelper.widget;
 
 import android.content.Context;
 import android.graphics.Matrix;
@@ -9,7 +9,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
-public class MyImageView extends ImageView {
+public class MetroImageView extends ImageView {
 
 	private static final String TAG = "MyImageView";
 
@@ -42,15 +42,15 @@ public class MyImageView extends ImageView {
 	 */
 	private boolean isFinish = true;
 
-	public MyImageView(Context context) {
+	public MetroImageView(Context context) {
 		this(context, null);
 	}
 
-	public MyImageView(Context context, AttributeSet attrs) {
+	public MetroImageView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public MyImageView(Context context, AttributeSet attrs, int defStyle) {
+	public MetroImageView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 	}
 
@@ -121,11 +121,11 @@ public class MyImageView extends ImageView {
 					mScaleHandler.sendEmptyMessage(SCALING);
 				} else {
 					isFinish = true;
-					if (MyImageView.this.mOnViewClickListener != null
+					if (MetroImageView.this.mOnViewClickListener != null
 							&& !isClicked) {
 						isClicked = true;
-						MyImageView.this.mOnViewClickListener
-								.onViewClick(MyImageView.this);
+						MetroImageView.this.mOnViewClickListener
+								.onViewClick(MetroImageView.this);
 					} else {
 						isClicked = false;
 					}
@@ -177,7 +177,7 @@ public class MyImageView extends ImageView {
 	}
 
 	public interface OnViewClickListener {
-		void onViewClick(MyImageView view);
+		void onViewClick(MetroImageView view);
 	}
 
 }

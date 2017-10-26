@@ -11,10 +11,7 @@ import android.widget.ListView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
-import com.wyq.firehelper.ui.CircleBlurImageViewActivity;
-import com.wyq.firehelper.ui.MetroStyleActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
-import com.wyq.firehelper.ui.ZoomImageViewActivity;
 
 /**
  * Created by Uni.W on 2016/8/10.

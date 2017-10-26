@@ -1,4 +1,4 @@
-package com.wyq.firehelper.myWidget;
+package com.wyq.firehelper.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -22,7 +22,7 @@ import android.widget.ImageView;
 
 import com.wyq.firehelper.R;
 
-public class MyCircleImageView extends ImageView {
+public class CircleImageView extends ImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
@@ -57,24 +57,24 @@ public class MyCircleImageView extends ImageView {
     private boolean mSetupPending;
     private boolean mBorderOverlay;
 
-    public MyCircleImageView(Context context) {
+    public CircleImageView(Context context) {
         super(context);
 
         init();
     }
 
-    public MyCircleImageView(Context context, AttributeSet attrs) {
+    public CircleImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public MyCircleImageView(Context context, AttributeSet attrs, int defStyle) {
+    public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.MyCircleImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
 
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.MyCircleImageView_border_width, DEFAULT_BORDER_WIDTH);
-        mBorderColor = a.getColor(R.styleable.MyCircleImageView_border_color, DEFAULT_BORDER_COLOR);
-        mBorderOverlay = a.getBoolean(R.styleable.MyCircleImageView_border_overlay, DEFAULT_BORDER_OVERLAY);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH);
+        mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR);
+        mBorderOverlay = a.getBoolean(R.styleable.CircleImageView_border_overlay, DEFAULT_BORDER_OVERLAY);
 
         a.recycle();
 

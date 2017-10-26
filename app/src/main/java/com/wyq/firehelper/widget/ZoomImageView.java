@@ -1,6 +1,4 @@
-package com.wyq.firehelper.myWidget;
-
-import java.util.Currency;
+package com.wyq.firehelper.widget;
 
 import android.content.Context;
 import android.graphics.Matrix;
@@ -18,7 +16,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 
-public class MyZoomImageView extends ImageView implements
+public class ZoomImageView extends ImageView implements
 		OnGlobalLayoutListener, OnScaleGestureListener, OnTouchListener {
 
 	private boolean mOnce = false;
@@ -54,7 +52,7 @@ public class MyZoomImageView extends ImageView implements
 
 	private boolean isAutoScale;
 
-	public MyZoomImageView(Context context, AttributeSet attrs, int defStyle) {
+	public ZoomImageView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mScaleMatrix = new Matrix();
 		setScaleType(ScaleType.MATRIX);
@@ -150,11 +148,11 @@ public class MyZoomImageView extends ImageView implements
 
 	}
 
-	public MyZoomImageView(Context context, AttributeSet attrs) {
+	public ZoomImageView(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	public MyZoomImageView(Context context) {
+	public ZoomImageView(Context context) {
 		this(context, null);
 	}
 
