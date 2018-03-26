@@ -20,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".connectivity.ConnectMainActivity"/>
         <activity android:name=".connectivity.bluetoothChat.BtActivity"/>
         <activity android:name=".connectivity.bluetoothChat.BtChatActivity"/>
         <activity android:name=".ui.MetroStyleActivity"></activity>

@@ -10,7 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
+import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 
 /**
@@ -18,7 +18,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
  */
 public class MainActivity extends Activity {
 
-    private String[] items = { "UI" ,"Connectivity"};
+    private String[] items = { "UI" ,"Communication"};
 
     private ListView listView;
 
@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
                         break;
                     case 1:
                         startActivity(new Intent(MainActivity.this,
-                                BtActivity.class));
+                                ConnectMainActivity.class));
                         break;
 
                 }
