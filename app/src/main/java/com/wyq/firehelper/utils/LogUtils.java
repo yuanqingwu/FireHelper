@@ -284,8 +284,8 @@ public class LogUtils {
                     e.printStackTrace();
                     break;
                 } finally {
-                    CloseUtils.close(writer);
-                    CloseUtils.close(fos);
+                    CloseUtils.closeIO(writer);
+                    CloseUtils.closeIO(fos);
                 }
             }
 

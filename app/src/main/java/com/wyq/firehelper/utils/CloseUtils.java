@@ -1,64 +1,41 @@
 package com.wyq.firehelper.utils;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.io.Reader;
-import java.io.Writer;
+import java.io.Closeable;
+import java.io.IOException;
 
 public class CloseUtils {
     private static final String TAG = "CloseUtils";
-    
-    public static void close(InputStream is) {
-        if (is != null) {
-            try {
-                is.close();
-            }
-            catch (Exception e) {
-                LogUtils.i(TAG, "close exception: " + e.toString());
+
+    /**
+     * Close the io stream.
+     *
+     * @param closeables closeables
+     */
+    public static void closeIO(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
 
-    public static void close(OutputStream os) {
-        if (os != null) {
-            try {
-                os.close();
-            }
-            catch (Exception e) {
-                LogUtils.i(TAG, "close exception: " + e.toString());
-            }
-        }
-    }
-
-    public static void close(RandomAccessFile randomAccessFile) {
-        if (randomAccessFile != null) {
-            try {
-                randomAccessFile.close();
-            }
-            catch (Exception e) {
-                LogUtils.i(TAG, "close exception: " + e.toString());
-            }
-        }
-    }
-    
-    public static void close(Writer writer) {
-        if (writer != null) {
-            try {
-                writer.close();
-            }
-            catch (Exception e) {
-                LogUtils.i(TAG, "close exception: " + e.toString());
-            }
-        }
-    }
-
-    public static void close(Reader reader) {
-        if (reader != null) {
-            try {
-                reader.close();
-            }
-            catch (Exception e) {
-                LogUtils.i(TAG, "close exception: " + e.toString());
+    /**
+     * Close the io stream quietly.
+     *
+     * @param closeables closeables
+     */
+    public static void closeIOWithoutLog(final Closeable... closeables) {
+        if (closeables == null) return;
+        for (Closeable closeable : closeables) {
+            if (closeable != null) {
+                try {
+                    closeable.close();
+                } catch (IOException ignored) {
+                }
             }
         }
     }
