@@ -18,9 +18,9 @@ import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
 
 public class ConnectMainActivity extends Activity {
 
-    private String[] items = { "BlueTooth" };
+    private String[] items = { "Bluetooth" };
 
-    private ListView home_list;
+    private ListView homeListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +28,12 @@ public class ConnectMainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ui_activity_main);
 
-        home_list=(ListView)findViewById(R.id.home_list);
+        homeListView =(ListView)findViewById(R.id.home_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 ConnectMainActivity.this, android.R.layout.simple_list_item_1,
                 items);
-        home_list.setAdapter(adapter);
-        home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        homeListView.setAdapter(adapter);
+        homeListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {

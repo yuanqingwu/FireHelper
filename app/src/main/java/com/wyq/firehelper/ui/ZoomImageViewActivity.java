@@ -2,7 +2,7 @@ package com.wyq.firehelper.ui;
 
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.widget.ZoomImageView;
+import com.wyq.firehelper.ui.widget.ZoomImageView;
 
 
 import android.app.Activity;

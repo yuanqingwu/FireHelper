@@ -1,4 +1,4 @@
-package com.wyq.firehelper.widget;
+package com.wyq.firehelper.ui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;

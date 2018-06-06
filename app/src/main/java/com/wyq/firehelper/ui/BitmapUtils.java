@@ -1,17 +1,17 @@
-package com.wyq.firehelper.utils;
-
-import java.io.InputStream;
+package com.wyq.firehelper.ui;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
-import android.graphics.Bitmap.Config;
-import android.graphics.PorterDuff.Mode;
+
+import java.io.InputStream;
 
 public class BitmapUtils {
 	/**

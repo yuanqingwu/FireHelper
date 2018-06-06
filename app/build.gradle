@@ -23,7 +23,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:27+'
     compile 'com.google.code.gson:gson:2.2.4'
-
+    implementation 'com.zzhoujay.richtext:richtext:3.0.7'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    compile 'com.android.support:design:27.1.1'
 }

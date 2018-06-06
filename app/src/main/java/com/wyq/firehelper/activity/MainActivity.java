@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 
@@ -18,7 +19,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
  */
 public class MainActivity extends Activity {
 
-    private String[] items = { "UI" ,"Communication"};
+    private String[] items = { "UI" ,"Communication","Article"};
 
     private ListView listView;
 
@@ -45,6 +46,12 @@ public class MainActivity extends Activity {
                         startActivity(new Intent(MainActivity.this,
                                 ConnectMainActivity.class));
                         break;
+                    case 2:
+                        startActivity(new Intent(MainActivity.this,
+                                ArticleMainActivity.class));
+                        break;
+                        default:
+                            break;
 
                 }
 
