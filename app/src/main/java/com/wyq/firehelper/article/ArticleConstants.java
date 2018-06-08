@@ -8,7 +8,7 @@ import java.util.List;
 
 public class ArticleConstants {
 
-    public static final ArticleResource _1 = new ArticleResource("https://juejin.im/post/5b0f51166fb9a009fd0e9811","Android RxJava： 这是一份全面的 操作符 使用汇总 （含详细实例讲解）");
+    public static final ArticleResource _1 = new ArticleResource("https://www.diycode.cc/wiki/androidinterview","《Android 开发工程师面试指南》");
     public static final ArticleResource _2 = new ArticleResource("https://juejin.im/post/5b0e6e6a5188251570336972","在Android中高效的加载大图");
 
 

@@ -20,7 +20,7 @@ public class DialogUtil {
 		dialog.setContentView(R.layout.common_dialog_request);	
 		Window window = dialog.getWindow();
 		WindowManager.LayoutParams lp = window.getAttributes();	
-		int width = Utils.getScreenWidth(context);	
+		int width = CommonUtils.getScreenWidth(context);
 		lp.width = (int)(0.6 * width);	
 		
 		TextView titleTxtv = (TextView) dialog.findViewById(R.id.tvLoad);

@@ -12,6 +12,7 @@ import android.widget.ListView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
+import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 
 /**
@@ -19,7 +20,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
  */
 public class MainActivity extends Activity {
 
-    private String[] items = { "UI" ,"Communication","Article"};
+    private String[] items = { "Article" ,"Communication","UI","Encryption"};
 
     private ListView listView;
 
@@ -40,7 +41,7 @@ public class MainActivity extends Activity {
                 switch (position) {
                     case 0:
                         startActivity(new Intent(MainActivity.this,
-                            UiMainActivity.class));
+                                ArticleMainActivity.class));
                         break;
                     case 1:
                         startActivity(new Intent(MainActivity.this,
@@ -48,7 +49,11 @@ public class MainActivity extends Activity {
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this,
-                                ArticleMainActivity.class));
+                                UiMainActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(MainActivity.this,
+                                EncryptActivity.class));
                         break;
                         default:
                             break;

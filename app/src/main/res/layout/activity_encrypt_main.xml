@@ -5,12 +5,21 @@
     android:orientation="vertical">
 
     <Spinner
+        android:id="@+id/activity_encrypt_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></Spinner>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/activity_encrypt_edittext"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/activity_encrypt_result_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgrey"
+        android:text="Result:" />
 
 
 </LinearLayout>

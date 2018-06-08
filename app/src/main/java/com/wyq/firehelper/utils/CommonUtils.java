@@ -1,17 +1,5 @@
 package com.wyq.firehelper.utils;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.net.URLConnection;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -27,7 +15,19 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
-public class Utils {
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class CommonUtils {
 
 	/**
 	 * 创建目录
@@ -414,8 +414,6 @@ public class Utils {
 	/**
 	 * 写图片到SD�?
 	 * @param bitmap
-	 * @param filename
-	 * @param url
 	 * @throws IOException
 	 */
 	public static void saveBitmap(Bitmap bitmap, String filePath) {
@@ -451,7 +449,7 @@ public class Utils {
 			conn = url.openConnection();
 			is = conn.getInputStream();
 			fos = new FileOutputStream(new File(filePath));
-			Utils.copyStream(is, fos);
+			CommonUtils.copyStream(is, fos);
 		}
 		catch (Exception e) {
 			LogUtils.printStackTrace(e);

@@ -3,6 +3,7 @@
     package="com.wyq.firehelper">
 
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -34,6 +35,8 @@
 
         <activity android:name=".ui.ZoomImageViewActivity"></activity>
         <activity android:name=".ui.CircleBlurImageViewActivity"></activity>
+
+        <activity android:name=".encryption.EncryptActivity"></activity>
     </application>
 
 </manifest>

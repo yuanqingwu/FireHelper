@@ -267,7 +267,7 @@ public class LogUtils {
                 }
                 try {
                     String logDir = logPath;
-                    Utils.createDirs(new File(logDir));
+                    CommonUtils.createDirs(new File(logDir));
                     File file = new File(logDir + getLogFileName());
 
                     if (!file.exists()) {
