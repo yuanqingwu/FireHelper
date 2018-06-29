@@ -2,11 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wyq.firehelper">
 
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -22,21 +21,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".connectivity.ConnectMainActivity"/>
-        <activity android:name=".connectivity.bluetoothChat.BtActivity"/>
-        <activity android:name=".connectivity.bluetoothChat.BtChatActivity"/>
-        <activity android:name=".ui.MetroStyleActivity"></activity>
-        <activity android:name=".ui.UiMainActivity"></activity>
-
-        <activity android:name=".article.ArticleMainActivity"></activity>
-        <activity android:name=".article.WebViewActivity"></activity>
-
-        <activity android:name=".ui.MyWebViewActivity"></activity>
-
-        <activity android:name=".ui.ZoomImageViewActivity"></activity>
-        <activity android:name=".ui.CircleBlurImageViewActivity"></activity>
-
-        <activity android:name=".encryption.EncryptActivity"></activity>
+        <activity android:name=".connectivity.ConnectMainActivity" />
+        <activity android:name=".connectivity.bluetoothChat.BtActivity" />
+        <activity android:name=".connectivity.bluetoothChat.BtChatActivity" />
+        <activity android:name=".ui.MetroStyleActivity" />
+        <activity android:name=".ui.UiMainActivity" />
+        <activity android:name=".article.ArticleMainActivity" />
+        <activity android:name=".article.WebViewActivity" />
+        <activity android:name=".ui.MyWebViewActivity" />
+        <activity android:name=".ui.ZoomImageViewActivity" />
+        <activity android:name=".ui.CircleBlurImageViewActivity" />
+        <activity android:name=".encryption.EncryptActivity" />
+        <activity android:name=".developKit.DevelopKitMainActivity" />
+        <activity android:name=".developKit.ButterKnife.ButterKnifeActivity"/>
+        <activity android:name=".developKit.Glide.GlideActivity"/>
+        <activity android:name=".developKit.RxJava.RxJavaActivity"></activity>
     </application>
 
 </manifest>

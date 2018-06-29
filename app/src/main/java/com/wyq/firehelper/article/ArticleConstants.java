@@ -6,12 +6,41 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class ArticleConstants {
 
     public static final ArticleResource _1 = new ArticleResource("https://www.diycode.cc/wiki/androidinterview","《Android 开发工程师面试指南》");
     public static final ArticleResource _2 = new ArticleResource("https://juejin.im/post/5b0e6e6a5188251570336972","在Android中高效的加载大图");
 
+    //developKit
+    /**
+     * http://jakewharton.github.io/butterknife/
+     */
+    public static final ArticleResource _5_0_0 = new ArticleResource("http://jakewharton.github.io/butterknife/","butterknife官网");
+    public static final ArticleResource _5_0_1 = new ArticleResource("https://blog.csdn.net/donkor_/article/details/77879630","Android Butterknife（黄油刀） 使用方法总结");
 
+    /**
+     * https://bumptech.github.io/glide/
+     */
+    public static final ArticleResource _5_1_0 = new ArticleResource("https://bumptech.github.io/glide/","Glide文档");
+
+
+
+    /**
+     * rxjava:
+     * http://gank.io/post/560e15be2dca930e00da1083
+     * https://mcxiaoke.gitbooks.io/rxdocs/content/
+     */
+    public static final ArticleResource _5_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/","RxJava/2.x/javadoc");
+    public static final ArticleResource _5_1 = new ArticleResource("https://mcxiaoke.gitbooks.io/rxdocs/content/","ReactiveX/RxJava文档中文版");
+    public static final ArticleResource _5_2 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60","这可能是最好的RxJava 2.x 教程");
+
+    /**
+     * 获取此类中所有的field
+     * @return
+     */
     public static List<ArticleResource> getAllFiled(){
         Field[] fields = ArticleConstants.class.getDeclaredFields();
         List<ArticleResource> list = new ArrayList<>();

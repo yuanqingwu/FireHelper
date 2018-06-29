@@ -14,10 +14,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/activity_encrypt_invoke_bt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_margin="10dp"
+        android:text="invoke"/>
+
     <TextView
         android:id="@+id/activity_encrypt_result_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
+        android:gravity="center"
         android:background="@color/lightgrey"
         android:text="Result:" />
 

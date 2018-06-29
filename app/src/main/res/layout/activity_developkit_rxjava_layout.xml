@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".developKit.RxJava.RxJavaActivity">
+
+    <TextView
+        android:id="@+id/activity_developkit_rxjava_tv"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textColor="@color/lightblue"
+        android:background="@color/darkgrey"
+        android:gravity="center"/>
+</android.support.constraint.ConstraintLayout>

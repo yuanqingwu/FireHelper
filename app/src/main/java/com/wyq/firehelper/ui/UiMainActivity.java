@@ -13,9 +13,14 @@ import com.wyq.firehelper.R;
 
 public class UiMainActivity extends Activity {
 
+    /**
+     * FlexboxLayout
+     * PhotoView
+     *
+     */
     private String[] items = { "MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]"};
 
-    private ListView home_list;
+    private ListView homeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +28,12 @@ public class UiMainActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ui_activity_main);
 
-        home_list=(ListView)findViewById(R.id.home_list);
+        homeList =(ListView)findViewById(R.id.home_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 UiMainActivity.this, android.R.layout.simple_list_item_1,
                 items);
-        home_list.setAdapter(adapter);
-        home_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        homeList.setAdapter(adapter);
+        homeList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
