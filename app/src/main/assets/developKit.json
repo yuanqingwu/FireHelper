@@ -1,0 +1,110 @@
+[
+  {
+    "category": "依赖注入",
+    "kitInfos": [
+      {
+        "name": "butterKnife",
+        "description": "Field and method binding for Android views which uses annotation processing to generate boilerplate code for you."
+      },
+      {
+        "name": "Dagger",
+        "description": ""
+      },
+      {
+        "name": "AndroidAnotations",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "响应式编程",
+    "kitInfos": [
+      {
+        "name": "RxJava",
+        "description": ""
+      },
+      {
+        "name": "RxAndroid",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "网络请求",
+    "kitInfos": [
+      {
+        "name": "Retrofit+OkHttp",
+        "description": ""
+      },
+      {
+        "name": "Volley",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "图片处理",
+    "kitInfos": [
+      {
+        "name": "Glide",
+        "description": "Glide 支持拉取，解码和展示视频快照，图片，和GIF动画。"
+      },
+      {
+        "name": "Picasso",
+        "description": ""
+      },
+      {
+        "name": "Fresco",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "事件总线",
+    "kitInfos": [
+      {
+        "name": "EventBus",
+        "description": ""
+      },
+      {
+        "name": "otto",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "网络解析",
+    "kitInfos": [
+      {
+        "name": "fastjson+Gson+jackson",
+        "description": ""
+      },
+      {
+        "name": "HtmlPaser+Jsoup",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "Log日志",
+    "kitInfos": [
+      {
+        "name": "Logger",
+        "description": ""
+      },
+      {
+        "name": "Hugo",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "性能优化",
+    "kitInfos": [
+      {
+        "name": "LeakCanary",
+        "description": ""
+      }
+    ]
+  }
+]
