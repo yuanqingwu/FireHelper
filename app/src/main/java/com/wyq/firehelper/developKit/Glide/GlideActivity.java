@@ -11,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.WebViewActivity;
-import com.wyq.firehelper.developKit.ButterKnife.ButterKnifeActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,8 +26,8 @@ public class GlideActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
-        setContentView(R.layout.activity_developkit_glide_layout);
+        if(getSupportActionBar() != null)getSupportActionBar().hide();
+        setContentView(R.layout.developkit_activity_glide_layout);
         ButterKnife.bind(this);
 
         textView.setText(ArticleConstants._5_0_1.getTitle());
@@ -42,7 +41,7 @@ public class GlideActivity extends AppCompatActivity {
     @OnClick(R.id.activity_developkit_glide_tv)
     public void readArticle() {
         Intent intent = new Intent();
-        intent.putExtra("url", ArticleConstants._5_1_0.getUrl());
+        intent.putExtra("url", ArticleConstants._5_3_0.getUrl());
         intent.setClass(GlideActivity.this, WebViewActivity.class);
         startActivity(intent);
     }

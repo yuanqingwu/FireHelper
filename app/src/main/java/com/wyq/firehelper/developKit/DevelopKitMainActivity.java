@@ -7,6 +7,7 @@ import android.view.Window;
 
 import com.google.gson.Gson;
 import com.mindorks.placeholderview.ExpandablePlaceHolderView;
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.developKit.placeholderview.HeadView;
 import com.wyq.firehelper.developKit.placeholderview.ItemView;
@@ -57,8 +58,9 @@ public class DevelopKitMainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_developkit_main_layout);
+        setContentView(R.layout.developkit_activity_main_layout);
         ButterKnife.bind(this);
+        Logger.i("develop kit");
     }
 
     @Override
@@ -67,9 +69,10 @@ public class DevelopKitMainActivity extends Activity {
         for(DevelopKit kit : getKits()){
             ephView.addView(new HeadView(kit.getCategory()));
             for(KitInfo info : kit.getKitInfos()){
-                ephView.addView(new ItemView(info.getName(),info.getDescription()));
+                ephView.addView(new ItemView(this,info.getName(),info.getDescription()));
             }
         }
+
     }
 
     private List<DevelopKit> getKits(){

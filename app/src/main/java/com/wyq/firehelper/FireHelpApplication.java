@@ -15,13 +15,13 @@ public class FireHelpApplication extends Application {
      * 当前版本是否为debug版本
      * 1.控制是否打印调试日志
      */
-    public boolean isDebug = BuildConfig.DEBUG;
+    public static final boolean isDebug = BuildConfig.DEBUG;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
-        initLogger();
+//        initLogger();
     }
 
 

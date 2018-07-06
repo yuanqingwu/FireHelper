@@ -12,7 +12,7 @@ import java.util.List;
 public class ArticleConstants {
 
     public static final ArticleResource _1 = new ArticleResource("https://www.diycode.cc/wiki/androidinterview","《Android 开发工程师面试指南》");
-    public static final ArticleResource _2 = new ArticleResource("https://juejin.im/post/5b0e6e6a5188251570336972","在Android中高效的加载大图");
+    public static final ArticleResource _2 = new ArticleResource("https://github.com/WeMobileDev/article","articles by WeChat Mobile Development Team ");
 
     //developKit
     /**
@@ -22,9 +22,17 @@ public class ArticleConstants {
     public static final ArticleResource _5_0_1 = new ArticleResource("https://blog.csdn.net/donkor_/article/details/77879630","Android Butterknife（黄油刀） 使用方法总结");
 
     /**
+     * Dagger
+     *
+     * https://www.jianshu.com/p/39d1df6c877d
+     */
+    public static final ArticleResource _5_1_0 = new ArticleResource("https://google.github.io/dagger/users-guide","dagger/users-guide");
+    public static final ArticleResource _5_1_1 = new ArticleResource("https://www.jianshu.com/p/39d1df6c877d","Dagger2从入门到放弃再到恍然大悟");
+
+    /**
      * https://bumptech.github.io/glide/
      */
-    public static final ArticleResource _5_1_0 = new ArticleResource("https://bumptech.github.io/glide/","Glide文档");
+    public static final ArticleResource _5_3_0 = new ArticleResource("https://bumptech.github.io/glide/","Glide文档");
 
 
 

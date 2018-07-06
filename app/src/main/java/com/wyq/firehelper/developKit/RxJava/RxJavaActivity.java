@@ -24,7 +24,7 @@ public class RxJavaActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_developkit_rxjava_layout);
+        setContentView(R.layout.developkit_activity_rxjava_layout);
 
         articleTv = (TextView)findViewById(R.id.activity_developkit_rxjava_tv);
         articleTv.setText(ArticleConstants._5_0.getTitle());

@@ -205,7 +205,8 @@ public class WebViewActivity extends Activity {
 
 //                Logger.i(" x dis:" + (xEnd - xStart)+" start:"+xStart+" end:"+xEnd);
 //                Logger.i(" y dis:" + (yEnd - yStart)+" start:"+yStart+" end:"+yEnd);
-                if (xStart < width / 4 && xEnd - xStart > 100 && Math.abs(yEnd - yStart) < 100) {
+                //&& Math.abs(yEnd - yStart) < 100
+                if (xStart < width / 4 && xEnd - xStart > 100 ) {
 //                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.WEBVIEW_GO_BACK));
                     if (webView.canGoBack()) {
                         webView.goBack();
@@ -218,10 +219,12 @@ public class WebViewActivity extends Activity {
                         finish();
                     }
 
-                } else if (xStart > width * 3 / 4 && xEnd - xStart < -100 && Math.abs(yEnd - yStart) < 100) {
+                    return true;
+                } else if (xStart > width * 3 / 4 && xEnd - xStart < -100 ) {
                     if (webView.canGoForward()) {
                         webView.goForward();
                     }
+                    return true;
                 }
                 break;
 

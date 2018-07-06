@@ -37,9 +37,9 @@ public class ButterKnifeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getSupportActionBar().hide();
+        if(getSupportActionBar() != null)getSupportActionBar().hide();
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_developkit_butterknife_layout);
+        setContentView(R.layout.developkit_activity_butterknife_layout);
         ButterKnife.bind(this);
 
         initView();

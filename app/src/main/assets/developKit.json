@@ -3,16 +3,16 @@
     "category": "依赖注入",
     "kitInfos": [
       {
-        "name": "butterKnife",
+        "name": "ButterKnife",
         "description": "Field and method binding for Android views which uses annotation processing to generate boilerplate code for you."
       },
       {
         "name": "Dagger",
-        "description": ""
+        "description": "A fast dependency injector for Android and Java."
       },
       {
         "name": "AndroidAnotations",
-        "description": ""
+        "description": " It takes care of the plumbing, and lets you concentrate on what's really important. By simplifying your code, it facilitates its maintenance."
       }
     ]
   },
@@ -21,11 +21,11 @@
     "kitInfos": [
       {
         "name": "RxJava",
-        "description": ""
+        "description": "Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM."
       },
       {
         "name": "RxAndroid",
-        "description": ""
+        "description": "RxJava bindings for Android"
       }
     ]
   },
@@ -33,12 +33,16 @@
     "category": "网络请求",
     "kitInfos": [
       {
-        "name": "Retrofit+OkHttp",
-        "description": ""
+        "name": "Retrofit",
+        "description": "Type-safe HTTP client for Android and Java by Square, Inc. "
+      },
+      {
+        "name": "OkHttp",
+        "description": "An HTTP+HTTP/2 client for Android and Java applications."
       },
       {
         "name": "Volley",
-        "description": ""
+        "description": "Volley is an HTTP library that makes networking for Android apps easier and, most importantly, faster."
       }
     ]
   },
@@ -51,11 +55,11 @@
       },
       {
         "name": "Picasso",
-        "description": ""
+        "description": "A powerful image downloading and caching library for Android"
       },
       {
         "name": "Fresco",
-        "description": ""
+        "description": "Fresco is a powerful system for displaying images in Android applications."
       }
     ]
   },
@@ -64,11 +68,11 @@
     "kitInfos": [
       {
         "name": "EventBus",
-        "description": ""
+        "description": "Event bus for Android and Java that simplifies communication between Activities, Fragments, Threads, Services, etc. "
       },
       {
-        "name": "otto",
-        "description": ""
+        "name": "RxBus",
+        "description": "Event Bus By RxJava."
       }
     ]
   },
@@ -76,12 +80,16 @@
     "category": "网络解析",
     "kitInfos": [
       {
-        "name": "fastjson+Gson+jackson",
-        "description": ""
+        "name": "Json",
+        "description": "fastjson+Gson+jackson"
       },
       {
-        "name": "HtmlPaser+Jsoup",
-        "description": ""
+        "name": "Jsoup",
+        "description": "Java HTML Parser, with best of DOM, CSS, and jquery "
+      },
+      {
+        "name": "HtmlPaser",
+        "description": "HTML Parser is a Java library used to parse HTML in either a linear or nested fashion."
       }
     ]
   },
@@ -90,11 +98,11 @@
     "kitInfos": [
       {
         "name": "Logger",
-        "description": ""
+        "description": "Simple, pretty and powerful logger for android"
       },
       {
         "name": "Hugo",
-        "description": ""
+        "description": "Annotation-triggered method call logging for your debug builds."
       }
     ]
   },
@@ -103,7 +111,7 @@
     "kitInfos": [
       {
         "name": "LeakCanary",
-        "description": ""
+        "description": "A memory leak detection library for Android and Java."
       }
     ]
   }

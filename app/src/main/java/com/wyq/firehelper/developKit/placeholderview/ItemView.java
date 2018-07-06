@@ -1,7 +1,10 @@
 package com.wyq.firehelper.developKit.placeholderview;
 
+import android.content.Context;
+import android.content.Intent;
 import android.widget.TextView;
 
+import com.mindorks.placeholderview.annotations.Click;
 import com.mindorks.placeholderview.annotations.Layout;
 import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
@@ -11,7 +14,7 @@ import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 
 @Layout(R.layout.developkit_placeholderview_expandable_item_layout)
-public class ItemView implements android.view.View.OnClickListener {
+public class ItemView {
 
     @View(R.id.developkit_placeholderview_expandable_item_tv)
     public TextView itemTv;
@@ -27,14 +30,17 @@ public class ItemView implements android.view.View.OnClickListener {
 
     public String itemText;
     public String descText;
+    public Context context;
 
-    public ItemView(String itemText,String descText) {
+    public ItemView(Context context, String itemText, String descText) {
+        this.context = context;
         this.itemText = itemText;
         this.descText = descText;
     }
 
     @Resolve
     public void onResolved() {
+        Logger.i(itemText + " is Resolve");
         itemTv.setText(itemText);
         if (descText == null || descText.isEmpty()) {
             descTv.setVisibility(android.view.View.GONE);
@@ -42,12 +48,21 @@ public class ItemView implements android.view.View.OnClickListener {
             descTv.setVisibility(android.view.View.VISIBLE);
             descTv.setText(descText);
         }
-        itemTv.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(android.view.View v) {
+    @Click(R.id.developkit_placeholderview_expandable_item_tv)
+    public void onKitClick() {
+        Logger.i(itemText + " is click");
         Logger.i("mParentPosition:" + mParentPosition + " mChildPosition:" + mChildPosition);
 
+        try {
+            Class clazz = Class.forName("com.wyq.firehelper.developKit." + itemText + "." + itemText + "Activity", true, context.getClassLoader());
+            Logger.i(clazz.toString());
+            context.startActivity(new Intent(context, clazz));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
+
+
 }

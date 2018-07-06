@@ -1,4 +1,4 @@
-package com.wyq.firehelper.developKit.eventBus;
+package com.wyq.firehelper.developKit.EventBus;
 
 public class EventBusMessage {
 
