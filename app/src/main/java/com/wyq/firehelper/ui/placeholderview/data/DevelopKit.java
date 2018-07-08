@@ -1,4 +1,4 @@
-package com.wyq.firehelper.developKit.placeholderview.data;
+package com.wyq.firehelper.ui.placeholderview.data;
 
 import java.util.List;
 

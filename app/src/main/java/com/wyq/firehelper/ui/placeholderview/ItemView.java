@@ -1,4 +1,4 @@
-package com.wyq.firehelper.developKit.placeholderview;
+package com.wyq.firehelper.ui.placeholderview;
 
 import android.content.Context;
 import android.content.Intent;
@@ -40,7 +40,7 @@ public class ItemView {
 
     @Resolve
     public void onResolved() {
-        Logger.i(itemText + " is Resolve");
+//        Logger.i(itemText + " is Resolve");
         itemTv.setText(itemText);
         if (descText == null || descText.isEmpty()) {
             descTv.setVisibility(android.view.View.GONE);
@@ -52,12 +52,12 @@ public class ItemView {
 
     @Click(R.id.developkit_placeholderview_expandable_item_tv)
     public void onKitClick() {
-        Logger.i(itemText + " is click");
-        Logger.i("mParentPosition:" + mParentPosition + " mChildPosition:" + mChildPosition);
+//        Logger.i(itemText + " is click");
+//        Logger.i("mParentPosition:" + mParentPosition + " mChildPosition:" + mChildPosition);
 
         try {
             Class clazz = Class.forName("com.wyq.firehelper.developKit." + itemText + "." + itemText + "Activity", true, context.getClassLoader());
-            Logger.i(clazz.toString());
+//            Logger.i(clazz.toString());
             context.startActivity(new Intent(context, clazz));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

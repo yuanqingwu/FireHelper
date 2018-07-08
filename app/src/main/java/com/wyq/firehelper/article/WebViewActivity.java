@@ -186,45 +186,48 @@ public class WebViewActivity extends Activity {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                xStart = event.getRawX();
-                yStart = event.getRawY();
+                xStart = event.getX(0);
+                yStart = event.getY(0);
                 break;
             case MotionEvent.ACTION_MOVE:
-                float xNow = event.getRawX();
-                if (xStart < width / 4 && Math.abs(xNow - xStart) > 100 && Math.abs(event.getRawY() - yStart) < 100) {
-                    float xDist = xNow - xStart - 100;
-                    float alpha = 1 - xDist / width;
-                    webView.setX(xDist);
-                    webView.setAlpha(alpha);
+                if(event.getPointerCount() == 1) {
+                    float xNow = event.getX(0);
+                    if (xStart < width / 4 && Math.abs(xNow - xStart) > 100 && Math.abs(event.getY(0) - yStart) < 100) {
+                        float xDist = xNow - xStart - 100;
+                        float alpha = 1 - xDist / width;
+                        webView.setX(xDist);
+                        webView.setAlpha(alpha);
+                    }
                 }
-
                 break;
             case MotionEvent.ACTION_UP:
-                float xEnd = event.getRawX();
-                float yEnd = event.getRawY();
+                if(event.getPointerCount() == 1) {
+                    float xEnd = event.getX(0);
+                    float yEnd = event.getY(0);
 
 //                Logger.i(" x dis:" + (xEnd - xStart)+" start:"+xStart+" end:"+xEnd);
 //                Logger.i(" y dis:" + (yEnd - yStart)+" start:"+yStart+" end:"+yEnd);
-                //&& Math.abs(yEnd - yStart) < 100
-                if (xStart < width / 4 && xEnd - xStart > 100 ) {
+                    //&& Math.abs(yEnd - yStart) < 100
+                    if (xStart < width / 4 && xEnd - xStart > 100) {
 //                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.WEBVIEW_GO_BACK));
-                    if (webView.canGoBack()) {
-                        webView.goBack();
-                        webView.setAlpha(1);
-                        webView.setX(0);
+                        if (webView.canGoBack()) {
+                            webView.goBack();
+                            webView.setAlpha(1);
+                            webView.setX(0);
 //                        webView.setTranslationX(0);
-                    } else {
-                        //如果第一页则直接返回
-                        webView.setAlpha(0);
-                        finish();
-                    }
+                        } else {
+                            //如果第一页则直接返回
+                            webView.setAlpha(0);
+                            finish();
+                        }
 
-                    return true;
-                } else if (xStart > width * 3 / 4 && xEnd - xStart < -100 ) {
-                    if (webView.canGoForward()) {
-                        webView.goForward();
+                        return true;
+                    } else if (xStart > width * 3 / 4 && xEnd - xStart < -100) {
+                        if (webView.canGoForward()) {
+                            webView.goForward();
+                        }
+                        return true;
                     }
-                    return true;
                 }
                 break;
 

@@ -34,6 +34,7 @@
         <activity android:name=".encryption.EncryptActivity" />
         <activity android:name=".developKit.DevelopKitMainActivity" />
         <activity android:name=".developKit.ButterKnife.ButterKnifeActivity" />
+        <activity android:name=".developKit.Dagger.DaggerActivity"/>
         <activity android:name=".developKit.Glide.GlideActivity" />
         <activity android:name=".developKit.RxJava.RxJavaActivity" />
         <activity android:name=".developKit.EventBus.EventBusActivity"></activity>

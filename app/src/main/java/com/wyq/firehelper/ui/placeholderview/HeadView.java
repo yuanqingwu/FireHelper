@@ -1,4 +1,4 @@
-package com.wyq.firehelper.developKit.placeholderview;
+package com.wyq.firehelper.ui.placeholderview;
 
 import android.widget.TextView;
 
