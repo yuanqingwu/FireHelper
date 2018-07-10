@@ -1,20 +1,17 @@
 package com.wyq.firehelper.developKit.ButterKnife;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.article.WebViewActivity;
+import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class ButterKnifeActivity extends AppCompatActivity {
+public class ButterKnifeActivity extends DevelopKitBaseActivity {
 
     @BindView(R.id.activity_developkit_butterknife_tv)
     public TextView articleTv;//官网
@@ -38,33 +35,24 @@ public class ButterKnifeActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if(getSupportActionBar() != null)getSupportActionBar().hide();
-//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.developkit_activity_butterknife_layout);
         ButterKnife.bind(this);
 
+        initData();
         initView();
     }
 
+    @Override
+    public void initData() {
+        resourceList.put(articleTv,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_0);
+        resourceList.put(articleTv1,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_1);
 
-    @OnClick(R.id.activity_developkit_butterknife_tv)
-    public void readArticle() {
-        Intent intent = new Intent();
-        intent.putExtra("url", ArticleConstants._5_0_0.getUrl());
-        intent.setClass(ButterKnifeActivity.this, WebViewActivity.class);
-        startActivity(intent);
     }
 
-    @OnClick(R.id.activity_developkit_butterknife_tv_1)
-    public void readArticle1() {
-        Intent intent = new Intent();
-        intent.putExtra("url", ArticleConstants._5_0_1.getUrl());
-        intent.setClass(ButterKnifeActivity.this, WebViewActivity.class);
-        startActivity(intent);
-    }
+    @Override
+    public void initView() {
 
-    private void initView() {
-        articleTv.setText(ArticleConstants._5_0_0.getTitle());
-        articleTv1.setText(ArticleConstants._5_0_1.getTitle());
+        browserArticle(ButterKnifeActivity.this);
 
         textView2.setText("1、在Activity 类中绑定 ：ButterKnife.bind(this);必须在setContentView();之后绑定；且父类bind绑定后，子类不需要再bind。\n" +
                 "\n" +

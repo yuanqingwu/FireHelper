@@ -1,21 +1,19 @@
 package com.wyq.firehelper.ui;
 
 
-
-import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 import com.wyq.firehelper.utils.DialogUtil;
 
 
-public class MyWebViewActivity extends Activity {
+public class MyWebViewActivity extends BaseActivity {
 
 	private Dialog requestDialog;
 
@@ -23,7 +21,6 @@ public class MyWebViewActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.mall_webview);
 
 

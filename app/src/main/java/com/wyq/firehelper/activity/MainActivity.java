@@ -1,11 +1,9 @@
 package com.wyq.firehelper.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -26,7 +24,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private String[] items = { "Article" ,"Communication","UI","Encryption","DevelopKit"};
 
@@ -35,7 +33,6 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         initLogger();

@@ -1,6 +1,5 @@
 package com.wyq.firehelper.ui;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -10,11 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 
 /**
  * Created by wuyuanqing on 2015/9/8.
  */
-public class CircleBlurImageViewActivity extends Activity {
+public class CircleBlurImageViewActivity extends BaseActivity {
     private ImageView imageView,imageViewAlpha;
     private TextView textView;
 

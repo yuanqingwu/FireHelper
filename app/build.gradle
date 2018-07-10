@@ -41,4 +41,12 @@ dependencies {
     implementation 'com.mindorks.android:placeholderview:1.0.3'
     annotationProcessor 'com.mindorks.android:placeholderview-compiler:1.0.3'
     implementation 'com.android.support:recyclerview-v7:27.1.0'
+
+    implementation 'me.yokeyword:fragmentation:1.3.5'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.3.5'
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+
+
 }

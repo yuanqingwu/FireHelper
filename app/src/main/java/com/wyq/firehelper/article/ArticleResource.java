@@ -10,10 +10,7 @@ public class ArticleResource {
 
     private String url;
     private String title;
-    /**
-     * 文章分类
-     */
-    private String category;
+    private String category;//分类
     private List<String> tag;
 
     public ArticleResource(String url){

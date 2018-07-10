@@ -1,5 +1,6 @@
 package com.wyq.firehelper.ui.placeholderview;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
@@ -10,7 +11,6 @@ import com.mindorks.placeholderview.annotations.Resolve;
 import com.mindorks.placeholderview.annotations.View;
 import com.mindorks.placeholderview.annotations.expand.ChildPosition;
 import com.mindorks.placeholderview.annotations.expand.ParentPosition;
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 
 @Layout(R.layout.developkit_placeholderview_expandable_item_layout)
@@ -55,13 +55,18 @@ public class ItemView {
 //        Logger.i(itemText + " is click");
 //        Logger.i("mParentPosition:" + mParentPosition + " mChildPosition:" + mChildPosition);
 
-        try {
-            Class clazz = Class.forName("com.wyq.firehelper.developKit." + itemText + "." + itemText + "Activity", true, context.getClassLoader());
-//            Logger.i(clazz.toString());
-            context.startActivity(new Intent(context, clazz));
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        String name = "com.wyq.firehelper.developKit." + itemText + "." + itemText + "Activity";
+        Intent intent = new Intent();
+        intent.setComponent(new ComponentName(context,name));
+        context.startActivity(intent);
+
+//        try {
+//            Class clazz = Class.forName(name, true, context.getClassLoader());
+////            Logger.i(clazz.toString());
+//            context.startActivity(new Intent(context, clazz));
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        }
     }
 
 

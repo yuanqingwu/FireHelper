@@ -1,21 +1,19 @@
 package com.wyq.firehelper.ui;
 
 
-import com.wyq.firehelper.R;
-import com.wyq.firehelper.ui.widget.ZoomImageView;
-
-
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.ImageView;
 
+import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.ui.widget.ZoomImageView;
 
-public class ZoomImageViewActivity extends Activity {
+
+public class ZoomImageViewActivity extends BaseActivity {
 
     protected ViewPager mViewPager;
 
@@ -28,7 +26,6 @@ public class ZoomImageViewActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.zoom_imageview);
 
         mViewPager = (ViewPager) findViewById(R.id.zoom_viewpager);

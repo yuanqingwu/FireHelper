@@ -1,25 +1,23 @@
 package com.wyq.firehelper.ui;
 
 
-import com.wyq.firehelper.R;
-import com.wyq.firehelper.ui.widget.MetroImageView;
-
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Window;
 import android.widget.Toast;
 
+import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.ui.widget.MetroImageView;
 
-public class MetroStyleActivity extends Activity {
+
+public class MetroStyleActivity extends BaseActivity {
 
     private MetroImageView metro_browser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.metrolayout);
 
         metro_browser = (MetroImageView) findViewById(R.id.metro_browser);

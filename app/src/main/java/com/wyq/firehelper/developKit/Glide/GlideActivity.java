@@ -1,22 +1,19 @@
 package com.wyq.firehelper.developKit.Glide;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.article.WebViewActivity;
+import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class GlideActivity extends AppCompatActivity {
+public class GlideActivity extends DevelopKitBaseActivity {
 
     @BindView(R.id.activity_developkit_glide_img_1)
     public ImageView imageView;
@@ -30,19 +27,17 @@ public class GlideActivity extends AppCompatActivity {
         setContentView(R.layout.developkit_activity_glide_layout);
         ButterKnife.bind(this);
 
-        textView.setText(ArticleConstants._5_0_1.getTitle());
-
         Glide.with(this).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
                 .into(imageView);
-
     }
 
+    @Override
+    public void initData() {
+        resourceList.put(textView,ArticleConstants.DEVKIT_IMAGE_GLIDE_0);
+    }
 
-    @OnClick(R.id.activity_developkit_glide_tv)
-    public void readArticle() {
-        Intent intent = new Intent();
-        intent.putExtra("url", ArticleConstants._5_3_0.getUrl());
-        intent.setClass(GlideActivity.this, WebViewActivity.class);
-        startActivity(intent);
+    @Override
+    public void initView() {
+    browserArticle(GlideActivity.this);
     }
 }

@@ -1,14 +1,13 @@
 package com.wyq.firehelper.developKit;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.Window;
 
 import com.google.gson.Gson;
 import com.mindorks.placeholderview.ExpandablePlaceHolderView;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 import com.wyq.firehelper.ui.placeholderview.HeadView;
 import com.wyq.firehelper.ui.placeholderview.ItemView;
 import com.wyq.firehelper.ui.placeholderview.data.DevelopKit;
@@ -29,35 +28,13 @@ import butterknife.ButterKnife;
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class DevelopKitMainActivity extends Activity {
-
-//    private String[] items = {
-//            "依赖注入",
-//            "butterKnife","Dagger","AndroidAnotations",
-//            "响应式编程",
-//            "RxJava" ,"RxAndroid",
-//            "网络请求",
-//            "Retrofit+OkHttp","Volley",
-//            "图片处理",
-//            "Glide","Picasso","Fresco",
-//            "事件总线",
-//            "EventBus","otto",
-//            "网络解析",
-//            "fastjson+Gson+jackson",
-//            "HtmlPaser+Jsoup",
-//            "Log日志",
-//            "Logger","Hugo",
-//            "性能优化",
-//            "LeakCanary"};
-
-
+public class DevelopKitMainActivity extends BaseActivity {
     @BindView(R.id.activity_developkit_main_eph_view)
     public ExpandablePlaceHolderView ephView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.developkit_activity_main_layout);
         ButterKnife.bind(this);
         Logger.i("develop kit");

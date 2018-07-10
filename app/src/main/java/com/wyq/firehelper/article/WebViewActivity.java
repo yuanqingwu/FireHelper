@@ -1,11 +1,11 @@
 package com.wyq.firehelper.article;
 
-import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,7 +23,7 @@ import android.widget.ProgressBar;
 
 import com.wyq.firehelper.R;
 
-public class WebViewActivity extends Activity {
+public class WebViewActivity extends AppCompatActivity {
 
     private WebView webView;
     private ProgressBar progressBar;
@@ -208,7 +208,7 @@ public class WebViewActivity extends Activity {
 //                Logger.i(" x dis:" + (xEnd - xStart)+" start:"+xStart+" end:"+xEnd);
 //                Logger.i(" y dis:" + (yEnd - yStart)+" start:"+yStart+" end:"+yEnd);
                     //&& Math.abs(yEnd - yStart) < 100
-                    if (xStart < width / 4 && xEnd - xStart > 100) {
+                    if (xStart < width / 4 && xEnd - xStart > width/2) {
 //                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.WEBVIEW_GO_BACK));
                         if (webView.canGoBack()) {
                             webView.goBack();
@@ -227,6 +227,9 @@ public class WebViewActivity extends Activity {
                             webView.goForward();
                         }
                         return true;
+                    }else{
+                        webView.setAlpha(1);
+                        webView.setX(0);
                     }
                 }
                 break;

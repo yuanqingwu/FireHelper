@@ -11,7 +11,7 @@
         "description": "A fast dependency injector for Android and Java."
       },
       {
-        "name": "AndroidAnotations",
+        "name": "AndroidAnnotations",
         "description": " It takes care of the plumbing, and lets you concentrate on what's really important. By simplifying your code, it facilitates its maintenance."
       }
     ]

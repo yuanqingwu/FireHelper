@@ -1,6 +1,5 @@
 package com.wyq.firehelper.encryption;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -12,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 import com.wyq.firehelper.utils.LogUtils;
 
 import java.lang.reflect.InvocationTargetException;
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EncryptActivity extends Activity {
+public class EncryptActivity extends BaseActivity {
 
     private Spinner spinner;
     private TextView resultTv;

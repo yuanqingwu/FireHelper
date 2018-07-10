@@ -1,6 +1,5 @@
 package com.wyq.firehelper.article;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Uni.W on 2017/10/26.
  */
 
-public class ArticleMainActivity extends Activity implements View.OnClickListener {
+public class ArticleMainActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView urlTv;
     private RecyclerView recyclerView ;

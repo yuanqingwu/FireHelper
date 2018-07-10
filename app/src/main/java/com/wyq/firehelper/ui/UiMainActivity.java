@@ -1,17 +1,16 @@
 package com.wyq.firehelper.ui;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.activity.BaseActivity;
 
-public class UiMainActivity extends Activity {
+public class UiMainActivity extends BaseActivity {
 
     /**
      * FlexboxLayout
@@ -25,7 +24,6 @@ public class UiMainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.ui_activity_main);
 
         homeList =(ListView)findViewById(R.id.home_list);
