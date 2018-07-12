@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.ui.layout.drag.DragLayoutActivity;
 
 public class UiMainActivity extends BaseActivity {
 
@@ -17,7 +18,7 @@ public class UiMainActivity extends BaseActivity {
      * PhotoView
      *
      */
-    private String[] items = { "MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]"};
+    private String[] items = {"MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]","DragLayout"};
 
     private ListView homeList;
 
@@ -47,6 +48,11 @@ public class UiMainActivity extends BaseActivity {
                         startActivity(new Intent(UiMainActivity.this,
                                 CircleBlurImageViewActivity.class));
                         break;
+                    case 3:
+                        startActivity(new Intent(UiMainActivity.this,
+                                DragLayoutActivity.class));
+                        default:
+                            break;
                 }
 
             }

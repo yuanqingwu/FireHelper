@@ -179,6 +179,11 @@ public class WebViewActivity extends AppCompatActivity {
         return url;
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        return super.onTouchEvent(event);
+    }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {

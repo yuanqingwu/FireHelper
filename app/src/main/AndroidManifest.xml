@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".FireHelpApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,10 +25,11 @@
         <activity android:name=".connectivity.ConnectMainActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtChatActivity" />
-        <activity android:name=".ui.MetroStyleActivity" />
-        <activity android:name=".ui.UiMainActivity" />
         <activity android:name=".article.ArticleMainActivity" />
         <activity android:name=".article.WebViewActivity" />
+        <activity android:name=".ui.MetroStyleActivity" />
+        <activity android:name=".ui.UiMainActivity" />
+        <activity android:name=".ui.layout.drag.DragLayoutActivity"/>
         <activity android:name=".ui.MyWebViewActivity" />
         <activity android:name=".ui.ZoomImageViewActivity" />
         <activity android:name=".ui.CircleBlurImageViewActivity" />

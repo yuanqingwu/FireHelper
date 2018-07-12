@@ -1,6 +1,5 @@
 package com.wyq.firehelper.ui.placeholderview;
 
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
@@ -56,17 +55,17 @@ public class ItemView {
 //        Logger.i("mParentPosition:" + mParentPosition + " mChildPosition:" + mChildPosition);
 
         String name = "com.wyq.firehelper.developKit." + itemText + "." + itemText + "Activity";
-        Intent intent = new Intent();
-        intent.setComponent(new ComponentName(context,name));
-        context.startActivity(intent);
+//        Intent intent = new Intent();
+//        intent.setComponent(new ComponentName(context,name));
+//        context.startActivity(intent);
 
-//        try {
-//            Class clazz = Class.forName(name, true, context.getClassLoader());
-////            Logger.i(clazz.toString());
-//            context.startActivity(new Intent(context, clazz));
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        }
+        try {
+            Class clazz = Class.forName(name, true, context.getClassLoader());
+//            Logger.i(clazz.toString());
+            context.startActivity(new Intent(context, clazz));
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 

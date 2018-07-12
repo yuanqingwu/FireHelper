@@ -11,6 +11,10 @@ import java.util.List;
  */
 public class ArticleConstants {
 
+    //ViewDragHelper
+    //Spring Animations for Android  https://github.com/facebook/rebound
+    //A declarative framework for building efficient UIs on Android.  https://github.com/facebook/litho
+
     public static final ArticleResource _1 = new ArticleResource("https://www.diycode.cc/wiki/androidinterview","《Android 开发工程师面试指南》");
     public static final ArticleResource _2 = new ArticleResource("https://github.com/WeMobileDev/article","articles by WeChat Mobile Development Team ");
     public static final ArticleResource _3 = new ArticleResource("https://www.jianshu.com/p/cafedd319512","多点触控详解");
