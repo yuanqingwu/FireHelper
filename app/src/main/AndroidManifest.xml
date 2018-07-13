@@ -40,7 +40,8 @@
         <activity android:name=".developKit.Glide.GlideActivity" />
         <activity android:name=".developKit.RxJava.RxJavaActivity" />
         <activity android:name=".developKit.EventBus.EventBusActivity" />
-        <activity android:name=".developKit.AndroidAnnotations.AndroidAnnotationsActivity"></activity>
+        <activity android:name=".developKit.AndroidAnnotations.AndroidAnnotationsActivity"/>
+        <activity android:name=".architecture.mvp.view.MvpActivity"/>
     </application>
 
 </manifest>

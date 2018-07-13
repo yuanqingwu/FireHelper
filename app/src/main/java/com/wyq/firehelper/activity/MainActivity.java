@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.architecture.mvp.view.MvpActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
@@ -19,7 +20,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
  */
 public class MainActivity extends BaseActivity {
 
-    private String[] items = { "Article" ,"Communication","UI","Encryption","DevelopKit"};
+    private String[] items = { "Article" ,"Communication","UI","Encryption","DevelopKit","Architecture"};
 
     private ListView listView;
 
@@ -56,6 +57,10 @@ public class MainActivity extends BaseActivity {
                     case 4:
                         startActivity(new Intent(MainActivity.this,
                                 DevelopKitMainActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(MainActivity.this,
+                                MvpActivity.class));
                         break;
                         default:
                             break;
