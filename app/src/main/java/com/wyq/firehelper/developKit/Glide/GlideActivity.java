@@ -27,6 +27,9 @@ public class GlideActivity extends DevelopKitBaseActivity {
         setContentView(R.layout.developkit_activity_glide_layout);
         ButterKnife.bind(this);
 
+        initData();
+        initView();
+
         Glide.with(this).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
                 .into(imageView);
     }

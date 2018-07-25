@@ -1,4 +1,4 @@
-package com.wyq.firehelper.architecture.mvp.model;
+package com.wyq.firehelper.architecture.mvp.translation.model;
 
 public class TranslateResultBean {
     /**

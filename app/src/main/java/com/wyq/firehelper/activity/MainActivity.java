@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.architecture.mvp.view.MvpActivity;
+import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
