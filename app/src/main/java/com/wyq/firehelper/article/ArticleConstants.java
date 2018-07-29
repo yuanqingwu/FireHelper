@@ -1,7 +1,5 @@
 package com.wyq.firehelper.article;
 
-import com.orhanobut.logger.Logger;
-
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +17,8 @@ public class ArticleConstants {
     public static final ArticleResource _2 = new ArticleResource("https://github.com/WeMobileDev/article","articles by WeChat Mobile Development Team ");
     public static final ArticleResource _3 = new ArticleResource("https://www.jianshu.com/p/cafedd319512","多点触控详解");
     public static final ArticleResource _4 = new ArticleResource("https://www.jianshu.com/p/1e456b63e1ab","欢迎来到Github世界");
+
+    public static final ArticleResource _5 = new ArticleResource("https://github.com/googlesamples/android-architecture","googlesamples/android-architecture");
 
     //developKit
     /**
@@ -65,7 +65,7 @@ public class ArticleConstants {
         List<ArticleResource> list = new ArrayList<>();
         for(Field field : fields){
             try {
-                Logger.i(field.get(null)+"  "+fields.length);
+//                Logger.i(field.get(null)+"  "+fields.length);
                 if(field.get(null) instanceof ArticleResource)
                 list.add((ArticleResource) field.get(null));
             } catch (IllegalAccessException e) {

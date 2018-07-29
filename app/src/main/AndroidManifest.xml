@@ -41,7 +41,7 @@
         <activity android:name=".developKit.RxJava.RxJavaActivity" />
         <activity android:name=".developKit.EventBus.EventBusActivity" />
         <activity android:name=".developKit.AndroidAnnotations.AndroidAnnotationsActivity"/>
-        <activity android:name=".architecture.mvp.view.MvpActivity"/>
+        <activity android:name=".architecture.mvp.translation.view.MvpActivity"/>
     </application>
 
 </manifest>

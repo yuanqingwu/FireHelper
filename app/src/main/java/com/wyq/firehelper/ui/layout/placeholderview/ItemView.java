@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.placeholderview;
+package com.wyq.firehelper.ui.layout.placeholderview;
 
 import android.content.Context;
 import android.content.Intent;

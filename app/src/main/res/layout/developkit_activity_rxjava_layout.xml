@@ -1,15 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".developKit.RxJava.RxJavaActivity">
 
-    <TextView
-        android:id="@+id/activity_developkit_rxjava_tv"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/darkgrey"
-        android:gravity="center"
-        android:textColor="@color/lightblue" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/activity_developkit_rxjava_article_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/darkgrey"
+            android:gravity="center"
+            android:padding="10dp"
+            android:textColor="@color/lightblue" />
+
+        <TextView
+            android:id="@+id/activity_developkit_rxjava_res_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/darkgrey"
+            android:gravity="center"
+            android:textColor="@color/lightblue"
+            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_article_tv" />
+
+        <TextView
+            android:id="@+id/activity_developkit_rxjava_tv_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/darkgrey"
+            android:padding="10dp"
+            android:textColor="@color/lightblue"
+            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_res_tv" />
+
+        <TextView
+            android:id="@+id/activity_developkit_rxjava_tv_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/darkgrey"
+            android:padding="10dp"
+            android:textColor="@color/lightblue"
+            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_1" />
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

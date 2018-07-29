@@ -1,16 +1,28 @@
 package com.wyq.firehelper.developKit.EventBus;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class EventBusActivity extends DevelopKitBaseActivity {
+
+    @BindView(R.id.activity_developkit_eventbus_tv_1)
+    public TextView textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.developkit_activity_eventbus_layout);
+
+        ButterKnife.bind(this);
+
+        initData();
+        initView();
     }
 
     @Override
@@ -20,7 +32,7 @@ public class EventBusActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
-
+        textView1.setText(defectStr);
     }
 
     private String defectStr = "由于是Event,在发布Event的时候就要做好准备可能并没有人接受这个Event, Subscribe的时候也要做好准备可能永远不会收到Event。Event无论顺序还是时间上都某种程度上不太可控。如果你将数据寄托在Event上然后就直接在Android其他生命周期方法中直接使用这个数据或成员变量。那么很有可能你会得到NPE。\n" +

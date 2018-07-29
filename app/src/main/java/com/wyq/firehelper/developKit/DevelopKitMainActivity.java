@@ -8,10 +8,10 @@ import com.mindorks.placeholderview.ExpandablePlaceHolderView;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.activity.BaseActivity;
-import com.wyq.firehelper.ui.placeholderview.HeadView;
-import com.wyq.firehelper.ui.placeholderview.ItemView;
-import com.wyq.firehelper.ui.placeholderview.data.DevelopKit;
-import com.wyq.firehelper.ui.placeholderview.data.KitInfo;
+import com.wyq.firehelper.ui.layout.placeholderview.HeadView;
+import com.wyq.firehelper.ui.layout.placeholderview.ItemView;
+import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
+import com.wyq.firehelper.ui.layout.placeholderview.data.KitInfo;
 import com.wyq.firehelper.utils.CloseUtils;
 
 import org.json.JSONArray;

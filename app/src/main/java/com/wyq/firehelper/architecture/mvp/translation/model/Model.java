@@ -1,4 +1,4 @@
-package com.wyq.firehelper.architecture.mvp.model;
+package com.wyq.firehelper.architecture.mvp.translation.model;
 
 import com.orhanobut.logger.Logger;
 
@@ -24,7 +24,7 @@ public class Model implements IModel {
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                PostRequestInterface requestInterface = retrofit.create(PostRequestInterface.class);
+                ITranslateRequest requestInterface = retrofit.create(ITranslateRequest.class);
                 Call<Translation> call = requestInterface.getCall(word);
 //                Logger.i(call.request().url().toString());
                 call.enqueue(new Callback<Translation>() {

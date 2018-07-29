@@ -1,4 +1,4 @@
-package com.wyq.firehelper.architecture.mvp.view;
+package com.wyq.firehelper.architecture.mvp.translation.view;
 
 public interface IBaseView {
     void showInfo(String bean);
