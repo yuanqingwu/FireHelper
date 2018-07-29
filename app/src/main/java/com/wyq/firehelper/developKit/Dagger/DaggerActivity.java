@@ -57,7 +57,7 @@ public class DaggerActivity extends DevelopKitBaseActivity {
         initView();
 
 //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
-        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
+        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this,"wyq")).build();
         component.inject(this);
         person1.logPerson();
         person2.logPerson();

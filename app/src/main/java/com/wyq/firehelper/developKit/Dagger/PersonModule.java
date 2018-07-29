@@ -14,14 +14,14 @@ public class PersonModule {
     private Context context;
     private String name;
 
-    public PersonModule(Context context){
+    public PersonModule(Context context, String name){
         this.context = context;
+        this.name = name;
     }
 
-    public  PersonModule(String name){
-        this.name = name;
-        this.context = null;
-    }
+//    public  PersonModule(String name){
+//        this.name = name;
+//    }
 
     //@Named("context") 以字符串标注容易出错
     //@PersonWithContext 以自定义标签不容易出错
