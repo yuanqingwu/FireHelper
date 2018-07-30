@@ -22,7 +22,7 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
 
     public DevelopKitBaseActivity() {
         resourceList.clear();
-        Logger.i("resourceList.clear()");
+//        Logger.i("resourceList.clear()");
     }
 
     /**
