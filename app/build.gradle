@@ -43,4 +43,5 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
     implementation 'com.android.support:cardview-v7:27.1.1'
+    implementation 'co.lujun:androidtagview:1.1.4'
 }

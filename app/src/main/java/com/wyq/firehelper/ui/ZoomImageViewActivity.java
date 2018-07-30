@@ -17,8 +17,8 @@ public class ZoomImageViewActivity extends BaseActivity {
 
     protected ViewPager mViewPager;
 
-    private int[] mImgs = new int[]{R.mipmap.aurora1, R.mipmap.aurora2,
-            R.mipmap.aurora3};
+    private int[] mImgs = new int[]{R.drawable.aurora1, R.drawable.aurora2,
+            R.drawable.aurora3};
 
     private ImageView[] mImageViews = new ImageView[mImgs.length];
 

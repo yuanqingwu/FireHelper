@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/darkgrey">
+
+        <TextView
+            android:id="@+id/activity_article_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="文章"
+            android:textSize="18sp" />
+
+        <android.support.v7.widget.SearchView
+            android:id="@+id/activity_article_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/activity_article_title_tv"></android.support.v7.widget.SearchView>
+    </RelativeLayout>
+
+    <co.lujun.androidtagview.TagContainerLayout
+        android:id="@+id/activity_article_tag_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="0dp"
+        android:padding="10dp"
+        app:container_enable_drag="true"
+        app:horizontal_interval="10dp"
+        app:tag_clickable="true"
+        app:tag_theme="pure_teal"
+        app:vertical_interval="10dp">
+
+    </co.lujun.androidtagview.TagContainerLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/activity_article_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

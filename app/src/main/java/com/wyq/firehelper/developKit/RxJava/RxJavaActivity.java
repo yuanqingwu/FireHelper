@@ -99,6 +99,8 @@ public class RxJavaActivity extends DevelopKitBaseActivity {
             "  <p>\n" +
             "  concatMap 与 FlatMap 的唯一区别就是 concatMap 保证了顺序\n" +
             "  <p>\n" +
+            "  switchMap:与flatMap操作符不同的是，switchMap操作符会保存最新的Observable产生的\n" +
+            "                 结果而舍弃旧的结果"+
             "  <p>\n" +
             "  zip 操作符可以将多个 Observable 的数据结合为一个数据源再发射出去\n" +
             "  如：zip 操作符，实现多个接口数据共同更新 UI\n" +
@@ -122,7 +124,7 @@ public class RxJavaActivity extends DevelopKitBaseActivity {
             "  <p>\n" +
             "  debounce 去除发送频率过快的项\n" +
             "  <p>\n" +
-            "  defer 简单地时候就是每次订阅都会创建一个新的 Observable，并且如果没有被订阅，就不会产生新的 Observable\n" +
+            "  defer 简单地说就是每次订阅都会创建一个新的 Observable，并且如果没有被订阅，就不会产生新的 Observable\n" +
             "  <p>\n" +
             "  last 操作符仅取出可观察到的最后一个值，或者是满足某些条件的最后一项\n" +
             "  <p>\n" +

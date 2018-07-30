@@ -26,7 +26,7 @@ public class CircleBlurImageViewActivity extends BaseActivity {
         imageView = (ImageView) findViewById(R.id.image);
         imageViewAlpha=(ImageView)findViewById(R.id.image_alpha);
         textView=(TextView)findViewById(R.id.text);
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.mipmap.grassland);
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.grassland);
 
         Bitmap blurImage= BitmapUtils.blur(bitmap, 100);
 

@@ -16,7 +16,7 @@
             android:layout_weight="0.8"
             android:background="@color/deeppink"
             android:scaleType="matrix"
-            android:src="@mipmap/pic" />
+            android:src="@drawable/pic" />
 
         <TableLayout
             android:layout_width="0dp"
@@ -37,7 +37,7 @@
                     android:layout_weight="1"
                     android:background="@color/blueviolet"
                     android:scaleType="matrix"
-                    android:src="@mipmap/browser" />
+                    android:src="@drawable/browser" />
 
                 <com.wyq.firehelper.ui.widget.MetroImageView
                     android:layout_width="0dp"
@@ -45,7 +45,7 @@
                     android:layout_weight="1"
                     android:background="@color/darkgreen"
                     android:scaleType="matrix"
-                    android:src="@mipmap/camera" />
+                    android:src="@drawable/camera" />
             </TableRow>
 
             <TableRow
@@ -60,7 +60,7 @@
                     android:layout_weight="1"
                     android:background="@color/yellow"
                     android:scaleType="matrix"
-                    android:src="@mipmap/message" />
+                    android:src="@drawable/message" />
 
                 <com.wyq.firehelper.ui.widget.MetroImageView
                     android:layout_width="0dp"
@@ -68,7 +68,7 @@
                     android:layout_weight="1"
                     android:background="@color/aqua"
                     android:scaleType="matrix"
-                    android:src="@mipmap/music" />
+                    android:src="@drawable/music" />
             </TableRow>
         </TableLayout>
     </LinearLayout>
