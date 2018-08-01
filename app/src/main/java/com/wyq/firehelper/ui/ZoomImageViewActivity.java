@@ -8,14 +8,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.activity.BaseActivity;
 import com.wyq.firehelper.ui.widget.ZoomImageView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class ZoomImageViewActivity extends BaseActivity {
 
-    protected ViewPager mViewPager;
+    @BindView(R.id.zoom_viewpager)
+    public ViewPager mViewPager;
+
+    @BindView(R.id.ui_activity_image_view_photo_view)
+    public PhotoView photoView;
 
     private int[] mImgs = new int[]{R.drawable.aurora1, R.drawable.aurora2,
             R.drawable.aurora3};
@@ -27,8 +35,10 @@ public class ZoomImageViewActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.zoom_imageview);
+        ButterKnife.bind(this);
 
-        mViewPager = (ViewPager) findViewById(R.id.zoom_viewpager);
+        photoView.setImageResource(mImgs[0]);
+
         mViewPager.setAdapter(new PagerAdapter() {
 
             @Override
@@ -50,13 +60,11 @@ public class ZoomImageViewActivity extends BaseActivity {
 
             @Override
             public boolean isViewFromObject(View arg0, Object arg1) {
-                // TODO Auto-generated method stub
                 return arg0 == arg1;
             }
 
             @Override
             public int getCount() {
-                // TODO Auto-generated method stub
                 return mImageViews.length;
             }
         });

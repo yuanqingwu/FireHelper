@@ -19,7 +19,8 @@ public class Person {
         Logger.i("person create with name:" +name);
         this.name = name;
     }
-    public void logPerson(){
+    public String logPerson(){
         Logger.i(String.valueOf(hashCode()));
+        return "Person hashCode:"+hashCode()+" name:"+name+" context:"+context;
     }
 }

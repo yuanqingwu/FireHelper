@@ -20,4 +20,13 @@
         android:background="@color/darkgrey"
         android:gravity="center"
         android:textColor="@color/lightblue" />
+
+    <TextView
+        android:id="@+id/activity_developkit_dagger_res_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/darkgrey"
+        android:gravity="center"
+        android:textColor="@color/lightblue" />
 </LinearLayout>

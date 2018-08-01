@@ -25,25 +25,27 @@
         <activity android:name=".connectivity.ConnectMainActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtChatActivity" />
-        <activity android:name=".article.ArticleMainActivity"
+        <activity
+            android:name=".article.ArticleMainActivity"
             android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
             <meta-data
                 android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
-            <!--<meta-data android:name="android.app.default_searchable"-->
-                <!--android:value="com.wyq.firehelper.article.SearchableActivity" />-->
+            <!-- <meta-data android:name="android.app.default_searchable" -->
+            <!-- android:value="com.wyq.firehelper.article.SearchableActivity" /> -->
         </activity>
-        <!--<activity android:name=".article.SearchableActivity" android:launchMode="singleTop">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.SEARCH" />-->
-            <!--</intent-filter>-->
-            <!--<meta-data-->
-                <!--android:name="android.app.searchable"-->
-                <!--android:resource="@xml/searchable" />-->
-        <!--</activity>-->
+        <!-- <activity android:name=".article.SearchableActivity" android:launchMode="singleTop"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.SEARCH" /> -->
+        <!-- </intent-filter> -->
+        <!-- <meta-data -->
+        <!-- android:name="android.app.searchable" -->
+        <!-- android:resource="@xml/searchable" /> -->
+        <!-- </activity> -->
         <activity android:name=".article.WebViewActivity" />
         <activity android:name=".ui.MetroStyleActivity" />
         <activity android:name=".ui.UiMainActivity" />
@@ -61,6 +63,8 @@
         <activity android:name=".developKit.AndroidAnnotations.AndroidAnnotationsActivity" />
         <activity android:name=".developKit.Retrofit.RetrofitActivity" />
         <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
+        <activity android:name=".ui.layout.tangram.TangramActivity" />
+        <activity android:name=".ui.layout.ultraViewPager.UltraViewPagerActivity"></activity>
     </application>
 
 </manifest>

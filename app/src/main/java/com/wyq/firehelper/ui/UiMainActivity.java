@@ -10,6 +10,8 @@ import android.widget.ListView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.activity.BaseActivity;
 import com.wyq.firehelper.ui.layout.drag.DragLayoutActivity;
+import com.wyq.firehelper.ui.layout.tangram.TangramActivity;
+import com.wyq.firehelper.ui.layout.ultraViewPager.UltraViewPagerActivity;
 
 public class UiMainActivity extends BaseActivity {
 
@@ -18,7 +20,7 @@ public class UiMainActivity extends BaseActivity {
      * PhotoView
      *
      */
-    private String[] items = {"MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]","DragLayout"};
+    private String[] items = {"MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]","DragLayout","Tangram","UltraViewPager"};
 
     private ListView homeList;
 
@@ -51,6 +53,15 @@ public class UiMainActivity extends BaseActivity {
                     case 3:
                         startActivity(new Intent(UiMainActivity.this,
                                 DragLayoutActivity.class));
+                        break;
+                    case 4:
+                        startActivity(new Intent(UiMainActivity.this,
+                                TangramActivity.class));
+                        break;
+                    case 5:
+                        startActivity(new Intent(UiMainActivity.this,
+                                UltraViewPagerActivity.class));
+                        break;
                         default:
                             break;
                 }

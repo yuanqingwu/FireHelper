@@ -16,9 +16,12 @@ public class ArticleConstants {
     public static final ArticleResource _1 = new ArticleResource("https://www.diycode.cc/wiki/androidinterview", "《Android 开发工程师面试指南》", "", "面试");
     public static final ArticleResource _2 = new ArticleResource("https://github.com/WeMobileDev/article", "articles by WeChat Mobile Development Team ", "", "公司");
     public static final ArticleResource _3 = new ArticleResource("https://www.jianshu.com/p/cafedd319512", "多点触控详解", "UI", "UI");
-    public static final ArticleResource _4 = new ArticleResource("https://www.jianshu.com/p/1e456b63e1ab", "欢迎来到Github世界", "", "Github");
+    public static final ArticleResource _4 = new ArticleResource("https://github.com/CymChad/BaseRecyclerViewAdapterHelper", "BaseRecyclerViewAdapterHelper", "UI", "UI");
+    public static final ArticleResource _5 = new ArticleResource("https://www.jianshu.com/p/1e456b63e1ab", "欢迎来到Github世界", "", "Github");
 
-    public static final ArticleResource _5 = new ArticleResource("https://github.com/googlesamples/android-architecture", "googlesamples/android-architecture", "", "公司");
+    public static final ArticleResource _6 = new ArticleResource("https://github.com/googlesamples/android-architecture", "googlesamples/android-architecture", "", "公司");
+    public static final ArticleResource _7 = new ArticleResource("http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html", " 页面动态化的基础 —— Tangram", "UI", "UI");
+    public static final ArticleResource _8 = new ArticleResource("http://tangram.pingguohe.net/", " Tangram", "UI", "UI","主页");
 
     //developKit
     /**

@@ -2,7 +2,6 @@ package com.wyq.firehelper.developKit.Dagger;
 
 import android.content.Context;
 
-import javax.inject.Named;
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -26,7 +25,7 @@ public class PersonModule {
     //@Named("context") 以字符串标注容易出错
     //@PersonWithContext 以自定义标签不容易出错
     @PersonWithContext
-//    @Singleton
+    @Singleton
     @Provides
     public Person providePersonWithContext(Context context){
         return new Person(context);
@@ -34,7 +33,7 @@ public class PersonModule {
 
     //@Named("string")
     @PersonWithName
-//    @Singleton
+    @Singleton
     @Provides
     public Person providePersonWithName(String name){
         return new Person(name);

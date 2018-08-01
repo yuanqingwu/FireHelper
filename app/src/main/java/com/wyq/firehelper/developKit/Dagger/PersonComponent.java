@@ -4,7 +4,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
-//@Singleton
+@Singleton
 @Component(modules = {PersonModule.class})
 public interface PersonComponent {
 

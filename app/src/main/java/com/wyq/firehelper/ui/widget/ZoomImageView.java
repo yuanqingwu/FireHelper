@@ -14,9 +14,8 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
-import android.widget.ImageView;
 
-public class ZoomImageView extends ImageView implements
+public class ZoomImageView extends android.support.v7.widget.AppCompatImageView implements
 		OnGlobalLayoutListener, OnScaleGestureListener, OnTouchListener {
 
 	private boolean mOnce = false;
