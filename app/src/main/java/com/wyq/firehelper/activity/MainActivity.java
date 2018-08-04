@@ -13,6 +13,7 @@ import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
+import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 
 /**
@@ -20,7 +21,7 @@ import com.wyq.firehelper.ui.UiMainActivity;
  */
 public class MainActivity extends BaseActivity {
 
-    private String[] items = { "Article" ,"Communication","UI","Encryption","DevelopKit","Architecture"};
+    private String[] items = { "Article" ,"Communication","UI","Encryption","DevelopKit","Architecture","kotlin"};
 
     private ListView listView;
 
@@ -61,6 +62,10 @@ public class MainActivity extends BaseActivity {
                     case 5:
                         startActivity(new Intent(MainActivity.this,
                                 MvpActivity.class));
+                        break;
+                    case 6:
+                        startActivity(new Intent(MainActivity.this,
+                                GitHubMainActivity.class));
                         break;
                         default:
                             break;

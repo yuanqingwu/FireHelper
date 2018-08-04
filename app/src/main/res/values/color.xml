@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="sc_transparent_background">#00111111</color>
-    
+    <!--导航栏颜色-->
+    <color name="colorPrimary">@color/darkgrey</color>
+    <!--状态栏颜色-->
+    <color name="colorPrimaryDark">@color/darkgrey</color>
+    <!--空间选中后的颜色-->
+    <color name="colorAccent">@color/darkgreen</color>
+
+
     <!-- 白色 -->
     <color name="ivory">#fffff0</color>
     <!-- 象牙色 -->

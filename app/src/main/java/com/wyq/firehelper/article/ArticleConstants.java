@@ -22,6 +22,7 @@ public class ArticleConstants {
     public static final ArticleResource _6 = new ArticleResource("https://github.com/googlesamples/android-architecture", "googlesamples/android-architecture", "", "公司");
     public static final ArticleResource _7 = new ArticleResource("http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html", " 页面动态化的基础 —— Tangram", "UI", "UI");
     public static final ArticleResource _8 = new ArticleResource("http://tangram.pingguohe.net/", " Tangram", "UI", "UI","主页");
+    public static final ArticleResource _9 = new ArticleResource("https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout", "coordinatorlayout", "UI", "UI");
 
     //developKit
     /**

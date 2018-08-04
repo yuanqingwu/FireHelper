@@ -65,6 +65,7 @@
         <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
         <activity android:name=".ui.layout.tangram.TangramActivity" />
         <activity android:name=".ui.layout.ultraViewPager.UltraViewPagerActivity"></activity>
+        <activity android:name=".kotlin.mvpGitHub.view.GitHubMainActivity"/>
     </application>
 
 </manifest>
