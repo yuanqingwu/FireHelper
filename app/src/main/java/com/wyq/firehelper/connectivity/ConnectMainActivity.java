@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
 
 /**

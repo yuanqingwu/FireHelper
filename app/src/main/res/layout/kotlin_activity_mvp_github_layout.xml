@@ -5,27 +5,14 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <include layout="@layout/toolbar"/>
-    <!--<android.support.design.widget.AppBarLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content">-->
-
-        <!--<android.support.v7.widget.Toolbar-->
-            <!--android:id="@+id/kotlin_activity_mvp_github_tool_bar"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="?attr/actionBarSize"-->
-            <!--app:layout_scrollFlags="scroll|enterAlways"-->
-            <!--app:popupTheme="@style/ThemeOverlay.AppCompat.Light"-->
-            <!--app:title="GitHub"-->
-            <!--app:titleTextAppearance="@style/Toolbar_TextAppearance_White"></android.support.v7.widget.Toolbar>-->
-
-    <!--</android.support.design.widget.AppBarLayout>-->
-
+    <include layout="@layout/toolbar" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/kotlin_activity_mvp_github_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="6dp"
+        android:layout_marginTop="6dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
 
     <ProgressBar

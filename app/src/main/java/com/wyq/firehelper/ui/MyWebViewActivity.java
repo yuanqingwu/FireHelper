@@ -9,7 +9,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.utils.DialogUtil;
 
 

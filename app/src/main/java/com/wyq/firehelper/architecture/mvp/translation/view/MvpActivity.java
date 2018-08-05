@@ -6,7 +6,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.architecture.mvp.translation.presenter.PresenterImpl;
 
 import butterknife.BindView;

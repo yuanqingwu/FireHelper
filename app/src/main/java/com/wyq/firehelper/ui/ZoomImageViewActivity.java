@@ -10,7 +10,7 @@ import android.widget.ImageView;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.widget.ZoomImageView;
 
 import butterknife.BindView;

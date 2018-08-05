@@ -28,7 +28,8 @@ public class HeadView {
     }
 
     @Resolve
-    public void onResolved(){
-        headTv.setText(headText);
+    public void onResolved() {
+        if (headTv != null)
+            headTv.setText(headText);
     }
 }

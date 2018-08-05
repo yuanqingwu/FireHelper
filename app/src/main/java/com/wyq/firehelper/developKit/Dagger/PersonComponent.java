@@ -8,5 +8,6 @@ import dagger.Component;
 @Component(modules = {PersonModule.class})
 public interface PersonComponent {
 
-    void inject(DaggerActivity daggerActivity);
+    void inject(DaggerActivity dagger);
+    void inject(DaggerFragment dagger);
 }

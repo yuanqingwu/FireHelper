@@ -1,4 +1,4 @@
-package com.wyq.firehelper.activity;
+package com.wyq.firehelper.base;
 
 import android.content.Intent;
 import android.os.Bundle;

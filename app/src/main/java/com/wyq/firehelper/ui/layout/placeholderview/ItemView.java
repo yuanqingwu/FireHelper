@@ -40,7 +40,11 @@ public class ItemView {
     @Resolve
     public void onResolved() {
 //        Logger.i(itemText + " is Resolve");
+        if (itemTv == null || descTv == null) {
+            return;
+        }
         itemTv.setText(itemText);
+
         if (descText == null || descText.isEmpty()) {
             descTv.setVisibility(android.view.View.GONE);
         } else {

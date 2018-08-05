@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

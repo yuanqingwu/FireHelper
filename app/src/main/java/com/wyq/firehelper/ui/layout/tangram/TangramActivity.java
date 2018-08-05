@@ -16,7 +16,7 @@ import com.tmall.wireless.tangram.structure.viewcreator.ViewHolderCreator;
 import com.tmall.wireless.tangram.support.SimpleClickSupport;
 import com.tmall.wireless.tangram.util.IInnerImageSetter;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;

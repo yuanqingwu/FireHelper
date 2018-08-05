@@ -1,6 +1,6 @@
 package com.wyq.firehelper.connectivity.bluetoothChat;
 
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 
 import java.util.List;
 

@@ -3,11 +3,10 @@ package com.wyq.firehelper.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.widget.MetroImageView;
 
 

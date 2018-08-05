@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.layout.drag.DragLayoutActivity;
 import com.wyq.firehelper.ui.layout.tangram.TangramActivity;
 import com.wyq.firehelper.ui.layout.ultraViewPager.UltraViewPagerActivity;

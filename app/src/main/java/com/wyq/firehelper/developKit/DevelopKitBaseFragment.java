@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.article.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
+import com.wyq.firehelper.base.BaseFragment;
 import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
 import com.wyq.firehelper.utils.CloseUtils;
 
@@ -22,27 +22,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class DevelopKitBaseActivity extends BaseActivity {
+public abstract class DevelopKitBaseFragment extends BaseFragment {
 
     /**
      * 关联界面与数据
      */
     public Map<TextView, ArticleResource> resourceList = new HashMap<>();
 
-    public DevelopKitBaseActivity() {
+    public DevelopKitBaseFragment() {
         resourceList.clear();
 //        Logger.i("resourceList.clear()");
     }
-
-    /**
-     * 在此填充页面需展示的数据
-     */
-    public abstract void initData();
-
-    /**
-     * 在此初始化各页面模块
-     */
-    public abstract void initView();
 
     /**
      * 构建文章阅读板块
@@ -76,6 +66,7 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
         intent.setClass(context, WebViewActivity.class);
         startActivity(intent);
     }
+
 
     public List<DevelopKit> getKits(){
         List<DevelopKit> kitsList = new ArrayList<>();

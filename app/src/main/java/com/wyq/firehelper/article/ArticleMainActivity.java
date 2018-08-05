@@ -9,12 +9,13 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.view.Menu;
 import android.view.View;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.activity.BaseActivity;
+import com.wyq.firehelper.base.BaseActivity;
 
 import java.util.List;
 
@@ -182,4 +183,10 @@ public class ArticleMainActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
 }

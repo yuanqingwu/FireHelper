@@ -1,13 +1,12 @@
 package com.wyq.firehelper.kotlin.mvpGitHub.view
 
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.View
 import com.wyq.firehelper.R
-import com.wyq.firehelper.activity.BaseActivity
+import com.wyq.firehelper.base.BaseActivity
 import com.wyq.firehelper.kotlin.mvpGitHub.Contract
 import com.wyq.firehelper.kotlin.mvpGitHub.injection.component.DaggerPresenterComponent
 import com.wyq.firehelper.kotlin.mvpGitHub.model.Repository
@@ -23,14 +22,15 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
     lateinit var presenter: GitHubPresenter
 
     var repoAdapter: GitHubRepoAdapter? = null
-    var searchView :SearchView? = null
+    var searchView: SearchView? = null
+    var repoUserName :String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.kotlin_activity_mvp_github_layout)
         toolbar.title = "GitHub"
+        initToolbarNav(toolbar)
         setSupportActionBar(toolbar)
-
 
         val presenterComponent = DaggerPresenterComponent.builder().build()
         presenterComponent.inject(this)
@@ -40,22 +40,24 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
 
     fun loadRepositories(name: String) {
         presenter.loadRepositories(name);
+        repoUserName = name
         kotlin_activity_mvp_github_progress_bar.visibility = View.VISIBLE
     }
 
-    private fun closeSearchView(){
-        searchView?.setQuery("",false)
+    private fun closeSearchView() {
+        searchView?.setQuery("", false)
         searchView?.onActionViewCollapsed()
     }
 
     override fun showRepository(repositories: MutableList<Repository>) {
         repoAdapter = GitHubRepoAdapter(repositories)
         kotlin_activity_mvp_github_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-        kotlin_activity_mvp_github_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
+//        kotlin_activity_mvp_github_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         kotlin_activity_mvp_github_recycler_view.adapter = repoAdapter
 
         kotlin_activity_mvp_github_progress_bar.visibility = View.GONE
         closeSearchView()
+        toolbar.title = repoUserName
     }
 
     override fun showRepositoryFailed(error: String?) {
@@ -65,7 +67,7 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_search, menu)
 
-         searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
+        searchView = menu?.findItem(R.id.action_search)?.actionView as SearchView
 
         searchView!!.queryHint = "GitHub仓库搜索"
 //        val et = searchView.findViewById<SearchView.SearchAutoComplete>(R.id.search_src_text)
