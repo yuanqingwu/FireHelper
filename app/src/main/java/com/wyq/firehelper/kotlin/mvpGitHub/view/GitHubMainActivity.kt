@@ -29,8 +29,8 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.kotlin_activity_mvp_github_layout)
         toolbar.title = "GitHub"
-        initToolbarNav(toolbar)
         setSupportActionBar(toolbar)
+        initToolbarNav(toolbar)//must after setSupportActionBar
 
         val presenterComponent = DaggerPresenterComponent.builder().build()
         presenterComponent.inject(this)

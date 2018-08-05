@@ -43,8 +43,8 @@ public class DevelopKitMainActivity extends DevelopKitBaseActivity {
     @Override
     public void initView(){
         toolbar.setTitle("DevelopKit");
-        initToolbarNav(toolbar);
         setSupportActionBar(toolbar);
+        initToolbarNav(toolbar);//must after setSupportActionBar
 
         for(DevelopKit kit :getKits()) {
             tabLayout.addTab(tabLayout.newTab().setText(kit.getCategory()));
