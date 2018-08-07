@@ -1,9 +1,7 @@
 package com.wyq.firehelper.ui;
 
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
@@ -24,11 +22,8 @@ public class MetroStyleActivity extends BaseActivity {
 
             @Override
             public void onViewClick(MetroImageView view) {
-                // TODO Auto-generated method stub
-                Toast.makeText(MetroStyleActivity.this, "网页",
-                        Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MetroStyleActivity.this,
-                        MyWebViewActivity.class));
+//                startActivity(new Intent(MetroStyleActivity.this,
+//                        WebViewActivity.class));
             }
         });
 

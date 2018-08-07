@@ -1,6 +1,7 @@
 package com.wyq.firehelper.architecture.mvp.translation.view;
 
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -32,6 +33,9 @@ public class MvpActivity extends BaseActivity implements IBaseView {
     @BindView(R.id.architecture_activity_mvp_translate_bt)
     public Button translateBt;
 
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
     private PresenterImpl presenter;
 
     @Override
@@ -39,6 +43,10 @@ public class MvpActivity extends BaseActivity implements IBaseView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.architecture_activity_mvp_layout);
         ButterKnife.bind(this);
+
+        toolbar.setTitle("翻译");
+        setSupportActionBar(toolbar);
+        initToolbarNav(toolbar);
 
         presenter = new PresenterImpl(this);
 

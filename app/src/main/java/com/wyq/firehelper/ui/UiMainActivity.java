@@ -2,6 +2,7 @@ package com.wyq.firehelper.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,23 +14,38 @@ import com.wyq.firehelper.ui.layout.drag.DragLayoutActivity;
 import com.wyq.firehelper.ui.layout.tangram.TangramActivity;
 import com.wyq.firehelper.ui.layout.ultraViewPager.UltraViewPagerActivity;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class UiMainActivity extends BaseActivity {
 
     /**
      * FlexboxLayout
      * PhotoView
-     *
      */
-    private String[] items = {"MetroStyle[MyImageView]" ,"ZoomImageView[MyZoomImageView]","CircleBlurImageView[MyCircleImageView]","DragLayout","Tangram","UltraViewPager"};
+    private String[] items = {"MetroStyle[MyImageView]", "ZoomImageView[MyZoomImageView]", "CircleBlurImageView[MyCircleImageView]", "DragLayout", "Tangram", "UltraViewPager"};
 
-    private ListView homeList;
+    @BindView(R.id.home_list)
+    public ListView homeList;
+
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ui_activity_main);
+        ButterKnife.bind(this);
 
-        homeList =(ListView)findViewById(R.id.home_list);
+        toolbar.setTitle("UI");
+        setSupportActionBar(toolbar);
+        initToolbarNav(toolbar);
+
+        initView();
+
+    }
+
+    public void initView() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 UiMainActivity.this, android.R.layout.simple_list_item_1,
                 items);
@@ -62,14 +78,12 @@ public class UiMainActivity extends BaseActivity {
                         startActivity(new Intent(UiMainActivity.this,
                                 UltraViewPagerActivity.class));
                         break;
-                        default:
-                            break;
+                    default:
+                        break;
                 }
 
             }
         });
-
     }
-
 
 }

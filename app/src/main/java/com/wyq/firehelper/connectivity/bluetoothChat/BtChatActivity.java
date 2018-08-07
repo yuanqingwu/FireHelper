@@ -36,7 +36,6 @@ public class BtChatActivity extends BtBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_bt_chat_layout);
         titleTextView = (TextView) findViewById(R.id.bt_chat_title);
         chatListView = (ListView) findViewById(R.id.bt_chat_listview);

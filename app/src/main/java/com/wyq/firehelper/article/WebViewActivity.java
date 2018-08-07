@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -23,10 +24,18 @@ import android.widget.ProgressBar;
 
 import com.wyq.firehelper.R;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class WebViewActivity extends AppCompatActivity {
 
-    private WebView webView;
-    private ProgressBar progressBar;
+    @BindView(R.id.activity_webview_webview)
+    public WebView webView;
+    @BindView(R.id.activity_webview_progress_bar)
+    public ProgressBar progressBar;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
+
     private float xStart = -1;
     private float yStart = -1;
     private String url;
@@ -35,13 +44,24 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_layout);
-
+        ButterKnife.bind(this);
         url = getIntent().getStringExtra("url");
 
-        webView = (WebView) findViewById(R.id.activity_webview_webview);
-        progressBar = (ProgressBar) findViewById(R.id.activity_webview_progress_bar);
+        toolbar.setTitle(url);
+        setSupportActionBar(toolbar);
+        initToolbarNav(toolbar);
 
         initWebView();
+    }
+
+    protected void initToolbarNav(Toolbar toolbar) {
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     @Override
@@ -195,7 +215,7 @@ public class WebViewActivity extends AppCompatActivity {
                 yStart = event.getY(0);
                 break;
             case MotionEvent.ACTION_MOVE:
-                if(event.getPointerCount() == 1) {
+                if (event.getPointerCount() == 1) {
                     float xNow = event.getX(0);
                     if (xStart < width / 4 && Math.abs(xNow - xStart) > 100 && Math.abs(event.getY(0) - yStart) < 100) {
                         float xDist = xNow - xStart - 100;
@@ -206,14 +226,14 @@ public class WebViewActivity extends AppCompatActivity {
                 }
                 break;
             case MotionEvent.ACTION_UP:
-                if(event.getPointerCount() == 1) {
+                if (event.getPointerCount() == 1) {
                     float xEnd = event.getX(0);
                     float yEnd = event.getY(0);
 
 //                Logger.i(" x dis:" + (xEnd - xStart)+" start:"+xStart+" end:"+xEnd);
 //                Logger.i(" y dis:" + (yEnd - yStart)+" start:"+yStart+" end:"+yEnd);
                     //&& Math.abs(yEnd - yStart) < 100
-                    if (xStart < width / 4 && xEnd - xStart > width/2) {
+                    if (xStart < width / 4 && xEnd - xStart > width / 2) {
 //                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.WEBVIEW_GO_BACK));
                         if (webView.canGoBack()) {
                             webView.goBack();
@@ -232,7 +252,7 @@ public class WebViewActivity extends AppCompatActivity {
                             webView.goForward();
                         }
                         return true;
-                    }else{
+                    } else {
                         webView.setAlpha(1);
                         webView.setX(0);
                     }

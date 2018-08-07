@@ -1,4 +1,4 @@
-package com.wyq.firehelper;
+package com.wyq.firehelper.base;
 
 import android.app.Application;
 import android.support.annotation.Nullable;
@@ -9,6 +9,7 @@ import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
+import com.wyq.firehelper.BuildConfig;
 
 public class FireHelpApplication extends Application {
 

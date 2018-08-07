@@ -5,6 +5,12 @@
     <string name="action_settings">Settings</string>
 
     <string name="common_default_load">加载中……</string>
-    <string name="title_activity_main2">Main2Activity</string>
     <string name="search_hint">search</string>
+
+    <!--menu-->
+    <string name="menu_night_mode">Night mode</string>
+    <string name="menu_night_mode_system">Follow system</string>
+    <string name="menu_night_mode_day">Day (always)</string>
+    <string name="menu_night_mode_night">Night (always)</string>
+    <string name="menu_night_mode_auto">Auto</string>
 </resources>

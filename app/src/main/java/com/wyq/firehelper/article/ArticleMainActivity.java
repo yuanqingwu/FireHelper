@@ -9,11 +9,10 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
-import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 
@@ -30,14 +29,13 @@ import co.lujun.androidtagview.TagView;
 
 public class ArticleMainActivity extends BaseActivity {
 
-    @BindView(R.id.activity_article_title_tv)
-    public TextView titleTv;
+
     @BindView(R.id.activity_article_recyclerview)
     public RecyclerView recyclerView;
     @BindView(R.id.activity_article_tag_container_layout)
     public TagContainerLayout tagContainerLayout;
-    @BindView(R.id.activity_article_search_view)
-    public SearchView searchView;
+    @BindView(R.id.activity_article_main_toolbar)
+    public Toolbar toolbar;
 
     public List<ArticleResource> resourceList;
     public RecyclerViewAdapter adapter;
@@ -53,7 +51,11 @@ public class ArticleMainActivity extends BaseActivity {
     }
 
     private void initView() {
-        initSearchView();
+        toolbar.setTitle("文章");
+        setSupportActionBar(toolbar);
+        initToolbarNav(toolbar);
+
+//        initSearchView();
         initTagLayout();
         initRecycleView();
     }
@@ -63,7 +65,7 @@ public class ArticleMainActivity extends BaseActivity {
         super.onNewIntent(intent);
         //update intent
         setIntent(intent);
-        handleSearch();
+//        handleSearch();
     }
 
     private void handleSearch() {
@@ -86,46 +88,18 @@ public class ArticleMainActivity extends BaseActivity {
         return super.onSearchRequested();
     }
 
-    public void initSearchView() {
-
-        titleTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onSearchRequested();
-            }
-        });
-
-        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                Logger.i("query:" + query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                Logger.i("newText:" + newText);
-                return false;
-            }
-        });
-        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionSelect(int position) {
-
-                return false;
-            }
-
-            @Override
-            public boolean onSuggestionClick(int position) {
-
-                return false;
-            }
-        });
-    }
+//    public void initSearchView() {
+//
+//        titleTv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onSearchRequested();
+//            }
+//        });
+//
+//        SearchManager searchManager = (SearchManager) getSystemService(SEARCH_SERVICE);
+//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//    }
 
     public void initRecycleView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -186,6 +160,21 @@ public class ArticleMainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
+        getMenuInflater().inflate(R.menu.menu_search,menu);
+            SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+            searchView.setQueryHint("文章搜索");
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    doSearch(query);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    return false;
+                }
+            });
 
         return super.onCreateOptionsMenu(menu);
     }

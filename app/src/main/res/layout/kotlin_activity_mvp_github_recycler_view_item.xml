@@ -7,7 +7,6 @@
     android:layout_marginRight="8dp"
     android:layout_marginTop="6dp"
     android:foreground="?attr/selectableItemBackground"
-    app:cardBackgroundColor="@android:color/white"
     app:cardPreventCornerOverlap="false"
     app:cardUseCompatPadding="true">
 
@@ -15,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="@dimen/activity_horizontal_margin">
+        style="@style/Widget.CardContent">
 
         <TextView
             android:id="@+id/kotlin_activity_mvp_github_rv_title"

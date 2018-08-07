@@ -1,8 +1,5 @@
 package com.wyq.firehelper.connectivity.bluetoothChat;
 
-import java.util.LinkedList;
-import java.util.Set;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -17,7 +14,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -27,6 +23,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.wyq.firehelper.R;
+
+import java.util.LinkedList;
+import java.util.Set;
 
 public class BtActivity extends BtBaseActivity implements OnClickListener {
 
@@ -99,7 +98,6 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_bt);
         listView = (ListView) findViewById(R.id.bluetooth_finded_list);
         btInfoLinkedList = new LinkedList<String>();
