@@ -1,14 +1,8 @@
 package com.wyq.firehelper.connectivity.bluetoothChat;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.bluetooth.BluetoothAdapter;
-import android.os.Bundle;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +12,9 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.wyq.firehelper.R;
+
+import java.util.ArrayList;
+import java.util.Date;
 
 public class BtChatActivity extends BtBaseActivity {
 
@@ -34,9 +31,17 @@ public class BtChatActivity extends BtBaseActivity {
     // private BtChatService btChatService = BtActivity.btChatService;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bt_chat_layout);
+    protected int attachLayoutRes() {
+        return R.layout.activity_bt_chat_layout;
+    }
+
+    @Override
+    public void initToolBar() {
+
+    }
+
+    @Override
+    public void initView() {
         titleTextView = (TextView) findViewById(R.id.bt_chat_title);
         chatListView = (ListView) findViewById(R.id.bt_chat_listview);
         editText = (EditText) findViewById(R.id.bt_chat_edit);
@@ -62,7 +67,7 @@ public class BtChatActivity extends BtBaseActivity {
                         btMessage.setUserAdress(bluetoothAdapter.getAddress());
                         btMessage.setUserName(bluetoothAdapter.getName());
                         btChatService.write(new Gson().toJson(btMessage).getBytes());
-                        
+
                         editText.setText("");
                     } else {
                         // do nothing

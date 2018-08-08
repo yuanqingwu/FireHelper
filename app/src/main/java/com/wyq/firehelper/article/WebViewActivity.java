@@ -33,7 +33,7 @@ public class WebViewActivity extends AppCompatActivity {
     public WebView webView;
     @BindView(R.id.activity_webview_progress_bar)
     public ProgressBar progressBar;
-    @BindView(R.id.toolbar)
+    @BindView(R.id.activity_webview_toolbar)
     public Toolbar toolbar;
 
     private float xStart = -1;

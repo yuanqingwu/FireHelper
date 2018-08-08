@@ -15,7 +15,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class RetrofitActivity extends DevelopKitBaseActivity {
 
@@ -31,11 +30,6 @@ public class RetrofitActivity extends DevelopKitBaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.developkit_activity_retrofit_layout);
-        ButterKnife.bind(this);
-
-        initData();
-        initView();
 
         IName name = proxy(IName.class);
         String res = "proxy class name:"+name.getClass().getName()+"\n"+name.getName();
@@ -49,6 +43,16 @@ public class RetrofitActivity extends DevelopKitBaseActivity {
     @Override
     public void initData() {
         resourceList.put(articleTv, ArticleConstants.DEVKIT_RETROFIT_1);
+    }
+
+    @Override
+    protected int attachLayoutRes() {
+        return R.layout.developkit_activity_retrofit_layout;
+    }
+
+    @Override
+    public void initToolBar() {
+
     }
 
     @Override

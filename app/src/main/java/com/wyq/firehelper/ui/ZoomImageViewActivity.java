@@ -1,7 +1,6 @@
 package com.wyq.firehelper.ui;
 
 
-import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -14,7 +13,6 @@ import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.widget.ZoomImageView;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class ZoomImageViewActivity extends BaseActivity {
@@ -32,11 +30,17 @@ public class ZoomImageViewActivity extends BaseActivity {
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.zoom_imageview);
-        ButterKnife.bind(this);
+    protected int attachLayoutRes() {
+        return R.layout.zoom_imageview;
+    }
 
+    @Override
+    public void initToolBar() {
+
+    }
+
+    @Override
+    public void initView() {
         photoView.setImageResource(mImgs[0]);
 
         mViewPager.setAdapter(new PagerAdapter() {
@@ -71,6 +75,4 @@ public class ZoomImageViewActivity extends BaseActivity {
 
 
     }
-
-
 }

@@ -1,13 +1,11 @@
 package com.wyq.firehelper.developKit.EventBus;
 
-import android.os.Bundle;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class EventBusActivity extends DevelopKitBaseActivity {
 
@@ -15,18 +13,17 @@ public class EventBusActivity extends DevelopKitBaseActivity {
     public TextView textView1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.developkit_activity_eventbus_layout);
+    public void initData() {
 
-        ButterKnife.bind(this);
-
-        initData();
-        initView();
     }
 
     @Override
-    public void initData() {
+    protected int attachLayoutRes() {
+        return R.layout.developkit_activity_eventbus_layout;
+    }
+
+    @Override
+    public void initToolBar() {
 
     }
 

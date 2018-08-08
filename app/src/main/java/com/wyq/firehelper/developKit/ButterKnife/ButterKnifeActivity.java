@@ -1,7 +1,5 @@
 package com.wyq.firehelper.developKit.ButterKnife;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
@@ -9,7 +7,6 @@ import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ButterKnifeActivity extends DevelopKitBaseActivity {
 
@@ -32,20 +29,19 @@ public class ButterKnifeActivity extends DevelopKitBaseActivity {
     public TextView textView5;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if(getSupportActionBar() != null)getSupportActionBar().hide();
-        setContentView(R.layout.developkit_activity_butterknife_layout);
-        ButterKnife.bind(this);
-
-        initData();
-        initView();
-    }
-
-    @Override
     public void initData() {
         resourceList.put(articleTv,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_0);
         resourceList.put(articleTv1,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_1);
+
+    }
+
+    @Override
+    protected int attachLayoutRes() {
+        return R.layout.developkit_activity_butterknife_layout;
+    }
+
+    @Override
+    public void initToolBar() {
 
     }
 

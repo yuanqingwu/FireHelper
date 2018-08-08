@@ -1,7 +1,6 @@
 package com.wyq.firehelper.connectivity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,7 +12,6 @@ import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Uni.W on 2017/10/26.
@@ -29,15 +27,17 @@ public class ConnectMainActivity extends BaseActivity {
     public Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_activity_main);
-        ButterKnife.bind(this);
+    protected int attachLayoutRes() {
+        return R.layout.ui_activity_main;
+    }
 
-        toolbar.setTitle("Communication");
-        setSupportActionBar(toolbar);
-        initToolbarNav(toolbar);
+    @Override
+    public void initToolBar() {
+        initToolBar(toolbar, "Communication", true);
+    }
 
+    @Override
+    public void initView() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 ConnectMainActivity.this, android.R.layout.simple_list_item_1,
                 items);
@@ -56,6 +56,6 @@ public class ConnectMainActivity extends BaseActivity {
 
             }
         });
-
     }
+
 }

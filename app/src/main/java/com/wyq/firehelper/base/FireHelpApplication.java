@@ -23,6 +23,9 @@ public class FireHelpApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //处理一些一些初始化耗时操作
+        AppInitIntentService.start(this);
+
         if (isDebug) {
             initLeakCanary();
             initLogger();

@@ -1,7 +1,6 @@
 package com.wyq.firehelper.ui;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,7 +14,6 @@ import com.wyq.firehelper.ui.layout.tangram.TangramActivity;
 import com.wyq.firehelper.ui.layout.ultraViewPager.UltraViewPagerActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class UiMainActivity extends BaseActivity {
 
@@ -32,19 +30,16 @@ public class UiMainActivity extends BaseActivity {
     public Toolbar toolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_activity_main);
-        ButterKnife.bind(this);
-
-        toolbar.setTitle("UI");
-        setSupportActionBar(toolbar);
-        initToolbarNav(toolbar);
-
-        initView();
-
+    protected int attachLayoutRes() {
+        return R.layout.ui_activity_main;
     }
 
+    @Override
+    public void initToolBar() {
+        initToolBar(toolbar, "UI", true);
+    }
+
+    @Override
     public void initView() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 UiMainActivity.this, android.R.layout.simple_list_item_1,

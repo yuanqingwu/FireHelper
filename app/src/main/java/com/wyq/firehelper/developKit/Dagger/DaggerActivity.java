@@ -12,7 +12,6 @@ import javax.inject.Inject;
 import javax.inject.Provider;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import dagger.Lazy;
 
 public class DaggerActivity extends DevelopKitBaseActivity {
@@ -36,7 +35,7 @@ public class DaggerActivity extends DevelopKitBaseActivity {
 
     /**
      * 懒加载Lazy和强制重新加载Provider
-     *  lazyPerson 多次get 的是同一个对象，providerPerson多次get，每次get都会尝试创建新的对象。
+     * lazyPerson 多次get 的是同一个对象，providerPerson多次get，每次get都会尝试创建新的对象。
      */
     @PersonWithName
     @Inject
@@ -49,20 +48,14 @@ public class DaggerActivity extends DevelopKitBaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.developkit_activity_dagger_layout);
-        ButterKnife.bind(this);
-
-        initData();
-        initView();
-
-//        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
-        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this,"wyq")).build();
+        //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
+        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this, "wyq")).build();
         component.inject(this);
         StringBuilder builder = new StringBuilder();
-        builder.append(person1.logPerson()+"\n");
-        builder.append(person2.logPerson()+"\n");
-        builder.append(personLazy.get().logPerson()+"\n");
-        builder.append(personProvider.get().logPerson()+"\n");
+        builder.append(person1.logPerson() + "\n");
+        builder.append(person2.logPerson() + "\n");
+        builder.append(personLazy.get().logPerson() + "\n");
+        builder.append(personProvider.get().logPerson() + "\n");
         resTv.setText(builder);
 
         //1. ActivityModule 也需要创建Person时的Context对象，但是本类中却没有 providesContext() 的方法，因为它通过 ActivityComponent依赖于 AppComponent，所以可以通过 AppComponent中的 providesContext() 方法获取到Context对象。
@@ -76,6 +69,16 @@ public class DaggerActivity extends DevelopKitBaseActivity {
     public void initData() {
         resourceList.put(textView, ArticleConstants.DEVKIT_INJECT_DAGGER_0);
         resourceList.put(textView1, ArticleConstants.DEVKIT_INJECT_DAGGER_1);
+    }
+
+    @Override
+    protected int attachLayoutRes() {
+        return R.layout.developkit_activity_dagger_layout;
+    }
+
+    @Override
+    public void initToolBar() {
+
     }
 
     @Override

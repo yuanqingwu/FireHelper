@@ -4,9 +4,10 @@ import com.wyq.firehelper.base.BaseActivity;
 
 import java.util.List;
 
-public class BtBaseActivity extends BaseActivity {
+public abstract class BtBaseActivity extends BaseActivity {
 
     public static BtChatService btChatService;
     public static List<BtMessage> messageList;
+
 
 }

@@ -16,7 +16,16 @@ import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class GitHubMainActivity : BaseActivity(), Contract.IView {
+    override fun attachLayoutRes(): Int {
+    return R.layout.kotlin_activity_mvp_github_layout
+    }
 
+    override fun initToolBar() {
+        initToolBar(toolbar,"GitHub",true)
+    }
+
+    override fun initView() {
+    }
 
     @Inject
     lateinit var presenter: GitHubPresenter
@@ -27,10 +36,6 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.kotlin_activity_mvp_github_layout)
-        toolbar.title = "GitHub"
-        setSupportActionBar(toolbar)
-        initToolbarNav(toolbar)//must after setSupportActionBar
 
         val presenterComponent = DaggerPresenterComponent.builder().build()
         presenterComponent.inject(this)

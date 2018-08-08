@@ -1,6 +1,5 @@
 package com.wyq.firehelper.developKit.RxJava;
 
-import android.os.Bundle;
 import android.text.Html;
 import android.text.Spanned;
 import android.widget.TextView;
@@ -10,7 +9,6 @@ import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.developKit.DevelopKitBaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
@@ -147,17 +145,18 @@ public class RxJavaActivity extends DevelopKitBaseActivity {
     public TextView textView2;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.developkit_activity_rxjava_layout);
-        ButterKnife.bind(this);
-        initData();
-        initView();
+    public void initData() {
+        resourceList.put(articleTv, ArticleConstants.DEVKIT_REACTIVEX_RXJAVA_0);
     }
 
     @Override
-    public void initData() {
-        resourceList.put(articleTv, ArticleConstants.DEVKIT_REACTIVEX_RXJAVA_0);
+    protected int attachLayoutRes() {
+        return R.layout.developkit_activity_rxjava_layout;
+    }
+
+    @Override
+    public void initToolBar() {
+
     }
 
     @Override

@@ -2,7 +2,6 @@ package com.wyq.firehelper.ui;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,10 +18,17 @@ public class CircleBlurImageViewActivity extends BaseActivity {
     private TextView textView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.circle_iamgeview);
+    protected int attachLayoutRes() {
+        return R.layout.circle_iamgeview;
+    }
 
+    @Override
+    public void initToolBar() {
+
+    }
+
+    @Override
+    public void initView() {
         imageView = (ImageView) findViewById(R.id.image);
         imageViewAlpha=(ImageView)findViewById(R.id.image_alpha);
         textView=(TextView)findViewById(R.id.text);
@@ -63,7 +69,5 @@ public class CircleBlurImageViewActivity extends BaseActivity {
                 return true;
             }
         });
-
-
     }
 }

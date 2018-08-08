@@ -9,7 +9,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -96,9 +95,17 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
     };
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bt);
+    protected int attachLayoutRes() {
+        return R.layout.activity_bt;
+    }
+
+    @Override
+    public void initToolBar() {
+
+    }
+
+    @Override
+    public void initView() {
         listView = (ListView) findViewById(R.id.bluetooth_finded_list);
         btInfoLinkedList = new LinkedList<String>();
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();

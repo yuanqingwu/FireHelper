@@ -1,17 +1,23 @@
 package com.wyq.firehelper.ui.layout.drag;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 
 public class DragLayoutActivity extends BaseActivity {
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_layout_drag_layout);
+    protected int attachLayoutRes() {
+        return R.layout.ui_layout_drag_layout;
+    }
+
+    @Override
+    public void initToolBar() {
 
     }
+
+    @Override
+    public void initView() {
+
+    }
+
 }

@@ -2,14 +2,12 @@ package com.wyq.firehelper.ui.layout.tangram;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.tmall.wireless.tangram.TangramBuilder;
 import com.tmall.wireless.tangram.TangramEngine;
 import com.tmall.wireless.tangram.structure.viewcreator.ViewHolderCreator;
@@ -26,7 +24,6 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TangramActivity extends BaseActivity {
 
@@ -36,12 +33,13 @@ public class TangramActivity extends BaseActivity {
     private TangramEngine engine;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.ui_activity_tangram_layout);
-        ButterKnife.bind(this);
+    protected int attachLayoutRes() {
+        return R.layout.ui_activity_tangram_layout;
+    }
 
-        initView();
+    @Override
+    public void initToolBar() {
+
     }
 
     public void initView() {
@@ -50,7 +48,7 @@ public class TangramActivity extends BaseActivity {
         TangramBuilder.init(getApplicationContext(), new IInnerImageSetter() {
             @Override
             public <IMAGE extends ImageView> void doLoadImageUrl(@NonNull IMAGE view, @Nullable String url) {
-                Glide.with(TangramActivity.this.getApplicationContext()).load(url).into(view);
+//                Glide.with(getApplicationContext()).load(url).into(view);
             }
         }, ImageView.class);
 

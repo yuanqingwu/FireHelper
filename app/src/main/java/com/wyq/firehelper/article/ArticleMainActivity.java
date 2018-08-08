@@ -2,8 +2,6 @@ package com.wyq.firehelper.article;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,7 +17,6 @@ import com.wyq.firehelper.base.BaseActivity;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
 
@@ -41,20 +38,17 @@ public class ArticleMainActivity extends BaseActivity {
     public RecyclerViewAdapter adapter;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.article_activity_main);
-
-        ButterKnife.bind(this);
-
-        initView();
+    protected int attachLayoutRes() {
+        return R.layout.article_activity_main;
     }
 
-    private void initView() {
-        toolbar.setTitle("文章");
-        setSupportActionBar(toolbar);
-        initToolbarNav(toolbar);
+    @Override
+    public void initToolBar() {
+        initToolBar(toolbar, "Article", true);
+    }
 
+    @Override
+    public void initView() {
 //        initSearchView();
         initTagLayout();
         initRecycleView();
@@ -160,21 +154,21 @@ public class ArticleMainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_search,menu);
-            SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-            searchView.setQueryHint("文章搜索");
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String query) {
-                    doSearch(query);
-                    return true;
-                }
+        getMenuInflater().inflate(R.menu.menu_search, menu);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView.setQueryHint("文章搜索");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                doSearch(query);
+                return true;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String newText) {
-                    return false;
-                }
-            });
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
 
         return super.onCreateOptionsMenu(menu);
     }

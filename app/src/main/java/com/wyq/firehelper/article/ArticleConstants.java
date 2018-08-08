@@ -23,6 +23,7 @@ public class ArticleConstants {
     public static final ArticleResource _7 = new ArticleResource("http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html", " 页面动态化的基础 —— Tangram", "UI", "UI");
     public static final ArticleResource _8 = new ArticleResource("http://tangram.pingguohe.net/", " Tangram", "UI", "UI","主页");
     public static final ArticleResource _9 = new ArticleResource("https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout", "coordinatorlayout", "UI", "UI");
+    public static final ArticleResource _10 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/72828483", "深入理解Java并发之synchronized实现原理", "Java", "Java");
 
     //developKit
     /**

@@ -2,8 +2,6 @@ package com.wyq.firehelper.article;
 
 import android.app.SearchManager;
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
@@ -11,7 +9,6 @@ import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class SearchableActivity extends BaseActivity {
 
@@ -19,12 +16,17 @@ public class SearchableActivity extends BaseActivity {
     public TextView textView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.article_activity_search);
-        ButterKnife.bind(this);
+    protected int attachLayoutRes() {
+        return R.layout.article_activity_search;
+    }
 
-        // Get the intent, verify the action and get the query
+    @Override
+    public void initToolBar() {
+
+    }
+
+    @Override
+    public void initView() {
         Intent intent = getIntent();
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);

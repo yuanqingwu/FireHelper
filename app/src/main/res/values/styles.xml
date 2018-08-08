@@ -10,6 +10,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="SplashTheme" parent="android:Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowBackground">@drawable/splash_logo</item>
+    </style>
 
     <!-- 请求dialog -->
     <style name="requst_dialog" parent="@android:style/Theme.Dialog">

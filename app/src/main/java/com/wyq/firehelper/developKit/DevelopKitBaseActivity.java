@@ -2,6 +2,7 @@ package com.wyq.firehelper.developKit;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,20 +30,18 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
      */
     public Map<TextView, ArticleResource> resourceList = new HashMap<>();
 
+    public abstract void initData();
+
     public DevelopKitBaseActivity() {
         resourceList.clear();
 //        Logger.i("resourceList.clear()");
     }
 
-    /**
-     * 在此填充页面需展示的数据
-     */
-    public abstract void initData();
-
-    /**
-     * 在此初始化各页面模块
-     */
-    public abstract void initView();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        initData();
+        super.onCreate(savedInstanceState);
+    }
 
     /**
      * 构建文章阅读板块

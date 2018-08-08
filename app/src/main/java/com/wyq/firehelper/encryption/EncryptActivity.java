@@ -1,7 +1,5 @@
 package com.wyq.firehelper.encryption;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,12 +18,18 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class EncryptActivity extends BaseActivity {
 
-    private Spinner spinner;
-    private TextView resultTv;
-    private EditText inputEt;
-    private Button button;
+    @BindView(R.id.activity_encrypt_spinner)
+    public Spinner spinner;
+    @BindView(R.id.activity_encrypt_result_tv)
+    public TextView resultTv;
+    @BindView(R.id.activity_encrypt_edittext)
+    public EditText inputEt;
+    @BindView(R.id.activity_encrypt_invoke_bt)
+    public Button button;
 
     private List<Method> methods = null;
     private List<String> methodsName = null;
@@ -33,20 +37,17 @@ public class EncryptActivity extends BaseActivity {
     private int checkedPosition = 0;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_encrypt_main);
+    protected int attachLayoutRes() {
+        return R.layout.activity_encrypt_main;
+    }
 
-        spinner = (Spinner) findViewById(R.id.activity_encrypt_spinner);
-        resultTv = (TextView) findViewById(R.id.activity_encrypt_result_tv);
-        inputEt = (EditText) findViewById(R.id.activity_encrypt_edittext);
-        button = (Button) findViewById(R.id.activity_encrypt_invoke_bt);
-
-        initRes();
+    @Override
+    public void initToolBar() {
 
     }
 
-    private void initRes() {
+    @Override
+    public void initView() {
 
         methods = removeDuplication(getClassMethods(EncryptUtils.class),getClassMethods(Object.class));
         //获取此类中所有方法，名称，排除object自带方法

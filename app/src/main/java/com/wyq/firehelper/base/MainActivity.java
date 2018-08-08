@@ -2,7 +2,6 @@ package com.wyq.firehelper.base;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,9 +19,9 @@ import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
+import com.wyq.firehelper.utils.DialogUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Uni.W on 2016/8/10.
@@ -36,15 +35,15 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
 
-        toolbar.setTitle(R.string.app_name);
-        setSupportActionBar(toolbar);
-        initView();
+    @Override
+    protected int attachLayoutRes() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    public void initToolBar() {
+        initToolBar(toolbar,getString(R.string.app_name),false);
     }
 
     public void initView() {

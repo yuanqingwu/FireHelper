@@ -2,9 +2,9 @@
 <resources>
     <color name="sc_transparent_background">#00111111</color>
     <!--导航栏颜色-->
-    <color name="colorPrimary">@color/lightgray</color>
+    <color name="colorPrimary">@color/darkgreen</color>
     <!--状态栏颜色-->
-    <color name="colorPrimaryDark">@color/lightgray</color>
+    <color name="colorPrimaryDark">@color/darkgreen</color>
     <!--空间选中后的颜色-->
     <color name="colorAccent">@color/darkgreen</color>
 
