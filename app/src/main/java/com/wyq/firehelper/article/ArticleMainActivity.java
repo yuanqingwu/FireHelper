@@ -123,9 +123,10 @@ public class ArticleMainActivity extends BaseActivity {
              pure_cyan 	ColorFactory.PURE_CYAN 	1 	All TagView created by pure cyan color
              pure_teal 	ColorFactory.PURE_TEAL 	2 	All TagView created by pure teal color
              */
-            tagContainerLayout.setTheme(1);
+            tagContainerLayout.setTheme(2);
             tagContainerLayout.setRippleDuration(800);
             tagContainerLayout.setTags(tags);
+            tagContainerLayout.setTagBackgroundColor(R.color.snow);
             tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
                 @Override
                 public void onTagClick(int position, String text) {

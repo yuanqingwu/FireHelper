@@ -39,6 +39,7 @@ public class WebViewActivity extends AppCompatActivity {
     private float xStart = -1;
     private float yStart = -1;
     private String url;
+    public boolean canDrag = false;//默认此页面不支持右滑返回
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -207,60 +208,62 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        int width = getResources().getDisplayMetrics().widthPixels;
+        if (canDrag) {
+            int width = getResources().getDisplayMetrics().widthPixels;
 
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                xStart = event.getX(0);
-                yStart = event.getY(0);
-                break;
-            case MotionEvent.ACTION_MOVE:
-                if (event.getPointerCount() == 1) {
-                    float xNow = event.getX(0);
-                    if (xStart < width / 4 && Math.abs(xNow - xStart) > 100 && Math.abs(event.getY(0) - yStart) < 100) {
-                        float xDist = xNow - xStart - 100;
-                        float alpha = 1 - xDist / width;
-                        webView.setX(xDist);
-                        webView.setAlpha(alpha);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    xStart = event.getX(0);
+                    yStart = event.getY(0);
+                    break;
+                case MotionEvent.ACTION_MOVE:
+                    if (event.getPointerCount() == 1) {
+                        float xNow = event.getX(0);
+                        if (xStart < width / 4 && Math.abs(xNow - xStart) > 100 && Math.abs(event.getY(0) - yStart) < 100) {
+                            float xDist = xNow - xStart - 100;
+                            float alpha = 1 - xDist / width;
+                            webView.setX(xDist);
+                            webView.setAlpha(alpha);
+                        }
                     }
-                }
-                break;
-            case MotionEvent.ACTION_UP:
-                if (event.getPointerCount() == 1) {
-                    float xEnd = event.getX(0);
-                    float yEnd = event.getY(0);
+                    break;
+                case MotionEvent.ACTION_UP:
+                    if (event.getPointerCount() == 1) {
+                        float xEnd = event.getX(0);
+                        float yEnd = event.getY(0);
 
 //                Logger.i(" x dis:" + (xEnd - xStart)+" start:"+xStart+" end:"+xEnd);
 //                Logger.i(" y dis:" + (yEnd - yStart)+" start:"+yStart+" end:"+yEnd);
-                    //&& Math.abs(yEnd - yStart) < 100
-                    if (xStart < width / 4 && xEnd - xStart > width / 2) {
+                        //&& Math.abs(yEnd - yStart) < 100
+                        if (xStart < width / 4 && xEnd - xStart > width / 2) {
 //                    EventBus.getDefault().post(new EventBusMessage(EventBusMessage.WEBVIEW_GO_BACK));
-                        if (webView.canGoBack()) {
-                            webView.goBack();
+                            if (webView.canGoBack()) {
+                                webView.goBack();
+                                webView.setAlpha(1);
+                                webView.setX(0);
+//                        webView.setTranslationX(0);
+                            } else {
+                                //如果第一页则直接返回
+                                webView.setAlpha(0);
+                                finish();
+                            }
+
+                            return true;
+                        } else if (xStart > width * 3 / 4 && xEnd - xStart < -100) {
+                            if (webView.canGoForward()) {
+                                webView.goForward();
+                            }
+                            return true;
+                        } else {
                             webView.setAlpha(1);
                             webView.setX(0);
-//                        webView.setTranslationX(0);
-                        } else {
-                            //如果第一页则直接返回
-                            webView.setAlpha(0);
-                            finish();
                         }
-
-                        return true;
-                    } else if (xStart > width * 3 / 4 && xEnd - xStart < -100) {
-                        if (webView.canGoForward()) {
-                            webView.goForward();
-                        }
-                        return true;
-                    } else {
-                        webView.setAlpha(1);
-                        webView.setX(0);
                     }
-                }
-                break;
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
         }
         return super.dispatchTouchEvent(event);
     }

@@ -1,5 +1,7 @@
 package com.wyq.firehelper.encryption;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.security.spec.AlgorithmParameterSpec;
 
 import javax.crypto.Cipher;
@@ -12,6 +14,109 @@ import javax.crypto.spec.SecretKeySpec;
 public class Encryption {
 
     /**
+     * Return the bytes of MD2 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of MD2 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptMD2(final byte[] data) {
+        return hashTemplate(data, "MD2");
+    }
+
+    /**
+     * Return the bytes of MD5 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of MD5 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptMD5(final byte[] data) {
+        return hashTemplate(data, "MD5");
+    }
+
+
+    /**
+     * Return the bytes of SHA1 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of SHA1 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptSHA1(final byte[] data) {
+        return hashTemplate(data, "SHA1");
+    }
+
+    /**
+     * Return the bytes of SHA224 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of SHA224 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptSHA224(final byte[] data) {
+        return hashTemplate(data, "SHA224");
+    }
+
+    /**
+     * Return the bytes of SHA256 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of SHA256 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptSHA256(final byte[] data) {
+        return hashTemplate(data, "SHA256");
+    }
+
+    /**
+     * Return the bytes of SHA384 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of SHA384 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptSHA384(final byte[] data) {
+        return hashTemplate(data, "SHA384");
+    }
+
+    /**
+     * Return the bytes of SHA512 encryption.
+     *
+     * @param data The data.
+     * @return the bytes of SHA512 encryption
+     */
+    @MethodParamName(paramName = {"data"})
+    public static byte[] encryptSHA512(final byte[] data) {
+        return hashTemplate(data, "SHA512");
+    }
+
+
+
+    /**
+     * Return the bytes of hash encryption.
+     *
+     * @param data      The data.
+     * @param algorithm The name of hash encryption.
+     * @return the bytes of hash encryption
+     */
+    private static byte[] hashTemplate(final byte[] data, final String algorithm) {
+        if (data == null || data.length <= 0) return null;
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            md.update(data);
+            return md.digest();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+/*************************************************************
+ * DES
+ */
+
+    /**
      * Return the bytes of DES encryption.
      *
      * @param data           The data.
@@ -21,11 +126,102 @@ public class Encryption {
      *                       buffer are copied to protect against subsequent modification.
      * @return the bytes of DES encryption
      */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
     public static byte[] encryptDES(final byte[] data,
                                     final byte[] key,
                                     final String transformation,
                                     final byte[] iv) {
         return symmetricTemplate(data, key, "DES", transformation, iv, true);
+    }
+
+    /**
+     * Return the bytes of DES decryption.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
+     * @param iv             The buffer with the IV. The contents of the
+     *                       buffer are copied to protect against subsequent modification.
+     * @return the bytes of DES decryption
+     */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
+    public static byte[] decryptDES(final byte[] data,
+                                    final byte[] key,
+                                    final String transformation,
+                                    final byte[] iv) {
+        return symmetricTemplate(data, key, "DES", transformation, iv, false);
+    }
+
+    /**
+     * Return the bytes of 3DES encryption.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
+     * @param iv             The buffer with the IV. The contents of the
+     *                       buffer are copied to protect against subsequent modification.
+     * @return the bytes of 3DES encryption
+     */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
+    public static byte[] encrypt3DES(final byte[] data,
+                                     final byte[] key,
+                                     final String transformation,
+                                     final byte[] iv) {
+        return symmetricTemplate(data, key, "DESede", transformation, iv, true);
+    }
+
+    /**
+     * Return the bytes of 3DES decryption.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
+     * @param iv             The buffer with the IV. The contents of the
+     *                       buffer are copied to protect against subsequent modification.
+     * @return the bytes of 3DES decryption
+     */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
+    public static byte[] decrypt3DES(final byte[] data,
+                                     final byte[] key,
+                                     final String transformation,
+                                     final byte[] iv) {
+        return symmetricTemplate(data, key, "DESede", transformation, iv, false);
+    }
+
+    /**
+     * Return the bytes of AES encryption.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
+     * @param iv             The buffer with the IV. The contents of the
+     *                       buffer are copied to protect against subsequent modification.
+     * @return the bytes of AES encryption
+     */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
+    public static byte[] encryptAES(final byte[] data,
+                                    final byte[] key,
+                                    final String transformation,
+                                    final byte[] iv) {
+        return symmetricTemplate(data, key, "AES", transformation, iv, true);
+    }
+
+    /**
+     * Return the bytes of AES decryption.
+     *
+     * @param data           The data.
+     * @param key            The key.
+     * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
+     * @param iv             The buffer with the IV. The contents of the
+     *                       buffer are copied to protect against subsequent modification.
+     * @return the bytes of AES decryption
+     */
+    @MethodParamName(paramName = {"data","key","transformation","iv"})
+    public static byte[] decryptAES(final byte[] data,
+                                    final byte[] key,
+                                    final String transformation,
+                                    final byte[] iv) {
+        return symmetricTemplate(data, key, "AES", transformation, iv, false);
     }
 
 
@@ -60,5 +256,21 @@ public class Encryption {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    private static final char HEX_DIGITS[] =
+            {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+
+    public static String bytes2HexString(final byte[] bytes) {
+        if (bytes == null) return null;
+        int len = bytes.length;
+        if (len <= 0) return null;
+        char[] ret = new char[len << 1];
+        for (int i = 0, j = 0; i < len; i++) {
+            ret[j++] = HEX_DIGITS[bytes[i] >>> 4 & 0x0f];
+            ret[j++] = HEX_DIGITS[bytes[i] & 0x0f];
+        }
+        return new String(ret);
     }
 }

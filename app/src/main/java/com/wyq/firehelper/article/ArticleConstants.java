@@ -25,6 +25,17 @@ public class ArticleConstants {
     public static final ArticleResource _9 = new ArticleResource("https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout", "coordinatorlayout", "UI", "UI");
     public static final ArticleResource _10 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/72828483", "深入理解Java并发之synchronized实现原理", "Java", "Java");
 
+    public static final ArticleResource _11 = new ArticleResource("https://www.jianshu.com/u/6b372d09b617", "YoKey(大搜车)", "Blog", "博客主页");
+    public static final ArticleResource _12 = new ArticleResource("https://www.jianshu.com/p/e66a1afe474c", "D项目Android模块化 VCS演进之路", "Blog", "优化","架构");
+    public static final ArticleResource _13 = new ArticleResource("https://tech.meituan.com/", "美团技术团队", "Blog", "公司","博客主页");
+    public static final ArticleResource _14 = new ArticleResource("http://f2e.souche.com/blog/", "搜车大无线团队博客", "Blog", "公司","博客主页");
+    public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司","博客主页");
+
+    /**
+     * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
+     *
+     */
+
     //developKit
     /**
      * http://jakewharton.github.io/butterknife/
