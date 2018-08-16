@@ -10,6 +10,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * 最原始的解解密函数整理
+ * 注释参数名字配合自动化反射
  */
 public class Encryption {
 

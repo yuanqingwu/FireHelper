@@ -32,7 +32,6 @@ public class ButterKnifeActivity extends DevelopKitBaseActivity {
     public void initData() {
         resourceList.put(articleTv,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_0);
         resourceList.put(articleTv1,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_1);
-
     }
 
     @Override

@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.article.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
 import com.wyq.firehelper.utils.CloseUtils;
 
@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import butterknife.ButterKnife;
 
 public abstract class DevelopKitBaseActivity extends BaseActivity {
 
@@ -39,8 +41,14 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        initData();
         super.onCreate(savedInstanceState);
+        setContentView(attachLayoutRes());
+        ButterKnife.bind(this);
+
+        initToolBar();
+        initData();
+        initView();
+
     }
 
     /**

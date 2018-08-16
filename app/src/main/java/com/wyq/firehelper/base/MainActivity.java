@@ -19,7 +19,6 @@ import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
-import com.wyq.firehelper.utils.DialogUtil;
 
 import butterknife.BindView;
 
