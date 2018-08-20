@@ -30,6 +30,8 @@ public class ArticleConstants {
     public static final ArticleResource _13 = new ArticleResource("https://tech.meituan.com/", "美团技术团队", "Blog", "公司","博客主页");
     public static final ArticleResource _14 = new ArticleResource("http://f2e.souche.com/blog/", "搜车大无线团队博客", "Blog", "公司","博客主页");
     public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司","博客主页");
+    public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计");
+    public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

@@ -30,6 +30,7 @@ public class AndroidAnnotationsActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         browserArticle(AndroidAnnotationsActivity.this);
     }
 }

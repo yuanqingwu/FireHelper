@@ -83,6 +83,7 @@ public class DaggerActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         browserArticle(DaggerActivity.this);
     }
 }

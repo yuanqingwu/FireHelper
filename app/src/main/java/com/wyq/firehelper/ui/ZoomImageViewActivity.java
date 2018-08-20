@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
@@ -50,7 +52,8 @@ public class ZoomImageViewActivity extends BaseActivity {
 
                 ZoomImageView imageView = new ZoomImageView(
                         getApplicationContext());
-                imageView.setImageResource(mImgs[position]);
+//                imageView.setImageResource(mImgs[position]);
+                Glide.with(ZoomImageViewActivity.this).load(mImgs[position]).apply(RequestOptions.fitCenterTransform()).into(imageView);
                 container.addView(imageView);
                 mImageViews[position] = imageView;
                 return imageView;

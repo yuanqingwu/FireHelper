@@ -29,6 +29,7 @@ public class EventBusActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         textView1.setText(defectStr);
     }
 

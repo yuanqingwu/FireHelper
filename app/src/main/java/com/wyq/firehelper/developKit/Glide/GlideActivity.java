@@ -34,6 +34,7 @@ public class GlideActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         browserArticle(GlideActivity.this);
         Glide.with(this).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
                 .into(imageView);

@@ -2,7 +2,7 @@ package com.wyq.firehelper.developKit;
 
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
+import android.support.annotation.CallSuper;
 import android.view.View;
 import android.widget.TextView;
 
@@ -23,8 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.ButterKnife;
-
 public abstract class DevelopKitBaseActivity extends BaseActivity {
 
     /**
@@ -34,21 +32,11 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
 
     public abstract void initData();
 
-    public DevelopKitBaseActivity() {
-        resourceList.clear();
-//        Logger.i("resourceList.clear()");
-    }
-
+    @CallSuper
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(attachLayoutRes());
-        ButterKnife.bind(this);
-
-        initToolBar();
+    public void initView() {
+        resourceList.clear();
         initData();
-        initView();
-
     }
 
     /**

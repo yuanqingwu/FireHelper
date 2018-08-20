@@ -161,6 +161,7 @@ public class RxJavaActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         browserArticle(RxJavaActivity.this);
 
         textView1.setText(schedulers);

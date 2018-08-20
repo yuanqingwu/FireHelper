@@ -46,7 +46,7 @@ public class ButterKnifeActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
-
+        super.initView();
         browserArticle(ButterKnifeActivity.this);
 
         textView2.setText("1、在Activity 类中绑定 ：ButterKnife.bind(this);必须在setContentView();之后绑定；且父类bind绑定后，子类不需要再bind。\n" +
@@ -114,7 +114,7 @@ public class ButterKnifeActivity extends DevelopKitBaseActivity {
                 "\n" +
                 "    @Optional —->选择性注入，如果当前对象不存在，就会抛出一个异常，为了压制这个异常，可以在变量或者方法上加入一下注解,让注入变成选择性的,如果目标View存在,则注入, 不存在,则什么事情都不做\n");
 
-        textView5.setText("ButterKnife的代码混淆\n"+"-keep class butterknife.** { *; }  \n" +
+        textView5.setText("ButterKnife的代码混淆\n" + "-keep class butterknife.** { *; }  \n" +
                 "-dontwarn butterknife.internal.**  \n" +
                 "-keep class **$$ViewBinder { *; }  \n" +
                 "\n" +

@@ -57,6 +57,7 @@ public class RetrofitActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         browserArticle(this);
 
         Glide.with(this).load(R.drawable.retrofit).into(imageView);
