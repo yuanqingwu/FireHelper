@@ -3,16 +3,13 @@ package com.wyq.firehelper.base;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
+import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
@@ -20,39 +17,29 @@ import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 
-import butterknife.BindView;
-
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class MainActivity extends BaseActivity {
-
-    private String[] items = {"Article", "Communication", "UI", "Encryption", "DevelopKit", "Architecture", "kotlin"};
-
-    @BindView(R.id.activity_main_list)
-    public ListView listView;
-    @BindView(R.id.toolbar)
-    public Toolbar toolbar;
-
+public class MainActivity extends BaseListActivity {
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.activity_main;
+    public String[] listItemsNames() {
+        return new String[]{"Article", "Communication", "UI", "Encryption", "DevelopKit", "Architecture", "kotlin"};
     }
 
     @Override
-    public void initToolBar() {
-        initToolBar(toolbar,getString(R.string.app_name),false);
+    public String toolBarName() {
+        return getString(R.string.app_name);
     }
 
-    public void initView() {
-        AppCompatDelegate.setDefaultNightMode(NightThemeConfig.getInstance(this).getNightMode());
+    @Override
+    public boolean isShowBackIcon() {
+        return false;
+    }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                MainActivity.this, android.R.layout.simple_list_item_1,
-                items);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+    @Override
+    public AdapterView.OnItemClickListener onListItemClickListener() {
+        return new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
@@ -78,7 +65,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 5:
                         startActivity(new Intent(MainActivity.this,
-                                MvpActivity.class));
+                                ArchitectureActivity.class));
                         break;
                     case 6:
                         startActivity(new Intent(MainActivity.this,
@@ -90,8 +77,12 @@ public class MainActivity extends BaseActivity {
                 }
 
             }
-        });
+        };
+    }
 
+    public void initView() {
+        super.initView();
+        AppCompatDelegate.setDefaultNightMode(NightThemeConfig.getInstance(this).getNightMode());
     }
 
     @Override

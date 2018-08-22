@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data class="MvvmBinding">
+
+        <import type="com.wyq.firehelper.architecture.mvvm.NameUtils" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="name"
+            type="com.wyq.firehelper.architecture.mvvm.NameModel" />
+
+        <variable
+            name="isShow"
+            type="boolean" />
+
+        <variable
+            name="imageUrl"
+            type="String" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/mvvm_activity_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textNoSuggestions"
+            android:text="@={name.name}" />
+
+        <CheckBox
+            android:id="@+id/isShowName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="@{isShow}" />
+
+        <TextView
+            android:id="@+id/mvvm_activity_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text='@{NameUtils.capitalize(name.name)}'
+            android:visibility="@{isShow?View.VISIBLE:View.INVISIBLE}" />
+
+        <ImageView
+            headImage="@{imageUrl}"
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mvvm_activity_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+</layout>

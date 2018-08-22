@@ -23,7 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.MainActivity"/>
+        <activity android:name=".base.MainActivity" />
         <activity android:name=".connectivity.ConnectMainActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtActivity" />
         <activity android:name=".connectivity.bluetoothChat.BtChatActivity" />
@@ -49,6 +49,7 @@
         <!-- android:resource="@xml/searchable" /> -->
         <!-- </activity> -->
         <activity android:name=".article.WebViewActivity" />
+        <activity android:name=".architecture.ArchitectureActivity" />
         <activity android:name=".ui.MetroStyleActivity" />
         <activity android:name=".ui.UiMainActivity" />
         <activity android:name=".ui.layout.drag.DragLayoutActivity" />
@@ -68,8 +69,10 @@
         <activity android:name=".ui.layout.ultraViewPager.UltraViewPagerActivity" />
         <activity android:name=".kotlin.mvpGitHub.view.GitHubMainActivity" />
 
-        <service android:name=".base.AppInitIntentService"/>
-    </application>
+        <service android:name=".base.AppInitIntentService" />
 
+        <activity android:name=".architecture.mvvm.MvvmActivity"
+            android:windowSoftInputMode="stateHidden"></activity>
+    </application>
 
 </manifest>

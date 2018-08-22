@@ -12,7 +12,7 @@ class GitHubRepoAdapter(private val repos :MutableList<Repository>):RecyclerView
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return LayoutInflater.from(parent?.context).inflate(R.layout.kotlin_activity_mvp_github_recycler_view_item,parent,false).let {
+        return LayoutInflater.from(parent.context).inflate(R.layout.kotlin_activity_mvp_github_recycler_view_item,parent,false).let {
             ViewHolder(it)
         }
     }

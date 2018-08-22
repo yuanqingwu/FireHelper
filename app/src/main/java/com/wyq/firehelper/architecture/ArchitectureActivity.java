@@ -1,22 +1,45 @@
 package com.wyq.firehelper.architecture;
 
-import com.wyq.firehelper.base.BaseActivity;
+import android.view.View;
+import android.widget.AdapterView;
 
-public class ArchitectureActivity extends BaseActivity {
+import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
+import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
+import com.wyq.firehelper.base.BaseListActivity;
 
+public class ArchitectureActivity extends BaseListActivity {
 
     @Override
-    protected int attachLayoutRes() {
-        return 0;
+    public String[] listItemsNames() {
+        return new String[]{"MVP[翻译]","MVVM"};
     }
 
     @Override
-    public void initToolBar() {
-
+    public String toolBarName() {
+        return "architecture";
     }
 
     @Override
-    public void initView() {
+    public boolean isShowBackIcon() {
+        return true;
+    }
 
+    @Override
+    public AdapterView.OnItemClickListener onListItemClickListener() {
+        return new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position) {
+                    case 0:
+                        startActivity(MvpActivity.class);
+                        break;
+                    case 1:
+                        startActivity(MvvmActivity.class);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        };
     }
 }
