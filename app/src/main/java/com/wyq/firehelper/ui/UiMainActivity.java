@@ -2,14 +2,14 @@ package com.wyq.firehelper.ui;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
 
-import com.wyq.firehelper.base.BaseListActivity;
+import com.wyq.firehelper.base.BaseRecyclerViewActivity;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.ui.layout.drag.DragLayoutActivity;
 import com.wyq.firehelper.ui.layout.tangram.TangramActivity;
 import com.wyq.firehelper.ui.layout.ultraViewPager.UltraViewPagerActivity;
 
-public class UiMainActivity extends BaseListActivity {
+public class UiMainActivity extends BaseRecyclerViewActivity {
 
     /**
      * FlexboxLayout
@@ -31,10 +31,10 @@ public class UiMainActivity extends BaseListActivity {
     }
 
     @Override
-    public AdapterView.OnItemClickListener onListItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
+    public TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
+        return new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
                         startActivity(new Intent(UiMainActivity.this,
@@ -63,8 +63,9 @@ public class UiMainActivity extends BaseListActivity {
                     default:
                         break;
                 }
-
             }
         };
     }
+
+
 }

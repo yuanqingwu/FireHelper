@@ -3,45 +3,51 @@ package com.wyq.firehelper.base;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
+import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.connectivity.ConnectMainActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
+import com.wyq.firehelper.ui.layout.recyclerView.SimpleItemTouchHelperCallback;
+import com.wyq.firehelper.utils.FireUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.BindView;
 
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class MainActivity extends BaseListActivity {
+public class MainActivity extends BaseActivity {
 
-    @Override
-    public String[] listItemsNames() {
-        return new String[]{"Article", "Communication", "UI", "Encryption", "DevelopKit", "Architecture", "kotlin"};
-    }
+    @BindView(R.id.list_activity_recycler_view)
+    public RecyclerView baseRV;
+    @BindView(R.id.toolbar)
+    public Toolbar toolbar;
 
-    @Override
-    public String toolBarName() {
-        return getString(R.string.app_name);
-    }
 
-    @Override
-    public boolean isShowBackIcon() {
-        return false;
-    }
-
-    @Override
-    public AdapterView.OnItemClickListener onListItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
+    public TvImgRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
+        return new TvImgRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
                         startActivity(new Intent(MainActivity.this,
@@ -80,9 +86,56 @@ public class MainActivity extends BaseListActivity {
         };
     }
 
+
+    @Override
+    protected int attachLayoutRes() {
+        return R.layout.list_activity_layout;
+    }
+
+    @Override
+    public void initToolBar() {
+        initToolBar(toolbar, getString(R.string.app_name), false);
+    }
+
     public void initView() {
-        super.initView();
         AppCompatDelegate.setDefaultNightMode(NightThemeConfig.getInstance(this).getNightMode());
+
+        initRecyclerView();
+    }
+
+    public void initRecyclerView() {
+        TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this,getModuleList());
+        baseRV.setLayoutManager(getLayoutManager(1));
+        baseRV.setAdapter(adapter);
+        adapter.setOnItemClickListener(onListItemClickListener());
+
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
+        itemTouchHelper.attachToRecyclerView(baseRV);
+    }
+
+    public RecyclerView.LayoutManager getLayoutManager(int layoutType) {
+        if(layoutType == 0){
+            return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        }else{
+            return new GridLayoutManager(this,2);
+        }
+    }
+
+    public List<FireModule> getModuleList() {
+        String json = FireUtils.readAssets2String(this, "module.json");
+        Logger.i(json);
+        try {
+            JSONArray jsonArray = new JSONArray(json);
+            List<FireModule> fireModules = new ArrayList<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                FireModule module = FireModule.convertFromJson(jsonArray.getString(i));
+                fireModules.add(module);
+            }
+            return fireModules;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override

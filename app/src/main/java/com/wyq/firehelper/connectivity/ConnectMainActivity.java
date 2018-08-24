@@ -2,16 +2,16 @@ package com.wyq.firehelper.connectivity;
 
 import android.content.Intent;
 import android.view.View;
-import android.widget.AdapterView;
 
-import com.wyq.firehelper.base.BaseListActivity;
+import com.wyq.firehelper.base.BaseRecyclerViewActivity;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
 
 /**
  * Created by Uni.W on 2017/10/26.
  */
 
-public class ConnectMainActivity extends BaseListActivity {
+public class ConnectMainActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
@@ -29,10 +29,10 @@ public class ConnectMainActivity extends BaseListActivity {
     }
 
     @Override
-    public AdapterView.OnItemClickListener onListItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
+    public TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
+        return new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
                         startActivity(new Intent(ConnectMainActivity.this,
@@ -41,9 +41,9 @@ public class ConnectMainActivity extends BaseListActivity {
                     default:
                         break;
                 }
-
             }
         };
     }
+
 
 }

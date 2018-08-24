@@ -1,13 +1,13 @@
 package com.wyq.firehelper.architecture;
 
 import android.view.View;
-import android.widget.AdapterView;
 
 import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
-import com.wyq.firehelper.base.BaseListActivity;
+import com.wyq.firehelper.base.BaseRecyclerViewActivity;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 
-public class ArchitectureActivity extends BaseListActivity {
+public class ArchitectureActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
@@ -25,10 +25,10 @@ public class ArchitectureActivity extends BaseListActivity {
     }
 
     @Override
-    public AdapterView.OnItemClickListener onListItemClickListener() {
-        return new AdapterView.OnItemClickListener() {
+    public TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
+        return new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
                         startActivity(MvpActivity.class);
@@ -42,4 +42,6 @@ public class ArchitectureActivity extends BaseListActivity {
             }
         };
     }
+
+
 }

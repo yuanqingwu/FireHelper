@@ -37,6 +37,7 @@ public class DevelopKitMainActivity extends DevelopKitBaseActivity {
 
     @Override
     public void initView() {
+        super.initView();
         for (DevelopKit kit : getKits()) {
             tabLayout.addTab(tabLayout.newTab().setText(kit.getCategory()));
         }

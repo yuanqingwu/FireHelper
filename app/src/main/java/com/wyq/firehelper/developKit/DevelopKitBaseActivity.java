@@ -11,13 +11,11 @@ import com.wyq.firehelper.article.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
-import com.wyq.firehelper.utils.CloseUtils;
+import com.wyq.firehelper.utils.FireUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,7 +74,7 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
         List<DevelopKit> kitsList = new ArrayList<>();
         Gson gson = new Gson();
         try {
-            JSONArray kitsArray = new JSONArray(readKitsFromAssets());
+            JSONArray kitsArray = new JSONArray(FireUtils.readAssets2String(this,"developKit.json"));
             for(int i=0; i<kitsArray.length();i++){
                 DevelopKit kit = gson.fromJson(kitsArray.getString(i),DevelopKit.class);
                 kitsList.add(kit);
@@ -87,21 +85,4 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
         return kitsList;
     }
 
-    private String readKitsFromAssets(){
-        InputStream is = null;
-        try {
-            is = getResources().getAssets().open("developKit.json");
-            if(is != null){
-                int len = is.available();
-                byte[] buffer = new byte[len];
-                is.read(buffer);
-                return new String(buffer,"UTF-8");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            CloseUtils.closeIO(is);
-        }
-        return null;
-    }
 }

@@ -202,7 +202,6 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
         return super.onTouchEvent(event);
     }
 

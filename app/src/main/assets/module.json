@@ -1,0 +1,37 @@
+[
+  {
+    "title_en":"Article",
+    "title_zh":"文章",
+    "headImage":"article"
+  },
+  {
+    "title_en":"Communication",
+    "title_zh":"通信",
+    "headImage":"communication"
+  },
+  {
+    "title_en":"UI",
+    "title_zh":"界面",
+    "headImage":"ui"
+  },
+  {
+    "title_en":"Encryption",
+    "title_zh":"加解密",
+    "headImage":"encryption"
+  },
+  {
+    "title_en":"DevelopKit",
+    "title_zh":"开发工具",
+    "headImage":"tool"
+  },
+  {
+    "title_en":"Architecture",
+    "title_zh":"架构",
+    "headImage":"architecture"
+  },
+  {
+    "title_en":"kotlin",
+    "title_zh":"kotlin",
+    "headImage":"kotlin"
+  }
+]

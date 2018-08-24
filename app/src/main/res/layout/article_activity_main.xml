@@ -17,26 +17,25 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:titleTextAppearance="@style/Toolbar_TextAppearance_White"></android.support.v7.widget.Toolbar>
-
-        <co.lujun.androidtagview.TagContainerLayout
-            android:id="@+id/activity_article_tag_container_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            app:container_enable_drag="true"
-            app:horizontal_interval="10dp"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:layout_scrollFlags="scroll|enterAlways"
-            app:tag_clickable="true"
-            app:tag_theme="pure_teal"
-            app:vertical_interval="10dp">
-        </co.lujun.androidtagview.TagContainerLayout>
     </android.support.design.widget.AppBarLayout>
-
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/activity_article_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v7.widget.RecyclerView>
+
+    <co.lujun.androidtagview.TagContainerLayout
+        android:id="@+id/activity_article_tag_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:container_enable_drag="true"
+        app:horizontal_interval="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:tag_clickable="true"
+        app:tag_theme="none"
+        android:background="@color/whitesmoke"
+        app:vertical_interval="10dp">
+    </co.lujun.androidtagview.TagContainerLayout>
 </android.support.design.widget.CoordinatorLayout>

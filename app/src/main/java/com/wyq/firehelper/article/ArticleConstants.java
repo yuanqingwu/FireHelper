@@ -32,6 +32,11 @@ public class ArticleConstants {
     public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司","博客主页");
     public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计");
     public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计");
+    public static final ArticleResource _18 = new ArticleResource("http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0523/7963.html", "App开发架构指南（谷歌官方文档译文）", "Blog", "架构");
+    public static final ArticleResource _19 = new ArticleResource("https://techblog.toutiao.com/", "今日头条技术博客", "Blog", "公司","博客主页");
+    public static final ArticleResource _20 = new ArticleResource("http://blogs.360.cn/", "奇虎360技术博客", "Blog", "公司","博客主页");
+    public static final ArticleResource _21 = new ArticleResource("https://androidweekly.io/", "Android 开发技术周报", "Blog", "博客主页");
+    public static final ArticleResource _22 = new ArticleResource("https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA", "一种极低成本的Android屏幕适配方式", "Blog", "优化");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

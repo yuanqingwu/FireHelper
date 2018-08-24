@@ -1,7 +1,7 @@
 package com.wyq.firehelper.article;
 
-import android.app.SearchManager;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,10 +13,12 @@ import android.view.View;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 
 import java.util.List;
 
 import butterknife.BindView;
+import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
 
@@ -35,7 +37,15 @@ public class ArticleMainActivity extends BaseActivity {
     public Toolbar toolbar;
 
     public List<ArticleResource> resourceList;
-    public RecyclerViewAdapter adapter;
+    public TvRecyclerViewAdapter adapter;
+    public SearchView searchView;
+
+    public  List<String> tags;
+
+    /**
+     * 记录上次点击tag的位置
+     */
+//    public int tagClickPos = 0;
 
     @Override
     protected int attachLayoutRes() {
@@ -62,16 +72,17 @@ public class ArticleMainActivity extends BaseActivity {
 //        handleSearch();
     }
 
-    private void handleSearch() {
-        // Get the intent, verify the action and get the query
-        Intent intent = getIntent();
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            doSearch(query);
-        }
-    }
+//    private void handleSearch() {
+//        // Get the intent, verify the action and get the query
+//        Intent intent = getIntent();
+//        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+//            String query = intent.getStringExtra(SearchManager.QUERY);
+//            doSearch(query);
+//        }
+//    }
 
     private void doSearch(String query) {
+        toolbar.setTitle(query);
         resourceList = ArticleConstants.getListByFilter(query);
         adapter.refreshData(resourceList);
     }
@@ -100,8 +111,8 @@ public class ArticleMainActivity extends BaseActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
         resourceList = ArticleConstants.getAllFiled();
-        adapter = new RecyclerViewAdapter(resourceList);
-        adapter.setOnItemClickListener(new RecyclerViewAdapter.OnItemClickListener() {
+        adapter = new TvRecyclerViewAdapter(resourceList);
+        adapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent();
@@ -114,7 +125,8 @@ public class ArticleMainActivity extends BaseActivity {
     }
 
     public void initTagLayout() {
-        List<String> tags = ArticleConstants.getAllTags();
+        tagContainerLayout.setVisibility(View.GONE);
+        tags = ArticleConstants.getAllTags();
         if (tags != null && tags.size() > 0) {
             /**
              * theme 	code 	value 	description
@@ -123,15 +135,29 @@ public class ArticleMainActivity extends BaseActivity {
              pure_cyan 	ColorFactory.PURE_CYAN 	1 	All TagView created by pure cyan color
              pure_teal 	ColorFactory.PURE_TEAL 	2 	All TagView created by pure teal color
              */
-            tagContainerLayout.setTheme(2);
-            tagContainerLayout.setRippleDuration(800);
+            tagContainerLayout.setTheme(ColorFactory.NONE);
+            tagContainerLayout.setRippleDuration(100);
+            tagContainerLayout.setTagBackgroundColor(Color.WHITE);
             tagContainerLayout.setTags(tags);
-            tagContainerLayout.setTagBackgroundColor(R.color.snow);
             tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
                 @Override
                 public void onTagClick(int position, String text) {
                     resourceList = ArticleConstants.getListByTag(text);
                     adapter.refreshData(resourceList);
+
+                    tagContainerLayout.setTagBackgroundColor(Color.WHITE);
+                    tagContainerLayout.setTags(tags);
+                    tagContainerLayout.getTagView(position).setTagBackgroundColor(Color.GRAY);
+
+                    toolbar.setTitle(text);
+//                    if (tagClickPos != 0) {
+//                        tagContainerLayout.getTagView(tagClickPos).setTagBackgroundColor(Color.WHITE);
+//                    }
+//                    tagClickPos = position;
+
+                    //选择完之后关闭所有选择界面
+                    closeTagContainerLayout();
+                    closeSearchView();
                 }
 
                 @Override
@@ -141,7 +167,11 @@ public class ArticleMainActivity extends BaseActivity {
 
                 @Override
                 public void onTagCrossClick(int position) {
-
+                    //cross间距太大
+//                    if (tagContainerLayout.getTagView(position).isEnableCross()) {
+//                        tagContainerLayout.getTagView(position).setEnableCross(false);
+//                        tagContainerLayout.getTagView(position).setTagBackgroundColor(Color.WHITE);
+//                    }
                 }
             });
         }
@@ -152,16 +182,43 @@ public class ArticleMainActivity extends BaseActivity {
         super.onDestroy();
     }
 
+    public void closeTagContainerLayout(){
+        tagContainerLayout.setTagBackgroundColor(Color.WHITE);
+        tagContainerLayout.setTags(tags);
+        tagContainerLayout.setVisibility(View.GONE);
+    }
+
+    public void closeSearchView(){
+        searchView.setQuery("",false);
+        searchView.onActionViewCollapsed();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
         getMenuInflater().inflate(R.menu.menu_search, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setQueryHint("文章搜索");
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tagContainerLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                closeTagContainerLayout();
+                return false;
+            }
+        });
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 doSearch(query);
+                closeTagContainerLayout();
+                closeSearchView();
                 return true;
             }
 
