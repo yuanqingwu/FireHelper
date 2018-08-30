@@ -17,7 +17,7 @@ import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
-import com.wyq.firehelper.connectivity.ConnectMainActivity;
+import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
@@ -55,7 +55,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case 1:
                         startActivity(new Intent(MainActivity.this,
-                                ConnectMainActivity.class));
+                                DeviceActivity.class));
                         break;
                     case 2:
                         startActivity(new Intent(MainActivity.this,

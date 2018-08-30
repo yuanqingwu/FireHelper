@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
@@ -14,13 +13,14 @@ import butterknife.BindView;
 
 public class AopActivity extends BaseActivity {
 
-
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
     @BindView(R.id.aop_activity_aop_tv)
     public TextView textView;
     @BindView(R.id.aop_activity_aop_bt)
     public Button button;
+
+    public int index = 0;
 
     @Override
     protected int attachLayoutRes() {
@@ -39,7 +39,8 @@ public class AopActivity extends BaseActivity {
             @FireSingleClick
             @Override
             public void onClick(View v) {
-                Logger.i("Aspect","onclick"+System.currentTimeMillis());
+                index++;
+                textView.setText(""+index);
             }
         });
     }

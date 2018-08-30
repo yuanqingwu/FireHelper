@@ -1,4 +1,4 @@
-package com.wyq.firehelper.connectivity.bluetoothChat;
+package com.wyq.firehelper.device.bluetoothChat;
 
 import java.util.List;
 

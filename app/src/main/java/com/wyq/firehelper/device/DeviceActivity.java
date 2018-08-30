@@ -1,17 +1,17 @@
-package com.wyq.firehelper.connectivity;
+package com.wyq.firehelper.device;
 
 import android.content.Intent;
 import android.view.View;
 
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.connectivity.bluetoothChat.BtActivity;
+import com.wyq.firehelper.device.bluetoothChat.BtActivity;
 
 /**
  * Created by Uni.W on 2017/10/26.
  */
 
-public class ConnectMainActivity extends BaseRecyclerViewActivity {
+public class DeviceActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
@@ -20,7 +20,7 @@ public class ConnectMainActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String toolBarName() {
-        return "Connect";
+        return "Device";
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ConnectMainActivity extends BaseRecyclerViewActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
-                        startActivity(new Intent(ConnectMainActivity.this,
+                        startActivity(new Intent(DeviceActivity.this,
                                 BtActivity.class));
                         break;
                     default:

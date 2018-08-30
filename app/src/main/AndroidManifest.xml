@@ -24,9 +24,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".base.MainActivity" />
-        <activity android:name=".connectivity.ConnectMainActivity" />
-        <activity android:name=".connectivity.bluetoothChat.BtActivity" />
-        <activity android:name=".connectivity.bluetoothChat.BtChatActivity" />
+        <activity android:name=".device.DeviceActivity" />
+        <activity android:name=".device.bluetoothChat.BtActivity" />
+        <activity android:name=".device.bluetoothChat.BtChatActivity" />
         <activity
             android:name=".article.ArticleMainActivity"
             android:launchMode="singleTop">

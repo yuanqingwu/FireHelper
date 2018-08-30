@@ -29,11 +29,11 @@ public class SingleClickAspect {
         if (view != null) {
             Object tag = view.getTag(view.getId());
             long lastClickTime = ((tag != null) ? (long) tag : 0);
-            LogUtils.i("SingleClickAspect", "lastClickTime:" + lastClickTime);
+//            LogUtils.i("SingleClickAspect", "lastClickTime:" + lastClickTime);
             long currentTime = System.currentTimeMillis();
             if (currentTime - lastClickTime > MIN_CLICK_DELAY_TIME) {//过滤掉600毫秒内的连续点击
                 view.setTag(view.getId(), currentTime);
-                LogUtils.i("SingleClickAspect", "currentTime:" + currentTime);
+//                LogUtils.i("SingleClickAspect", "currentTime:" + currentTime);
                 joinPoint.proceed();//执行原方法
             } else {
                 LogUtils.e("SingleClickAspect", "ignore too quick click");
