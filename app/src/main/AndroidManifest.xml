@@ -71,8 +71,11 @@
 
         <service android:name=".base.AppInitIntentService" />
 
-        <activity android:name=".architecture.mvvm.MvvmActivity"
-            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".architecture.mvvm.MvvmActivity"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".java.aop.apt.AptActivity"></activity>
+        <activity android:name=".java.aop.AopActivity"></activity>
     </application>
 
 </manifest>

@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.wyq.firehelper.R;
 
+import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -41,58 +43,126 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
 
     private static final int REQUEST_ENABLE_BT = 3;
 
-    private Handler handler = new Handler() {
-        public void handleMessage(android.os.Message msg) {
-            switch (msg.what) {
-                case Constants.MESSAGE_STATE_CHANGE:
-                    switch (msg.arg1) {
-                        case BtChatService.STATE_CONNECTED:
+    public BtHandler handler = new BtHandler(this,deviceName);
+    //FIXME memory leak
+//    private Handler handler = new Handler() {
+//        public void handleMessage(android.os.Message msg) {
+//            switch (msg.what) {
+//                case Constants.MESSAGE_STATE_CHANGE:
+//                    switch (msg.arg1) {
+//                        case BtChatService.STATE_CONNECTED:
+//
+//                            break;
+//                        case BtChatService.STATE_CONNECTING:
+//                            // 连接ing
+//                            break;
+//                        case BtChatService.STATE_LISTEN:
+//                        case BtChatService.STATE_NONE:
+//                            // 未连接
+//                            break;
+//
+//                        default:
+//                            break;
+//                    }
+//                    break;
+//                case Constants.MESSAGE_READ:
+//                    BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
+//                            BtMessage.class);
+//                    btReadMessage.setContent(deviceName + ":" + btReadMessage.getContent());
+//                    messageList.add(btReadMessage);
+//                    BtChatActivity.adapter.notifyDataSetChanged();
+//                    break;
+//                case Constants.MESSAGE_WRITE:
+//                    BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
+//                    btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
+//                    messageList.add(btWriteMessage);
+//                    BtChatActivity.adapter.notifyDataSetChanged();
+//                    break;
+//
+//                case Constants.MESSAGE_DEVICE_NAME:
+//                    deviceName = msg.getData().getString(Constants.DEVICE_NAME);
+//                    Toast.makeText(BtActivity.this, "Connected to " + deviceName, Toast.LENGTH_SHORT).show();
+//                    // 连接成功
+//                    Intent intent = new Intent();
+//                    intent.putExtra("btname", deviceName);
+//                    intent.setClass(BtActivity.this, BtChatActivity.class);
+//                    startActivity(intent);
+//                    break;
+//                case Constants.MESSAGE_TOAST:
+//                    Toast.makeText(BtActivity.this, msg.getData().getString(Constants.TOAST), Toast.LENGTH_SHORT)
+//                            .show();
+//                    break;
+//                default:
+//                    break;
+//            }
+//        };
+//    };
 
-                            break;
-                        case BtChatService.STATE_CONNECTING:
-                            // 连接ing
-                            break;
-                        case BtChatService.STATE_LISTEN:
-                        case BtChatService.STATE_NONE:
-                            // 未连接
-                            break;
+    public static class BtHandler extends Handler{
+        public WeakReference<BtActivity> btActivityWeakReference;
+        public String deviceName;
 
-                        default:
-                            break;
-                    }
-                    break;
-                case Constants.MESSAGE_READ:
-                    BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
-                            BtMessage.class);
-                    btReadMessage.setContent(deviceName + ":" + btReadMessage.getContent());
-                    messageList.add(btReadMessage);
-                    BtChatActivity.adapter.notifyDataSetChanged();
-                    break;
-                case Constants.MESSAGE_WRITE:
-                    BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
-                    btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
-                    messageList.add(btWriteMessage);
-                    BtChatActivity.adapter.notifyDataSetChanged();
-                    break;
+        public BtHandler(BtActivity btActivity,String deviceName){
+            btActivityWeakReference = new WeakReference<BtActivity>(btActivity);
+            this.deviceName = deviceName;
+        }
 
-                case Constants.MESSAGE_DEVICE_NAME:
-                    deviceName = msg.getData().getString(Constants.DEVICE_NAME);
-                    Toast.makeText(BtActivity.this, "Connected to " + deviceName, Toast.LENGTH_SHORT).show();
-                    // 连接成功
-                    Intent intent = new Intent();
-                    intent.putExtra("btname", deviceName);
-                    intent.setClass(BtActivity.this, BtChatActivity.class);
-                    startActivity(intent);
-                    break;
-                case Constants.MESSAGE_TOAST:
-                    Toast.makeText(BtActivity.this, msg.getData().getString(Constants.TOAST), Toast.LENGTH_SHORT)
-                            .show();
-                    break;
-                default:
-                    break;
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            BtActivity btActivity = btActivityWeakReference.get();
+            if(btActivity != null){
+                switch (msg.what) {
+                    case Constants.MESSAGE_STATE_CHANGE:
+                        switch (msg.arg1) {
+                            case BtChatService.STATE_CONNECTED:
+
+                                break;
+                            case BtChatService.STATE_CONNECTING:
+                                // 连接ing
+                                break;
+                            case BtChatService.STATE_LISTEN:
+                            case BtChatService.STATE_NONE:
+                                // 未连接
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+                    case Constants.MESSAGE_READ:
+                        BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
+                                BtMessage.class);
+                        btReadMessage.setContent(deviceName + ":" + btReadMessage.getContent());
+                        messageList.add(btReadMessage);
+                        BtChatActivity.adapter.notifyDataSetChanged();
+                        break;
+                    case Constants.MESSAGE_WRITE:
+                        BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
+                        btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
+                        messageList.add(btWriteMessage);
+                        BtChatActivity.adapter.notifyDataSetChanged();
+                        break;
+
+                    case Constants.MESSAGE_DEVICE_NAME:
+                        deviceName = msg.getData().getString(Constants.DEVICE_NAME);
+                        Toast.makeText(btActivity, "Connected to " + deviceName, Toast.LENGTH_SHORT).show();
+                        // 连接成功
+                        Intent intent = new Intent();
+                        intent.putExtra("btname", deviceName);
+                        intent.setClass(btActivity, BtChatActivity.class);
+                        btActivity.startActivity(intent);
+                        break;
+                    case Constants.MESSAGE_TOAST:
+                        Toast.makeText(btActivity, msg.getData().getString(Constants.TOAST), Toast.LENGTH_SHORT)
+                                .show();
+                        break;
+                    default:
+                        break;
+                }
             }
-        };
-    };
+        }
+    }
 
     @Override
     protected int attachLayoutRes() {
@@ -214,7 +284,7 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
         checkEnable();
         addBondedDevice();
         if (btChatService == null) {
-            btChatService = new BtChatService(BtActivity.this, handler);
+            btChatService = new BtChatService(getApplicationContext(), handler);
         }
     }
 

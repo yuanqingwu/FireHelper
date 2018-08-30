@@ -27,16 +27,21 @@ public class ArticleConstants {
 
     public static final ArticleResource _11 = new ArticleResource("https://www.jianshu.com/u/6b372d09b617", "YoKey(大搜车)", "Blog", "博客主页");
     public static final ArticleResource _12 = new ArticleResource("https://www.jianshu.com/p/e66a1afe474c", "D项目Android模块化 VCS演进之路", "Blog", "优化","架构");
-    public static final ArticleResource _13 = new ArticleResource("https://tech.meituan.com/", "美团技术团队", "Blog", "公司","博客主页");
-    public static final ArticleResource _14 = new ArticleResource("http://f2e.souche.com/blog/", "搜车大无线团队博客", "Blog", "公司","博客主页");
-    public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司","博客主页");
-    public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计");
-    public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计");
+    public static final ArticleResource _13 = new ArticleResource("https://tech.meituan.com/", "美团技术团队", "Blog", "公司");
+    public static final ArticleResource _14 = new ArticleResource("http://f2e.souche.com/blog/", "搜车大无线团队博客", "Blog", "公司");
+    public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司");
+    public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计","AOP");
+    public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计","AOP");
     public static final ArticleResource _18 = new ArticleResource("http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0523/7963.html", "App开发架构指南（谷歌官方文档译文）", "Blog", "架构");
-    public static final ArticleResource _19 = new ArticleResource("https://techblog.toutiao.com/", "今日头条技术博客", "Blog", "公司","博客主页");
-    public static final ArticleResource _20 = new ArticleResource("http://blogs.360.cn/", "奇虎360技术博客", "Blog", "公司","博客主页");
-    public static final ArticleResource _21 = new ArticleResource("https://androidweekly.io/", "Android 开发技术周报", "Blog", "博客主页");
+    public static final ArticleResource _19 = new ArticleResource("https://techblog.toutiao.com/", "今日头条技术博客", "Blog", "公司");
+    public static final ArticleResource _20 = new ArticleResource("http://blogs.360.cn/", "奇虎360技术博客", "Blog", "公司");
+//    public static final ArticleResource _21 = new ArticleResource("https://androidweekly.io/", "Android 开发技术周报", "Blog", "博客主页");
     public static final ArticleResource _22 = new ArticleResource("https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA", "一种极低成本的Android屏幕适配方式", "Blog", "优化");
+    public static final ArticleResource _23 = new ArticleResource("https://blog.csdn.net/Luoshengyang", "老罗的Android之旅(罗升阳CSDN主页)", "Blog", "博客主页");
+    public static final ArticleResource _24 = new ArticleResource("https://blog.csdn.net/eclipsexys", "eclipse_xu(徐宜生[沪江网])", "Blog", "博客主页");
+    public static final ArticleResource _25 = new ArticleResource("http://weishu.me/", "田维术", "Blog", "博客主页");
+    public static final ArticleResource _26 = new ArticleResource("https://blog.csdn.net/weelyy/article/details/78987087", "Android AOP编程的四种策略探讨：Aspectj，cglib+dexmaker，Javassist，epic+dexposed", "Blog", "AOP");
+    public static final ArticleResource _27 = new ArticleResource("https://blog.csdn.net/woshimalingyi/article/details/73252013", "AOP之@AspectJ技术原理详解", "Blog", "AOP");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

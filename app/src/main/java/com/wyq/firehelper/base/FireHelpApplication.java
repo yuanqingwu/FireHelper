@@ -9,7 +9,7 @@ import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
-import com.wyq.firehelper.BuildConfig;
+import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 
 public class FireHelpApplication extends Application {
 
@@ -17,8 +17,9 @@ public class FireHelpApplication extends Application {
      * 当前版本是否为debug版本
      * 1.控制是否打印调试日志
      */
-    public static final boolean isDebug = BuildConfig.DEBUG;
+    public static final boolean isDebug = true;
 
+    @FireLogTime(isLog = isDebug)//AOP打印执行时间
     @Override
     public void onCreate() {
         super.onCreate();

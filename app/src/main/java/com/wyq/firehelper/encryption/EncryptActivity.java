@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
 import com.wyq.firehelper.utils.LogUtils;
 
 import java.lang.annotation.Annotation;
@@ -46,7 +47,7 @@ public class EncryptActivity extends BaseActivity {
     private List<Method> methods = null;
     private List<String> methodsFullName = null;
 
-    private List<TextInputLayout> inputLayouts = null;
+//    private List<TextInputLayout> inputLayouts = null;
 
     private int checkedPosition = 0;
 
@@ -60,7 +61,7 @@ public class EncryptActivity extends BaseActivity {
         initToolBar(toolbar, "Encryption", true);
     }
 
-    public TextInputEditText creatEditUnit(String hint) {
+    public void creatEditUnit(String hint) {
         TextInputEditText editText = new TextInputEditText(this);
         TextInputLayout inputLayout = new TextInputLayout(this);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -79,14 +80,13 @@ public class EncryptActivity extends BaseActivity {
         if (linearLayout != null) {
             linearLayout.addView(inputLayout);
             linearLayout.invalidate();
-            inputLayouts.add(inputLayout);
+//            inputLayouts.add(inputLayout);
         }
-        return editText;
     }
 
     @Override
     public void initView() {
-        inputLayouts = new ArrayList<>();
+//        inputLayouts = new ArrayList<>();
 
         textInputLayout.setHint("data");
 
@@ -103,7 +103,7 @@ public class EncryptActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 checkedPosition = position;
-                LogUtils.e("Test", "position:" + position);
+                Logger.i("Test", "position:" + position);
                 initEditText(getMethodParams(methods.get(position + 1)));
             }
 
@@ -115,6 +115,7 @@ public class EncryptActivity extends BaseActivity {
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
+            @FireSingleClick
             public void onClick(View v) {
                 //加1的原因是因为获取的第一个方法为access$super,已过滤
                 Method method = methods.get(checkedPosition + 1);
@@ -136,6 +137,7 @@ public class EncryptActivity extends BaseActivity {
                     resultTv.setText(e.getMessage());
                 } catch (InvocationTargetException e) {
                     e.printStackTrace();
+                    resultTv.setText(e.getMessage());
                 }
             }
         });
@@ -166,7 +168,7 @@ public class EncryptActivity extends BaseActivity {
         Logger.i(Arrays.toString(paramNames));
         //先删除所有输入框
         linearLayout.removeAllViews();
-        inputLayouts.clear();
+//        inputLayouts.clear();
         for (String name : paramNames) {
             creatEditUnit(name);
         }

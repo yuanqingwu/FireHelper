@@ -6,12 +6,13 @@ import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.java.aop.AopActivity;
 
 public class ArchitectureActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"MVP[翻译]","MVVM"};
+        return new String[]{"MVP[翻译]","MVVM","AOP"};
     }
 
     @Override
@@ -35,6 +36,9 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
                         break;
                     case 1:
                         startActivity(MvvmActivity.class);
+                        break;
+                    case 2:
+                        startActivity(AopActivity.class);
                         break;
                     default:
                         break;

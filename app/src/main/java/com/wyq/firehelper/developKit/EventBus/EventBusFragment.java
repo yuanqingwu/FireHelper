@@ -12,15 +12,6 @@ public class EventBusFragment extends DevelopKitBaseFragment {
     @BindView(R.id.activity_developkit_eventbus_tv_1)
     public TextView textView1;
 
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.developkit_activity_eventbus_layout,container,false);
-//        initData();
-//        initView();
-//        return view;
-//    }
-
     @Override
     public int attachLayoutRes() {
         return R.layout.developkit_activity_eventbus_layout;

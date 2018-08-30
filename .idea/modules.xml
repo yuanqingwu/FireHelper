@@ -4,6 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FireHelper.iml" filepath="$PROJECT_DIR$/FireHelper.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fireapt/fireapt.iml" filepath="$PROJECT_DIR$/fireapt/fireapt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fireapt-annotation/fireapt-annotation.iml" filepath="$PROJECT_DIR$/fireapt-annotation/fireapt-annotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fireapt-compiler/fireapt-compiler.iml" filepath="$PROJECT_DIR$/fireapt-compiler/fireapt-compiler.iml" />
     </modules>
   </component>
 </project>

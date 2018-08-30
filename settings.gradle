@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':fireapt-compiler', ':fireapt', ':fireapt-annotation'

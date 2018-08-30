@@ -104,6 +104,7 @@ public class MainActivity extends BaseActivity {
     }
 
     public void initRecyclerView() {
+
         TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this,getModuleList());
         baseRV.setLayoutManager(getLayoutManager(1));
         baseRV.setAdapter(adapter);

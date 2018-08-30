@@ -4,6 +4,8 @@ package com.wyq.firehelper.utils;
 import android.os.Environment;
 import android.util.Log;
 
+import com.wyq.firehelper.base.FireHelpApplication;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -19,74 +21,79 @@ import java.util.Locale;
  */
 public class LogUtils {
     // 是否输出日志的开关
-    public static boolean DEBUG = true;
+    public static boolean DEBUG = FireHelpApplication.isDebug;
+    public static String baseTag = "FireHelper-";
+
+    private static String genTag(String tag){
+        return baseTag+tag;
+    }
 
     public static void i(String TAG, String msg) {
         if (DEBUG) {
-            Log.i(TAG, msg);
+            Log.i(genTag(TAG), msg);
             FileLogger.getInstance().addLog(TAG, msg);
         }
     }
 
     public static void i(String TAG, String msg, Throwable e) {
         if (DEBUG) {
-            Log.i(TAG, msg, e);
+            Log.i(genTag(TAG), msg, e);
             FileLogger.getInstance().addLog(TAG, msg, e);
         }
     }
 
     public static void e(String TAG, String msg) {
         if (DEBUG) {
-            Log.e(TAG, msg);
+            Log.e(genTag(TAG), msg);
             FileLogger.getInstance().addLog(TAG, msg);
         }
     }
 
     public static void e(String TAG, String msg, Throwable e) {
         if (DEBUG) {
-            Log.e(TAG, msg, e);
+            Log.e(genTag(TAG), msg, e);
             FileLogger.getInstance().addLog(TAG, msg, e);
         }
     }
 
     public static void d(String TAG, String msg) {
         if (DEBUG) {
-            Log.d(TAG, msg);
+            Log.d(genTag(TAG), msg);
             FileLogger.getInstance().addLog(TAG, msg);
         }
     }
 
     public static void d(String TAG, String msg, Throwable e) {
         if (DEBUG) {
-            Log.d(TAG, msg, e);
+            Log.d(genTag(TAG), msg, e);
             FileLogger.getInstance().addLog(TAG, msg, e);
         }
     }
 
     public static void v(String TAG, String msg) {
         if (DEBUG) {
-            Log.v(TAG, msg);
+            Log.v(genTag(TAG), msg);
             FileLogger.getInstance().addLog(TAG, msg);
         }
     }
 
     public static void v(String TAG, String msg, Throwable e) {
         if (DEBUG) {
-            Log.v(TAG, msg, e);
+            Log.v(genTag(TAG), msg, e);
             FileLogger.getInstance().addLog(TAG, msg, e);
         }
     }
 
     public static void w(String TAG, String msg) {
         if (DEBUG) {
-            Log.w(TAG, msg);
+            Log.w(genTag(TAG), msg);
             FileLogger.getInstance().addLog(TAG, msg);
         }
     }
 
     public static void w(String TAG, String msg, Throwable e) {
         if (DEBUG) {
-            Log.w(TAG, msg, e);
+            Log.w(genTag(TAG), msg, e);
             FileLogger.getInstance().addLog(TAG, msg, e);
         }
     }
