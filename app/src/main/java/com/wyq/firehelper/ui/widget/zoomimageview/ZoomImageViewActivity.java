@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui;
+package com.wyq.firehelper.ui.widget.zoomimageview;
 
 
 import android.support.v4.view.PagerAdapter;
@@ -12,7 +12,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.ui.widget.ZoomImageView;
 
 import butterknife.BindView;
 

@@ -42,6 +42,9 @@ public class ArticleConstants {
     public static final ArticleResource _25 = new ArticleResource("http://weishu.me/", "田维术", "Blog", "博客主页");
     public static final ArticleResource _26 = new ArticleResource("https://blog.csdn.net/weelyy/article/details/78987087", "Android AOP编程的四种策略探讨：Aspectj，cglib+dexmaker，Javassist，epic+dexposed", "Blog", "AOP");
     public static final ArticleResource _27 = new ArticleResource("https://blog.csdn.net/woshimalingyi/article/details/73252013", "AOP之@AspectJ技术原理详解", "Blog", "AOP");
+    public static final ArticleResource _28 = new ArticleResource("https://www.jianshu.com/p/2412d00a0ce4", "Android 属性动画：这是一篇很详细的 属性动画 总结&攻略", "Blog", "UI");
+    public static final ArticleResource _29 = new ArticleResource("https://www.jianshu.com/p/8f14679809b3", "App瘦身最佳实践", "Blog", "优化");
+    public static final ArticleResource _30 = new ArticleResource("https://github.com/tianzhijiexian/Android-Best-Practices", "Android最佳实践示例", "Blog", "优化");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

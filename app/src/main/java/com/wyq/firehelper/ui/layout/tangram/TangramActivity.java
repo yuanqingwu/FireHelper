@@ -45,12 +45,13 @@ public class TangramActivity extends BaseActivity {
     public void initView() {
         //1.引入依赖
         //2.初始化 Tangram 环境
-        TangramBuilder.init(getApplicationContext(), new IInnerImageSetter() {
+        IInnerImageSetter iInnerImageSetter = new IInnerImageSetter() {
             @Override
             public <IMAGE extends ImageView> void doLoadImageUrl(@NonNull IMAGE view, @Nullable String url) {
 //                Glide.with(getApplicationContext()).load(url).into(view);
             }
-        }, ImageView.class);
+        };
+        TangramBuilder.init(getApplicationContext(),iInnerImageSetter , ImageView.class);
 
         //3.初始化 TangramBuilder
         //这一步 builder 对象生成的时候，内部已经注册了框架所支持的所有组件和卡片，以及默认的IAdapterBuilder（它被用来创建 绑定到 RecyclerView 的Adapter）

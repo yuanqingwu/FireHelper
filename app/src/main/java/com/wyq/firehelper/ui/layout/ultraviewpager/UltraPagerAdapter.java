@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.ultraViewPager;
+package com.wyq.firehelper.ui.layout.ultraviewpager;
 
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;

@@ -1,12 +1,11 @@
-package com.wyq.firehelper.ui;
+package com.wyq.firehelper.ui.widget.metroimageview;
 
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.ui.widget.MetroImageView;
 
 
-public class MetroStyleActivity extends BaseActivity {
+public class MetroImageViewActivity extends BaseActivity {
 
     private MetroImageView metro_browser;
 
@@ -27,7 +26,7 @@ public class MetroStyleActivity extends BaseActivity {
 
             @Override
             public void onViewClick(MetroImageView view) {
-//                startActivity(new Intent(MetroStyleActivity.this,
+//                startActivity(new Intent(MetroImageViewActivity.this,
 //                        WebViewActivity.class));
             }
         });

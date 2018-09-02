@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget;
+package com.wyq.firehelper.ui.widget.FireToast;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,7 +17,7 @@ import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WarningToast {
+public class FireToast {
 
     public static final int WARN_YELLOW = Color.parseColor("#FFD700");
     public static final int ERROR_RED = Color.parseColor("#FF3333");

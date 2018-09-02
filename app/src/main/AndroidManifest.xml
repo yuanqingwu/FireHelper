@@ -50,11 +50,11 @@
         <!-- </activity> -->
         <activity android:name=".article.WebViewActivity" />
         <activity android:name=".architecture.ArchitectureActivity" />
-        <activity android:name=".ui.MetroStyleActivity" />
+        <activity android:name=".ui.widget.metroimageview.MetroImageViewActivity" />
         <activity android:name=".ui.UiMainActivity" />
-        <activity android:name=".ui.layout.drag.DragLayoutActivity" />
-        <activity android:name=".ui.ZoomImageViewActivity" />
-        <activity android:name=".ui.CircleBlurImageViewActivity" />
+        <activity android:name=".ui.layout.draglayout.DragLayoutActivity" />
+        <activity android:name=".ui.widget.zoomimageview.ZoomImageViewActivity" />
+        <activity android:name=".ui.widget.circleimageview.CircleImageViewActivity" />
         <activity android:name=".encryption.EncryptActivity" />
         <activity android:name=".developKit.DevelopKitMainActivity" />
         <activity android:name=".developKit.ButterKnife.ButterKnifeActivity" />
@@ -66,7 +66,7 @@
         <activity android:name=".developKit.Retrofit.RetrofitActivity" />
         <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
         <activity android:name=".ui.layout.tangram.TangramActivity" />
-        <activity android:name=".ui.layout.ultraViewPager.UltraViewPagerActivity" />
+        <activity android:name=".ui.layout.ultraviewpager.UltraViewPagerActivity" />
         <activity android:name=".kotlin.mvpGitHub.view.GitHubMainActivity" />
 
         <service android:name=".base.AppInitIntentService" />
@@ -74,8 +74,10 @@
         <activity
             android:name=".architecture.mvvm.MvvmActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".java.aop.apt.AptActivity"></activity>
-        <activity android:name=".java.aop.AopActivity"></activity>
+        <activity android:name=".java.aop.apt.AptActivity" />
+        <activity android:name=".java.aop.AopActivity" />
+        <activity android:name=".ui.widget.FireToast.FireToastActivity" />
+        <activity android:name=".ui.widget.animation.AnimationActivity"></activity>
     </application>
 
 </manifest>

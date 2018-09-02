@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget;
+package com.wyq.firehelper.ui.widget.circleimageview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -18,7 +18,6 @@ import android.net.Uri;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.wyq.firehelper.R;
 

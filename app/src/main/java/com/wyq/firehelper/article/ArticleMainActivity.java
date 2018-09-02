@@ -179,6 +179,7 @@ public class ArticleMainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        searchView = null;
         super.onDestroy();
     }
 

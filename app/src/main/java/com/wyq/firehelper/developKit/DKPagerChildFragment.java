@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.ui.layout.placeholderview.data.KitInfo;
@@ -65,6 +66,7 @@ public class DKPagerChildFragment extends DevelopKitBaseFragment {
             context.startActivity(new Intent(context, clazz));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+            Toast.makeText(getContext(),"找不到相关界面，先浏览其他的吧~",Toast.LENGTH_SHORT).show();
         }
     }
 }

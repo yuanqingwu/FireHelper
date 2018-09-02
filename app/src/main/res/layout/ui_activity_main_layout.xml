@@ -9,7 +9,7 @@
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/developkit_activity_main_toolbar"
+            android:id="@+id/ui_activity_main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
@@ -18,16 +18,16 @@
             app:titleTextAppearance="@style/Toolbar_TextAppearance_White"></android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/developkit_activity_main_tablayout"
+            android:id="@+id/ui_activity_main_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:tabSelectedTextColor="@color/white"
             app:tabGravity="fill"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/white"></android.support.design.widget.TabLayout>
+            app:tabMode="scrollable"></android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/developkit_activity_main_viewpager"
+        android:id="@+id/ui_activity_main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"></android.support.v4.view.ViewPager>

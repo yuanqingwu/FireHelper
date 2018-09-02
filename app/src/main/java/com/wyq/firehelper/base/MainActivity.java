@@ -43,6 +43,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
+    public static final int LINEAR_LAYOUT_TYPE = 0;
+    public static final int GRID_LAYOUT_TYPE = 1;
+
+    public int HOME_LAYOUT_TYPE = GRID_LAYOUT_TYPE;
+
 
     public TvImgRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
         return new TvImgRecyclerViewAdapter.OnItemClickListener() {
@@ -106,7 +111,7 @@ public class MainActivity extends BaseActivity {
     public void initRecyclerView() {
 
         TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this,getModuleList());
-        baseRV.setLayoutManager(getLayoutManager(1));
+        baseRV.setLayoutManager(getLayoutManager(HOME_LAYOUT_TYPE));
         baseRV.setAdapter(adapter);
         adapter.setOnItemClickListener(onListItemClickListener());
 
@@ -115,9 +120,9 @@ public class MainActivity extends BaseActivity {
     }
 
     public RecyclerView.LayoutManager getLayoutManager(int layoutType) {
-        if(layoutType == 0){
+        if(layoutType == LINEAR_LAYOUT_TYPE){
             return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        }else{
+        }else {
             return new GridLayoutManager(this,2);
         }
     }
