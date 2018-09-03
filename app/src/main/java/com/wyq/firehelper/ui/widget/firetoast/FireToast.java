@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget.FireToast;
+package com.wyq.firehelper.ui.widget.firetoast;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -25,6 +25,7 @@ public class FireToast {
     private static Handler handler;
     private static Thread thread;
     private static Timer timer;
+    private static volatile boolean isCancel;
 
     public static void showCustomToast(Context context, String text, int textColor) {
         context = context.getApplicationContext();
@@ -148,11 +149,14 @@ public class FireToast {
                 timer = new Timer();
             }
 
+            //reset flag
+            isCancel = false;
+
             TimerTask task = new TimerTask() {
                 @Override
                 public void run() {
                     // toast.show();
-                    if (handler != null) {
+                    if (handler != null && !isCancel) {
                         Message.obtain(handler, 0, timer).sendToTarget();
                     }
                 }
@@ -161,6 +165,10 @@ public class FireToast {
                 timer.schedule(task, 0, period);
             }
         }
+    }
+
+    public synchronized static void cancelToastContinuous(){
+        isCancel = true;
     }
 
     private static void setToastClickable(Toast toast) {

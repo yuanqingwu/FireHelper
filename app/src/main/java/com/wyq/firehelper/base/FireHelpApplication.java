@@ -1,6 +1,7 @@
 package com.wyq.firehelper.base;
 
 import android.app.Application;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 
 import com.orhanobut.logger.AndroidLogAdapter;
@@ -42,7 +43,12 @@ public class FireHelpApplication extends Application {
             // You should not init your app in this process.
             return;
         }
+        enabledStrictMode();
         LeakCanary.install(this);
+    }
+
+    private void enabledStrictMode(){
+        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().penaltyDeath().build());
     }
 
     /**
