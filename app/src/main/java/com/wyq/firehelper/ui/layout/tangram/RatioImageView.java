@@ -28,6 +28,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.IntDef;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 
 import java.lang.annotation.Retention;
@@ -36,7 +37,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * ImageView that can set ratio
  */
-public class RatioImageView extends ImageView {
+public class RatioImageView extends android.support.v7.widget.AppCompatImageView {
 
     private static final String TAG = "RatioImageView";
 
@@ -141,12 +142,12 @@ public class RatioImageView extends ImageView {
         if (!Float.isNaN(mRatio)) {
             // calculate by width
             if (mFixBy == FIX_BY_WIDTH) {
-                int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-                int height = MeasureSpec.getSize(heightMeasureSpec);
+                int heightMode = View.MeasureSpec.getMode(heightMeasureSpec);
+                int height = View.MeasureSpec.getSize(heightMeasureSpec);
                 // if mode is MeasureSpec.EXACTLY, just use the specified size
-                if (heightMode != MeasureSpec.EXACTLY) {
+                if (heightMode != View.MeasureSpec.EXACTLY) {
                     int measuredWidth = getMeasuredWidth();
-                    if (heightMode == MeasureSpec.AT_MOST)
+                    if (heightMode == View.MeasureSpec.AT_MOST)
                         // if mode is AT_MOST, pick the minimum one
                         height = Math.min(height, (int) (measuredWidth / mRatio + 0.5f));
                     else
@@ -157,11 +158,11 @@ public class RatioImageView extends ImageView {
                     setMeasuredDimension(measuredWidth, height);
                 }
             } else if (mFixBy == FIX_BY_HEIGHT) {
-                int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-                int width = MeasureSpec.getSize(widthMeasureSpec);
-                if (widthMode != MeasureSpec.EXACTLY) {
+                int widthMode = View.MeasureSpec.getMode(widthMeasureSpec);
+                int width = View.MeasureSpec.getSize(widthMeasureSpec);
+                if (widthMode != View.MeasureSpec.EXACTLY) {
                     int measureHeight = getMeasuredHeight();
-                    if (widthMode == MeasureSpec.AT_MOST)
+                    if (widthMode == View.MeasureSpec.AT_MOST)
                         width = Math.min(width, (int) (measureHeight * mRatio + 0.5f));
                     else
                         width = (int) (measureHeight * mRatio + 0.5f);

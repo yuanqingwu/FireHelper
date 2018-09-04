@@ -43,11 +43,11 @@ public class FireHelpApplication extends Application {
             // You should not init your app in this process.
             return;
         }
-        enabledStrictMode();
+//        enabledStrictMode();
         LeakCanary.install(this);
     }
 
-    private void enabledStrictMode(){
+    private void enabledStrictMode() {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().penaltyDeath().build());
     }
 

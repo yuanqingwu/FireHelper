@@ -179,6 +179,7 @@ public class ArticleMainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
+        searchView.cancelPendingInputEvents();
         searchView = null;
         super.onDestroy();
     }
@@ -192,6 +193,7 @@ public class ArticleMainActivity extends BaseActivity {
     public void closeSearchView(){
         searchView.setQuery("",false);
         searchView.onActionViewCollapsed();
+        searchView.cancelPendingInputEvents();
     }
 
     @Override

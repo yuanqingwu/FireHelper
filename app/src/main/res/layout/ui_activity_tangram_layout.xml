@@ -10,4 +10,37 @@
         android:id="@+id/ui_activity_tangram_recycle_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="@color/gray"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/ui_activity_tangram_tab_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="tab1" />
+
+        <TextView
+            android:id="@+id/ui_activity_tangram_tab_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="tab2" />
+
+        <TextView
+            android:id="@+id/ui_activity_tangram_tab_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:text="tab3" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

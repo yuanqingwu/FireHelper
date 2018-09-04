@@ -5,23 +5,26 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import com.wyq.firehelper.R
 import com.wyq.firehelper.base.BaseActivity
 import com.wyq.firehelper.kotlin.mvpGitHub.Contract
 import com.wyq.firehelper.kotlin.mvpGitHub.injection.component.DaggerPresenterComponent
 import com.wyq.firehelper.kotlin.mvpGitHub.model.Repository
+import com.wyq.firehelper.kotlin.mvpGitHub.model.RepositoryDetail
 import com.wyq.firehelper.kotlin.mvpGitHub.presenter.GitHubPresenter
 import kotlinx.android.synthetic.main.kotlin_activity_mvp_github_layout.*
 import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 class GitHubMainActivity : BaseActivity(), Contract.IView {
+
     override fun attachLayoutRes(): Int {
-    return R.layout.kotlin_activity_mvp_github_layout
+        return R.layout.kotlin_activity_mvp_github_layout
     }
 
     override fun initToolBar() {
-        initToolBar(toolbar,"GitHub",true)
+        initToolBar(toolbar, "GitHub", true)
     }
 
     override fun initView() {
@@ -32,7 +35,7 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
 
     var repoAdapter: GitHubRepoAdapter? = null
     var searchView: SearchView? = null
-    var repoUserName :String? = null
+    var repoUserName: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -66,7 +69,13 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
     }
 
     override fun showRepositoryFailed(error: String?) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+        kotlin_activity_mvp_github_progress_bar.visibility = View.GONE
+        closeSearchView()
+    }
 
+    override fun showRepositoryDetail(id:Long,repoDetail: RepositoryDetail) {
+        repoAdapter!!.refreshRepoDetail(id,repoDetail)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -92,5 +101,11 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
         })
 
         return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onDestroy() {
+        searchView?.cancelPendingInputEvents()
+        searchView = null
+        super.onDestroy()
     }
 }
