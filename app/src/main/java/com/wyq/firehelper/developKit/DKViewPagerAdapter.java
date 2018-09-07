@@ -7,8 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
-
 import java.util.List;
 
 public class DKViewPagerAdapter extends FragmentStatePagerAdapter {

@@ -1,5 +1,6 @@
 package com.wyq.firehelper.base.adapter;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,8 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleResource;
-import com.wyq.firehelper.ui.layout.recyclerView.ItemTouchHelperAdapter;
-import com.wyq.firehelper.ui.layout.recyclerView.ItemTouchHelperViewHolder;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -45,6 +46,14 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
 
     private List list = new ArrayList<>();
 
+    private Context context;
+    private int selectPosition = -1;
+    private int selectedTextColor = -1;
+
+    private final static int TYPE_TITLE = 1;
+    private final static int TYPE_CONTENT = 2;
+    private boolean isViewTypeEnable = false;
+
     public TvRecyclerViewAdapter(List oriList) {
         list.clear();
         list.addAll(oriList);
@@ -56,11 +65,34 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
         notifyDataSetChanged();
     }
 
+    public void setSelectPosition(int position, int... selectedTextColor) {
+        this.selectPosition = position;
+        if (selectedTextColor != null && selectedTextColor.length == 1) {
+            this.selectedTextColor = selectedTextColor[0];
+        }
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public TvViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TvViewHolder holder = new TvViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item_tv_layout, parent, false));
+        context = parent.getContext();
+        int layoutId = (isViewTypeEnable && viewType == TYPE_TITLE) ? R.layout.recyclerview_item_title : R.layout.recyclerview_item_tv_layout;
+        TvViewHolder holder = new TvViewHolder(viewType, LayoutInflater.from(context).inflate(layoutId, parent, false));
         return holder;
+    }
+
+    public void enableViewType() {
+        isViewTypeEnable = true;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        //fixme 匹配ui_recyclerview例子
+        if (position % 10 == 0) {
+            return TYPE_TITLE;
+        }
+        return TYPE_CONTENT;
     }
 
     @Override
@@ -68,6 +100,13 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
         if (list.get(position) instanceof ArticleResource) {
             holder.textView.setText(((ArticleResource) list.get(position)).getTitle());
         } else if (list.get(position) instanceof String) {
+            if (position == selectPosition) {
+                holder.textView.setTextColor(selectedTextColor > 0 ? selectedTextColor : context.getResources().getColor(R.color.colorPrimary));
+            } else {
+                holder.textView.setTextColor(Color.BLACK);
+            }
+            holder.textView.setText(list.get(position).toString());
+        } else {
             holder.textView.setText(list.get(position).toString());
         }
         if (onItemClickListener != null) {
@@ -88,10 +127,14 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     class TvViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder {
         public TextView textView;
 
-        public TvViewHolder(View itemView) {
+        public TvViewHolder(int viewType, View itemView) {
             super(itemView);
-            textView = itemView.findViewById(R.id.recyclerview_item_text);
+            if (isViewTypeEnable && viewType == TYPE_TITLE)
+                textView = itemView.findViewById(R.id.recyclerview_item_title_tv);
+            else
+                textView = itemView.findViewById(R.id.recyclerview_item_text);
         }
+
 
         @Override
         public void onItemSelected() {

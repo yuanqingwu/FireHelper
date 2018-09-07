@@ -15,10 +15,10 @@ import javax.crypto.spec.SecretKeySpec;
 public class Encryption {
 
     /**
-     * Return the bytes of MD2 encryption.
+     * Return the bytes of MD2 security.
      *
      * @param data The data.
-     * @return the bytes of MD2 encryption
+     * @return the bytes of MD2 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptMD2(final byte[] data) {
@@ -26,10 +26,10 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of MD5 encryption.
+     * Return the bytes of MD5 security.
      *
      * @param data The data.
-     * @return the bytes of MD5 encryption
+     * @return the bytes of MD5 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptMD5(final byte[] data) {
@@ -38,10 +38,10 @@ public class Encryption {
 
 
     /**
-     * Return the bytes of SHA1 encryption.
+     * Return the bytes of SHA1 security.
      *
      * @param data The data.
-     * @return the bytes of SHA1 encryption
+     * @return the bytes of SHA1 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptSHA1(final byte[] data) {
@@ -49,10 +49,10 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of SHA224 encryption.
+     * Return the bytes of SHA224 security.
      *
      * @param data The data.
-     * @return the bytes of SHA224 encryption
+     * @return the bytes of SHA224 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptSHA224(final byte[] data) {
@@ -60,10 +60,10 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of SHA256 encryption.
+     * Return the bytes of SHA256 security.
      *
      * @param data The data.
-     * @return the bytes of SHA256 encryption
+     * @return the bytes of SHA256 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptSHA256(final byte[] data) {
@@ -71,10 +71,10 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of SHA384 encryption.
+     * Return the bytes of SHA384 security.
      *
      * @param data The data.
-     * @return the bytes of SHA384 encryption
+     * @return the bytes of SHA384 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptSHA384(final byte[] data) {
@@ -82,10 +82,10 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of SHA512 encryption.
+     * Return the bytes of SHA512 security.
      *
      * @param data The data.
-     * @return the bytes of SHA512 encryption
+     * @return the bytes of SHA512 security
      */
     @MethodParamName(paramName = {"data"})
     public static byte[] encryptSHA512(final byte[] data) {
@@ -95,11 +95,11 @@ public class Encryption {
 
 
     /**
-     * Return the bytes of hash encryption.
+     * Return the bytes of hash security.
      *
      * @param data      The data.
-     * @param algorithm The name of hash encryption.
-     * @return the bytes of hash encryption
+     * @param algorithm The name of hash security.
+     * @return the bytes of hash security
      */
     private static byte[] hashTemplate(final byte[] data, final String algorithm) {
         if (data == null || data.length <= 0) return null;
@@ -118,14 +118,14 @@ public class Encryption {
  */
 
     /**
-     * Return the bytes of DES encryption.
+     * Return the bytes of DES security.
      *
      * @param data           The data.
      * @param key            The key.
      * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
      * @param iv             The buffer with the IV. The contents of the
      *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of DES encryption
+     * @return the bytes of DES security
      */
     @MethodParamName(paramName = {"data","key","transformation","iv"})
     public static byte[] encryptDES(final byte[] data,
@@ -154,14 +154,14 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of 3DES encryption.
+     * Return the bytes of 3DES security.
      *
      * @param data           The data.
      * @param key            The key.
      * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
      * @param iv             The buffer with the IV. The contents of the
      *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of 3DES encryption
+     * @return the bytes of 3DES security
      */
     @MethodParamName(paramName = {"data","key","transformation","iv"})
     public static byte[] encrypt3DES(final byte[] data,
@@ -190,14 +190,14 @@ public class Encryption {
     }
 
     /**
-     * Return the bytes of AES encryption.
+     * Return the bytes of AES security.
      *
      * @param data           The data.
      * @param key            The key.
      * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
      * @param iv             The buffer with the IV. The contents of the
      *                       buffer are copied to protect against subsequent modification.
-     * @return the bytes of AES encryption
+     * @return the bytes of AES security
      */
     @MethodParamName(paramName = {"data","key","transformation","iv"})
     public static byte[] encryptAES(final byte[] data,
@@ -227,14 +227,14 @@ public class Encryption {
 
 
     /**
-     * Return the bytes of symmetric encryption or decryption.
+     * Return the bytes of symmetric security or decryption.
      *
      * @param data           The data.
      * @param key            The key.
      * @param algorithm      The name of algorithm.
      * @param transformation The name of the transformation, e.g., <i>DES/CBC/PKCS5Padding</i>.
      * @param isEncrypt      True to encrypt, false otherwise.
-     * @return the bytes of symmetric encryption or decryption
+     * @return the bytes of symmetric security or decryption
      */
     private static byte[] symmetricTemplate(final byte[] data,
                                             final byte[] key,

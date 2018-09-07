@@ -9,7 +9,6 @@ import com.google.gson.Gson;
 import com.wyq.firehelper.article.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
 import com.wyq.firehelper.base.BaseFragment;
-import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
 import com.wyq.firehelper.utils.CloseUtils;
 
 import org.json.JSONArray;

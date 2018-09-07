@@ -252,7 +252,7 @@ public class TangramActivity extends BaseActivity {
         Disposable disposable5 = Observable.create(new ObservableOnSubscribe<JSONArray>() {
             @Override
             public void subscribe(ObservableEmitter<JSONArray> emitter) throws Exception {
-                String json = new String(FireUtils.readAssets2String(getApplicationContext(), "data.json"));
+                String json = new String(FireUtils.readAssets2String(getApplicationContext(), "tangram_data.json"));
                 JSONArray data = null;
                 try {
                     data = new JSONArray(json);

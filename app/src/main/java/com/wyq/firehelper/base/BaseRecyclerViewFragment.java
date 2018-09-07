@@ -8,7 +8,7 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.ui.layout.recyclerView.SimpleItemTouchHelperCallback;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 
 import java.util.Arrays;
 

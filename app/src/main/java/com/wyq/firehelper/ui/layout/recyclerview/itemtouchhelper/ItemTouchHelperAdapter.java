@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.wyq.firehelper.ui.layout.recyclerView;
+package com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;

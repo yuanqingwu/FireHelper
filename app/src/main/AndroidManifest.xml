@@ -77,7 +77,12 @@
         <activity android:name=".java.aop.apt.AptActivity" />
         <activity android:name=".java.aop.AopActivity" />
         <activity android:name=".ui.widget.firetoast.FireToastActivity" />
-        <activity android:name=".ui.widget.animation.AnimationActivity"></activity>
+        <activity android:name=".ui.widget.animation.AnimationActivity" />
+        <activity android:name=".ui.layout.bottomdialog.BottomDialogActivity" />
+        <activity android:name=".ui.layout.popupwindow.PopupWindowActivity" />
+        <activity android:name=".ui.layout.recyclerview.RecyclerViewActivity" />
+        <activity android:name=".ui.layout.placeholderview.PlaceHolderViewActivity" />
+        <activity android:name=".device.camera.CameraActivity"></activity>
     </application>
 
 </manifest>

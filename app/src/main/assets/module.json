@@ -15,9 +15,9 @@
     "headImage":"ui"
   },
   {
-    "title_en":"Encryption",
-    "title_zh":"加解密",
-    "headImage":"encryption"
+    "title_en":"security",
+    "title_zh":"安全",
+    "headImage":"security"
   },
   {
     "title_en":"DevelopKit",

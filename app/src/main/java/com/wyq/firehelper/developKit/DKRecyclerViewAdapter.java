@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.ui.layout.placeholderview.data.KitInfo;
 
 import java.util.ArrayList;
 import java.util.List;

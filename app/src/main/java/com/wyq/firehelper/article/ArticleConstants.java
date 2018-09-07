@@ -45,6 +45,10 @@ public class ArticleConstants {
     public static final ArticleResource _28 = new ArticleResource("https://www.jianshu.com/p/2412d00a0ce4", "Android 属性动画：这是一篇很详细的 属性动画 总结&攻略", "Blog", "UI");
     public static final ArticleResource _29 = new ArticleResource("https://www.jianshu.com/p/8f14679809b3", "App瘦身最佳实践", "Blog", "优化");
     public static final ArticleResource _30 = new ArticleResource("https://github.com/tianzhijiexian/Android-Best-Practices", "Android最佳实践示例", "Blog", "优化");
+    public static final ArticleResource _31 = new ArticleResource("https://blog.csdn.net/yuzhou_zang/article/details/78410632", "JNI 实战全面解析", "Blog", "JNI");
+    public static final ArticleResource _32 = new ArticleResource("https://www.jianshu.com/p/c71ec5d63f0d", "Android NDK 开发：CMake 使用", "Blog", "JNI");
+    public static final ArticleResource _33 = new ArticleResource("https://www.jianshu.com/p/0ac7234dcefc", "Android相机开发——CameraView源码解析", "Blog", "设备");
+    public static final ArticleResource _34 = new ArticleResource("http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html", "Hotspot JVM GC", "Blog", "Java");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.ui.layout.placeholderview.data.KitInfo;
 
 import java.util.List;
 

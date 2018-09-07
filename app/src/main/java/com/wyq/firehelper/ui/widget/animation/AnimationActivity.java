@@ -105,7 +105,7 @@ public class AnimationActivity extends BaseActivity {
     }
 
     private void animationFrame() {
-        String[] drawableName = new String[]{"article", "module", "ui", "encryption", "tool", "architecture"};
+        String[] drawableName = new String[]{"article", "module", "ui", "security", "tool", "architecture"};
         AnimationDrawable animationDrawable = new AnimationDrawable();
         for (String s : drawableName) {
             int id = getResources().getIdentifier(s, "drawable", getPackageName());

@@ -22,7 +22,7 @@ import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
-import com.wyq.firehelper.ui.layout.recyclerView.SimpleItemTouchHelperCallback;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 import com.wyq.firehelper.utils.FireUtils;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.placeholderview.data;
+package com.wyq.firehelper.developKit;
 
 public class KitInfo {
 

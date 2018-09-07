@@ -3,10 +3,6 @@
     "category": "Layout",
     "info": [
       {
-        "name": "placeHolderView",
-        "description": ""
-      },
-      {
         "name": "RecyclerView",
         "description": ""
       },
@@ -20,6 +16,14 @@
       },
       {
         "name": "DragLayout",
+        "description": ""
+      },
+      {
+        "name": "BottomDialog",
+        "description": ""
+      },
+      {
+        "name": "PopupWindow",
         "description": ""
       }
     ]
@@ -42,7 +46,8 @@
       {
         "name": "FireToast",
         "description": ""
-      },{
+      },
+      {
         "name": "Animation",
         "description": ""
       }

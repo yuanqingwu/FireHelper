@@ -16,8 +16,8 @@ import android.widget.TextView;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.FireModule;
-import com.wyq.firehelper.ui.layout.recyclerView.ItemTouchHelperAdapter;
-import com.wyq.firehelper.ui.layout.recyclerView.ItemTouchHelperViewHolder;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
+import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;

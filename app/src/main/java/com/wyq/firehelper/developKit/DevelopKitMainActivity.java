@@ -5,7 +5,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.ui.layout.placeholderview.data.DevelopKit;
 
 import butterknife.BindView;
 
