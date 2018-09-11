@@ -114,5 +114,14 @@
         "description": "A memory leak detection library for Android and Java."
       }
     ]
+  },
+  {
+    "category": "数据持久化",
+    "kitInfos": [
+      {
+        "name": "Room",
+        "description": "Room is a Database Object Mapping library that makes it easy to access database on Android applications."
+      }
+    ]
   }
 ]

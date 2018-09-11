@@ -25,6 +25,10 @@
       {
         "name": "PopupWindow",
         "description": ""
+      },
+      {
+        "name": "Transition",
+        "description": ""
       }
     ]
   },

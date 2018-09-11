@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <!--<variable
+            name="user"
+            type="com.wyq.firehelper.developKit.Room.User" />-->
+
+        <variable
+            name="userViewModel"
+            type="com.wyq.firehelper.developKit.Room.UserViewModel" />
+    </data>
+
+    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <!-- <android.support.constraint.Barrier
+             android:id="@+id/developkit_activity_room_barrier"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             app:barrierDirection="bottom"
+             app:constraint_referenced_ids="developkit_activity_room_first_tv,developkit_activity_room_first_et" />
+     -->
+        <android.support.constraint.Guideline
+            android:id="@+id/developkit_activity_room_guide_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/developkit_activity_room_guide_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="100dp" />
+
+        <TextView
+            android:id="@+id/developkit_activity_room_first_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FirstName:"
+            app:layout_constraintBottom_toTopOf="@id/developkit_activity_room_guide_1"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/developkit_activity_room_first_et"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/developkit_activity_room_last_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LastName:"
+            app:layout_constraintBottom_toTopOf="@id/developkit_activity_room_guide_2"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/developkit_activity_room_last_et"
+            app:layout_constraintTop_toBottomOf="@id/developkit_activity_room_guide_1" />
+
+        <EditText
+            android:id="@+id/developkit_activity_room_first_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{userViewModel.user.get().firstName}"
+            app:layout_constraintBottom_toTopOf="@id/developkit_activity_room_guide_1"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintLeft_toRightOf="@id/developkit_activity_room_first_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/developkit_activity_room_last_et"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{userViewModel.user.get().lastName}"
+            app:layout_constraintBottom_toTopOf="@id/developkit_activity_room_guide_2"
+            app:layout_constraintHorizontal_weight="2"
+            app:layout_constraintLeft_toRightOf="@id/developkit_activity_room_last_tv"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/developkit_activity_room_guide_1" />
+
+        <Button
+            android:id="@+id/developkit_activity_room_commit_bt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="commit"
+            app:layout_constraintTop_toBottomOf="@id/developkit_activity_room_guide_2" />
+    </android.support.constraint.ConstraintLayout>
+</layout>

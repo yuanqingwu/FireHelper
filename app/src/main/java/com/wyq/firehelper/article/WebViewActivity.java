@@ -41,6 +41,9 @@ public class WebViewActivity extends AppCompatActivity {
     private String url;
     public boolean canDrag = false;//默认此页面不支持右滑返回
 
+    public WebViewClient webViewClient;
+    public WebChromeClient webChromeClient;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,6 +89,12 @@ public class WebViewActivity extends AppCompatActivity {
             webView.destroy();
             webView = null;
         }
+        if (webViewClient != null) {
+            webViewClient = null;
+        }
+        if (webChromeClient != null) {
+            webChromeClient = null;
+        }
         super.onDestroy();
 
     }
@@ -106,7 +115,7 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     private void initWebView() {
-        webView.setWebViewClient(new WebViewClient() {
+        webViewClient = new WebViewClient() {
 
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -141,8 +150,9 @@ public class WebViewActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.GONE);
 
             }
-        });
-        webView.setWebChromeClient(new WebChromeClient() {
+        };
+        webView.setWebViewClient(webViewClient);
+        webChromeClient = new WebChromeClient() {
             //获得网页的加载进度
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
@@ -173,7 +183,9 @@ public class WebViewActivity extends AppCompatActivity {
             public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, JsPromptResult result) {
                 return super.onJsPrompt(view, url, message, defaultValue, result);
             }
-        });
+        };
+
+        webView.setWebChromeClient(webChromeClient);
 
         // 特别注意：5.1以上默认禁止了https和http混用，以下方式是开启
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

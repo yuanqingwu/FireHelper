@@ -10,6 +10,9 @@ import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.squareup.leakcanary.LeakCanary;
+import com.wyq.firehelper.developKit.Room.AppDatabase;
+import com.wyq.firehelper.developKit.Room.AppExecutors;
+import com.wyq.firehelper.developKit.Room.DataRepository;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 
 public class FireHelpApplication extends Application {
@@ -20,10 +23,14 @@ public class FireHelpApplication extends Application {
      */
     public static final boolean isDebug = true;
 
+    private AppExecutors appExecutors;
+
     @FireLogTime(isLog = isDebug)//AOP打印执行时间
     @Override
     public void onCreate() {
         super.onCreate();
+
+        appExecutors = new AppExecutors();
 
         //处理一些一些初始化耗时操作
         AppInitIntentService.start(this);
@@ -32,6 +39,14 @@ public class FireHelpApplication extends Application {
             initLeakCanary();
             initLogger();
         }
+    }
+
+    public AppDatabase getDatabase(){
+        return AppDatabase.getInstance(this,appExecutors);
+    }
+
+    public DataRepository getRepository(){
+        return DataRepository.getInstance(getDatabase());
     }
 
     /**
