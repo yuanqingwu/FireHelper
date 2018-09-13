@@ -6,4 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.layout.transition.TransitionActivity">
 
+    <Button
+        android:id="@+id/ui_activity_transition_bt"
+        android:layout_width="wrap_content"
+        android:text="change"
+        android:layout_height="wrap_content" />
+
+    <FrameLayout
+        android:id="@+id/ui_activity_transition_scene_root"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1">
+
+        <include layout="@layout/ui_activty_transition_scene_1" />
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

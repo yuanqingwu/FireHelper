@@ -14,8 +14,12 @@ public class GlideActivity extends DevelopKitBaseActivity {
 
     @BindView(R.id.activity_developkit_glide_img_1)
     public ImageView imageView;
+    @BindView(R.id.activity_developkit_glide_img_2)
+    public ImageView imageView2;
     @BindView(R.id.activity_developkit_glide_tv)
     public TextView textView;
+
+    private String EXAMPLE_URL = "https://github.com/bumptech/glide/raw/master/static/glide_logo.png";
 
     @Override
     public void initData() {
@@ -36,7 +40,10 @@ public class GlideActivity extends DevelopKitBaseActivity {
     public void initView() {
         super.initView();
         browserArticle(GlideActivity.this);
-        Glide.with(this).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
+
+        Glide.with(this).load(EXAMPLE_URL)
                 .into(imageView);
+
+        Glide.with(this).load(EXAMPLE_URL).into(imageView2);
     }
 }
