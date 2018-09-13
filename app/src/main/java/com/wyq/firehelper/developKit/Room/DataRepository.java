@@ -16,8 +16,8 @@ public class DataRepository {
         this.appDatabase = database;
         mObservableUser = new MediatorLiveData<>();
 
-        mObservableUser.addSource(appDatabase.userDao().getAll(),users->{
-            if(appDatabase.getDatabaseCreated().getValue() != null){
+        mObservableUser.addSource(appDatabase.userDao().getAll(), users -> {
+            if (appDatabase.getDatabaseCreated().getValue() != null) {
                 mObservableUser.postValue(users);
             }
         });
@@ -34,11 +34,19 @@ public class DataRepository {
         return sInstance;
     }
 
-    public LiveData<List<User>> getUsers(){
+    public LiveData<List<User>> getUsers() {
         return mObservableUser;
     }
 
-    public LiveData<User> getUserByUid(int uid){
+    public LiveData<User> getUserByUid(int uid) {
         return appDatabase.userDao().getUserById(uid);
+    }
+
+    public void updateUser(User user) {
+        appDatabase.userDao().insertUser(user);
+    }
+
+    public LiveData<User> getFirstUser(){
+        return appDatabase.userDao().getFirstUser();
     }
 }

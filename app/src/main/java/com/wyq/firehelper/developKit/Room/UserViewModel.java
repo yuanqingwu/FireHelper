@@ -3,6 +3,7 @@ package com.wyq.firehelper.developKit.Room;
 import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 import android.databinding.ObservableField;
@@ -10,32 +11,50 @@ import android.support.annotation.NonNull;
 
 import com.wyq.firehelper.base.FireHelpApplication;
 
+import io.reactivex.Completable;
+
 public class UserViewModel extends AndroidViewModel {
 
-    private LiveData<User> mObservableUser;
-
-    private int uid;
+    private MediatorLiveData<User> mObservableUser;
 
     //data binding
-    private ObservableField<User> user = new ObservableField<>();
+    public ObservableField<User> user = new ObservableField<>();
+
+    private DataRepository repository;
 
     public UserViewModel(@NonNull Application application, DataRepository repository, int userId) {
         super(application);
-        this.uid = userId;
-        mObservableUser = repository.getUserByUid(uid);
+        mObservableUser = new MediatorLiveData<>();
+        // set by default null, until we get data from the database.
+        mObservableUser.setValue(null);
+        LiveData<User> userLiveData = ((FireHelpApplication)application).getRepository().getUserByUid(userId);
+
+        // observe the changes of the user from the database and forward them
+        mObservableUser.addSource(userLiveData,mObservableUser::setValue);
+
+        this.repository = repository;
     }
 
+    /**
+     * Expose the LiveData user query so the UI can observe it.
+     */
     public LiveData<User> getObservableUser() {
         return mObservableUser;
     }
 
-    public void setUser(User user) {
+
+    public Completable setUser(User user) {
         this.user.set(user);
+
+        return Completable.fromAction(() -> {
+            repository.updateUser(user);
+        });
     }
 
-    public ObservableField<User> getUser() {
-        return user;
+    public LiveData<User> getUser() {
+        return repository.getFirstUser();
     }
+
     /**
      * A creator is used to inject the User ID into the ViewModel
      * <p>

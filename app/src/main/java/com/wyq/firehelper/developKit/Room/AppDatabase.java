@@ -49,7 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             user.setFirstName("Wu");
                             user.setLastName("Yuanqing");
                             database.runInTransaction(() -> {
-                                database.userDao().insertAll(user);
+                                database.userDao().insertUser(user);
                             });
                             //notify that the database was created and it's ready to be used
                             database.setDatabaseCreated();
