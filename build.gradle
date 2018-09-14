@@ -1,21 +1,30 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.51'
-    repositories {
-        google()
-        jcenter()
-//        maven {
-//            url 'https://maven.google.com/'
-//            name 'Google'
-//        }
-    }
+//    ext.kotlin_version = '1.2.51'
+    apply from: 'versions.gradle'
+    addRepos(repositories)
+//    repositories {
+//        google()
+//        jcenter()
+////        maven {
+////            url 'https://maven.google.com/'
+////            name 'Google'
+////        }
+//    }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.4'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath deps.android_gradle_plugin
 
-        classpath 'org.aspectj:aspectjtools:1.8.9'
-        classpath 'org.aspectj:aspectjweaver:1.8.9'
+        classpath deps.kotlin.plugin
+
+        classpath deps.aspectj.tools
+        classpath deps.aspectj.weaver
+
+//        classpath 'com.android.tools.build:gradle:3.1.4'
+//        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+//
+//        classpath 'org.aspectj:aspectjtools:1.8.9'
+//        classpath 'org.aspectj:aspectjweaver:1.8.9'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }

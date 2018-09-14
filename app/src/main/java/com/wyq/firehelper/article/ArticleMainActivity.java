@@ -203,6 +203,7 @@ public class ArticleMainActivity extends BaseActivity {
         getMenuInflater().inflate(R.menu.menu_search, menu);
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setQueryHint("文章搜索");
+
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -217,6 +218,7 @@ public class ArticleMainActivity extends BaseActivity {
                 return false;
             }
         });
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {

@@ -46,52 +46,66 @@ kapt {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-    implementation 'com.android.support:cardview-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
 
-    implementation "android.arch.persistence.room:runtime:1.1.1"
-    implementation "android.arch.persistence.room:rxjava2:1.1.1"
-    kapt "android.arch.persistence.room:compiler:1.1.1"
+    // Support libraries
+    implementation deps.support.design
+    implementation deps.support.v4
+    implementation deps.support.appcompat
+    implementation deps.support.cardview
+    implementation deps.support.recyclerview
+    implementation deps.constraint_layout
 
-    implementation "android.arch.lifecycle:runtime:1.1.1"
-    implementation "android.arch.lifecycle:extensions:1.1.1"
-    implementation "android.arch.lifecycle:common-java8:1.1.1"
-    kapt "android.arch.lifecycle:compiler:1.1.1"
+    implementation deps.kotlin.stdlib
 
-    implementation 'com.google.code.gson:gson:2.2.4'
-    //    implementation 'com.zzhoujay.richtext:richtext:3.0.7'
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.14'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation deps.room.runtime
+    implementation deps.room.rxjava2
+    kapt deps.room.compiler
 
-    implementation 'com.jakewharton:butterknife:8.8.1'
-    //项目中引入了kapt,所以annotationProcessor改为kapt
-    kapt 'com.jakewharton:butterknife-compiler:8.8.1'
-    implementation 'com.google.dagger:dagger:2.16'
-    kapt 'com.google.dagger:dagger-compiler:2.16'
-    implementation 'com.github.bumptech.glide:glide:4.7.1'
-    kapt 'com.github.bumptech.glide:compiler:4.7.1'
-    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation deps.lifecycle.runtime
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
 
-    implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.orhanobut:logger:2.2.0'
-    implementation 'com.mindorks.android:placeholderview:1.0.3'
-    kapt 'com.mindorks.android:placeholderview-compiler:1.0.3'
+    implementation deps.gson
 
-    implementation 'me.yokeyword:fragmentation:1.3.5'
-    implementation 'me.yokeyword:fragmentation-swipeback:1.3.5'
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    implementation deps.retrofit.runtime
+    implementation deps.retrofit.gson
+    implementation deps.retrofit.rxjava2
+    implementation deps.okhttp_logging_interceptor
 
-    implementation 'co.lujun:androidtagview:1.1.4'
-    implementation 'com.github.chrisbanes:PhotoView:2.1.4'
+    implementation deps.rxjava2
+    implementation deps.rx_android
+
+    implementation deps.butterknife.runtime
+    kapt deps.butterknife.compiler
+
+    implementation deps.dagger.runtime
+    kapt deps.dagger.compiler
+
+    implementation deps.glide.runtime
+    kapt deps.glide.compiler
+
+    implementation deps.picasso
+
+    implementation deps.eventbus
+
+    implementation deps.logger
+
+    implementation deps.fragmentation.runtime
+    implementation deps.fragmentation.swipeback
+
+    debugImplementation deps.leakcanary.runtime
+    releaseImplementation deps.leakcanary.no_op
+    // Optional, if you use support library fragments:
+    debugImplementation deps.leakcanary.support_fragment
+
+    implementation deps.tagview
+    implementation deps.photoview
+
+    //AspectJ
+    implementation deps.aspectj.rt
+
+
 //    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
 //        transitive = true
 //    }
@@ -99,13 +113,11 @@ dependencies {
         transitive = true
     }
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation project(':fireapt')
     implementation project(':fireapt-annotation')
     kapt project(':fireapt-compiler')
-//AspectJ
-    implementation 'org.aspectj:aspectjrt:1.8.9'
+
 
 }
 repositories {

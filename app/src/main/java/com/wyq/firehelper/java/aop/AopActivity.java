@@ -35,6 +35,7 @@ public class AopActivity extends BaseActivity {
     @Override
     public void initView() {
         textView.setText("AOP");
+        button.setText("Filtering too fast clicks");
         button.setOnClickListener(new View.OnClickListener() {
             @FireSingleClick
             @Override
