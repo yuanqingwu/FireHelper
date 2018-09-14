@@ -23,6 +23,8 @@ public class AnimationActivity extends BaseActivity {
     public Button propertyButton;
     @BindView(R.id.ui_activity_animation_tween_Bt)
     public Button tweenButton;
+    @BindView(R.id.ui_activity_animation_tween_Bt1)
+    public Button tweenButton1;
     @BindView(R.id.ui_activity_animation_frame_iv)
     public ImageView frameIv;
 
@@ -127,10 +129,12 @@ public class AnimationActivity extends BaseActivity {
         scaleAnimation.setRepeatMode(ScaleAnimation.REVERSE);
 
         //平移
-        Animation translateAnimation = new TranslateAnimation(0, 0, -100, -400);
+        Animation translateAnimation = new TranslateAnimation(0, 0, -500, -100);
         translateAnimation.setDuration(2000);
         translateAnimation.setRepeatCount(ScaleAnimation.INFINITE);
         translateAnimation.setRepeatMode(ScaleAnimation.REVERSE);
+        translateAnimation.setFillAfter(true);
+        translateAnimation.setInterpolator(new CollisionInterpolator());
 
         //旋转
         Animation rotateAnimation = new RotateAnimation(0f, 360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f);
@@ -150,5 +154,8 @@ public class AnimationActivity extends BaseActivity {
         animationSet.addAnimation(rotateAnimation);
         animationSet.addAnimation(alphaAnimation);
         tweenButton.startAnimation(animationSet);
+
+        tweenButton1.startAnimation(translateAnimation);
+
     }
 }

@@ -25,6 +25,7 @@ public class FireToast {
     private static Handler handler;
     private static Thread thread;
     private static Timer timer;
+    private static TimerTask task;
     private static volatile boolean isCancel;
 
     public static void showCustomToast(Context context, String text, int textColor) {
@@ -41,7 +42,7 @@ public class FireToast {
         layout.addView(textView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT));
         // layout.setPadding(20, 20, 20, 20);
-        
+
 
         if (Looper.myLooper() != null) {
             Toast toast = new Toast(context);
@@ -68,7 +69,7 @@ public class FireToast {
     }
 
     public static synchronized void showCustomToastContinuous(final Context context, final String text,
-            final int textColor, final int period) {
+                                                              final int textColor, final int period) {
         if (thread == null) {
             thread = new Thread(new Runnable() {
                 public void run() {
@@ -152,7 +153,7 @@ public class FireToast {
             //reset flag
             isCancel = false;
 
-            TimerTask task = new TimerTask() {
+            task = new TimerTask() {
                 @Override
                 public void run() {
                     // toast.show();
@@ -167,8 +168,24 @@ public class FireToast {
         }
     }
 
-    public synchronized static void cancelToastContinuous(){
+    public synchronized static void cancelToastContinuous() {
         isCancel = true;
+        if (thread != null) {
+            thread.interrupt();
+            thread = null;
+        }
+        if (task != null) {
+            task.cancel();
+            task = null;
+        }
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+            handler = null;
+        }
     }
 
     private static void setToastClickable(Toast toast) {

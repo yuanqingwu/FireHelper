@@ -1,7 +1,5 @@
 package com.wyq.firehelper.device.bluetoothChat;
 
-import java.util.List;
-
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -13,6 +11,8 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
+
+import java.util.List;
 
 
 public class ChatListAdapter extends BaseAdapter {

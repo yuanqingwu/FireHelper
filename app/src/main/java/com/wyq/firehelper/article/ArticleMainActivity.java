@@ -179,8 +179,9 @@ public class ArticleMainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-        searchView.cancelPendingInputEvents();
-        searchView = null;
+//        searchView.cancelPendingInputEvents();
+//        searchView = null;
+        closeSearchView();
         super.onDestroy();
     }
 
