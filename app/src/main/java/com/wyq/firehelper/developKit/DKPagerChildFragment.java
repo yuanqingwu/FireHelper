@@ -54,7 +54,7 @@ public class DKPagerChildFragment extends DevelopKitBaseFragment {
     }
 
     private void startActivityDynamic(Context context, String kitName) {
-        String name = "com.wyq.firehelper.developKit." + kitName + "." + kitName + "Activity";
+        String name = "com.wyq.firehelper.developKit." + kitName.toLowerCase() + "." + kitName + "Activity";
 //        Intent intent = new Intent();
 //        intent.setComponent(new ComponentName(context,name));
 //        context.startActivity(intent);

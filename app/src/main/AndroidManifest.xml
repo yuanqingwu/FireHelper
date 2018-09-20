@@ -57,13 +57,13 @@
         <activity android:name=".ui.widget.circleimageview.CircleImageViewActivity" />
         <activity android:name=".encryption.EncryptActivity" />
         <activity android:name=".developKit.DevelopKitMainActivity" />
-        <activity android:name=".developKit.ButterKnife.ButterKnifeActivity" />
-        <activity android:name=".developKit.Dagger.DaggerActivity" />
-        <activity android:name=".developKit.Glide.GlideActivity" />
-        <activity android:name=".developKit.RxJava.RxJavaActivity" />
-        <activity android:name=".developKit.EventBus.EventBusActivity" />
-        <activity android:name=".developKit.AndroidAnnotations.AndroidAnnotationsActivity" />
-        <activity android:name=".developKit.Retrofit.RetrofitActivity" />
+        <activity android:name=".developKit.butterknife.ButterKnifeActivity" />
+        <activity android:name=".developKit.dagger.DaggerActivity" />
+        <activity android:name=".developKit.glide.GlideActivity" />
+        <activity android:name=".developKit.rxjava.RxJavaActivity" />
+        <activity android:name=".developKit.eventbus.EventBusActivity" />
+        <activity android:name=".developKit.androidannotations.AndroidAnnotationsActivity" />
+        <activity android:name=".developKit.retrofit.RetrofitActivity" />
         <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
         <activity android:name=".ui.layout.tangram.TangramActivity" />
         <activity android:name=".ui.layout.ultraviewpager.UltraViewPagerActivity" />
@@ -83,8 +83,9 @@
         <activity android:name=".ui.layout.recyclerview.RecyclerViewActivity" />
         <activity android:name=".ui.layout.placeholderview.PlaceHolderViewActivity" />
         <activity android:name=".device.camera.CameraActivity" />
-        <activity android:name=".developKit.Room.RoomActivity" />
-        <activity android:name=".ui.layout.transition.TransitionActivity"></activity>
+        <activity android:name=".developKit.room.RoomActivity" />
+        <activity android:name=".ui.layout.transition.TransitionActivity" />
+        <activity android:name=".architecture.archcomponents.ArchComponentsActivity"></activity>
     </application>
 
 </manifest>

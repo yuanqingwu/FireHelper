@@ -49,6 +49,10 @@ public class ArticleConstants {
     public static final ArticleResource _32 = new ArticleResource("https://www.jianshu.com/p/c71ec5d63f0d", "Android NDK 开发：CMake 使用", "Blog", "JNI");
     public static final ArticleResource _33 = new ArticleResource("https://www.jianshu.com/p/0ac7234dcefc", "Android相机开发——CameraView源码解析", "Blog", "设备");
     public static final ArticleResource _34 = new ArticleResource("http://www.oracle.com/webfolder/technetwork/tutorials/obe/java/gc01/index.html", "Hotspot JVM GC", "Blog", "Java");
+    public static final ArticleResource _35 = new ArticleResource("https://www.jianshu.com/p/2b2e5d417e10", "WebView深度学习（二）之全面总结WebView遇到的坑及优化", "Blog", "优化");
+    public static final ArticleResource _36 = new ArticleResource("http://a.codekk.com/detail/Android/%E6%89%94%E7%89%A9%E7%BA%BF/Dagger%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90", "Dagger 源码解析", "Blog", "框架");
+    public static final ArticleResource _37 = new ArticleResource("http://p.codekk.com/", "codekk[Trinea 创建并维护]", "Blog", "博客主页");
+    public static final ArticleResource _38 = new ArticleResource("http://www.trinea.cn/android/didi-internationalization-android-evolution/", "滴滴国际化项目 Android 端演进", "Blog", "架构");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

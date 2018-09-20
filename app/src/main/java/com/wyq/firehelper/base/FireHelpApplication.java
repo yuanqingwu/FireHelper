@@ -1,8 +1,8 @@
 package com.wyq.firehelper.base;
 
-import android.app.Application;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.multidex.MultiDexApplication;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -13,12 +13,12 @@ import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
-import com.wyq.firehelper.developKit.Room.AppDatabase;
-import com.wyq.firehelper.developKit.Room.AppExecutors;
-import com.wyq.firehelper.developKit.Room.DataRepository;
+import com.wyq.firehelper.developKit.room.AppDatabase;
+import com.wyq.firehelper.developKit.room.AppExecutors;
+import com.wyq.firehelper.developKit.room.datasource.DataRepository;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 
-public class FireHelpApplication extends Application {
+public class FireHelpApplication extends MultiDexApplication {
 
     /**
      * 当前版本是否为debug版本
@@ -68,6 +68,7 @@ public class FireHelpApplication extends Application {
                 .instanceField("android.view.inputmethod.InputMethodManager", "mLastSrvView")
                 .instanceField("com.android.internal.policy.PhoneWindow$DecorView", "mContext")
                 .instanceField("android.support.v7.widget.SearchView$SearchAutoComplete", "mContext")
+                .instanceField(" com.android.tools.profiler.support.event.InputConnectionWrapper", "mTarget")
                 .build();
         LeakCanary.refWatcher(this).listenerServiceClass(DisplayLeakService.class)
                 .excludedRefs(excludedRefs)

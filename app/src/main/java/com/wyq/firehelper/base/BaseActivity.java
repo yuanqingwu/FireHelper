@@ -21,6 +21,7 @@ public abstract class BaseActivity extends SwipeBackActivity {
     protected abstract int attachLayoutRes();
 
     public abstract void initToolBar();
+
     public abstract void initView();
 
     @Override
@@ -48,4 +49,5 @@ public abstract class BaseActivity extends SwipeBackActivity {
             }
         });
     }
+
 }

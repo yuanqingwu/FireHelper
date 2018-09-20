@@ -1,6 +1,7 @@
 ext.deps = [:]
 def versions = [:]
 versions.android_gradle_plugin = "3.1.4"
+versions.multidex = "1.0.3"
 versions.room = "1.1.1"
 versions.lifecycle = "1.1.1"
 versions.support = "27.1.1"
@@ -23,6 +24,11 @@ versions.kotlin = "1.2.51"
 versions.aspectj = "1.8.9"
 versions.tagview = "1.1.4"
 versions.photoview = "2.1.4"
+versions.atsl_runner = "1.0.1"
+versions.atsl_rules = "1.0.1"
+versions.arch_core = "1.1.1"
+versions.espresso = "3.0.1"
+versions.mockito = "2.10.0"
 def deps = [:]
 
 def support = [:]
@@ -65,9 +71,24 @@ dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$versions.dagger"
 deps.dagger = dagger
 
+def atsl = [:]
+atsl.runner = "com.android.support.test:runner:$versions.atsl_runner"
+atsl.rules = "com.android.support.test:rules:$versions.atsl_runner"
+deps.atsl = atsl
+
+def arch_core = [:]
+arch_core.testing = "android.arch.core:core-testing:$versions.arch_core"
+deps.arch_core = arch_core
+
+def espresso = [:]
+espresso.core = "com.android.support.test.espresso:espresso-core:$versions.espresso"
+espresso.contrib = "com.android.support.test.espresso:espresso-contrib:$versions.espresso"
+espresso.intents = "com.android.support.test.espresso:espresso-intents:$versions.espresso"
+deps.espresso = espresso
+
 def mockito = [:]
 mockito.core = "org.mockito:mockito-core:$versions.mockito"
-mockito.all = "org.mockito:mockito-all:$versions.mockito_all"
+mockito.android = "org.mockito:mockito-android:$versions.mockito"
 deps.mockito = mockito
 
 def kotlin = [:]
@@ -109,6 +130,8 @@ deps.junit = "junit:junit:$versions.junit"
 
 deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 
+deps.multidex = "com.android.support:multidex:$versions.multidex"
+
 deps.gson = "com.google.code.gson:gson:$versions.gson"
 
 deps.picasso = "com.squareup.picasso:picasso:$versions.picasso"
@@ -133,6 +156,9 @@ ext.deps = deps
 def addRepos(RepositoryHandler handler){
     handler.google()
     handler.jcenter()
+    handler.maven {
+        url "https://jitpack.io"
+    }
     handler.maven {url 'https://oss.sonatype.org/content/repositories/snapshots'}
 }
 ext.addRepos = this.&addRepos

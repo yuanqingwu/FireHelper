@@ -12,7 +12,7 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"MVP[翻译]","MVVM","AOP"};
+        return new String[]{"MVP[翻译]","MVVM","AOP","Android Architecture Components[Android架构组件]"};
     }
 
     @Override

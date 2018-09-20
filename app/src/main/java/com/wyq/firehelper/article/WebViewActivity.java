@@ -164,6 +164,8 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
+                if (title != null && !title.isEmpty())
+                    toolbar.setTitle(title);
             }
 
             //支持javascript的警告框
@@ -195,6 +197,7 @@ public class WebViewActivity extends AppCompatActivity {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
+        settings.setDomStorageEnabled(true);
         settings.setLoadsImagesAutomatically(true); //支持自动加载图片
         //缩放操作
         settings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。

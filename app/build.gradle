@@ -4,15 +4,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
         applicationId "com.wyq.firehelper"
-        minSdkVersion 21
-        targetSdkVersion 27
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        flavorDimensions "versionCode"
+        multiDexEnabled true
 
         //指定room.schemaLocation生成的文件路径
         javaCompileOptions {
@@ -33,6 +37,20 @@ android {
         enabled true
     }
 
+    productFlavors{
+        dev{
+            // dev utilizes minSDKVersion = 21 to allow the Android gradle plugin
+            // to pre-dex each module and produce an APK that can be tested on
+            // Android Lollipop without time consuming dex merging processes.
+            minSdkVersion 21
+        }
+
+        prod{
+            // The actual minSdkVersion for the application.
+            minSdkVersion 14
+        }
+    }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -47,6 +65,25 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.atsl.rules
+    androidTestImplementation deps.room.testing
+    androidTestImplementation deps.arch_core.testing
+    testImplementation deps.mockito.core, { exclude group: 'net.bytebuddy' }
+    androidTestImplementation deps.mockito.android
+
+    // Espresso UI Testing
+    androidTestImplementation deps.espresso.core
+    androidTestImplementation deps.espresso.contrib
+    androidTestImplementation deps.espresso.intents
+
+    // Resolve conflicts between main and test APK:
+    androidTestImplementation deps.support.annotations
+    androidTestImplementation deps.support.v4
+    androidTestImplementation deps.support.appcompat
+    androidTestImplementation deps.support.design
+
     // Support libraries
     implementation deps.support.design
     implementation deps.support.v4
@@ -54,6 +91,8 @@ dependencies {
     implementation deps.support.cardview
     implementation deps.support.recyclerview
     implementation deps.constraint_layout
+
+    implementation deps.multidex
 
     implementation deps.kotlin.stdlib
 
@@ -104,7 +143,6 @@ dependencies {
 
     //AspectJ
     implementation deps.aspectj.rt
-
 
 //    implementation('com.alibaba.android:ultraviewpager:1.0.7.7@aar') {
 //        transitive = true

@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.databinding.MvvmBinding;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,12 +59,13 @@ public class MvvmActivity extends SwipeBackActivity {
             }
         });
 
-       thread = new Thread(
-                new Runnable() {
+
+        thread = new Thread(
+                new BackGroundRunable(new IBackGroundRunable() {
                     @Override
-                    public void run() {
+                    public void onBackGround() {
                         int i = 0;
-                        while (true) {
+                        while (!Thread.currentThread().isInterrupted()) {
                             nameModel.name.set(nameModel.name.get() + "q");
                             binding.setIsShow(!binding.getIsShow());
                             i++;
@@ -78,17 +80,37 @@ public class MvvmActivity extends SwipeBackActivity {
                             }
                         }
                     }
-                }
+                })
         );
-       thread.start();
+        thread.start();
     }
 
     @Override
     protected void onDestroy() {
-        if(thread != null){
+        if (thread != null) {
             thread.interrupt();
             thread = null;
         }
         super.onDestroy();
+    }
+
+    public interface IBackGroundRunable {
+        void onBackGround();
+    }
+
+    public static class BackGroundRunable implements Runnable {
+
+        private WeakReference<IBackGroundRunable> reference;
+
+        public BackGroundRunable(IBackGroundRunable runable) {
+            reference = new WeakReference<>(runable);
+        }
+
+        @Override
+        public void run() {
+            if (reference != null) {
+                reference.get().onBackGround();
+            }
+        }
     }
 }

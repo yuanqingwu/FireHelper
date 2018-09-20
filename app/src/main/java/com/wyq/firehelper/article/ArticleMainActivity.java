@@ -2,6 +2,7 @@ package com.wyq.firehelper.article;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,7 +27,7 @@ import co.lujun.androidtagview.TagView;
  * Created by Uni.W on 2017/10/26.
  */
 
-public class ArticleMainActivity extends BaseActivity {
+public class ArticleMainActivity extends BaseActivity implements SearchView.OnCloseListener, View.OnClickListener, SearchView.OnQueryTextListener,View.OnFocusChangeListener {
 
 
     @BindView(R.id.activity_article_recyclerview)
@@ -40,13 +41,12 @@ public class ArticleMainActivity extends BaseActivity {
     public TvRecyclerViewAdapter adapter;
     public SearchView searchView;
 
-    public  List<String> tags;
+    public List<String> tags;
 
     /**
      * 记录上次点击tag的位置
      */
 //    public int tagClickPos = 0;
-
     @Override
     protected int attachLayoutRes() {
         return R.layout.article_activity_main;
@@ -185,16 +185,18 @@ public class ArticleMainActivity extends BaseActivity {
         super.onDestroy();
     }
 
-    public void closeTagContainerLayout(){
+    public void closeTagContainerLayout() {
         tagContainerLayout.setTagBackgroundColor(Color.WHITE);
         tagContainerLayout.setTags(tags);
         tagContainerLayout.setVisibility(View.GONE);
     }
 
-    public void closeSearchView(){
-        searchView.setQuery("",false);
+    public void closeSearchView() {
+        searchView.setQuery("", false);
         searchView.onActionViewCollapsed();
-        searchView.cancelPendingInputEvents();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            searchView.cancelPendingInputEvents();
+        }
     }
 
     @Override
@@ -204,36 +206,42 @@ public class ArticleMainActivity extends BaseActivity {
         searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
         searchView.setQueryHint("文章搜索");
 
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tagContainerLayout.setVisibility(View.VISIBLE);
-            }
-        });
+        searchView.setOnSearchClickListener(this);
 
-        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                closeTagContainerLayout();
-                return false;
-            }
-        });
+//        searchView.setOnCloseListener(this);
+        searchView.setOnQueryTextFocusChangeListener(this);
 
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                doSearch(query);
-                closeTagContainerLayout();
-                closeSearchView();
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
-            }
-        });
+        searchView.setOnQueryTextListener(this);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onClose() {
+        closeTagContainerLayout();
+        return false;
+    }
+
+    @Override
+    public void onClick(View v) {
+        tagContainerLayout.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        doSearch(query);
+        closeTagContainerLayout();
+        closeSearchView();
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        return false;
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        closeTagContainerLayout();
     }
 }
