@@ -8,14 +8,19 @@ import android.arch.lifecycle.ViewModelProvider;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.developKit.room.datasource.DataRepository;
 import com.wyq.firehelper.developKit.room.entity.UserEntity;
 
 public class UserViewModel extends ViewModel {
 
-    private MediatorLiveData<UserEntity> mObservableUser = new MediatorLiveData<>();;
+    private MediatorLiveData<UserEntity> mObservableUser = new MediatorLiveData<>();
+
+    private DataRepository repository;
 
     public UserViewModel(DataRepository repository) {
+        this.repository = repository;
+
         // set by default null, until we get data from the database.
         mObservableUser.setValue(null);
         LiveData<UserEntity> userLiveData = repository.getUser();
@@ -25,9 +30,9 @@ public class UserViewModel extends ViewModel {
             @Override
             public void onChanged(@Nullable UserEntity entity) {
                 mObservableUser.setValue(entity);
+                Logger.i("repository userLiveData onChanged");
             }
         });
-
     }
 
     /**
@@ -38,7 +43,7 @@ public class UserViewModel extends ViewModel {
     }
 
     public void setUser(UserEntity user) {
-        mObservableUser.postValue(user);
+        repository.insertOrUpdateUser(user);
     }
 
     /**

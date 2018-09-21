@@ -12,13 +12,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
-import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
+import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
@@ -129,7 +128,7 @@ public class MainActivity extends BaseActivity {
 
     public List<FireModule> getModuleList() {
         String json = FireUtils.readAssets2String(this, "module.json");
-        Logger.i(json);
+//        Logger.i(json);
         try {
             JSONArray jsonArray = new JSONArray(json);
             List<FireModule> fireModules = new ArrayList<>();

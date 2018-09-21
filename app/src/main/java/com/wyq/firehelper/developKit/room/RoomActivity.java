@@ -14,15 +14,11 @@ import com.wyq.firehelper.base.FireHelpApplication;
 import com.wyq.firehelper.databinding.DevelopkitActivityRoomBinding;
 import com.wyq.firehelper.developKit.room.entity.UserEntity;
 
-import io.reactivex.disposables.CompositeDisposable;
-
 public class RoomActivity extends AppCompatActivity implements View.OnClickListener {
 
     public DevelopkitActivityRoomBinding roomBinding;
 
     private UserViewModel userViewModel;
-
-    private CompositeDisposable disposable = new CompositeDisposable();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,18 +36,12 @@ public class RoomActivity extends AppCompatActivity implements View.OnClickListe
         roomBinding.setLifecycleOwner(this);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-    }
-
     private void subscribeUi(UserViewModel userViewModel) {
         //observe user
         userViewModel.getObservableUser().observe(this, new Observer<UserEntity>() {
             @Override
             public void onChanged(@Nullable UserEntity user) {
-                Logger.i(user == null ? "user is null" : "onChanged:" + user.getFirstName() + user.getLastName());
+                Logger.i(user == null ? "user is null" : "onChanged:" +user.getUid()+ user.getFirstName() + user.getLastName());
                 if (user != null) {
                     roomBinding.setUser(user);
                 } else {
@@ -60,12 +50,6 @@ public class RoomActivity extends AppCompatActivity implements View.OnClickListe
                 roomBinding.executePendingBindings();
             }
         });
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        disposable.clear();
     }
 
     @Override

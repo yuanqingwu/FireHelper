@@ -5,8 +5,14 @@ import android.arch.lifecycle.MediatorLiveData;
 import android.arch.lifecycle.Observer;
 import android.support.annotation.Nullable;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.developKit.room.AppDatabase;
 import com.wyq.firehelper.developKit.room.entity.UserEntity;
+
+import io.reactivex.Completable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Action;
+import io.reactivex.schedulers.Schedulers;
 
 public class DataRepository {
 
@@ -45,10 +51,13 @@ public class DataRepository {
     }
 
     public void insertOrUpdateUser(UserEntity user) {
-       dataSource.insertOrUpdateUser(user);
-    }
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                Logger.i("DataRepository insertOrUpdateUser");
+                dataSource.insertOrUpdateUser(user);
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe();
 
-//    public LiveData<UserEntity> getFirstUser(){
-////        return dataSource.getFirstUser();
-////    }
+    }
 }

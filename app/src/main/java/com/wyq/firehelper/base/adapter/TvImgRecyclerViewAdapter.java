@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.FireModule;
 import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
@@ -85,7 +84,7 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     }
 
     public Bitmap getBitmapByName(String name) {
-        Logger.i(name);
+//        Logger.i(name);
         ApplicationInfo appInfo = context.getApplicationInfo();
         int resID = context.getResources().getIdentifier(name, "drawable", appInfo.packageName);
         return BitmapFactory.decodeResource(context.getResources(), resID);
