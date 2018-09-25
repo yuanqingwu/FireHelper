@@ -48,7 +48,7 @@
         <!-- android:name="android.app.searchable" -->
         <!-- android:resource="@xml/searchable" /> -->
         <!-- </activity> -->
-        <activity android:name=".article.WebViewActivity" />
+        <activity android:name=".article.WebViewActivity" android:launchMode="singleTask" />
         <activity android:name=".architecture.ArchitectureActivity" />
         <activity android:name=".ui.widget.metroimageview.MetroImageViewActivity" />
         <activity android:name=".ui.UiMainActivity" />
@@ -81,7 +81,6 @@
         <activity android:name=".ui.layout.bottomdialog.BottomDialogActivity" />
         <activity android:name=".ui.layout.popupwindow.PopupWindowActivity" />
         <activity android:name=".ui.layout.recyclerview.RecyclerViewActivity" />
-        <activity android:name=".ui.layout.placeholderview.PlaceHolderViewActivity" />
         <activity android:name=".device.camera.CameraActivity" />
         <activity android:name=".developKit.room.RoomActivity" />
         <activity android:name=".ui.layout.transition.TransitionActivity" />

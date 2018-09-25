@@ -53,6 +53,14 @@ public class ArticleConstants {
     public static final ArticleResource _36 = new ArticleResource("http://a.codekk.com/detail/Android/%E6%89%94%E7%89%A9%E7%BA%BF/Dagger%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90", "Dagger 源码解析", "Blog", "框架");
     public static final ArticleResource _37 = new ArticleResource("http://p.codekk.com/", "codekk[Trinea 创建并维护]", "Blog", "博客主页");
     public static final ArticleResource _38 = new ArticleResource("http://www.trinea.cn/android/didi-internationalization-android-evolution/", "滴滴国际化项目 Android 端演进", "Blog", "架构");
+    public static final ArticleResource _39 = new ArticleResource("https://mp.weixin.qq.com/s/6Q818XA5FaHd7jJMFBG60w", "微信Android模块化架构重构实践 ", "Blog", "架构");
+    public static final ArticleResource _40 = new ArticleResource("https://tech.meituan.com/meituan_food_delivery_android_architecture_evolution.html", "美团外卖Android平台化架构演进实践 ", "Blog", "架构");
+    public static final ArticleResource _41 = new ArticleResource("https://blog.csdn.net/qq_17766199/article/details/78450007", "Android单元测试(二)：Mockito框架的使用 ", "Blog", "测试","框架");
+    public static final ArticleResource _42 = new ArticleResource("https://github.com/mockito/mockito/wiki", "mockito/wiki", "Blog", "测试","框架");
+    public static final ArticleResource _43 = new ArticleResource("https://github.com/powermock/powermock", "PowerMock ", "Blog", "测试","框架");
+    public static final ArticleResource _44 = new ArticleResource("https://www.jianshu.com/p/c6d91b8a491f", "Android单元测试之Robolectric", "Blog", "测试","框架");
+    public static final ArticleResource _45 = new ArticleResource("https://mr-cao.gitbooks.io/android/content/", "Android框架分析系列", "Blog", "Android框架");
+    public static final ArticleResource _46 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/52709857", "关于Android Service真正的完全详解，你需要知道的一切", "Blog", "Android框架");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
@@ -90,9 +98,9 @@ public class ArticleConstants {
      * http://gank.io/post/560e15be2dca930e00da1083
      * https://mcxiaoke.gitbooks.io/rxdocs/content/
      */
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/", "RxJava/2.x/javadoc", "", "主页", "框架");
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_1 = new ArticleResource("https://mcxiaoke.gitbooks.io/rxdocs/content/", "ReactiveX/RxJava文档中文版", "", "框架");
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_3 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60", "这可能是最好的RxJava 2.x 教程", "", "框架");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/", "RxJava/2.x/javadoc", "", "主页", "框架","Java");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_1 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60", "这可能是最好的RxJava 2.x 教程", "", "框架","Java");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_2 = new ArticleResource("https://www.jianshu.com/p/b30de498c3cc", "Android - RxJava2.0 操作符整理归纳", "Blog", "框架","Java");
 
 
     /**

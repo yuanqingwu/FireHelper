@@ -48,5 +48,14 @@
             android:padding="10dp"
             android:textColor="@color/lightblue"
             app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_1" />
+        <TextView
+            android:id="@+id/activity_developkit_rxjava_tv_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/darkgrey"
+            android:padding="10dp"
+            android:textColor="@color/lightblue"
+            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_2" />
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

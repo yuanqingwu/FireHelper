@@ -101,7 +101,6 @@ public class WebViewActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         return super.onKeyDown(keyCode, event);
     }
 
@@ -132,7 +131,7 @@ public class WebViewActivity extends AppCompatActivity {
 
             @Override
             public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
-                //App里面使用webview控件的时候遇到了诸如404这类的错误的时候，若也显示浏览器里面的那种错误提示页面就显得很丑陋了，那么这个时候我们的app就需要加载一个本地的错误提示页面
+                //可以加载一个本地的错误提示页面
                 super.onReceivedError(view, request, error);
             }
 
@@ -197,7 +196,7 @@ public class WebViewActivity extends AppCompatActivity {
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        settings.setDomStorageEnabled(true);
+//        settings.setDomStorageEnabled(true);
         settings.setLoadsImagesAutomatically(true); //支持自动加载图片
         //缩放操作
         settings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
