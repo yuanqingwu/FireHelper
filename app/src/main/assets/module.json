@@ -30,6 +30,11 @@
     "headImage":"architecture"
   },
   {
+    "title_en":"Component",
+    "title_zh":"组件",
+    "headImage":"component"
+  },
+  {
     "title_en":"kotlin",
     "title_zh":"kotlin",
     "headImage":"kotlin"

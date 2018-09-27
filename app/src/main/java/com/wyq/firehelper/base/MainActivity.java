@@ -20,6 +20,7 @@ import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
+import com.wyq.firehelper.service.ServiceActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 import com.wyq.firehelper.utils.FireUtils;
@@ -78,6 +79,10 @@ public class MainActivity extends BaseActivity {
                                 ArchitectureActivity.class));
                         break;
                     case 6:
+                        startActivity(new Intent(MainActivity.this,
+                                ServiceActivity.class));
+                        break;
+                    case 7:
                         startActivity(new Intent(MainActivity.this,
                                 GitHubMainActivity.class));
                         break;

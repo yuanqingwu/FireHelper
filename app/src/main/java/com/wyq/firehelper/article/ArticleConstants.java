@@ -61,6 +61,10 @@ public class ArticleConstants {
     public static final ArticleResource _44 = new ArticleResource("https://www.jianshu.com/p/c6d91b8a491f", "Android单元测试之Robolectric", "Blog", "测试","框架");
     public static final ArticleResource _45 = new ArticleResource("https://mr-cao.gitbooks.io/android/content/", "Android框架分析系列", "Blog", "Android框架");
     public static final ArticleResource _46 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/52709857", "关于Android Service真正的完全详解，你需要知道的一切", "Blog", "Android框架");
+    public static final ArticleResource _47 = new ArticleResource("https://developer.android.google.cn/guide/components/tasks-and-back-stack", "任务和返回栈", "Blog", "Android框架");
+    public static final ArticleResource _48 = new ArticleResource("https://www.jianshu.com/p/b66c225c19e2", "Android WebView独立进程解决方案", "Blog", "优化");
+    public static final ArticleResource _49 = new ArticleResource("https://mp.weixin.qq.com/s/Z7oMv0IgKWNkhLon_hFakg", "Android内存优化杂谈", "Blog", "优化");
+    public static final ArticleResource _50 = new ArticleResource("https://mp.weixin.qq.com/s/QRIy_apwqAaL2pM8a_lRUQ", "Android安装包相关知识汇总", "Blog", "优化");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

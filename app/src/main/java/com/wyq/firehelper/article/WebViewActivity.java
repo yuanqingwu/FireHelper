@@ -1,5 +1,6 @@
 package com.wyq.firehelper.article;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
@@ -22,6 +23,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 
 import butterknife.BindView;
@@ -69,6 +71,12 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Logger.i("WebViewActivity onNewIntent");
+    }
+
+    @Override
     protected void onStart() {
         super.onStart();
     }
@@ -86,8 +94,8 @@ public class WebViewActivity extends AppCompatActivity {
             webView.clearHistory();
 
             ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.removeAllViews();
             webView.destroy();
-            webView = null;
         }
         if (webViewClient != null) {
             webViewClient = null;

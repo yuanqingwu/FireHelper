@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/recycler_item_selector"
-    android:layout_margin="10dp"
-    android:padding="10dp">
+    android:layout_margin="5dp"
+    android:foreground="?android:selectableItemBackground"
+    app:cardCornerRadius="5dp">
 
-    <ImageView
-        android:id="@+id/recyclerview_item_tv_img_img"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="8dp">
 
-    <TextView
-        android:id="@+id/recyclerview_item_tv_img_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recyclerview_item_tv_img_img"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/recyclerview_item_tv_img_img"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp" />
+
+        <TextView
+            android:id="@+id/recyclerview_item_tv_img_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recyclerview_item_tv_img_img"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
