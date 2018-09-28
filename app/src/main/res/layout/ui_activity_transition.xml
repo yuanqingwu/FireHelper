@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.layout.transition.TransitionActivity">
+    tools:context=".ui.android.transition.TransitionActivity">
 
     <Button
         android:id="@+id/ui_activity_transition_bt"

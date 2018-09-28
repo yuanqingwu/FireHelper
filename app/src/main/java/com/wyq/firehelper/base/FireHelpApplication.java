@@ -3,6 +3,8 @@ package com.wyq.firehelper.base;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.multidex.MultiDexApplication;
+import android.support.text.emoji.EmojiCompat;
+import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
@@ -13,6 +15,7 @@ import com.squareup.leakcanary.AndroidExcludedRefs;
 import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
+import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.developKit.room.AppDatabase;
 import com.wyq.firehelper.developKit.room.AppExecutors;
 import com.wyq.firehelper.developKit.room.datasource.DataRepository;
@@ -42,14 +45,29 @@ public class FireHelpApplication extends MultiDexApplication {
             initLeakCanary();
             initLogger();
         }
+
+        initMMKV();
+
+        initEmojiCompat();
+
     }
 
-    public AppDatabase getDatabase(){
-        return AppDatabase.getInstance(this,appExecutors);
+    public AppDatabase getDatabase() {
+        return AppDatabase.getInstance(this, appExecutors);
     }
 
-    public DataRepository getRepository(){
+    public DataRepository getRepository() {
         return DataRepository.getInstance(getDatabase());
+    }
+
+    public void initMMKV() {
+        String path = MMKV.initialize(this);
+        Logger.i("MMKV PATH:" + path);
+    }
+
+    public void initEmojiCompat() {
+        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+        EmojiCompat.init(config);
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.draglayout;
+package com.wyq.firehelper.ui.android.draglayout;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;

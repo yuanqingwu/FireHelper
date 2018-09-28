@@ -1,17 +1,9 @@
 [
   {
-    "category": "Layout",
+    "category": "Android",
     "info": [
       {
         "name": "RecyclerView",
-        "description": ""
-      },
-      {
-        "name": "Tangram",
-        "description": ""
-      },
-      {
-        "name": "UltraViewPager",
         "description": ""
       },
       {
@@ -28,6 +20,27 @@
       },
       {
         "name": "Transition",
+        "description": ""
+      },
+      {
+        "name": "Animation",
+        "description": ""
+      },
+      {
+        "name": "Emoji",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "category": "Layout",
+    "info": [
+      {
+        "name": "Tangram",
+        "description": ""
+      },
+      {
+        "name": "UltraViewPager",
         "description": ""
       }
     ]
@@ -49,10 +62,6 @@
       },
       {
         "name": "FireToast",
-        "description": ""
-      },
-      {
-        "name": "Animation",
         "description": ""
       }
     ]

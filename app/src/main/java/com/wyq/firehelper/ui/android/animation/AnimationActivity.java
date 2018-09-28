@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget.animation;
+package com.wyq.firehelper.ui.android.animation;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;

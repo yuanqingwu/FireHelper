@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.bottomdialog;
+package com.wyq.firehelper.ui.android.bottomdialog;
 
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;

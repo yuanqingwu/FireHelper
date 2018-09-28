@@ -15,8 +15,8 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.FireModule;
-import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
-import com.wyq.firehelper.ui.layout.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
+import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
+import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
 import java.util.ArrayList;
 import java.util.Collections;

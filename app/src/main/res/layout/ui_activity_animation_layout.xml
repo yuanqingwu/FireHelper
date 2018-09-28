@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.widget.animation.AnimationActivity">
+    tools:context=".ui.android.animation.AnimationActivity">
 
     <Button
         android:id="@+id/ui_activity_animation_property_Bt"

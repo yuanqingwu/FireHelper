@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.recyclerview;
+package com.wyq.firehelper.ui.android.recyclerview;
 
 import android.net.Uri;
 import android.support.v4.app.Fragment;

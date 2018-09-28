@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.draglayout;
+package com.wyq.firehelper.ui.android.draglayout;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

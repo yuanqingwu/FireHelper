@@ -93,6 +93,8 @@ dependencies {
     implementation deps.support.recyclerview
     implementation deps.constraint_layout
 
+    implementation deps.emoji
+
     implementation deps.multidex
 
     implementation deps.kotlin.stdlib
@@ -141,6 +143,8 @@ dependencies {
 
     implementation deps.tagview
     implementation deps.photoview
+
+    implementation 'com.tencent:mmkv:1.0.10'
 
     //AspectJ
     implementation deps.aspectj.rt

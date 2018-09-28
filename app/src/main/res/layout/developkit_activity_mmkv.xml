@@ -4,17 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.android.bottomdialog.BottomDialogActivity">
+    tools:context=".developKit.mmkv.MMKVActivity">
 
-    <Button
-        android:id="@+id/ui_activity_bottom_dialog_show_bt"
+    <TextView
+        android:id="@+id/developkit_activity_mmkv_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/ui_activity_bottom_dialog_show_list_bt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/ui_activity_bottom_dialog_show_bt" />
-
 </android.support.constraint.ConstraintLayout>

@@ -17,7 +17,7 @@ import com.wyq.firehelper.R;
 
 public class FireService extends Service {
 
-    private static final int NOTOFICATION_ID = 1;
+    private static final int NOTIFICATION_ID = 1;
 
     private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
@@ -45,7 +45,7 @@ public class FireService extends Service {
                                 if (builder != null) {
                                     i = i + 5;
                                     builder.setProgress(100, i, false);
-                                    notificationManager.notify(NOTOFICATION_ID, builder.build());
+                                    notificationManager.notify(NOTIFICATION_ID, builder.build());
                                 }
                                 try {
                                     Thread.sleep(1000);
@@ -104,7 +104,7 @@ public class FireService extends Service {
         Logger.d("onDestroy");
         super.onDestroy();
         isStop = true;
-        notificationManager.cancel(NOTOFICATION_ID);
+        notificationManager.cancel(NOTIFICATION_ID);
         if (thread != null) {
             thread.interrupt();
             thread = null;
@@ -127,8 +127,8 @@ public class FireService extends Service {
         builder.setProgress(100, 0, false);
         builder.setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, ServiceActivity.class), 0));
         Notification notification = builder.build();
-//        notificationManager.notify(NOTOFICATION_ID, notification);
-        startForeground(NOTOFICATION_ID, notification);
+//        notificationManager.notify(NOTIFICATION_ID, notification);
+        startForeground(NOTIFICATION_ID, notification);
     }
 
 }

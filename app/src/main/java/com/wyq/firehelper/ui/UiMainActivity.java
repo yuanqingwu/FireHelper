@@ -11,7 +11,6 @@ import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.utils.FireUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -24,8 +23,6 @@ public class UiMainActivity extends BaseActivity {
     public ViewPager viewPager;
     @BindView(R.id.ui_activity_main_tablayout)
     public TabLayout tabLayout;
-
-//    public String[] uiType = new String[]{"layout", "weight", "anim"};
 
     @Override
     protected int attachLayoutRes() {
@@ -59,62 +56,5 @@ public class UiMainActivity extends BaseActivity {
         }
         return uiBeanList;
     }
-
-//    /**
-//     * FlexboxLayout
-//     * PhotoView
-//     */
-//    @Override
-//    public String[] listItemsNames() {
-//        return new String[]{"MetroStyle[MyImageView]", "ZoomImageView[MyZoomImageView]", "CircleBlurImageView[MyCircleImageView]", "DragLayout", "Tangram", "UltraViewPager"};
-//    }
-//
-//    @Override
-//    public String toolBarName() {
-//        return "UI";
-//    }
-//
-//    @Override
-//    public boolean isShowBackIcon() {
-//        return true;
-//    }
-//
-//    @Override
-//    public TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
-//        return new TvRecyclerViewAdapter.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(View view, int position) {
-//                switch (position) {
-//                    case 0:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                MetroImageViewActivity.class));
-//                        break;
-//                    case 1:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                ZoomImageViewActivity.class));
-//                        break;
-//                    case 2:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                CircleImageViewActivity.class));
-//                        break;
-//                    case 3:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                DragLayoutActivity.class));
-//                        break;
-//                    case 4:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                TangramActivity.class));
-//                        break;
-//                    case 5:
-//                        startActivity(new Intent(UiMainActivity.this,
-//                                UltraViewPagerActivity.class));
-//                        break;
-//                    default:
-//                        break;
-//                }
-//            }
-//        };
-//    }
-
 
 }

@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.recyclerview;
+package com.wyq.firehelper.ui.android.recyclerview;
 
 import android.content.Context;
 import android.graphics.Canvas;

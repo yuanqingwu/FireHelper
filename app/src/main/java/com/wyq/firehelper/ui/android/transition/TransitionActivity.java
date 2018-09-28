@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.layout.transition;
+package com.wyq.firehelper.ui.android.transition;
 
 import android.support.transition.Scene;
 import android.support.transition.TransitionInflater;
