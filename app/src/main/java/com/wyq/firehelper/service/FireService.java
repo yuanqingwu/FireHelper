@@ -1,12 +1,15 @@
 package com.wyq.firehelper.service;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
@@ -18,6 +21,8 @@ import com.wyq.firehelper.R;
 public class FireService extends Service {
 
     private static final int NOTIFICATION_ID = 1;
+    private static final String NOTIFICATION_CHANNEL_ID = "FireService";
+    private static final String NOTIFICATION_CHANNEL_GROUP_ID = "FireService";
 
     private NotificationCompat.Builder builder;
     private NotificationManager notificationManager;
@@ -113,8 +118,15 @@ public class FireService extends Service {
 
     private void createNotification() {
         notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            builder = new NotificationCompat.Builder(this, "");
+            notificationManager.createNotificationChannelGroup(new NotificationChannelGroup(NOTIFICATION_CHANNEL_GROUP_ID,"FireService"));
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,"FireService",NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setGroup(NOTIFICATION_CHANNEL_GROUP_ID);
+            channel.enableLights(true);
+            channel.setLightColor(Color.WHITE);
+            builder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID);
+            notificationManager.createNotificationChannel(channel);
         } else {
             builder = new NotificationCompat.Builder(this);
         }

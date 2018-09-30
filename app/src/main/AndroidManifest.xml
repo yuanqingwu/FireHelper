@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature android:name="android.hardware.location.gps" />
+    <!--使用OpenGL ES 2.0-->
+    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -98,7 +100,8 @@
         <service android:name=".service.FireService" />
 
         <activity android:name=".developKit.mmkv.MMKVActivity" />
-        <activity android:name=".ui.android.emoji.EmojiActivity"></activity>
+        <activity android:name=".ui.android.emoji.EmojiActivity" />
+        <activity android:name=".media.opengles.OpenGLESActivity"></activity>
     </application>
 
 </manifest>

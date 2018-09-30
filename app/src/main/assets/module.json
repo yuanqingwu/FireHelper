@@ -35,6 +35,11 @@
     "headImage":"component"
   },
   {
+    "title_en":"Media",
+    "title_zh":"媒体",
+    "headImage":"media"
+  },
+  {
     "title_en":"kotlin",
     "title_zh":"kotlin",
     "headImage":"kotlin"

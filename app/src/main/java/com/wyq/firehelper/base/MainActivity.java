@@ -20,6 +20,7 @@ import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
+import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 import com.wyq.firehelper.service.ServiceActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
@@ -83,6 +84,9 @@ public class MainActivity extends BaseActivity {
                                 ServiceActivity.class));
                         break;
                     case 7:
+                        OpenGLESActivity.instance(MainActivity.this);
+                        break;
+                    case 8:
                         startActivity(new Intent(MainActivity.this,
                                 GitHubMainActivity.class));
                         break;
