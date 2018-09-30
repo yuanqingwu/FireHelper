@@ -13,10 +13,41 @@
 - 安全：收集整理安全相关的最佳实践。
 - 开发工具：搜集目前流行的开源框架的介绍文章，应用示例。
 - 架构：提供目前流行的开发架构示例。同时包括AOP等架构相关的技术示例。
+- 组件：提供安卓基本组件的最佳实践整理，如service
+- 媒体：提供安卓多媒体相关技术的实践例子，如OpenGL ES
 - kotlin：结合一些主流的框架提供kotlin编写的参考例子。
 - 待添加...
 
 目前仍处于快速的迭代编码中，欢迎有相同意愿的大牛fork本项目，一起完善这本“Android 百科全书”
+
+
+# 截图
+## 文章
+收集分类优秀的安卓技术文章，提供SerchView进行搜索与tag分类查找。最后通过webview浏览。
+
+目前文章列表暂时静态定义在（未排序整理）：
+[ArticleConstants.java](https://github.com/wuyuanqing527/FireHelper/blob/master/app/src/main/java/com/wyq/firehelper/article/ArticleConstants.java "ArticleConstants")
+<div style="margin-top:20px">
+<img src="https://i.imgur.com/oqLv0dN.png" width="30%" height="50%"/>
+</div>
+
+## 其他模块
+
+<div style="margin-top:20px">
+<img src="https://i.imgur.com/DJ8Bu5G.png" width="30%" height="50%"/>
+</div>
+
+<div style="margin-top:20px;">
+<img src="https://i.imgur.com/BMKUgRj.png" width="30%" height="50%"/>
+</div>
+
+<div style="margin-top:20px;">
+<img src="https://i.imgur.com/L9IJJS8.png" width="30%" height="50%"/>
+</div>
+
+<div style="margin-top:20px;">
+<img src="https://i.imgur.com/ZjUxFn9.png" width="30%" height="50%"/>
+</div>
 
 #### 计划
 
@@ -24,7 +55,8 @@
 
 1. 文章
 
-	将目前静态的文章升级为可以添加删除，优化webview加载体验。
+	将目前静态的文章升级为可以添加删除,可以添加稍后查看并在首页展示稍后查看文章链接，首页文章模块顶部单独一行。有条件可考虑云端存储文章列表。
+	优化webview加载体验。
 
 2. 设备模块
 	
@@ -32,7 +64,7 @@
 
 3. 界面
 	
-	整体整个模块的结构，增加（Test）tab用来展示一般控件的使用，收集更多例子
+	优化展现方式，收集更多例子，支持搜索
 
 4. 安全
 	
