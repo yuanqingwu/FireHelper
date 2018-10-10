@@ -20,7 +20,7 @@ public class CircleImageViewActivity extends BaseActivity {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.circle_iamgeview;
+        return R.layout.ui_activity_widget_circle_iamgeview;
     }
 
     @Override

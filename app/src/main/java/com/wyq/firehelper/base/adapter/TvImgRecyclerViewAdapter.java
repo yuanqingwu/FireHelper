@@ -49,6 +49,11 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
 
     private List<FireModule> list = new ArrayList<>();
     private Context context;
+    private int orientation = VERTICAL;
+
+    public static final int HORIZONTAL = 0;
+    public static final int VERTICAL = 1;
+
 
     public TvImgRecyclerViewAdapter(Context context,List<FireModule> oriList) {
         this.context = context;
@@ -62,10 +67,15 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
         notifyDataSetChanged();
     }
 
+    public void setOrientation(int orientation){
+        this.orientation = orientation;
+    }
+
     @NonNull
     @Override
     public TvViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        TvViewHolder holder = new TvViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_item_tv_img_layout, parent, false));
+        int layoutId = orientation == VERTICAL?R.layout.recyclerview_item_tv_img_layout_v:R.layout.recyclerview_item_tv_img_layout_h;
+        TvViewHolder holder = new TvViewHolder(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
         return holder;
     }
 
@@ -83,7 +93,7 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
         }
     }
 
-    public Bitmap getBitmapByName(String name) {
+    private Bitmap getBitmapByName(String name) {
 //        Logger.i(name);
         ApplicationInfo appInfo = context.getApplicationInfo();
         int resID = context.getResources().getIdentifier(name, "drawable", appInfo.packageName);

@@ -105,7 +105,7 @@ public class TangramActivity extends BaseActivity {
         builder.registerCell(4, RatioTextView.class);
         builder.registerCell(110,
                 TestViewHolderCell.class,
-                new ViewHolderCreator<>(R.layout.item_holder, TestViewHolder.class, TextView.class));
+                new ViewHolderCreator<>(R.layout.ui_activity_tangram_item_holder, TestViewHolder.class, TextView.class));
         builder.registerCell(199, SingleImageView.class);
         builder.registerVirtualView("vvtest");
 

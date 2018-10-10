@@ -2,6 +2,9 @@ package com.wyq.firehelper.base;
 
 import android.content.Intent;
 import android.os.Build;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,22 +36,38 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class MainActivity extends BaseActivity {
+public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.list_activity_recycler_view)
+    @BindView(R.id.activity_main_rv)
     public RecyclerView baseRV;
+    @BindView(R.id.ui_activity_pull_ext_view_rv)
+    public RecyclerView exRecyclerView;
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
 
     public static final int LINEAR_LAYOUT_TYPE = 0;
     public static final int GRID_LAYOUT_TYPE = 1;
 
+    /**
+     * 首页列表类型
+     */
     public int HOME_LAYOUT_TYPE = GRID_LAYOUT_TYPE;
 
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main_layout);
+        ButterKnife.bind(this);
+
+        initToolBar(toolbar, getString(R.string.app_name));
+        initView();
+    }
 
     public TvImgRecyclerViewAdapter.OnItemClickListener onListItemClickListener() {
         return new TvImgRecyclerViewAdapter.OnItemClickListener() {
@@ -100,14 +119,9 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected int attachLayoutRes() {
-        return R.layout.list_activity_layout;
-    }
-
-    @Override
-    public void initToolBar() {
-        initToolBar(toolbar, getString(R.string.app_name), false);
+    public void initToolBar(Toolbar toolbar, String title) {
+        toolbar.setTitle(title);
+        setSupportActionBar(toolbar);
     }
 
     public void initView() {
@@ -118,20 +132,26 @@ public class MainActivity extends BaseActivity {
 
     public void initRecyclerView() {
 
-        TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this,getModuleList());
+        TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this, getModuleList());
+        adapter.setOrientation(TvImgRecyclerViewAdapter.VERTICAL);
         baseRV.setLayoutManager(getLayoutManager(HOME_LAYOUT_TYPE));
         baseRV.setAdapter(adapter);
         adapter.setOnItemClickListener(onListItemClickListener());
 
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
         itemTouchHelper.attachToRecyclerView(baseRV);
+
+        TvImgRecyclerViewAdapter extAdapter = new TvImgRecyclerViewAdapter(this, getModuleList());
+        extAdapter.setOrientation(TvImgRecyclerViewAdapter.HORIZONTAL);
+        exRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        exRecyclerView.setAdapter(extAdapter);
     }
 
     public RecyclerView.LayoutManager getLayoutManager(int layoutType) {
-        if(layoutType == LINEAR_LAYOUT_TYPE){
+        if (layoutType == LINEAR_LAYOUT_TYPE) {
             return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        }else {
-            return new GridLayoutManager(this,2);
+        } else {
+            return new GridLayoutManager(this, 2);
         }
     }
 
