@@ -1,5 +1,6 @@
 package com.wyq.firehelper.device;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
@@ -45,5 +46,7 @@ public class DeviceActivity extends BaseRecyclerViewActivity {
         };
     }
 
-
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, DeviceActivity.class));
+    }
 }

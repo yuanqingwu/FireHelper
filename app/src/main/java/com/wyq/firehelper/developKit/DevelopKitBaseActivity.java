@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.wyq.firehelper.article.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.utils.FireUtils;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,7 +73,7 @@ public abstract class DevelopKitBaseActivity extends BaseActivity {
         List<DevelopKit> kitsList = new ArrayList<>();
         Gson gson = new Gson();
         try {
-            JSONArray kitsArray = new JSONArray(FireUtils.readAssets2String(this,"developKit.json"));
+            JSONArray kitsArray = new JSONArray(FireHelperUtils.readAssets2String(this,"developKit.json"));
             for(int i=0; i<kitsArray.length();i++){
                 DevelopKit kit = gson.fromJson(kitsArray.getString(i),DevelopKit.class);
                 kitsList.add(kit);

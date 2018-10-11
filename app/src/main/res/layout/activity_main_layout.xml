@@ -11,12 +11,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <include layout="@layout/external_view_rv_layout"/>
+        <include layout="@layout/external_view_rv_layout" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/activity_main_rv"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        ></android.support.v7.widget.RecyclerView>
+
+        <android.support.v7.widget.CardView
+            android:id="@+id/main_activity_article_cardview"
+            style="@style/HomeCardView"
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/main_activity_article_img"
+                        android:layout_width="match_parent"
+                        android:layout_height="60dp"
+                        android:src="@drawable/article" />
+
+                    <TextView
+                        android:id="@+id/main_activity_article_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="文章" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/main_activity_article_hot_rv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/darkmagenta"
+                    android:minHeight="100dp"
+                    android:minWidth="100dp">
+
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/activity_main_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
     </com.wyq.firehelper.ui.layout.pullextviewlayout.ExtRecyclerViewLayout>
 </LinearLayout>

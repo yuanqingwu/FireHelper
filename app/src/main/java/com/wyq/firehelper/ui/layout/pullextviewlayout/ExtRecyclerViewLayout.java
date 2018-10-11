@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
@@ -20,11 +19,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
     private Scroller scroller;
 
-    private float percent = 0;
     private float headHeight = 0;
     private float headWidth = 0;
-
-    private int mTouchSlop;
 
     private float dampingFactor = 1.0f;
 
@@ -52,8 +48,6 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     public ExtRecyclerViewLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         scroller = new Scroller(context);
-        mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
-        Logger.i("mTouchSlop:" + mTouchSlop);
     }
 
     @Override
@@ -69,7 +63,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int childCount = getChildCount();
-        Logger.i("onMeasure childCount:" + childCount + " headHeight:" + headHeight);
+//        Logger.i("onMeasure childCount:" + childCount + " headHeight:" + headHeight);
 
         //do nothing
     }
@@ -78,13 +72,13 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         int childCount = getChildCount();
-        Logger.i("onLayout childCount:" + childCount + " headHeight:" + headHeight + " changed:" + changed);
+//        Logger.i("onLayout childCount:" + childCount + " headHeight:" + headHeight + " changed:" + changed);
 
         //do nothing
     }
 
     /**
-     *初始化各项参数
+     * 初始化各项参数
      */
     private void initViewSize() {
         int childCount = getChildCount();
@@ -128,7 +122,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float dx = x - lastInterceptX;
                 float dy = y - lastIntercepty;
 
-                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
+//                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
                 if (Math.abs(dy) > Math.abs(dx)) {
                     intercept = true;
                 } else {
@@ -147,7 +141,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         lastY = y;
         lastInterceptX = x;
         lastIntercepty = y;
-        Logger.i(intercept + "");
+//        Logger.i(intercept + "");
         return intercept;
     }
 
@@ -164,7 +158,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 float dx = x - lastX;
                 float dy = y - lastY;
-                Logger.i("intercept " + " maxheight:" + maxHeadHeight + " dy:" + dy + " scrolly:" + getScrollY() + " getTranslationY:" + getTranslationY() + " gety:" + getY() + " gettop:" + getTop());
+//                Logger.i("intercept " + " maxheight:" + maxHeadHeight + " dy:" + dy + " scrolly:" + getScrollY() + " getTranslationY:" + getTranslationY() + " gety:" + getY() + " gettop:" + getTop());
                 deltaY = dy;
                 if (Math.abs(dy) > Math.abs(dx)) {
 //                    if ((dy < 0 && getScrollY() <= 0) || (dy > 0 && getScrollY() >= -maxHeadHeight))
@@ -178,7 +172,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float baseHeight = -headHeight / 2;
                 if (scrollY <= baseHeight) {//开
                     resetHeadView((int) -headHeight);
-                    if (deltaY < 0)
+                    //当滑动距离在头部长度之内并且向上滑动则直接关闭头部
+                    if (scrollY > -headHeight && deltaY < 0)
                         resetHeadView(0);
                 } else {//关
                     resetHeadView(0);
@@ -199,7 +194,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         smoothScrollTo(y);
         if (y == 0) {//头部未显示
             loadingDot.setPercent(0);
-            loadingDot.setVisibility(View.VISIBLE);
+//            loadingDot.setVisibility(View.VISIBLE);
         } else {//头部完全显示
             loadingDot.setPercent(1);
         }
@@ -216,6 +211,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
         if (dy < 0) {//向上滑动
 //            resetHeadView(0);
+            loadingDot.setVisibility(View.GONE);
             return;
         }
 
@@ -223,6 +219,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
             dampingFactor = 1;
             float percent = absScrollY / headHeight;
             loadingDot.setPercent(percent);
+
             loadingDot.setVisibility(View.VISIBLE);
             if (percent < 0.5) {
                 headRecyclerView.setTranslationY(-loadingDot.getMeasuredHeight());

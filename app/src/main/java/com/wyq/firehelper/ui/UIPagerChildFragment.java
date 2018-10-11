@@ -11,7 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseFragment;
-import com.wyq.firehelper.utils.FireUtils;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class UIPagerChildFragment extends BaseFragment {
     private List<UiBean> getUiName() {
         List<UiBean> uiBeanList = new ArrayList<>();
 
-        String uiJson = FireUtils.readAssets2String(getContext(), "ui.json");
+        String uiJson = FireHelperUtils.readAssets2String(getContext(), "ui.json");
         JsonArray jsonArray = new Gson().fromJson(uiJson, JsonArray.class);
         for (int i = 0; i < jsonArray.size(); i++) {
             UiBean uiBean = new Gson().fromJson(jsonArray.get(i), UiBean.class);

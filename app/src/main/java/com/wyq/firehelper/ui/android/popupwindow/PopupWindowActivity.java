@@ -88,4 +88,5 @@ public class PopupWindowActivity extends BaseActivity {
 //        popupWindow.showAsDropDown(button,0,0);
         popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.BOTTOM,0,0);
     }
+
 }

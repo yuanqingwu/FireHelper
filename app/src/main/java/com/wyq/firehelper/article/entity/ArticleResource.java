@@ -1,5 +1,6 @@
-package com.wyq.firehelper.article;
+package com.wyq.firehelper.article.entity;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 
@@ -7,7 +8,9 @@ import java.util.List;
  * Created by Uni.W on 2018/3/16.
  */
 
-public class ArticleResource {
+public class ArticleResource implements Serializable {
+
+    private static final long serialVersionUID = -7851956585772569108L;
 
     private String url;
     private String title;

@@ -1,5 +1,7 @@
 package com.wyq.firehelper.architecture;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 
 import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
@@ -47,5 +49,8 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
         };
     }
 
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, ArchitectureActivity.class));
+    }
 
 }

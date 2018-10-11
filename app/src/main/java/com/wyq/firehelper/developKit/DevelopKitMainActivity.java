@@ -1,10 +1,13 @@
 package com.wyq.firehelper.developKit;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 
 import butterknife.BindView;
 
@@ -46,4 +49,8 @@ public class DevelopKitMainActivity extends DevelopKitBaseActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, DevelopKitMainActivity.class));
+    }
 }

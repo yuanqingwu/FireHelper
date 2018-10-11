@@ -1,5 +1,7 @@
 package com.wyq.firehelper.encryption;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -16,6 +18,7 @@ import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
+import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 import com.wyq.firehelper.utils.LogUtils;
 
 import java.lang.annotation.Annotation;
@@ -234,5 +237,10 @@ public class EncryptActivity extends BaseActivity {
                 list.add(s);
         }
         return list;
+    }
+
+
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, EncryptActivity.class));
     }
 }

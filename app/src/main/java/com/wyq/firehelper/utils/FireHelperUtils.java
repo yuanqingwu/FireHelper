@@ -5,7 +5,7 @@ import android.content.Context;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class FireUtils {
+public class FireHelperUtils {
 
     public static String readAssets2String(Context context,String name){
         InputStream is = null;

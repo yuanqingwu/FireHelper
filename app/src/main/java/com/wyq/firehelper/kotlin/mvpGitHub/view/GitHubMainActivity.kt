@@ -1,5 +1,7 @@
 package com.wyq.firehelper.kotlin.mvpGitHub.view
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.SearchView
@@ -74,8 +76,8 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
         closeSearchView()
     }
 
-    override fun showRepositoryDetail(id:Long,repoDetail: RepositoryDetail) {
-        repoAdapter!!.refreshRepoDetail(id,repoDetail)
+    override fun showRepositoryDetail(id: Long, repoDetail: RepositoryDetail) {
+        repoAdapter!!.refreshRepoDetail(id, repoDetail)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -107,5 +109,10 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
         searchView?.cancelPendingInputEvents()
         searchView = null
         super.onDestroy()
+    }
+
+    fun instance(context: Context) {
+        startActivity(Intent(context,
+                GitHubMainActivity::class.java))
     }
 }

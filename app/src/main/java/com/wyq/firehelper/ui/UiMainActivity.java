@@ -1,5 +1,7 @@
 package com.wyq.firehelper.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -8,7 +10,8 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.utils.FireUtils;
+import com.wyq.firehelper.media.opengles.OpenGLESActivity;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +51,7 @@ public class UiMainActivity extends BaseActivity {
     private List<UiBean> getUiName() {
         List<UiBean> uiBeanList = new ArrayList<>();
 
-        String uiJson = FireUtils.readAssets2String(this, "ui.json");
+        String uiJson = FireHelperUtils.readAssets2String(this, "ui.json");
         JsonArray jsonArray = new Gson().fromJson(uiJson, JsonArray.class);
         for (int i = 0; i < jsonArray.size(); i++) {
             UiBean uiBean = new Gson().fromJson(jsonArray.get(i), UiBean.class);
@@ -57,4 +60,7 @@ public class UiMainActivity extends BaseActivity {
         return uiBeanList;
     }
 
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, UiMainActivity.class));
+    }
 }

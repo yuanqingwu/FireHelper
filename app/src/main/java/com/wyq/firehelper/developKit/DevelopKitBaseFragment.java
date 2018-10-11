@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.wyq.firehelper.article.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.WebViewActivity;
 import com.wyq.firehelper.base.BaseFragment;
 import com.wyq.firehelper.utils.CloseUtils;

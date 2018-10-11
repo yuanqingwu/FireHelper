@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 

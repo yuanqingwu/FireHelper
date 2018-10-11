@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.utils.FireUtils;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
 import butterknife.BindView;
 
@@ -34,7 +34,7 @@ public class MMKVActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        data = FireUtils.readAssets2String(this,"developKit.json");
+        data = FireHelperUtils.readAssets2String(this,"developKit.json");
 
         textView.setText("MMKV \nwrite:" + initMMKV() + " ns\n"+"read :"+readMMKV()+" ns\n");
         textView.append("\n\nSharedPreferences \nwrite:"+initSharedPreferences()+ " ns\n"+"read :" + readSharedPreferences() + " ns\n");

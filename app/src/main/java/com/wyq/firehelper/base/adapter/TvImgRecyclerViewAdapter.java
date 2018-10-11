@@ -14,7 +14,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.FireModule;
+import com.wyq.firehelper.article.entity.ArticleSaveEntity;
+import com.wyq.firehelper.base.home.FireModule;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
@@ -37,17 +38,25 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
         notifyItemRemoved(position);
     }
 
-    public interface OnItemClickListener {
+    public interface OnTvImgItemClickListener {
         void onItemClick(View view, int position);
     }
 
-    private OnItemClickListener onItemClickListener;
-
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        this.onItemClickListener = onItemClickListener;
+    public interface OnTvImgItemLongClickListener{
+        void onItemLongClick(View view,int position);
     }
 
-    private List<FireModule> list = new ArrayList<>();
+    private OnTvImgItemClickListener onTvImgItemClickListener;
+    private OnTvImgItemLongClickListener onTvImgItemLongClickListener;
+
+    public void setOnItemClickListener(OnTvImgItemClickListener onItemClickListener) {
+        this.onTvImgItemClickListener = onItemClickListener;
+    }
+    public void setOnItemLongClickListener(OnTvImgItemLongClickListener onItemLongClickListener) {
+        this.onTvImgItemLongClickListener = onItemLongClickListener;
+    }
+
+    private List<?> list = new ArrayList<>();
     private Context context;
     private int orientation = VERTICAL;
 
@@ -55,13 +64,13 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     public static final int VERTICAL = 1;
 
 
-    public TvImgRecyclerViewAdapter(Context context,List<FireModule> oriList) {
+    public TvImgRecyclerViewAdapter(Context context, List oriList) {
         this.context = context;
         list.clear();
         list.addAll(oriList);
     }
 
-    public void refreshData(List<FireModule> oriList) {
+    public void refreshData(List oriList) {
         list.clear();
         list.addAll(oriList);
         notifyDataSetChanged();
@@ -81,13 +90,31 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
 
     @Override
     public void onBindViewHolder(@NonNull TvViewHolder holder, final int position) {
-        holder.textView.setText(list.get(position).getTitleZh().toString());
-        holder.imageView.setImageBitmap(getBitmapByName(list.get(position).getHeadImage()));
-        if (onItemClickListener != null) {
+
+        if(list.get(position) instanceof FireModule){
+            holder.textView.setText(((FireModule)list.get(position)).getTitleZh().toString());
+            holder.imageView.setImageBitmap(getBitmapByName(((FireModule)list.get(position)).getHeadImage()));
+        }else if(list.get(position) instanceof ArticleSaveEntity){
+            ArticleSaveEntity entity = (ArticleSaveEntity) list.get(position);
+            holder.textView.setText(entity.getWebTitle());
+            holder.imageView.setImageBitmap(entity.getWebIcon());
+        }
+
+        if (onTvImgItemClickListener != null) {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.onItemClick(v, position);
+                    onTvImgItemClickListener.onItemClick(v, position);
+                }
+            });
+        }
+
+        if(onTvImgItemLongClickListener != null){
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onTvImgItemLongClickListener.onItemLongClick(v,position);
+                    return true;
                 }
             });
         }

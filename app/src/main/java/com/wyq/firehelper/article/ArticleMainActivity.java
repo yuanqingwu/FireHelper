@@ -1,5 +1,6 @@
 package com.wyq.firehelper.article;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.View;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 
@@ -115,10 +117,7 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
         adapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                Intent intent = new Intent();
-                intent.putExtra("url", resourceList.get(position).getUrl());
-                intent.setClass(ArticleMainActivity.this, WebViewActivity.class);
-                startActivity(intent);
+                WebViewActivity.instance(ArticleMainActivity.this,resourceList.get(position).getUrl());
             }
         });
         recyclerView.setAdapter(adapter);
@@ -243,5 +242,9 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         closeTagContainerLayout();
+    }
+
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, ArticleMainActivity.class));
     }
 }

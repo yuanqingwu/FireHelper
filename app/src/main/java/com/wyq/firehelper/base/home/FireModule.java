@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.base.home;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;

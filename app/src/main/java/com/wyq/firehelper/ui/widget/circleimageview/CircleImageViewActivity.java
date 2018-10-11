@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.ui.BitmapUtils;
+import com.wyq.firehelper.utils.BitmapUtils;
 
 /**
  * Created by wuyuanqing on 2015/9/8.

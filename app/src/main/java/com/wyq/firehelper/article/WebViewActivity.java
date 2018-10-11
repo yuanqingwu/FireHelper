@@ -1,7 +1,9 @@
 package com.wyq.firehelper.article;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,10 +23,16 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
+import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.article.entity.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleSaveEntity;
+import com.wyq.firehelper.developKit.mmkv.MMKVManager;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,14 +45,29 @@ public class WebViewActivity extends AppCompatActivity {
     public ProgressBar progressBar;
     @BindView(R.id.activity_webview_toolbar)
     public Toolbar toolbar;
+    @BindView(R.id.activity_webview_toolbar_nail)
+    public ImageView nailImage;
 
     private float xStart = -1;
     private float yStart = -1;
     private String url;
     public boolean canDrag = false;//默认此页面不支持右滑返回
 
+    private boolean isSaved = false;
+    private MMKV articleMmkv;
+
+    private Bitmap webFavicon;
+    private String webTitle;
+
     public WebViewClient webViewClient;
     public WebChromeClient webChromeClient;
+
+    public static void instance(Context context,String url){
+        Intent intent = new Intent();
+        intent.putExtra("url", url);
+        intent.setClass(context, WebViewActivity.class);
+        context.startActivity(intent);
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,10 +80,13 @@ public class WebViewActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         initToolbarNav(toolbar);
 
+        articleMmkv = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE,MMKV.MULTI_PROCESS_MODE);
+
         initWebView();
     }
 
     protected void initToolbarNav(Toolbar toolbar) {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +94,42 @@ public class WebViewActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        nailImage.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if(isSaved){
+                    isSaved = false;
+                    cancelSave();
+                    nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_white_64px));
+                }else{
+                    if(saveArticle()) {
+                        isSaved = true;
+                        nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_purple_64px));
+                        Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "收藏失败", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+        });
+
+    }
+
+    public boolean saveArticle() {
+        ArticleResource resource = ArticleConstants.getArticleByUrl(url);
+        int scrollY = webView.getScrollY();
+        float scaleSize = webView.getScaleY();
+        Bitmap webIcon = webFavicon == null? BitmapFactory.decodeResource(getResources(),R.drawable.ic_image_place_holder_128px):webFavicon;
+        String title = (webTitle == null ||webTitle.isEmpty())?url:webTitle;
+        ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource,title,webIcon,scrollY,scaleSize,"",System.currentTimeMillis());
+        return articleMmkv.encode(url,ArticleSaveEntity.convert2Bytes(saveEntity));
+    }
+
+    public void cancelSave(){
+        articleMmkv.removeValueForKey(url);
     }
 
     @Override
@@ -171,8 +233,19 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onReceivedTitle(WebView view, String title) {
                 super.onReceivedTitle(view, title);
-                if (title != null && !title.isEmpty())
+                if (title != null && !title.isEmpty()) {
                     toolbar.setTitle(title);
+                    webTitle = title;
+                }
+            }
+
+            @Override
+            public void onReceivedIcon(WebView view, Bitmap icon) {
+                super.onReceivedIcon(view, icon);
+                if(icon != null){
+                    webFavicon = icon;
+                    Logger.i("receive icon:"+icon.getByteCount());
+                }
             }
 
             //支持javascript的警告框

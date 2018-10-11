@@ -1,5 +1,6 @@
 package com.wyq.firehelper.service;
 
+import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
@@ -45,5 +46,9 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
     protected void onDestroy() {
         super.onDestroy();
         stopService(new Intent(ServiceActivity.this,FireService.class));
+    }
+
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, ServiceActivity.class));
     }
 }

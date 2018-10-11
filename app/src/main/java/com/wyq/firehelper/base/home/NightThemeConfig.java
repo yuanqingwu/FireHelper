@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.base.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;

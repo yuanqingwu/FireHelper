@@ -32,7 +32,7 @@ import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.ui.layout.tangram.rx.JSONArrayObservable;
 import com.wyq.firehelper.ui.layout.tangram.rx.ViewClickObservable;
-import com.wyq.firehelper.utils.FireUtils;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -252,7 +252,7 @@ public class TangramActivity extends BaseActivity {
         Disposable disposable5 = Observable.create(new ObservableOnSubscribe<JSONArray>() {
             @Override
             public void subscribe(ObservableEmitter<JSONArray> emitter) throws Exception {
-                String json = new String(FireUtils.readAssets2String(getApplicationContext(), "tangram_data.json"));
+                String json = new String(FireHelperUtils.readAssets2String(getApplicationContext(), "tangram_data.json"));
                 JSONArray data = null;
                 try {
                     data = new JSONArray(json);

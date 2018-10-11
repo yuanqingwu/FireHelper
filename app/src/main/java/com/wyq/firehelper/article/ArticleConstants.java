@@ -1,5 +1,7 @@
 package com.wyq.firehelper.article;
 
+import com.wyq.firehelper.article.entity.ArticleResource;
+
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +69,8 @@ public class ArticleConstants {
     public static final ArticleResource _50 = new ArticleResource("https://mp.weixin.qq.com/s/QRIy_apwqAaL2pM8a_lRUQ", "Android安装包相关知识汇总", "Blog", "优化");
     public static final ArticleResource _51 = new ArticleResource("https://developer.android.google.cn/guide/topics/graphics/opengl", "Android openGl", "Blog", "OpenGL");
     public static final ArticleResource _52 = new ArticleResource("https://blog.csdn.net/qq_32175491/article/details/79091647", "Android openGl开发详解(一)——绘制简单图形", "Blog", "OpenGL");
+    public static final ArticleResource _53 = new ArticleResource("https://www.jianshu.com/p/f1aeb0369746", "知乎 Android 客户端组件化实践", "Blog", "架构","优化");
+    public static final ArticleResource _54 = new ArticleResource("https://www.jianshu.com/nb/29902765", "知乎移动平台专栏", "Blog", "博客主页","公司");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
@@ -195,5 +199,25 @@ public class ArticleConstants {
             }
         }
         return tags;
+    }
+
+    /**
+     * 根据url获取文章完整信息
+     * @param url
+     * @return
+     */
+    public static ArticleResource getArticleByUrl(String url){
+
+        if(list == null){
+            list = getAllFiled();
+        }
+
+        for(ArticleResource resource :list){
+            if(resource.getUrl().equals(url)){
+                return resource;
+            }
+        }
+
+        return null;
     }
 }
