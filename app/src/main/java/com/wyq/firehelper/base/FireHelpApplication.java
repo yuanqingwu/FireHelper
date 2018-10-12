@@ -16,7 +16,6 @@ import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.mmkv.MMKV;
-import com.wyq.firehelper.developKit.mmkv.MMKVManager;
 import com.wyq.firehelper.developKit.room.AppDatabase;
 import com.wyq.firehelper.developKit.room.AppExecutors;
 import com.wyq.firehelper.developKit.room.datasource.DataRepository;
@@ -64,8 +63,6 @@ public class FireHelpApplication extends MultiDexApplication {
     public void initMMKV() {
         String path = MMKV.initialize(this);
         Logger.i("MMKV PATH:" + path);
-
-        MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE,MMKV.MULTI_PROCESS_MODE);
     }
 
     public void initEmojiCompat() {

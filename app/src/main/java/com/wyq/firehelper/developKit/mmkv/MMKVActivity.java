@@ -34,10 +34,12 @@ public class MMKVActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        data = FireHelperUtils.readAssets2String(this,"developKit.json");
+        data = FireHelperUtils.readAssets2String(this, "developKit.json");
 
-        textView.setText("MMKV \nwrite:" + initMMKV() + " ns\n"+"read :"+readMMKV()+" ns\n");
-        textView.append("\n\nSharedPreferences \nwrite:"+initSharedPreferences()+ " ns\n"+"read :" + readSharedPreferences() + " ns\n");
+        textView.setText("MMKV \nwrite:" + initMMKV() + " ns\n" + "read :" + readMMKV() + " ns\n");
+        textView.append("\n\nSharedPreferences \nwrite:" + initSharedPreferences() + " ns\n" + "read :" + readSharedPreferences() + " ns\n");
+
+        textView.append("count:" + mmkv.count() + " totalSize:" + mmkv.totalSize());
     }
 
     public long initMMKV() {
@@ -61,7 +63,7 @@ public class MMKVActivity extends BaseActivity {
     }
 
     public long initSharedPreferences() {
-         preferences = getSharedPreferences("mmkvtest", Context.MODE_PRIVATE);
+        preferences = getSharedPreferences("mmkvtest", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.commit();
@@ -72,7 +74,7 @@ public class MMKVActivity extends BaseActivity {
         return System.nanoTime() - start;
     }
 
-    public long readSharedPreferences(){
+    public long readSharedPreferences() {
         long start = System.nanoTime();
         for (int i = 0; i < 1000; i++)
             preferences.getString(i + "", "");

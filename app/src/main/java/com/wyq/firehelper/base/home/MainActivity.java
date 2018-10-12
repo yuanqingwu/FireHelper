@@ -18,16 +18,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.orhanobut.logger.Logger;
-import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleMainActivity;
+import com.wyq.firehelper.article.ArticleRepository;
 import com.wyq.firehelper.article.WebViewActivity;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
-import com.wyq.firehelper.developKit.mmkv.MMKVManager;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
@@ -60,8 +58,10 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public Toolbar toolbar;
     @BindView(R.id.main_activity_article_cardview)
     public CardView articleView;
+    @BindView(R.id.main_activity_article_hot_rv)
+    public RecyclerView hotRecyclerView;
 
-    private MMKV articleMMKV = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE, MMKV.MULTI_PROCESS_MODE);
+    //    private MMKV articleMMKV = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE, MMKV.MULTI_PROCESS_MODE);
     private List<ArticleSaveEntity> articleSaveEntities;
     private TvImgRecyclerViewAdapter extAdapter = null;
 
@@ -111,38 +111,38 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     /**
      * 删除某篇文章
+     *
      * @param position
      */
-    public List<ArticleSaveEntity> deleteSavedArticle(int position){
-        if(articleSaveEntities != null && articleSaveEntities.size()>=position){
+    public List<ArticleSaveEntity> deleteSavedArticle(int position) {
+        if (articleSaveEntities != null && articleSaveEntities.size() >= position) {
             ArticleSaveEntity entity = articleSaveEntities.get(position);
-            articleMMKV.removeValueForKey(entity.getResource().getUrl());
-            articleSaveEntities.remove(position);
+            if (ArticleRepository.getInstance().delete(entity.getResource().getUrl()))
+                articleSaveEntities.remove(position);
         }
         return articleSaveEntities;
     }
 
     /**
      * 刷新文章列表
+     *
      * @return
      */
     public List<ArticleSaveEntity> refreshSavedArticles() {
-        String[] articles = articleMMKV.allKeys();
+        List<ArticleSaveEntity> entities = ArticleRepository.getInstance().getAll();
         articleSaveEntities.clear();
-        if (articles != null && articles.length > 0)
-            for (String key : articles) {
-                ArticleSaveEntity entity = ArticleSaveEntity.convertFromBytes(articleMMKV.decodeBytes(key));
-                if(entity != null) {
-                    articleSaveEntities.add(entity);
-                    Logger.i("mmkv:" + entity.toString());
-                }
-            }
-
+        if (entities != null && entities.size() > 0)
+            articleSaveEntities.addAll(entities);
         return articleSaveEntities;
     }
 
     public void initRecyclerView() {
+        initBaseRv();
+        initExtRv();
 
+    }
+
+    private void initBaseRv() {
         List<FireModule> fireModules = getModuleList();
         fireModules.remove(0);//文章模块单独处理
         TvImgRecyclerViewAdapter adapter = new TvImgRecyclerViewAdapter(this, fireModules);
@@ -163,13 +163,19 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         //首页各模块可以移动交换位置
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
         itemTouchHelper.attachToRecyclerView(baseRV);
+    }
 
+    private void initExtRv() {
         extAdapter = new TvImgRecyclerViewAdapter(this, refreshSavedArticles());
         extAdapter.setOnItemClickListener(this);
         extAdapter.setOnItemLongClickListener(this);
         extAdapter.setOrientation(TvImgRecyclerViewAdapter.HORIZONTAL);
         exRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         exRecyclerView.setAdapter(extAdapter);
+    }
+
+    private void initHotRv() {
+//        TvRecyclerViewAdapter hotAdapter = new TvRecyclerViewAdapter();
     }
 
     public List<FireModule> getModuleList() {
@@ -299,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                 FirePopupWindow.text("删除").setBackgroundDrawable(new ColorDrawable(Color.LTGRAY)).showAsDropDown(view).setOnClickListener(new FirePopupWindow.OnClickListener() {
                     @Override
                     public void onClick(String text) {
-                        if(text.equals("删除")){
+                        if (text.equals("删除")) {
                             extAdapter.refreshData(deleteSavedArticle(position));
                         }
                     }
