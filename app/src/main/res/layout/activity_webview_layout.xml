@@ -37,16 +37,21 @@
             android:padding="0dp"
             app:layout_scrollFlags="snap" />
     </android.support.design.widget.AppBarLayout>
+<!--
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+-->
 
         <WebView
             android:id="@+id/activity_webview_webview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></WebView>
-    </android.support.v4.widget.NestedScrollView>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:layout_height="match_parent"></WebView>
+
+   <!-- </android.support.v4.widget.NestedScrollView>-->
 
 </android.support.design.widget.CoordinatorLayout>

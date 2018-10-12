@@ -136,10 +136,15 @@ public class ArticleSaveEntity implements Serializable {
     public static ArticleSaveEntity convertFromBytes(byte[] bytes) {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ObjectInputStream ois = null;
+        ArticleSaveEntity entity  = null;
         try {
             ois = new ObjectInputStream(bis);
-            ArticleSaveEntity entity = (ArticleSaveEntity) ois.readObject();
-            return entity;
+
+            //readObject 读取到末尾会抛出EOFException
+            //java.io.EOFException:此异常主要被数据输入流用来表明到达流的末尾。注意，其他许多输入操作返回一个特殊值表示到达流的末尾，而不是抛出异常。
+            while ((entity = (ArticleSaveEntity) ois.readObject())!= null){
+                return entity;
+            }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -148,6 +153,6 @@ public class ArticleSaveEntity implements Serializable {
             CloseUtils.closeIO(ois);
             CloseUtils.closeIO(bis);
         }
-        return null;
+        return entity;
     }
 }

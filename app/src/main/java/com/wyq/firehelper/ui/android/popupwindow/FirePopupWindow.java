@@ -79,82 +79,85 @@ public class FirePopupWindow {
     }
 
     public FirePopupWindow setOrientation(int orientation) {
-        firePopupWindow.orientation = orientation;
-        return firePopupWindow;
+        this.orientation = orientation;
+        return this;
     }
 
     public FirePopupWindow setOutsideTouchable(boolean outsideTouchable) {
-        firePopupWindow.outsideTouchable = outsideTouchable;
-        return firePopupWindow;
+        this.outsideTouchable = outsideTouchable;
+        return this;
     }
 
     public FirePopupWindow setClippingEnabled(boolean clippingEnabled) {
-        firePopupWindow.clippingEnabled = clippingEnabled;
-        return firePopupWindow;
+        this.clippingEnabled = clippingEnabled;
+        return this;
     }
 
     public FirePopupWindow setBackgroundDrawable(Drawable backgroundDrawable) {
-        firePopupWindow.backgroundDrawable = backgroundDrawable;
-        return firePopupWindow;
+        this.backgroundDrawable = backgroundDrawable;
+        return this;
     }
 
     public FirePopupWindow setLayoutSize(int width, int height) {
-        firePopupWindow.width = width;
-        firePopupWindow.height = height;
-        return firePopupWindow;
+        this.width = width;
+        this.height = height;
+        return this;
     }
 
     public FirePopupWindow setLocation(int xoff, int yoff) {
-        firePopupWindow.xoff = xoff;
-        firePopupWindow.yoff = yoff;
-        firePopupWindow.isSetLocation = true;
-        return firePopupWindow;
+        this.xoff = xoff;
+        this.yoff = yoff;
+        this.isSetLocation = true;
+        return this;
     }
 
     public FirePopupWindow showAsDropDown(View anchor) {
         Context context = anchor.getContext();
         LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_layout, null);
-        popView.setOrientation(firePopupWindow.orientation);
+        popView.setOrientation(orientation);
 
-        final PopupWindow popupWindow = new PopupWindow(popView, firePopupWindow.width, firePopupWindow.height);
+        final PopupWindow popupWindow = new PopupWindow(popView, width, height);
 
         Button positiveBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
         Button negativeBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
 
-        if (firePopupWindow.positiveText.length() == 0) {
+//        OnClickListener onClickListener = firePopupWindow.clickListener;
+//        String text = firePopupWindow.positiveText;
+
+        if (positiveText.length() == 0) {
             positiveBt.setVisibility(View.GONE);
         } else {
-            positiveBt.setText(firePopupWindow.positiveText);
+            positiveBt.setText(positiveText);
             positiveBt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    firePopupWindow.clickListener.onClick(firePopupWindow.positiveText);
+                    clickListener.onClick(positiveText);
                     popupWindow.dismiss();
                 }
             });
         }
-        if (firePopupWindow.negativeText.length() == 0) {
+        if (negativeText.length() == 0) {
             negativeBt.setVisibility(View.GONE);
         } else {
-            negativeBt.setText(firePopupWindow.negativeText);
+            negativeBt.setText(negativeText);
             negativeBt.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    firePopupWindow.clickListener.onClick(firePopupWindow.negativeText);
+                    clickListener.onClick(negativeText);
                     popupWindow.dismiss();
                 }
             });
         }
 
-        popupWindow.setBackgroundDrawable(firePopupWindow.backgroundDrawable);
-        popupWindow.setOutsideTouchable(firePopupWindow.outsideTouchable);
-        popupWindow.setClippingEnabled(firePopupWindow.clippingEnabled);
-        if (!firePopupWindow.isSetLocation) {
-            firePopupWindow.xoff = anchor.getWidth() / 2;
-            firePopupWindow.yoff = -anchor.getHeight() / 2;
+        popupWindow.setBackgroundDrawable(backgroundDrawable);
+        popupWindow.setOutsideTouchable(outsideTouchable);
+        popupWindow.setClippingEnabled(clippingEnabled);
+        if (!isSetLocation) {
+            xoff = anchor.getWidth() / 2;
+            yoff = -anchor.getHeight() / 2;
         }
-        popupWindow.showAsDropDown(anchor, firePopupWindow.xoff, firePopupWindow.yoff);
-        return firePopupWindow;
+        popupWindow.showAsDropDown(anchor, xoff, yoff);
+        return this;
     }
 
     public interface OnClickListener {
@@ -164,7 +167,7 @@ public class FirePopupWindow {
     private OnClickListener clickListener;
 
     public FirePopupWindow setOnClickListener(OnClickListener listener) {
-        firePopupWindow.clickListener = listener;
-        return firePopupWindow;
+        this.clickListener = listener;
+        return this;
     }
 }

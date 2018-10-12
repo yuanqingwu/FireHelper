@@ -13,7 +13,6 @@
 
         <include layout="@layout/external_view_rv_layout" />
 
-
         <android.support.v7.widget.CardView
             android:id="@+id/main_activity_article_cardview"
             style="@style/HomeCardView"

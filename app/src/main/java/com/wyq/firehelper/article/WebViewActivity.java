@@ -62,7 +62,7 @@ public class WebViewActivity extends AppCompatActivity {
     public WebViewClient webViewClient;
     public WebChromeClient webChromeClient;
 
-    public static void instance(Context context,String url){
+    public static void instance(Context context, String url) {
         Intent intent = new Intent();
         intent.putExtra("url", url);
         intent.setClass(context, WebViewActivity.class);
@@ -76,18 +76,22 @@ public class WebViewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         url = getIntent().getStringExtra("url");
 
+        articleMmkv = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE, MMKV.MULTI_PROCESS_MODE);
+
+        initView();
+    }
+
+    public void initView() {
         toolbar.setTitle(url);
         setSupportActionBar(toolbar);
         initToolbarNav(toolbar);
-
-        articleMmkv = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE,MMKV.MULTI_PROCESS_MODE);
 
         initWebView();
     }
 
     protected void initToolbarNav(Toolbar toolbar) {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+//        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,20 +99,22 @@ public class WebViewActivity extends AppCompatActivity {
             }
         });
 
+        checkIsSaved(url);
+
         nailImage.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(isSaved){
+                if (isSaved) {
                     isSaved = false;
                     cancelSave();
                     nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_white_64px));
-                }else{
-                    if(saveArticle()) {
+                } else {
+                    if (saveArticle()) {
                         isSaved = true;
                         nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_purple_64px));
                         Toast.makeText(getApplicationContext(), "已收藏", Toast.LENGTH_SHORT).show();
-                    }else{
+                    } else {
                         Toast.makeText(getApplicationContext(), "收藏失败", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -118,18 +124,60 @@ public class WebViewActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * 保存文章到MMKV
+     * @return
+     */
     public boolean saveArticle() {
         ArticleResource resource = ArticleConstants.getArticleByUrl(url);
         int scrollY = webView.getScrollY();
         float scaleSize = webView.getScaleY();
-        Bitmap webIcon = webFavicon == null? BitmapFactory.decodeResource(getResources(),R.drawable.ic_image_place_holder_128px):webFavicon;
-        String title = (webTitle == null ||webTitle.isEmpty())?url:webTitle;
-        ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource,title,webIcon,scrollY,scaleSize,"",System.currentTimeMillis());
-        return articleMmkv.encode(url,ArticleSaveEntity.convert2Bytes(saveEntity));
+        Bitmap webIcon = webFavicon == null ? BitmapFactory.decodeResource(getResources(), R.drawable.ic_image_place_holder_128px) : webFavicon;
+        String title = (webTitle == null || webTitle.isEmpty()) ? url : webTitle;
+        ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource, title, webIcon, scrollY, scaleSize, "", System.currentTimeMillis());
+        return articleMmkv.encode(url, ArticleSaveEntity.convert2Bytes(saveEntity));
     }
 
-    public void cancelSave(){
+    /**
+     * 检查是否是已收藏文章，如果已收藏则恢复上次保存位置
+     * @param url
+     * @return
+     */
+    public boolean checkIsSaved(String url) {
+        if (articleMmkv == null) {
+            return false;
+        }
+        boolean hasSaved = articleMmkv.containsKey(url);
+        if (hasSaved) {
+            isSaved = true;
+            nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_purple_64px));
+            //恢复上次阅读位置
+            recoverLocation();
+        } else {
+            isSaved = false;
+            nailImage.setImageDrawable(getDrawable(R.drawable.ic_nail_white_64px));
+        }
+
+        return hasSaved;
+    }
+
+    public void cancelSave() {
         articleMmkv.removeValueForKey(url);
+    }
+
+    /**
+     * 恢复上次保存位置
+     */
+    private void recoverLocation() {
+        ArticleSaveEntity entity = ArticleSaveEntity.convertFromBytes(articleMmkv.decodeBytes(url));
+        if(entity != null) {
+            int scrollY = entity.getScrollY();
+            float scale = entity.getScaleSize();
+            if (webView != null) {
+                webView.setScaleY(scale);
+                webView.scrollTo(0,scrollY);
+            }
+        }
     }
 
     @Override
@@ -167,11 +215,6 @@ public class WebViewActivity extends AppCompatActivity {
         }
         super.onDestroy();
 
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return super.onKeyDown(keyCode, event);
     }
 
     @Override
@@ -242,9 +285,9 @@ public class WebViewActivity extends AppCompatActivity {
             @Override
             public void onReceivedIcon(WebView view, Bitmap icon) {
                 super.onReceivedIcon(view, icon);
-                if(icon != null){
+                if (icon != null) {
                     webFavicon = icon;
-                    Logger.i("receive icon:"+icon.getByteCount());
+                    Logger.i("receive icon:" + icon.getByteCount());
                 }
             }
 
@@ -293,11 +336,6 @@ public class WebViewActivity extends AppCompatActivity {
 
     private String getUrl() {
         return url;
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        return super.onTouchEvent(event);
     }
 
     @Override

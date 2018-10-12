@@ -1,6 +1,8 @@
 package com.wyq.firehelper.base.home;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -130,8 +132,10 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         if (articles != null && articles.length > 0)
             for (String key : articles) {
                 ArticleSaveEntity entity = ArticleSaveEntity.convertFromBytes(articleMMKV.decodeBytes(key));
-                articleSaveEntities.add(entity);
-                Logger.i("mmkv:" + entity.toString());
+                if(entity != null) {
+                    articleSaveEntities.add(entity);
+                    Logger.i("mmkv:" + entity.toString());
+                }
             }
 
         return articleSaveEntities;
@@ -292,7 +296,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public void onItemLongClick(View view, int position) {
         switch (view.getId()) {
             case R.id.recyclerview_item_tv_img_layout_h:
-                FirePopupWindow.text("删除").showAsDropDown(view).setOnClickListener(new FirePopupWindow.OnClickListener() {
+                FirePopupWindow.text("删除").setBackgroundDrawable(new ColorDrawable(Color.LTGRAY)).showAsDropDown(view).setOnClickListener(new FirePopupWindow.OnClickListener() {
                     @Override
                     public void onClick(String text) {
                         if(text.equals("删除")){
