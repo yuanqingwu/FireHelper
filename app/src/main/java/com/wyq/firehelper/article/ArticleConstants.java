@@ -127,7 +127,7 @@ public class ArticleConstants {
      */
     private static List<ArticleResource> list;
 
-    public static List<ArticleResource> getAllFiled() {
+    public static List<ArticleResource> getAllArticles() {
         if (list != null && list.size() > 0) {
             return list;
         }
@@ -150,7 +150,7 @@ public class ArticleConstants {
             return null;
         } else if (tag.equals("全部")) {
             if (list == null) {
-                list = getAllFiled();
+                list = getAllArticles();
             }
             return list;
         }
@@ -190,7 +190,7 @@ public class ArticleConstants {
     public static List<String> getAllTags() {
         List<String> tags = new ArrayList<>();
         tags.add("全部");
-        for (ArticleResource resource : getAllFiled()) {
+        for (ArticleResource resource : getAllArticles()) {
             for (String tag : resource.getTag()) {
                 if (tag != null && tag.length() > 0) {
                     if (!tags.contains(tag))
@@ -209,7 +209,7 @@ public class ArticleConstants {
     public static ArticleResource getArticleByUrl(String url){
 
         if(list == null){
-            list = getAllFiled();
+            list = getAllArticles();
         }
 
         for(ArticleResource resource :list){

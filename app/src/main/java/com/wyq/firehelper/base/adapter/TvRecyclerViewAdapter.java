@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
@@ -49,6 +50,9 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     private Context context;
     private int selectPosition = -1;
     private int selectedTextColor = -1;
+    private LinearLayout.LayoutParams layoutParams;
+    private int padding;
+    private int gravity;
 
     private final static int TYPE_TITLE = 1;
     private final static int TYPE_CONTENT = 2;
@@ -71,6 +75,18 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
             this.selectedTextColor = selectedTextColor[0];
         }
         notifyDataSetChanged();
+    }
+
+    public void setTvLayoutParam(LinearLayout.LayoutParams param) {
+        layoutParams = param;
+    }
+
+    public void setTvPadding(int padding) {
+        this.padding = padding;
+    }
+
+    public void setTvGravity(int gravity) {
+        this.gravity = gravity;
     }
 
     @NonNull
@@ -98,6 +114,11 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull final TvViewHolder holder, final int position) {
         if (list.get(position) instanceof ArticleResource) {
+            if (layoutParams != null)
+                ((LinearLayout) holder.textView.getParent()).setLayoutParams(layoutParams);
+            holder.textView.setPadding(padding, padding, padding, padding);
+            if (gravity != 0)
+                holder.textView.setGravity(gravity);
             holder.textView.setText(((ArticleResource) list.get(position)).getTitle());
         } else if (list.get(position) instanceof String) {
             if (position == selectPosition) {

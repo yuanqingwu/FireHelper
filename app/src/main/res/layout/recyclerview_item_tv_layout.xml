@@ -6,7 +6,10 @@
     <TextView
         android:id="@+id/recyclerview_item_text"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:ellipsize="end"
         android:gravity="center_vertical"
-        android:layout_marginLeft="10dp"/>
+        android:maxLines="1" />
 </LinearLayout>

@@ -62,6 +62,7 @@ public class WebViewActivity extends AppCompatActivity {
     public static void instance(Context context, String url) {
         Intent intent = new Intent();
         intent.putExtra("url", url);
+        ArticleRepository.getInstance().commitHotDegree(url);
         intent.setClass(context, WebViewActivity.class);
         context.startActivity(intent);
     }

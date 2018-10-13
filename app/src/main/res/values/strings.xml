@@ -14,6 +14,9 @@
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="home_ext_view_title">已收藏文章</string>
+    <string name="home_article_count_tv">已收录：%1$d 条目</string>
+    <string name="home_article_tv">文章</string>
+    <string name="home_article_more_tv">查看更多</string>
 </resources>

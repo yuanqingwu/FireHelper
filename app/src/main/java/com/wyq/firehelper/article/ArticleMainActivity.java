@@ -112,7 +112,7 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
-        resourceList = ArticleConstants.getAllFiled();
+        resourceList = ArticleConstants.getAllArticles();
         adapter = new TvRecyclerViewAdapter(resourceList);
         adapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override

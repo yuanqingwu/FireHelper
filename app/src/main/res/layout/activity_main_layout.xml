@@ -17,54 +17,81 @@
             android:id="@+id/main_activity_article_cardview"
             style="@style/HomeCardView"
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="150dp">
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
 
                     <ImageView
                         android:id="@+id/main_activity_article_img"
-                        android:layout_width="match_parent"
+                        android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/article" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="40dp"
+                        android:src="@drawable/article"
+                        android:visibility="gone" />
 
-                    <TextView
-                        android:id="@+id/main_activity_article_tv"
-                        android:layout_width="match_parent"
+                    <LinearLayout
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:text="文章" />
-                </LinearLayout>
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="20dp"
+                        android:orientation="vertical">
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/main_activity_article_hot_rv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentRight="true"
-                    android:layout_margin="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/darkmagenta"
-                    android:minHeight="100dp"
-                    android:minWidth="100dp">
+                        <TextView
+                            android:id="@+id/main_activity_article_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left"
+                            android:gravity="center"
+                            android:text="@string/home_article_tv"
+                            android:textSize="22sp" />
 
-                </android.support.v7.widget.RecyclerView>
-            </RelativeLayout>
+                        <TextView
+                            android:id="@+id/main_activity_article_count_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:gravity="center"
+                            android:text="@string/home_article_count_tv"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/main_activity_article_hot_rv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="20dp"></android.support.v7.widget.RecyclerView>
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/main_activity_article_hot_more_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:paddingRight="10dp"
+                    android:drawableRight="@drawable/arrow_right"
+                    android:background="@drawable/shadow_right"
+                    android:gravity="right|center_vertical"
+                    android:text="@string/home_article_more_tv" />
+            </LinearLayout>
         </android.support.v7.widget.CardView>
-
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/activity_main_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
     </com.wyq.firehelper.ui.layout.pullextviewlayout.ExtRecyclerViewLayout>
 </LinearLayout>

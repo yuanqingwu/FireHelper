@@ -8,26 +8,32 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
+import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.article.ArticleRepository;
 import com.wyq.firehelper.article.WebViewActivity;
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.developKit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
+import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 import com.wyq.firehelper.service.ServiceActivity;
@@ -44,6 +50,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by Uni.W on 2016/8/10.
@@ -56,15 +63,38 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public RecyclerView exRecyclerView;
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
-    @BindView(R.id.main_activity_article_cardview)
-    public CardView articleView;
+    //    @BindView(R.id.main_activity_article_cardview)
+//    public CardView articleView;
     @BindView(R.id.main_activity_article_hot_rv)
     public RecyclerView hotRecyclerView;
+    @BindView(R.id.main_activity_article_count_tv)
+    public TextView countTv;
+    @BindView(R.id.main_activity_article_hot_more_tv)
+    public TextView moreTv;
 
-    //    private MMKV articleMMKV = MMKV.mmkvWithID(MMKVManager.MMKV_ID_ARTICLE, MMKV.MULTI_PROCESS_MODE);
     private List<ArticleSaveEntity> articleSaveEntities;
     private TvImgRecyclerViewAdapter extAdapter = null;
+    private TvRecyclerViewAdapter hotAdapter = null;
 
+    private static final int HOT_ARTICLE_COUNT = 3;
+
+    Consumer hotConsumer = new Consumer<List<ArticleResource>>() {
+        @Override
+        public void accept(List<ArticleResource> articleResources) throws Exception {
+            if (hotAdapter != null) {
+                hotAdapter.refreshData(articleResources);
+                hotAdapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        if (articleResources != null && articleResources.size() > position)
+                            WebViewActivity.instance(MainActivity.this, articleResources.get(position).getUrl());
+                    }
+                });
+            }
+        }
+    };
+
+    @FireLogTime
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,23 +120,34 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
         initRecyclerView();
 
-        articleView.setOnClickListener(new View.OnClickListener() {
+        countTv.setText(String.format(getString(R.string.home_article_count_tv), ArticleConstants.getAllArticles().size()));
+        moreTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArticleMainActivity.instance(getApplicationContext());
             }
         });
-
-
     }
 
+    @FireLogTime
     @Override
     protected void onResume() {
         super.onResume();
 
         //刷新头部数据
-        if (extAdapter != null)
-            extAdapter.refreshData(refreshSavedArticles());
+        if (extAdapter != null) {
+            List<ArticleSaveEntity> entities = refreshSavedArticles();
+            if (entities != null)
+                extAdapter.refreshData(refreshSavedArticles());
+        }
+
+        ArticleRepository.getInstance().getArticleTopFrequency(HOT_ARTICLE_COUNT).subscribe(hotConsumer);
+
+//        if (hotAdapter != null) {
+//            List<ArticleResource> resources = ArticleRepository.getInstance().getArticleTopFrequency(HOT_ARTICLE_COUNT);
+//            if (resources != null)
+//                hotAdapter.refreshData(resources);
+//        }
     }
 
     /**
@@ -129,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
      * @return
      */
     public List<ArticleSaveEntity> refreshSavedArticles() {
-        List<ArticleSaveEntity> entities = ArticleRepository.getInstance().getAll();
+        List<ArticleSaveEntity> entities = ArticleRepository.getInstance().getAllSavedArticles();
         articleSaveEntities.clear();
         if (entities != null && entities.size() > 0)
             articleSaveEntities.addAll(entities);
@@ -139,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public void initRecyclerView() {
         initBaseRv();
         initExtRv();
-
+        initHotRv();
     }
 
     private void initBaseRv() {
@@ -175,12 +216,19 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     }
 
     private void initHotRv() {
-//        TvRecyclerViewAdapter hotAdapter = new TvRecyclerViewAdapter();
+        List<ArticleResource> topArticles = new ArrayList<>();
+        hotAdapter = new TvRecyclerViewAdapter(topArticles);
+        hotRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+        hotAdapter.setTvLayoutParam(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        hotAdapter.setTvPadding(8);
+        hotAdapter.setTvGravity(Gravity.CENTER);
+        hotRecyclerView.setAdapter(hotAdapter);
     }
+
 
     public List<FireModule> getModuleList() {
         String json = FireHelperUtils.readAssets2String(this, "module.json");
-//        Logger.i(json);
         try {
             JSONArray jsonArray = new JSONArray(json);
             List<FireModule> fireModules = new ArrayList<>();
