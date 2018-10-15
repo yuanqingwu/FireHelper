@@ -23,39 +23,44 @@
 
 # 截图
 ## 文章
-收集分类优秀的安卓技术文章，提供SerchView进行搜索与tag分类查找。最后通过webview浏览。
+收集优秀的安卓技术文章并分类，提供SerchView进行搜索与tag分类查找，最后通过webview浏览。
+
+- 浏览文章时可以收藏文章，被收藏的文章可以在首页下拉后看到（类似微信QQ的首页下拉效果），点击后会直接跳转到阅读界面同时定位到收藏时的阅读位置，方便继续浏览。
+
+- 首页会显示浏览次数最多的三篇文章（每次文章点击会影响排序），方便下次直接点击浏览。
 
 目前文章列表暂时静态定义在（未排序整理）：
 [ArticleConstants.java](https://github.com/wuyuanqing527/FireHelper/blob/master/app/src/main/java/com/wyq/firehelper/article/ArticleConstants.java "ArticleConstants")
+
 <div style="margin-top:20px">
-<img src="https://i.imgur.com/oqLv0dN.png" width="30%" height="50%"/>
+<img src="https://i.imgur.com/RTyBe8v.gif" width="50%" height="80%"/>
 </div>
+
 
 ## 其他模块
 
-<div style="margin-top:20px">
-<img src="https://i.imgur.com/DJ8Bu5G.png" width="30%" height="50%"/>
-</div>
-
+###### 开发工具：搜集目前流行的开源框架的介绍文章，应用示例。
 <div style="margin-top:20px;">
 <img src="https://i.imgur.com/BMKUgRj.png" width="30%" height="50%"/>
 </div>
 
+###### 界面:收集整理安卓开发中常用的界面模块，提供构建酷炫美观的安卓应用所需的各种例子。
 <div style="margin-top:20px;">
 <img src="https://i.imgur.com/L9IJJS8.png" width="30%" height="50%"/>
 </div>
 
+###### kotlin：结合一些主流的框架提供kotlin编写的参考例子(浏览Github仓库)。
 <div style="margin-top:20px;">
 <img src="https://i.imgur.com/ZjUxFn9.png" width="30%" height="50%"/>
 </div>
 
 #### 计划
 
-持续追踪 ：[googlesamples](https://github.com/googlesamples "googlesamples")
+[googlesamples](https://github.com/googlesamples "googlesamples")
 
 1. 文章
 
-	将目前静态的文章升级为可以添加删除,可以添加稍后查看并在首页展示稍后查看文章链接，首页文章模块顶部单独一行。有条件可考虑云端存储文章列表。
+	将目前静态的文章升级为可以添加删除,有条件可考虑云端存储文章列表。
 	优化webview加载体验。
 
 2. 设备模块
@@ -72,7 +77,7 @@
 
 5. 开发工具
 	
-	完善各个未完成的模块，完善android jitpack,androidX等官方组件的整理
+	完善各个未完成的模块，完善android jitpack等官方组件的整理
 
 6. 架构
 	
