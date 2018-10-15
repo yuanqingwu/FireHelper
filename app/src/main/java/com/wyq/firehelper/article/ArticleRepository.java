@@ -138,6 +138,16 @@ public class ArticleRepository {
             }
 
         }
+
+        //如果有新加的文章,map未包含所有定义的文章的情况
+        if (frequencyMap.size() != 0 && frequencyMap.size() != getAllArticleSize()) {
+          List<String> urls =  ArticleConstants.diffArticlesByUrl((String[]) frequencyMap.keySet().toArray());
+          for(String url : urls){
+              frequencyMap.put(url,0);
+          }
+        }
+
+        //如果列表还是为空则初始化
         if (frequencyMap == null || frequencyMap.size() == 0) {
             List<ArticleResource> resources = ArticleConstants.getAllArticles();
             for (ArticleResource resource : resources) {
@@ -163,11 +173,13 @@ public class ArticleRepository {
         Completable.fromAction(new Action() {
             @Override
             public void run() throws Exception {
-                if (frequencyMap == null || frequencyMap.size() == 0) {
+                if (frequencyMap == null || frequencyMap.size() != getAllArticleSize()) {
                     initFrequencyMap();
                 }
-                frequencyMap.put(url, frequencyMap.get(url) + 1);
-                saveHotArticleToMMKV(frequencyMap);
+                if (frequencyMap.containsKey(url)) {
+                    frequencyMap.put(url, frequencyMap.get(url) + 1);
+                    saveHotArticleToMMKV(frequencyMap);
+                }
             }
         }).subscribe();
     }

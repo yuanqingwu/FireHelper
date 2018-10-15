@@ -1,5 +1,7 @@
 package com.wyq.firehelper.ui.android.animation;
 
+import android.animation.FloatEvaluator;
+import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.AnimationDrawable;
@@ -67,11 +69,14 @@ public class AnimationActivity extends BaseActivity {
         valueAnimator.setDuration(2000);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        IntEvaluator intEvaluator = new IntEvaluator();
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                propertyButton.getLayoutParams().width = (Integer) animation.getAnimatedValue();
-                propertyButton.getLayoutParams().height = (Integer) animation.getAnimatedValue();
+                int currentValue = (Integer) animation.getAnimatedValue();
+                float fraction = animation.getAnimatedFraction();//获取当前动画占整个动画过程的比例，0-1之间
+                propertyButton.getLayoutParams().width = intEvaluator.evaluate(fraction,200,600);
+                propertyButton.getLayoutParams().height = intEvaluator.evaluate(fraction,200,600);
                 propertyButton.requestLayout();
             }
         });
@@ -81,11 +86,14 @@ public class AnimationActivity extends BaseActivity {
         floatAnimator.setDuration(2000);
         floatAnimator.setRepeatCount(ValueAnimator.INFINITE);
         floatAnimator.setRepeatMode(ValueAnimator.REVERSE);
+        FloatEvaluator evaluator = new FloatEvaluator();
         floatAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 float val = (Float) animation.getAnimatedValue();
-                propertyButton.setAlpha(val);
+                //获取当前动画占整个动画过程的比例，0-1之间
+                float fraction = animation.getAnimatedFraction();
+                propertyButton.setAlpha(evaluator.evaluate(fraction,0,1));
                 propertyButton.setX(val * 100);
                 propertyButton.setY(val * 100);
                 propertyButton.requestLayout();

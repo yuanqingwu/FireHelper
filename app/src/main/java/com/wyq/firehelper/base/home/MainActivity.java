@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -200,6 +201,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
         baseRV.setLayoutManager(gridLayoutManager);
         baseRV.setAdapter(adapter);
+        baseRV.setItemAnimator(new DefaultItemAnimator());
         adapter.setOnItemClickListener(this);
         //首页各模块可以移动交换位置
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
@@ -213,6 +215,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         extAdapter.setOrientation(TvImgRecyclerViewAdapter.HORIZONTAL);
         exRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         exRecyclerView.setAdapter(extAdapter);
+        exRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
     private void initHotRv() {
@@ -224,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         hotAdapter.setTvPadding(8);
         hotAdapter.setTvGravity(Gravity.CENTER);
         hotRecyclerView.setAdapter(hotAdapter);
+        hotRecyclerView.setItemAnimator(new DefaultItemAnimator());
     }
 
 
@@ -338,7 +342,6 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
                     default:
                         break;
-
                 }
                 break;
             default:

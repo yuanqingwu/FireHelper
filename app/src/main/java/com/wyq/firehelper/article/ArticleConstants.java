@@ -71,6 +71,8 @@ public class ArticleConstants {
     public static final ArticleResource _52 = new ArticleResource("https://blog.csdn.net/qq_32175491/article/details/79091647", "Android openGl开发详解(一)——绘制简单图形", "Blog", "OpenGL");
     public static final ArticleResource _53 = new ArticleResource("https://www.jianshu.com/p/f1aeb0369746", "知乎 Android 客户端组件化实践", "Blog", "架构","优化");
     public static final ArticleResource _54 = new ArticleResource("https://www.jianshu.com/nb/29902765", "知乎移动平台专栏", "Blog", "博客主页","公司");
+    public static final ArticleResource _55 = new ArticleResource("https://bbs.pediy.com/thread-219107.htm", "Android安全项目入门篇", "Blog", "博客","安全");
+    public static final ArticleResource _56 = new ArticleResource("https://bbs.pediy.com/forum-161.htm", "看雪论坛[Android安全]", "Blog", "博客","安全");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
@@ -219,5 +221,24 @@ public class ArticleConstants {
         }
 
         return null;
+    }
+
+
+    /**
+     * 根据传入的数组找出没有被包含在内的URL列表
+     * @param urls
+     * @return
+     */
+    public static List<String> diffArticlesByUrl(String[] urls){
+        if(urls == null || urls.length == 0){
+            return null;
+        }
+        List<String> diffUrls = new ArrayList<>();
+        for(String url :urls){
+            if(getArticleByUrl(url) == null){
+                diffUrls.add(url);
+            }
+        }
+        return diffUrls;
     }
 }
