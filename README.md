@@ -32,11 +32,7 @@
 目前文章列表暂时静态定义在（未排序整理）：
 [ArticleConstants.java](https://github.com/wuyuanqing527/FireHelper/blob/master/app/src/main/java/com/wyq/firehelper/article/ArticleConstants.java "ArticleConstants")
 
-<div style="margin-top:20px">
-<img src="https://i.imgur.com/RTyBe8v.gif" width="50%" height="80%"/>
-</div>
-
-
+![article](https://i.imgur.com/omRnwpx.gif)
 ## 其他模块
 
 ###### 开发工具：搜集目前流行的开源框架的介绍文章，应用示例。
