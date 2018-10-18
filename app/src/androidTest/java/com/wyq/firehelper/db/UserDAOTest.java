@@ -6,9 +6,9 @@ import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import com.wyq.firehelper.LiveDataTestUtil;
-import com.wyq.firehelper.developKit.room.AppDatabase;
-import com.wyq.firehelper.developKit.room.UserDao;
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.AppDatabase;
+import com.wyq.firehelper.developkit.room.UserDao;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import org.junit.After;
 import org.junit.Assert;

@@ -3,6 +3,18 @@
     "category": "Android",
     "info": [
       {
+        "name": "Drawable",
+        "description": ""
+      },
+      {
+        "name": "Transition",
+        "description": ""
+      },
+      {
+        "name": "Animation",
+        "description": ""
+      },
+      {
         "name": "RecyclerView",
         "description": ""
       },
@@ -16,14 +28,6 @@
       },
       {
         "name": "PopupWindow",
-        "description": ""
-      },
-      {
-        "name": "Transition",
-        "description": ""
-      },
-      {
-        "name": "Animation",
         "description": ""
       },
       {

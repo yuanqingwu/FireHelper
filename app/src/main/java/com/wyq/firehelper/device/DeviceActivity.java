@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.device.PhoneInfo.PhoneInfoActivity;
 import com.wyq.firehelper.device.bluetoothChat.BtActivity;
 
 /**
@@ -16,7 +17,7 @@ public class DeviceActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"Bluetooth"};
+        return new String[]{"PhoneInfo","Bluetooth"};
     }
 
     @Override
@@ -36,6 +37,9 @@ public class DeviceActivity extends BaseRecyclerViewActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
+                        PhoneInfoActivity.instance(DeviceActivity.this);
+                        break;
+                    case 1:
                         startActivity(new Intent(DeviceActivity.this,
                                 BtActivity.class));
                         break;

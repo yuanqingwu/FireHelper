@@ -1,6 +1,7 @@
 package com.wyq.firehelper.ui.layout.pullextviewlayout;
 
 import android.content.Context;
+import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import com.orhanobut.logger.Logger;
+import com.wyq.firehelper.utils.CommonUtils;
 
 public class ExtRecyclerViewLayout extends LinearLayout {
 
@@ -25,6 +27,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     private float dampingFactor = 1.0f;
 
     private int maxHeadHeight = 100;
+
+    private float totalHeight = 0;
 
     private float lastX = 0;
     private float lastY = 0;
@@ -62,18 +66,40 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int childCount = getChildCount();
-//        Logger.i("onMeasure childCount:" + childCount + " headHeight:" + headHeight);
-
         //do nothing
+        if (getChildCount() > 0) {
+            for (int i = 0; i < getChildCount(); i++) {
+                final View child = getChildAt(i);
+                final int widthPadding;
+                final int heightPadding;
+                final int targetSdkVersion = getContext().getApplicationInfo().targetSdkVersion;
+                final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
+                if (targetSdkVersion >= Build.VERSION_CODES.M) {
+                    widthPadding = getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin;
+                    heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
+                } else {
+                    widthPadding = getPaddingLeft() + getPaddingRight();
+                    heightPadding = getPaddingTop() + getPaddingBottom();
+                }
+
+                final int desiredHeight = getMeasuredHeight() - heightPadding;
+                if (child.getMeasuredHeight() < desiredHeight) {
+                    final int childWidthMeasureSpec = getChildMeasureSpec(
+                            widthMeasureSpec, widthPadding, lp.width);
+//                    final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
+//                            desiredHeight, MeasureSpec.EXACTLY);
+                    final int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec, heightPadding, lp.height);
+                    child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+                }
+            }
+
+
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        int childCount = getChildCount();
-//        Logger.i("onLayout childCount:" + childCount + " headHeight:" + headHeight + " changed:" + changed);
-
         //do nothing
     }
 
@@ -85,6 +111,12 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         if (childCount < 1) {
             return;
         }
+        totalHeight = 0;
+        for (int i = 0; i < childCount; i++) {
+            totalHeight += getChildAt(i).getHeight();
+        }
+        Logger.i("totalHeight:" + totalHeight);
+
         headView = getChildAt(0);
         if (headView instanceof ViewGroup) {
             int count = ((ViewGroup) headView).getChildCount();
@@ -122,7 +154,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float dx = x - lastInterceptX;
                 float dy = y - lastIntercepty;
 
-//                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
+                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
                 if (Math.abs(dy) > Math.abs(dx)) {
                     intercept = true;
                 } else {
@@ -171,12 +203,16 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 int scrollY = getScrollY();
                 float baseHeight = -headHeight / 2;
                 if (scrollY <= baseHeight) {//开
-                    resetHeadView((int) -headHeight);
                     //当滑动距离在头部长度之内并且向上滑动则直接关闭头部
                     if (scrollY > -headHeight && deltaY < 0)
                         resetHeadView(0);
+                    else
+                        resetHeadView((int) -headHeight);
                 } else {//关
-                    resetHeadView(0);
+                    if (scrollY > getResetHeight())//如果上滑距离大于底部隐藏距离则，重置到底部刚好显示距离
+                        resetHeadView(getResetHeight());
+                    else if (scrollY < 0)//如果头部差一点没关掉就关掉
+                        resetHeadView(0);
                 }
                 deltaY = 0;
                 break;
@@ -188,6 +224,18 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         lastX = x;
         lastY = y;
         return true;
+    }
+
+    private int getResetHeight() {
+        int screenHeight = CommonUtils.getScreenHeight(getContext());
+        int navigationBarHeight = CommonUtils.getWinHeight(getContext()) - screenHeight;
+//        Logger.i(screenHeight + " nav:" + navigationBarHeight + " scrollY:" + getScrollY() + " getHeight:" + getHeight() + " getTop:" + getTop() + " getPaddingTop:" + getPaddingTop() + " getPaddingBottom:" + getPaddingBottom() + " getBottom:" + getBottom() + " headHeight:" + headHeight);
+        float bottomHideHeight = navigationBarHeight + (totalHeight - headHeight + getTop() - screenHeight);
+
+        if (bottomHideHeight < 0) {
+            return 0;
+        }
+        return (int) bottomHideHeight;
     }
 
     private void resetHeadView(int y) {
@@ -204,16 +252,20 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     }
 
     private void pullHeadView(float dy) {
-        scrollBy(0, (int) (-dy / dampingFactor));
-
         int scrollY = getScrollY();
         int absScrollY = Math.abs(scrollY);
 
         if (dy < 0) {//向上滑动
 //            resetHeadView(0);
             loadingDot.setVisibility(View.GONE);
-            return;
+
+            if (scrollY > 0) {
+                dampingFactor = 2;
+//                return;
+            }
         }
+
+        scrollBy(0, (int) (-dy / dampingFactor));
 
         if (absScrollY <= headHeight) {
             dampingFactor = 1;

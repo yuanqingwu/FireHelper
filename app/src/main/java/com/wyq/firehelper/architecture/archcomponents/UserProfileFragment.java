@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.ViewModel;
 
 
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import javax.inject.Inject;
 

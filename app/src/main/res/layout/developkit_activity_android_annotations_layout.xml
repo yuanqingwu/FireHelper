@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".developKit.androidannotations.AndroidAnnotationsActivity">
+    tools:context=".developkit.androidannotations.AndroidAnnotationsActivity">
     <TextView
         android:id="@+id/activity_developkit_androidannotations_tv_1"
         android:layout_width="match_parent"

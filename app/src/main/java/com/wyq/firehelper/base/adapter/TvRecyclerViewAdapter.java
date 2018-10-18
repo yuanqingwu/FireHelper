@@ -3,6 +3,7 @@ package com.wyq.firehelper.base.adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,9 +65,31 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     }
 
     public void refreshData(List oriList) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return list.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return oriList.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return list.get(oldItemPosition).getClass().equals(oriList.get(newItemPosition).getClass());
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return list.get(oldItemPosition).equals(oriList.get(newItemPosition));
+            }
+        }, true);
         list.clear();
         list.addAll(oriList);
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
+//        notifyDataSetChanged();
     }
 
     public void setSelectPosition(int position, int... selectedTextColor) {

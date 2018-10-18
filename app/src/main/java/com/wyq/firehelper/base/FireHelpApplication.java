@@ -16,9 +16,9 @@ import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.mmkv.MMKV;
-import com.wyq.firehelper.developKit.room.AppDatabase;
-import com.wyq.firehelper.developKit.room.AppExecutors;
-import com.wyq.firehelper.developKit.room.datasource.DataRepository;
+import com.wyq.firehelper.developkit.room.AppDatabase;
+import com.wyq.firehelper.developkit.room.AppExecutors;
+import com.wyq.firehelper.developkit.room.datasource.DataRepository;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 
 public class FireHelpApplication extends MultiDexApplication {

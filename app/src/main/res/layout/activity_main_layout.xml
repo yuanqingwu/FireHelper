@@ -39,6 +39,7 @@
                         android:visibility="gone" />
 
                     <LinearLayout
+                        android:id="@+id/main_activity_article_title_layout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentLeft="true"
@@ -65,13 +66,14 @@
                             android:textSize="12sp" />
                     </LinearLayout>
 
-
                     <android.support.v7.widget.RecyclerView
                         android:id="@+id/main_activity_article_hot_rv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:layout_toRightOf="@id/main_activity_article_title_layout"
                         android:layout_marginRight="20dp"></android.support.v7.widget.RecyclerView>
 
                 </RelativeLayout>

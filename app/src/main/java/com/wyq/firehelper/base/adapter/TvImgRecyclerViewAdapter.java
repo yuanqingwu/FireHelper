@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,8 +43,8 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
         void onItemClick(View view, int position);
     }
 
-    public interface OnTvImgItemLongClickListener{
-        void onItemLongClick(View view,int position);
+    public interface OnTvImgItemLongClickListener {
+        void onItemLongClick(View view, int position);
     }
 
     private OnTvImgItemClickListener onTvImgItemClickListener;
@@ -52,6 +53,7 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     public void setOnItemClickListener(OnTvImgItemClickListener onItemClickListener) {
         this.onTvImgItemClickListener = onItemClickListener;
     }
+
     public void setOnItemLongClickListener(OnTvImgItemLongClickListener onItemLongClickListener) {
         this.onTvImgItemLongClickListener = onItemLongClickListener;
     }
@@ -71,19 +73,43 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     }
 
     public void refreshData(List oriList) {
+        DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(new DiffUtil.Callback() {
+            @Override
+            public int getOldListSize() {
+                return list.size();
+            }
+
+            @Override
+            public int getNewListSize() {
+                return oriList.size();
+            }
+
+            @Override
+            public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+                return list.get(oldItemPosition).getClass().equals(oriList.get(newItemPosition).getClass());
+            }
+
+            @Override
+            public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+                return list.get(oldItemPosition).equals(oriList.get(newItemPosition));
+            }
+        }, true);
+
         list.clear();
         list.addAll(oriList);
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
+
+//        notifyDataSetChanged();
     }
 
-    public void setOrientation(int orientation){
+    public void setOrientation(int orientation) {
         this.orientation = orientation;
     }
 
     @NonNull
     @Override
     public TvViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layoutId = orientation == VERTICAL?R.layout.recyclerview_item_tv_img_layout_v:R.layout.recyclerview_item_tv_img_layout_h;
+        int layoutId = orientation == VERTICAL ? R.layout.recyclerview_item_tv_img_layout_v : R.layout.recyclerview_item_tv_img_layout_h;
         TvViewHolder holder = new TvViewHolder(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
         return holder;
     }
@@ -91,10 +117,10 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     @Override
     public void onBindViewHolder(@NonNull TvViewHolder holder, final int position) {
 
-        if(list.get(position) instanceof FireModule){
-            holder.textView.setText(((FireModule)list.get(position)).getTitleZh().toString());
-            holder.imageView.setImageBitmap(getBitmapByName(((FireModule)list.get(position)).getHeadImage()));
-        }else if(list.get(position) instanceof ArticleSaveEntity){
+        if (list.get(position) instanceof FireModule) {
+            holder.textView.setText(((FireModule) list.get(position)).getTitleZh().toString());
+            holder.imageView.setImageBitmap(getBitmapByName(((FireModule) list.get(position)).getHeadImage()));
+        } else if (list.get(position) instanceof ArticleSaveEntity) {
             ArticleSaveEntity entity = (ArticleSaveEntity) list.get(position);
             holder.textView.setText(entity.getWebTitle());
             holder.imageView.setImageBitmap(entity.getWebIcon());
@@ -109,11 +135,11 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
             });
         }
 
-        if(onTvImgItemLongClickListener != null){
+        if (onTvImgItemLongClickListener != null) {
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
-                    onTvImgItemLongClickListener.onItemLongClick(v,position);
+                    onTvImgItemLongClickListener.onItemLongClick(v, position);
                     return true;
                 }
             });

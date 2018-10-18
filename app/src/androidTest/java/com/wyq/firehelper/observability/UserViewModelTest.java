@@ -3,9 +3,9 @@ package com.wyq.firehelper.observability;
 import android.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.wyq.firehelper.db.TestData;
-import com.wyq.firehelper.developKit.room.UserViewModel;
-import com.wyq.firehelper.developKit.room.datasource.DataRepository;
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.UserViewModel;
+import com.wyq.firehelper.developkit.room.datasource.DataRepository;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import org.hamcrest.Matchers;
 import org.junit.Assert;

@@ -29,17 +29,17 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="fireapt-annotation" exported="" />
     <orderEntry type="module" module-name="fireapt-annotation" exported="" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="auto-service-1.0-rc2" level="project" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="javapoet-1.11.1" level="project" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="auto-common-0.3" level="project" />
-    <orderEntry type="library" exported="" scope="PROVIDED" name="guava-18.0" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="auto-service-1.0-rc2" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="javapoet-1.11.1" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="auto-common-0.3" level="project" />
-    <orderEntry type="library" exported="" scope="RUNTIME" name="guava-18.0" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="auto-service-1.0-rc2" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="javapoet-1.11.1" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="auto-common-0.3" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="guava-18.0" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: auto-service-1.0-rc2" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: javapoet-1.11.1" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: auto-common-0.3" level="project" />
+    <orderEntry type="library" exported="" scope="PROVIDED" name="Gradle: guava-18.0" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: auto-service-1.0-rc2" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: javapoet-1.11.1" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: auto-common-0.3" level="project" />
+    <orderEntry type="library" exported="" scope="RUNTIME" name="Gradle: guava-18.0" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: auto-service-1.0-rc2" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: javapoet-1.11.1" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: auto-common-0.3" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="Gradle: guava-18.0" level="project" />
   </component>
 </module>

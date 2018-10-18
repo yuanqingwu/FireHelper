@@ -11,9 +11,9 @@ import android.support.test.espresso.matcher.ViewMatchers;
 import android.support.test.rule.ActivityTestRule;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.developKit.room.AppDatabase;
-import com.wyq.firehelper.developKit.room.AppExecutors;
-import com.wyq.firehelper.developKit.room.RoomActivity;
+import com.wyq.firehelper.developkit.room.AppDatabase;
+import com.wyq.firehelper.developkit.room.AppExecutors;
+import com.wyq.firehelper.developkit.room.RoomActivity;
 
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;

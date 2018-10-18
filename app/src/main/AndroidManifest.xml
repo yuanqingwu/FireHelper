@@ -7,8 +7,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <uses-feature android:name="android.hardware.location.gps" />
-    <!--使用OpenGL ES 2.0-->
-    <uses-feature android:glEsVersion="0x00020000" android:required="true" />
+    <!-- 使用OpenGL ES 2.0 -->
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -66,14 +68,14 @@
         <activity android:name=".ui.widget.zoomimageview.ZoomImageViewActivity" />
         <activity android:name=".ui.widget.circleimageview.CircleImageViewActivity" />
         <activity android:name=".encryption.EncryptActivity" />
-        <activity android:name=".developKit.DevelopKitMainActivity" />
-        <activity android:name=".developKit.butterknife.ButterKnifeActivity" />
-        <activity android:name=".developKit.dagger.DaggerActivity" />
-        <activity android:name=".developKit.glide.GlideActivity" />
-        <activity android:name=".developKit.rxjava.RxJavaActivity" />
-        <activity android:name=".developKit.eventbus.EventBusActivity" />
-        <activity android:name=".developKit.androidannotations.AndroidAnnotationsActivity" />
-        <activity android:name=".developKit.retrofit.RetrofitActivity" />
+        <activity android:name=".developkit.DevelopKitMainActivity" />
+        <activity android:name=".developkit.butterknife.ButterKnifeActivity" />
+        <activity android:name=".developkit.dagger.DaggerActivity" />
+        <activity android:name=".developkit.glide.GlideActivity" />
+        <activity android:name=".developkit.rxjava.RxJavaActivity" />
+        <activity android:name=".developkit.eventbus.EventBusActivity" />
+        <activity android:name=".developkit.androidannotations.AndroidAnnotationsActivity" />
+        <activity android:name=".developkit.retrofit.RetrofitActivity" />
         <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
         <activity android:name=".ui.layout.tangram.TangramActivity" />
         <activity android:name=".ui.layout.ultraviewpager.UltraViewPagerActivity" />
@@ -89,19 +91,21 @@
         <activity android:name=".ui.android.popupwindow.PopupWindowActivity" />
         <activity android:name=".ui.android.recyclerview.RecyclerViewActivity" />
         <activity android:name=".device.camera.CameraActivity" />
-        <activity android:name=".developKit.room.RoomActivity" />
+        <activity android:name=".developkit.room.RoomActivity" />
         <activity android:name=".ui.android.transition.TransitionActivity" />
         <activity android:name=".architecture.archcomponents.ArchComponentsActivity" />
         <activity
-            android:name=".service.ServiceActivity"
+            android:name=".framework.service.ServiceActivity"
             android:launchMode="singleTask" />
 
         <service android:name=".base.AppInitIntentService" />
-        <service android:name=".service.FireService" />
+        <service android:name=".framework.service.FireService" />
 
-        <activity android:name=".developKit.mmkv.MMKVActivity" />
+        <activity android:name=".developkit.mmkv.MMKVActivity" />
         <activity android:name=".ui.android.emoji.EmojiActivity" />
-        <activity android:name=".media.opengles.OpenGLESActivity"></activity>
+        <activity android:name=".media.opengles.OpenGLESActivity" />
+        <activity android:name=".ui.android.drawable.DrawableActivity" />
+        <activity android:name=".device.PhoneInfo.PhoneInfoActivity"></activity>
     </application>
 
 </manifest>

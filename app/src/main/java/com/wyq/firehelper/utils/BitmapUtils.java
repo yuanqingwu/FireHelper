@@ -13,7 +13,6 @@ import android.graphics.RectF;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 
 public class BitmapUtils {
 
@@ -43,18 +42,18 @@ public class BitmapUtils {
         }
     }
 
-    public static String bitmap2String(Bitmap bitmap){
+    public static String bitmap2String(Bitmap bitmap) {
         if (bitmap == null) {
             return null;
         }
-        return Base64.encodeToString(bitmap2byteArray(bitmap),Base64.DEFAULT);
+        return Base64.encodeToString(bitmap2byteArray(bitmap), Base64.DEFAULT);
     }
 
-    public static Bitmap string2Bitmap(String bitmapStr){
-        if(bitmapStr == null || bitmapStr.isEmpty()){
+    public static Bitmap string2Bitmap(String bitmapStr) {
+        if (bitmapStr == null || bitmapStr.isEmpty()) {
             return null;
         }
-        return byteArray2bitmap(Base64.decode(bitmapStr,Base64.DEFAULT),null);
+        return byteArray2bitmap(Base64.decode(bitmapStr, Base64.DEFAULT), null);
     }
 
     /**
@@ -96,17 +95,13 @@ public class BitmapUtils {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inJustDecodeBounds = true;
-        options.inPreferredConfig = Config.RGB_565;
-        options.inPurgeable = true;
-        options.inInputShareable = true;
-        // BitmapFactory.decodeResource(res, resId, options);
+        BitmapFactory.decodeResource(res, resId, options);
         // 调用上面定义的方法计算inSampleSize值
         options.inSampleSize = calculateInSampleSize(options, reqWidth,
                 reqHeight);
         // 使用获取到的inSampleSize值再次解析图片
         options.inJustDecodeBounds = false;
-        InputStream is = res.openRawResource(resId);
-        return BitmapFactory.decodeStream(is, null, options);
+        return BitmapFactory.decodeResource(res, resId, options);
     }
 
     //根据指定宽高计算图片适合的尺寸
@@ -117,13 +112,12 @@ public class BitmapUtils {
         final int width = options.outWidth;
         int inSampleSize = 1;
         if (height > reqHeight || width > reqWidth) {
-            // 计算出实际宽高和目标宽高的比率
-            final int heightRatio = Math.round((float) height
-                    / (float) reqHeight);
-            final int widthRatio = Math.round((float) width / (float) reqWidth);
-            // 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
-            // 一定都会大于等于目标的宽和高。
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+            //inSampleSize应该总为2的指数
+            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
         }
         return inSampleSize;
     }

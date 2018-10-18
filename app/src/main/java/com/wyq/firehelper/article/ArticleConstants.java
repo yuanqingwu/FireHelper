@@ -73,6 +73,9 @@ public class ArticleConstants {
     public static final ArticleResource _54 = new ArticleResource("https://www.jianshu.com/nb/29902765", "知乎移动平台专栏", "Blog", "博客主页","公司");
     public static final ArticleResource _55 = new ArticleResource("https://bbs.pediy.com/thread-219107.htm", "Android安全项目入门篇", "Blog", "博客","安全");
     public static final ArticleResource _56 = new ArticleResource("https://bbs.pediy.com/forum-161.htm", "看雪论坛[Android安全]", "Blog", "博客","安全");
+    public static final ArticleResource _57 = new ArticleResource("https://www.jianshu.com/p/aff499a5953c", "关于RecyclerView你知道的不知道的都在这了（上）", "Blog", "博客","UI");
+    public static final ArticleResource _58 = new ArticleResource("https://www.jianshu.com/p/c70989bd5f29", "最全的BAT大厂面试题整理", "Blog", "博客","面试");
+    public static final ArticleResource _59 = new ArticleResource("https://www.jianshu.com/p/4115bcf9f92e", "Android(2017-2018)BAT面试题整理（Android篇，含答案）", "Blog", "博客","面试");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
@@ -229,14 +232,15 @@ public class ArticleConstants {
      * @param urls
      * @return
      */
-    public static List<String> diffArticlesByUrl(String[] urls){
+    public static List<String> diffArticlesByUrl(Object[] urls){
         if(urls == null || urls.length == 0){
             return null;
         }
         List<String> diffUrls = new ArrayList<>();
-        for(String url :urls){
-            if(getArticleByUrl(url) == null){
-                diffUrls.add(url);
+        for(Object url :urls){
+            if(url instanceof String)
+            if( getArticleByUrl((String) url) == null){
+                diffUrls.add((String)url);
             }
         }
         return diffUrls;

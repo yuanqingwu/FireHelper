@@ -2,7 +2,7 @@ package com.wyq.firehelper.architecture.archcomponents;
 
 import android.arch.lifecycle.LiveData;
 
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import retrofit2.http.GET;
 import retrofit2.http.Path;

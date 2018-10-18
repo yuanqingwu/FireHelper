@@ -1,5 +1,7 @@
 package com.wyq.firehelper.article;
 
+import android.util.LruCache;
+
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
@@ -13,6 +15,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -116,6 +119,31 @@ public class ArticleRepository {
     }
 
 
+    public class LruMap<K, V> extends LinkedHashMap<K, V> implements Map<K, V> {
+
+        private int capacity = 0;
+
+        public LruMap(int capacity) {
+            super(0, 0.75f, true);
+            this.capacity = capacity;
+        }
+
+        @Override
+        protected boolean removeEldestEntry(Entry<K, V> eldest) {
+            if (size() > capacity) {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    LruCache<String, Integer> lruMap = new LruCache<String, Integer>(1) {
+        @Override
+        protected int sizeOf(String key, Integer value) {
+            return super.sizeOf(key, value);
+        }
+    };
+
     @FireLogTime
     public synchronized void initFrequencyMap() {
         if (frequencyMap == null) {
@@ -141,10 +169,10 @@ public class ArticleRepository {
 
         //如果有新加的文章,map未包含所有定义的文章的情况
         if (frequencyMap.size() != 0 && frequencyMap.size() != getAllArticleSize()) {
-          List<String> urls =  ArticleConstants.diffArticlesByUrl((String[]) frequencyMap.keySet().toArray());
-          for(String url : urls){
-              frequencyMap.put(url,0);
-          }
+            List<String> urls = ArticleConstants.diffArticlesByUrl(frequencyMap.keySet().toArray());
+            for (String url : urls) {
+                frequencyMap.put(url, 0);
+            }
         }
 
         //如果列表还是为空则初始化

@@ -31,13 +31,13 @@ import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.developKit.DevelopKitMainActivity;
+import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.media.opengles.OpenGLESActivity;
-import com.wyq.firehelper.service.ServiceActivity;
+import com.wyq.firehelper.framework.service.ServiceActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.android.popupwindow.FirePopupWindow;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         moreTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArticleMainActivity.instance(getApplicationContext());
+                ArticleMainActivity.instance(MainActivity.this);
             }
         });
     }
@@ -315,22 +315,22 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
             case R.id.recyclerview_item_tv_img_layout_v:
                 switch (position) {
                     case 0:
-                        DeviceActivity.instance(getApplicationContext());
+                        DeviceActivity.instance(MainActivity.this);
                         break;
                     case 1:
-                        UiMainActivity.instance(getApplicationContext());
+                        UiMainActivity.instance(MainActivity.this);
                         break;
                     case 2:
-                        EncryptActivity.instance(getApplicationContext());
+                        EncryptActivity.instance(MainActivity.this);
                         break;
                     case 3:
-                        DevelopKitMainActivity.instance(getApplicationContext());
+                        DevelopKitMainActivity.instance(MainActivity.this);
                         break;
                     case 4:
-                        ArchitectureActivity.instance(getApplicationContext());
+                        ArchitectureActivity.instance(MainActivity.this);
                         break;
                     case 5:
-                        ServiceActivity.instance(getApplicationContext());
+                        ServiceActivity.instance(MainActivity.this);
                         break;
                     case 6:
                         OpenGLESActivity.instance(MainActivity.this);

@@ -4,7 +4,7 @@
     <data>
          <variable
              name="user"
-             type="com.wyq.firehelper.developKit.room.entity.UserEntity" />
+             type="com.wyq.firehelper.developkit.room.entity.UserEntity" />
         <!--<variable-->
             <!--name="userViewModel"-->
             <!--type="com.wyq.firehelper.developKit.Room.UserViewModel" />-->

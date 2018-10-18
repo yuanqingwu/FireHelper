@@ -4,8 +4,8 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 
-import com.wyq.firehelper.developKit.room.UserDao;
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.UserDao;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;

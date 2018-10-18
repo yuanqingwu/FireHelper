@@ -1,6 +1,6 @@
 package com.wyq.firehelper.db;
 
-import com.wyq.firehelper.developKit.room.entity.UserEntity;
+import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
 import java.util.Arrays;
 import java.util.List;

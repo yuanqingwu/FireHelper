@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".developKit.eventbus.EventBusActivity">
+    tools:context=".developkit.eventbus.EventBusActivity">
 
     <TextView
         android:id="@+id/activity_developkit_eventbus_tv_1"
