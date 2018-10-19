@@ -4,6 +4,10 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+
+import java.lang.ref.WeakReference;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FirePopupWindow {
 
@@ -20,10 +29,11 @@ public class FirePopupWindow {
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
 
-
     private int orientation = HORIZONTAL;
     private String positiveText = "ok";
     private String negativeText = "cancel";
+
+    private List contentList = null;
 
     private int width = ViewGroup.LayoutParams.WRAP_CONTENT;
     private int height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -37,9 +47,11 @@ public class FirePopupWindow {
     private Drawable backgroundDrawable = new ColorDrawable(Color.GRAY);
 
     private void reset() {
-        orientation = HORIZONTAL;
+        orientation = VERTICAL;
         positiveText = "ok";
         negativeText = "cancel";
+
+        contentList = null;
 
         width = ViewGroup.LayoutParams.WRAP_CONTENT;
         height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -78,6 +90,17 @@ public class FirePopupWindow {
         return firePopupWindow;
     }
 
+    public static FirePopupWindow list(List list) {
+        if (firePopupWindow == null) {
+            firePopupWindow = new FirePopupWindow();
+        }
+
+        firePopupWindow.reset();//
+
+        firePopupWindow.contentList = new ArrayList(list);
+        return firePopupWindow;
+    }
+
     public FirePopupWindow setOrientation(int orientation) {
         this.orientation = orientation;
         return this;
@@ -113,50 +136,97 @@ public class FirePopupWindow {
 
     public FirePopupWindow showAsDropDown(View anchor) {
         Context context = anchor.getContext();
-        LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_layout, null);
-        popView.setOrientation(orientation);
-
-        final PopupWindow popupWindow = new PopupWindow(popView, width, height);
-
-        Button positiveBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
-        Button negativeBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
-
 //        OnClickListener onClickListener = firePopupWindow.clickListener;
 //        String text = firePopupWindow.positiveText;
 
-        if (positiveText.length() == 0) {
-            positiveBt.setVisibility(View.GONE);
+        if (contentList == null) {
+
+            LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_layout, null);
+            popView.setOrientation(orientation);
+
+            PopupWindow popupWindow = new PopupWindow(popView, width, height);
+            Button positiveBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
+            Button negativeBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
+
+            if (positiveText.length() == 0) {
+                positiveBt.setVisibility(View.GONE);
+            } else {
+                positiveBt.setText(positiveText);
+                positiveBt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (clickListener != null && clickListener.get() != null)
+                            clickListener.get().onClick(positiveText);
+                        clickListener = null;
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+            if (negativeText.length() == 0) {
+                negativeBt.setVisibility(View.GONE);
+            } else {
+                negativeBt.setText(negativeText);
+                negativeBt.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (clickListener != null && clickListener.get() != null)
+                            clickListener.get().onClick(negativeText);
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+            popupWindow.setBackgroundDrawable(backgroundDrawable);
+            popupWindow.setOutsideTouchable(outsideTouchable);
+            popupWindow.setClippingEnabled(clippingEnabled);
+            if (!isSetLocation) {
+                xoff = anchor.getWidth() / 2;
+                yoff = -anchor.getHeight() / 2;
+            }
+            popupWindow.showAsDropDown(anchor, xoff, yoff);
         } else {
-            positiveBt.setText(positiveText);
-            positiveBt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener.onClick(positiveText);
-                    popupWindow.dismiss();
-                }
-            });
-        }
-        if (negativeText.length() == 0) {
-            negativeBt.setVisibility(View.GONE);
-        } else {
-            negativeBt.setText(negativeText);
-            negativeBt.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clickListener.onClick(negativeText);
-                    popupWindow.dismiss();
-                }
-            });
+            View popView = LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
+            PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
+            RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+            recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
+            recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+            TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);
+            recyclerView.setAdapter(adapter);
+            popupWindow.setBackgroundDrawable(backgroundDrawable);
+            popupWindow.setOutsideTouchable(outsideTouchable);
+            popupWindow.setClippingEnabled(clippingEnabled);
+            if (!isSetLocation) {
+                xoff = anchor.getWidth() / 2;
+                yoff = -anchor.getHeight() / 2;
+            }
+            popupWindow.showAsDropDown(anchor, xoff, yoff);
         }
 
+        return this;
+    }
+
+    public FirePopupWindow showLocation(View parent) {
+        Context context = parent.getContext();
+        View popView = LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
+        PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
+        RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
+        recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
+        TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);
+        adapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Object data = contentList.get(position);
+                if (onItemClickListener != null && onItemClickListener.get() != null) {
+                    onItemClickListener.get().onItemClick(data);
+                }
+                popupWindow.dismiss();
+            }
+        });
+        recyclerView.setAdapter(adapter);
         popupWindow.setBackgroundDrawable(backgroundDrawable);
         popupWindow.setOutsideTouchable(outsideTouchable);
         popupWindow.setClippingEnabled(clippingEnabled);
-        if (!isSetLocation) {
-            xoff = anchor.getWidth() / 2;
-            yoff = -anchor.getHeight() / 2;
-        }
-        popupWindow.showAsDropDown(anchor, xoff, yoff);
+        popupWindow.showAtLocation(parent, Gravity.BOTTOM, 0, 0);
         return this;
     }
 
@@ -164,10 +234,21 @@ public class FirePopupWindow {
         void onClick(String text);
     }
 
-    private OnClickListener clickListener;
+    private WeakReference<OnClickListener> clickListener;
 
     public FirePopupWindow setOnClickListener(OnClickListener listener) {
-        this.clickListener = listener;
+        clickListener = new WeakReference<>(listener);
+        return this;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Object data);
+    }
+
+    private WeakReference<OnItemClickListener> onItemClickListener;
+
+    public FirePopupWindow setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = new WeakReference<>(onItemClickListener);
         return this;
     }
 }

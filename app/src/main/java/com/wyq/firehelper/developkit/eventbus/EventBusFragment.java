@@ -3,11 +3,11 @@ package com.wyq.firehelper.developkit.eventbus;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import butterknife.BindView;
 
-public class EventBusFragment extends DevelopKitBaseFragment {
+public class EventBusFragment extends BaseFragment {
 
     @BindView(R.id.activity_developkit_eventbus_tv_1)
     public TextView textView1;

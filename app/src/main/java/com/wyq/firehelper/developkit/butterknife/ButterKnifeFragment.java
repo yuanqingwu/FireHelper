@@ -4,17 +4,11 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import butterknife.BindView;
 
-public class ButterKnifeFragment extends DevelopKitBaseFragment {
-
-    @BindView(R.id.activity_developkit_butterknife_tv)
-    public TextView articleTv;//官网
-
-    @BindView(R.id.activity_developkit_butterknife_tv_1)
-    public TextView articleTv1;//总结文章
+public class ButterKnifeFragment extends BaseFragment {
 
     @BindView(R.id.activity_developkit_butterknife_tv_2)
     public TextView textView2;
@@ -35,15 +29,11 @@ public class ButterKnifeFragment extends DevelopKitBaseFragment {
 
     @Override
     public void initData() {
-        resourceList.put(articleTv,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_0);
-        resourceList.put(articleTv1,ArticleConstants.DEVKIT_INJECT_BUTTERKNIFE_1);
 
     }
 
     @Override
     public void initView() {
-
-        browserArticle(getActivity());
 
         textView2.setText("1、在Activity 类中绑定 ：ButterKnife.bind(this);必须在setContentView();之后绑定；且父类bind绑定后，子类不需要再bind。\n" +
                 "\n" +

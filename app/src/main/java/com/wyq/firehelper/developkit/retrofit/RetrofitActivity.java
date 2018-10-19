@@ -8,18 +8,16 @@ import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseActivity;
+import com.wyq.firehelper.base.BaseCaseActivity;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.List;
 
 import butterknife.BindView;
 
-public class RetrofitActivity extends DevelopKitBaseActivity {
-
-    @BindView(R.id.activity_developkit_retrofit_article_tv)
-    public TextView articleTv;
+public class RetrofitActivity extends BaseCaseActivity {
 
     @BindView(R.id.activity_developkit_retrofit_res_tv)
     public TextView resTv;
@@ -41,25 +39,12 @@ public class RetrofitActivity extends DevelopKitBaseActivity {
     }
 
     @Override
-    public void initData() {
-        resourceList.put(articleTv, ArticleConstants.DEVKIT_RETROFIT_1);
-    }
-
-    @Override
     protected int attachLayoutRes() {
         return R.layout.developkit_activity_retrofit_layout;
     }
 
     @Override
-    public void initToolBar() {
-
-    }
-
-    @Override
     public void initView() {
-        super.initView();
-        browserArticle(this);
-
         Glide.with(this).load(R.drawable.retrofit).into(imageView);
     }
 
@@ -91,6 +76,16 @@ public class RetrofitActivity extends DevelopKitBaseActivity {
                 return method.invoke(this,args);
             }
         });
+    }
+
+    @Override
+    public String toolBarName() {
+        return "Retrofit";
+    }
+
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Retrofit");
     }
 
     public interface IName{

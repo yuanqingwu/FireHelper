@@ -49,6 +49,7 @@ public class WebViewActivity extends AppCompatActivity {
     private float xStart = -1;
     private float yStart = -1;
     private String url;
+    private String newUrl = "";//fixme:多次跳转之后保存最新的url
     public boolean canDrag = false;//默认此页面不支持右滑返回
 
     private boolean isSaved = false;
@@ -123,6 +124,9 @@ public class WebViewActivity extends AppCompatActivity {
      */
     public boolean saveArticle() {
         ArticleResource resource = ArticleConstants.getArticleByUrl(url);
+        if (newUrl.length() > 0) {
+            resource.setUrl(newUrl);
+        }
         int scrollY = webView.getScrollY();
         float scaleSize = webView.getScaleY();
         Bitmap webIcon = webFavicon == null ? BitmapFactory.decodeResource(getResources(), R.drawable.ic_image_place_holder_128px) : webFavicon;
@@ -169,6 +173,10 @@ public class WebViewActivity extends AppCompatActivity {
     private void recoverLocation() {
         ArticleSaveEntity entity = ArticleRepository.getInstance().get(url);
         if (entity != null) {
+            String savedUrl = entity.getResource().getUrl();
+            if (!savedUrl.equals(url)) {
+                setNewUrl(savedUrl);
+            }
             int scrollY = entity.getScrollY();
             float scale = entity.getScaleSize();
             if (webView != null) {
@@ -259,7 +267,7 @@ public class WebViewActivity extends AppCompatActivity {
             public void onPageFinished(WebView view, String url) {
                 super.onPageFinished(view, url);
                 progressBar.setVisibility(View.GONE);
-
+                setNewUrl(url);
             }
         };
         webView.setWebViewClient(webViewClient);
@@ -333,8 +341,16 @@ public class WebViewActivity extends AppCompatActivity {
             webView.loadUrl(getUrl());
     }
 
+    /**
+     * 获取要加载的URL
+     * @return
+     */
     private String getUrl() {
-        return url;
+        return newUrl.isEmpty() ? url : newUrl;
+    }
+
+    private void setNewUrl(String url) {
+        this.newUrl = url;
     }
 
     @Override

@@ -5,8 +5,7 @@ import android.text.Spanned;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -74,7 +73,7 @@ import io.reactivex.schedulers.Schedulers;
  * <p>
  * window 按照实际划分窗口，将数据发送给不同的 Observable
  */
-public class RxJavaFragment extends DevelopKitBaseFragment {
+public class RxJavaFragment extends BaseFragment {
 
     public String schedulers = "Schedulers.io() 代表io操作的线程, 通常用于网络,读写文件等io密集型的操作；\n" +
             " \n" +
@@ -132,9 +131,6 @@ public class RxJavaFragment extends DevelopKitBaseFragment {
             "  <p>\n" +
             "  window 按照实际划分窗口，将数据发送给不同的 Observable";
 
-    @BindView(R.id.activity_developkit_rxjava_article_tv)
-    public TextView articleTv;
-
     @BindView(R.id.activity_developkit_rxjava_res_tv)
     public TextView resTv;
 
@@ -160,13 +156,10 @@ public class RxJavaFragment extends DevelopKitBaseFragment {
 
     @Override
     public void initData() {
-        resourceList.put(articleTv, ArticleConstants.DEVKIT_REACTIVEX_RXJAVA_0);
     }
 
     @Override
     public void initView() {
-        browserArticle(getActivity());
-
         textView1.setText(schedulers);
         Spanned spanned = Html.fromHtml(operator);
         textView2.setText(spanned);

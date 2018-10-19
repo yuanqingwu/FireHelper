@@ -3,10 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".device.PhoneInfo.PhoneInfoActivity">
+
+    <include android:id="@+id/device_activity_phone_info_toolbar"
+        layout="@layout/toolbar_with_article"/>
 
     <TextView
         android:id="@+id/device_activity_phone_info_tv"
         android:layout_width="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/device_activity_phone_info_toolbar"
         android:layout_height="wrap_content" />
 </android.support.constraint.ConstraintLayout>

@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
@@ -27,6 +28,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
+/**
+ * 统一数据来源
+ */
 public class ArticleRepository {
     private static ArticleRepository repository;
 
@@ -87,6 +91,13 @@ public class ArticleRepository {
             return ArticleSaveEntity.convertFromBytes(bytes);
         else
             return null;
+    }
+
+    public synchronized List<String> getAllSavedKeys(){
+        if (articleMMKV.count() == 0) {
+            return null;
+        }
+        return Arrays.asList(articleMMKV.allKeys());
     }
 
     public synchronized List<ArticleSaveEntity> getAllSavedArticles() {

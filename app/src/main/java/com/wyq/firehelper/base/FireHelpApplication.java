@@ -52,6 +52,18 @@ public class FireHelpApplication extends MultiDexApplication {
 
     }
 
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        //todo
+    }
+
+    @Override
+    public void registerActivityLifecycleCallbacks(ActivityLifecycleCallbacks callback) {
+        super.registerActivityLifecycleCallbacks(callback);
+        //todo
+    }
+
     public AppDatabase getDatabase() {
         return AppDatabase.getInstance(this, appExecutors);
     }

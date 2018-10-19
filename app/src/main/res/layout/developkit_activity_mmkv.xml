@@ -6,8 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".developkit.mmkv.MMKVActivity">
 
+    <include
+        android:id="@+id/developkit_activity_mmkv_toolbar"
+        layout="@layout/toolbar_with_article" />
+
     <TextView
         android:id="@+id/developkit_activity_mmkv_tv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/developkit_activity_mmkv_toolbar" />
 </android.support.constraint.ConstraintLayout>

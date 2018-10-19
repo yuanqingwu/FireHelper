@@ -105,7 +105,8 @@
         <activity android:name=".ui.android.emoji.EmojiActivity" />
         <activity android:name=".media.opengles.OpenGLESActivity" />
         <activity android:name=".ui.android.drawable.DrawableActivity" />
-        <activity android:name=".device.PhoneInfo.PhoneInfoActivity"></activity>
+        <activity android:name=".device.PhoneInfo.PhoneInfoActivity" />
+        <activity android:name=".framework.broadcast.LocalBroadcastActivity"></activity>
     </application>
 
 </manifest>

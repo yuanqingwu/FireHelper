@@ -6,12 +6,15 @@ import android.widget.TextView;
 
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.base.BaseCaseActivity;
 import com.wyq.firehelper.utils.FireHelperUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 
-public class MMKVActivity extends BaseActivity {
+public class MMKVActivity extends BaseCaseActivity {
 
     @BindView(R.id.developkit_activity_mmkv_tv)
     public TextView textView;
@@ -28,8 +31,13 @@ public class MMKVActivity extends BaseActivity {
     }
 
     @Override
-    public void initToolBar() {
+    public String toolBarName() {
+        return "MMKV";
+    }
 
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("MMKV");
     }
 
     @Override

@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseActivity;
+import com.wyq.firehelper.base.BaseCaseActivity;
+
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -14,11 +16,8 @@ import javax.inject.Provider;
 import butterknife.BindView;
 import dagger.Lazy;
 
-public class DaggerActivity extends DevelopKitBaseActivity {
+public class DaggerActivity extends BaseCaseActivity {
 
-    @BindView(R.id.activity_developkit_dagger_tv)
-    public TextView textView;
-    @BindView(R.id.activity_developkit_dagger_tv_1)
     public TextView textView1;
     @BindView(R.id.activity_developkit_dagger_res_tv)
     public TextView resTv;
@@ -66,24 +65,21 @@ public class DaggerActivity extends DevelopKitBaseActivity {
     }
 
     @Override
-    public void initData() {
-        resourceList.put(textView, ArticleConstants.DEVKIT_INJECT_DAGGER_0);
-        resourceList.put(textView1, ArticleConstants.DEVKIT_INJECT_DAGGER_1);
-    }
-
-    @Override
     protected int attachLayoutRes() {
         return R.layout.developkit_activity_dagger_layout;
     }
 
     @Override
-    public void initToolBar() {
-
+    public void initView() {
     }
 
     @Override
-    public void initView() {
-        super.initView();
-        browserArticle(DaggerActivity.this);
+    public String toolBarName() {
+        return "Dagger";
+    }
+
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Dagger");
     }
 }

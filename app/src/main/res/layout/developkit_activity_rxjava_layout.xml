@@ -10,14 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/activity_developkit_rxjava_article_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/darkgrey"
-            android:gravity="center"
-            android:padding="10dp"
-            android:textColor="@color/lightblue" />
+        <include
+            android:id="@+id/activity_developkit_rxjava_toolbar"
+            layout="@layout/toolbar_with_article" />
 
         <TextView
             android:id="@+id/activity_developkit_rxjava_res_tv"
@@ -27,7 +22,7 @@
             android:background="@color/darkgrey"
             android:gravity="center"
             android:textColor="@color/lightblue"
-            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_article_tv" />
+            app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_toolbar" />
 
         <TextView
             android:id="@+id/activity_developkit_rxjava_tv_1"
@@ -48,6 +43,7 @@
             android:padding="10dp"
             android:textColor="@color/lightblue"
             app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_1" />
+
         <TextView
             android:id="@+id/activity_developkit_rxjava_tv_3"
             android:layout_width="match_parent"

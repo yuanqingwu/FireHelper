@@ -6,10 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".developkit.eventbus.EventBusActivity">
 
+    <include
+        android:id="@+id/activity_developkit_eventbus_toolbar"
+        layout="@layout/toolbar_with_article" />
+
     <TextView
         android:id="@+id/activity_developkit_eventbus_tv_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:background="@color/darkgrey" />
+        android:background="@color/darkgrey"
+        app:layout_constraintTop_toBottomOf="@id/activity_developkit_eventbus_toolbar" />
 </android.support.constraint.ConstraintLayout>

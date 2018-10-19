@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar_with_article" />
+
     <TextView
         android:id="@+id/activity_developkit_glide_tv"
         android:layout_width="match_parent"
@@ -16,6 +18,7 @@
         android:id="@+id/activity_developkit_glide_img_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <ImageView
         android:id="@+id/activity_developkit_glide_img_2"
         android:layout_width="wrap_content"

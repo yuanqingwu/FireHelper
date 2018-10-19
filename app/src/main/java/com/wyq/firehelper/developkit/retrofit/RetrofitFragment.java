@@ -6,8 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -15,10 +14,7 @@ import java.lang.reflect.Proxy;
 
 import butterknife.BindView;
 
-public class RetrofitFragment extends DevelopKitBaseFragment {
-
-    @BindView(R.id.activity_developkit_retrofit_article_tv)
-    public TextView articleTv;
+public class RetrofitFragment extends BaseFragment {
 
     @BindView(R.id.activity_developkit_retrofit_res_tv)
     public TextView resTv;
@@ -42,12 +38,10 @@ public class RetrofitFragment extends DevelopKitBaseFragment {
 
     @Override
     public void initData() {
-        resourceList.put(articleTv, ArticleConstants.DEVKIT_RETROFIT_1);
     }
 
     @Override
     public void initView() {
-        browserArticle(getActivity());
 
         Glide.with(getActivity()).load(R.drawable.retrofit).into(imageView);
 

@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.base.BaseCaseActivity;
 import com.wyq.firehelper.utils.CommonUtils;
+
+import java.util.List;
 
 import butterknife.BindView;
 
-public class PhoneInfoActivity extends BaseActivity {
+public class PhoneInfoActivity extends BaseCaseActivity {
 
     @BindView(R.id.device_activity_phone_info_tv)
     public TextView infoTv;
@@ -21,8 +24,13 @@ public class PhoneInfoActivity extends BaseActivity {
     }
 
     @Override
-    public void initToolBar() {
+    public String toolBarName() {
+        return "PhoneInfo";
+    }
 
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("设备");
     }
 
     @Override

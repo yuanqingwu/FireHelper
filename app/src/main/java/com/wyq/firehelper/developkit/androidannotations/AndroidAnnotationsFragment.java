@@ -3,12 +3,11 @@ package com.wyq.firehelper.developkit.androidannotations;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import butterknife.BindView;
 
-public class AndroidAnnotationsFragment extends DevelopKitBaseFragment {
+public class AndroidAnnotationsFragment extends BaseFragment {
 
     @BindView(R.id.activity_developkit_androidannotations_tv_1)
     public TextView textView;
@@ -29,11 +28,9 @@ public class AndroidAnnotationsFragment extends DevelopKitBaseFragment {
 
     @Override
     public void initData() {
-        resourceList.put(textView, ArticleConstants.DEVKIT_INJECT_ANDROIDANNOTATIONS_0);
     }
 
     @Override
     public void initView() {
-        browserArticle(getActivity());
     }
 }

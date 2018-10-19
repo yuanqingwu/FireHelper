@@ -64,8 +64,6 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public RecyclerView exRecyclerView;
     @BindView(R.id.toolbar)
     public Toolbar toolbar;
-    //    @BindView(R.id.main_activity_article_cardview)
-//    public CardView articleView;
     @BindView(R.id.main_activity_article_hot_rv)
     public RecyclerView hotRecyclerView;
     @BindView(R.id.main_activity_article_count_tv)
@@ -79,19 +77,13 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     private static final int HOT_ARTICLE_COUNT = 3;
 
-    Consumer hotConsumer = new Consumer<List<ArticleResource>>() {
-        @Override
-        public void accept(List<ArticleResource> articleResources) throws Exception {
-            if (hotAdapter != null) {
-                hotAdapter.refreshData(articleResources);
-                hotAdapter.setOnItemClickListener(new TvRecyclerViewAdapter.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        if (articleResources != null && articleResources.size() > position)
-                            WebViewActivity.instance(MainActivity.this, articleResources.get(position).getUrl());
-                    }
-                });
-            }
+    Consumer hotConsumer = (Consumer<List<ArticleResource>>) articleResources -> {
+        if (hotAdapter != null) {
+            hotAdapter.refreshData(articleResources);
+            hotAdapter.setOnItemClickListener((view, position) -> {
+                if (articleResources != null && articleResources.size() > position)
+                    WebViewActivity.instance(MainActivity.this, articleResources.get(position).getUrl());
+            });
         }
     };
 
@@ -310,7 +302,10 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public void onItemClick(View view, int position) {
         switch (view.getId()) {
             case R.id.recyclerview_item_tv_img_layout_h:
-                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
+                //点击头部收藏文章时跳转浏览界面
+//                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
+                //为了传入最原始的url(当多次点击之后ArticleSaveEntity中url会保存为最新的url)，所以从mmkv的所有key中获取指定key
+                WebViewActivity.instance(MainActivity.this, ArticleRepository.getInstance().getAllSavedKeys().get(position));
                 break;
             case R.id.recyclerview_item_tv_img_layout_v:
                 switch (position) {

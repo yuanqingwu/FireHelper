@@ -6,11 +6,13 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseActivity;
+import com.wyq.firehelper.base.BaseCaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 
-public class GlideActivity extends DevelopKitBaseActivity {
+public class GlideActivity extends BaseCaseActivity {
 
     @BindView(R.id.activity_developkit_glide_img_1)
     public ImageView imageView;
@@ -21,10 +23,6 @@ public class GlideActivity extends DevelopKitBaseActivity {
 
     private String EXAMPLE_URL = "https://github.com/bumptech/glide/raw/master/static/glide_logo.png";
 
-    @Override
-    public void initData() {
-        resourceList.put(textView, ArticleConstants.DEVKIT_IMAGE_GLIDE_0);
-    }
 
     @Override
     protected int attachLayoutRes() {
@@ -32,18 +30,21 @@ public class GlideActivity extends DevelopKitBaseActivity {
     }
 
     @Override
-    public void initToolBar() {
+    public String toolBarName() {
+        return "Glide";
+    }
 
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Glide");
     }
 
     @Override
     public void initView() {
-        super.initView();
-        browserArticle(GlideActivity.this);
 
-        Glide.with(this).load(EXAMPLE_URL)
-                .into(imageView);
+        GlideApp.with(this).load(EXAMPLE_URL).placeholder(R.drawable.ic_image_place_holder_128px).fitCenter().into(imageView);
 
         Glide.with(this).load(EXAMPLE_URL).into(imageView2);
+
     }
 }

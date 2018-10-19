@@ -9,22 +9,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/activity_developkit_butterknife_tv"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/darkgrey"
-            android:gravity="center"
-            android:textColor="@color/lightblue" />
-
-        <TextView
-            android:id="@+id/activity_developkit_butterknife_tv_1"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/darkgrey"
-            android:gravity="center"
-            android:textColor="@color/lightblue" />
+        <include layout="@layout/toolbar_with_article"/>
 
         <TextView
             android:id="@+id/activity_developkit_butterknife_tv_2"

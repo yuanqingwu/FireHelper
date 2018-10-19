@@ -5,12 +5,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.developkit.DevelopKitBaseFragment;
+import com.wyq.firehelper.base.BaseFragment;
 
 import butterknife.BindView;
 
-public class GlideFragment extends DevelopKitBaseFragment {
+public class GlideFragment extends BaseFragment {
 
     @BindView(R.id.activity_developkit_glide_img_1)
     public ImageView imageView;
@@ -33,13 +32,11 @@ public class GlideFragment extends DevelopKitBaseFragment {
 
     @Override
     public void initData() {
-        resourceList.put(textView,ArticleConstants.DEVKIT_IMAGE_GLIDE_0);
     }
 
     @Override
     public void initView() {
         Glide.with(getActivity()).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
                 .into(imageView);
-    browserArticle(getActivity());
     }
 }

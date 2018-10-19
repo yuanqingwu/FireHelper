@@ -8,13 +8,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.wyq.firehelper.R;
+import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.utils.FireHelperUtils;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 
-public class DKPagerChildFragment extends DevelopKitBaseFragment {
+public class DKPagerChildFragment extends BaseFragment {
 
     @BindView(R.id.developkit_fragment_child_recycler_view)
     public RecyclerView recyclerView;
@@ -67,5 +74,20 @@ public class DKPagerChildFragment extends DevelopKitBaseFragment {
             e.printStackTrace();
             Toast.makeText(getContext(),"找不到相关界面，先浏览其他的吧~",Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public List<DevelopKit> getKits(){
+        List<DevelopKit> kitsList = new ArrayList<>();
+        Gson gson = new Gson();
+        try {
+            JSONArray kitsArray = new JSONArray(FireHelperUtils.readAssets2String(getActivity(),"developKit.json"));
+            for(int i=0; i<kitsArray.length();i++){
+                DevelopKit kit = gson.fromJson(kitsArray.getString(i),DevelopKit.class);
+                kitsList.add(kit);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return kitsList;
     }
 }

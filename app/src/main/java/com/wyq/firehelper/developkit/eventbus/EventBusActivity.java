@@ -3,19 +3,17 @@ package com.wyq.firehelper.developkit.eventbus;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.developkit.DevelopKitBaseActivity;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.base.BaseCaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 
-public class EventBusActivity extends DevelopKitBaseActivity {
+public class EventBusActivity extends BaseCaseActivity {
 
     @BindView(R.id.activity_developkit_eventbus_tv_1)
     public TextView textView1;
-
-    @Override
-    public void initData() {
-
-    }
 
     @Override
     protected int attachLayoutRes() {
@@ -23,13 +21,17 @@ public class EventBusActivity extends DevelopKitBaseActivity {
     }
 
     @Override
-    public void initToolBar() {
+    public String toolBarName() {
+        return "EventBus";
+    }
 
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("EventBus");
     }
 
     @Override
     public void initView() {
-        super.initView();
         textView1.setText(defectStr);
     }
 

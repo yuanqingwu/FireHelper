@@ -4,14 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/activity_developkit_retrofit_article_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/darkgrey"
-        android:gravity="center"
-        android:padding="10dp"
-        android:textColor="@color/lightblue" />
+    <include layout="@layout/toolbar_with_article" />
 
     <TextView
         android:id="@+id/activity_developkit_retrofit_res_tv"
