@@ -76,6 +76,8 @@ public class ArticleConstants {
     public static final ArticleResource _57 = new ArticleResource("https://www.jianshu.com/p/aff499a5953c", "关于RecyclerView你知道的不知道的都在这了（上）", "Blog", "博客","UI");
     public static final ArticleResource _58 = new ArticleResource("https://www.jianshu.com/p/c70989bd5f29", "最全的BAT大厂面试题整理", "Blog", "博客","面试");
     public static final ArticleResource _59 = new ArticleResource("https://www.jianshu.com/p/4115bcf9f92e", "Android(2017-2018)BAT面试题整理（Android篇，含答案）", "Blog", "博客","面试");
+    public static final ArticleResource _60 = new ArticleResource("https://www.jianshu.com/p/5e7075f4875f", "Android：手把手教你构建 全面的WebView 缓存机制 & 资源加载方案", "Blog", "博客","优化");
+    public static final ArticleResource _61 = new ArticleResource("https://github.com/mzlogin/awesome-adb", "ADB 用法大全", "Blog", "博客","测试");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage

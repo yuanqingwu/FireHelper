@@ -4,18 +4,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Vibrator;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
 public class LoadingDot extends View {
     private Paint paint;
+    private Context context;
+    private boolean shouldVibrator = true;
 
     //default
     private float normalRadius = 8.0f;
     private float maxRadius = 2 * normalRadius;
     private float maxDistance = 8 * normalRadius;
-    private float percent = 0.8f;
+    private float percent = 0.0f;
     private int color = Color.GRAY;
 
     //一个小圆点开始分裂为三个的百分比阈值
@@ -38,6 +41,7 @@ public class LoadingDot extends View {
 
     public LoadingDot(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
+        this.context = context;
         initPaint();
     }
 
@@ -71,7 +75,12 @@ public class LoadingDot extends View {
             canvas.drawCircle(cx, cy, maxRadius * (1 + percentThresholdHide - percent * 2), paint);
             canvas.drawCircle(cx + mDistance, cy, normalRadius, paint);
         } else if (getPercent() > percentThresholdHide && getPercent() <= 1) {
-            cy = getHeight() *  percentThresholdHide;
+            if (shouldVibrator) {
+                Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+                vibrator.vibrate(50);
+                shouldVibrator = false;
+            }
+            cy = getHeight() * percentThresholdHide;
             float alpha = (1 - (percent - percentThresholdHide) * 2);//两倍速率消失
 //            paint.setAlpha(alpha);//255-0
             canvas.drawCircle(cx - maxDistance, cy, normalRadius, paint);
@@ -112,6 +121,9 @@ public class LoadingDot extends View {
 
     public void setPercent(float percent) {
         this.percent = percent;
+        if(percent == 0){
+            shouldVibrator = true;
+        }
         invalidate();
     }
 

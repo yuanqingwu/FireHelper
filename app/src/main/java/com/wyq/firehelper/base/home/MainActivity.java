@@ -34,10 +34,10 @@ import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.encryption.EncryptActivity;
+import com.wyq.firehelper.framework.FrameworkActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.media.opengles.OpenGLESActivity;
-import com.wyq.firehelper.framework.service.ServiceActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.android.popupwindow.FirePopupWindow;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
@@ -303,9 +303,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         switch (view.getId()) {
             case R.id.recyclerview_item_tv_img_layout_h:
                 //点击头部收藏文章时跳转浏览界面
-//                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
-                //为了传入最原始的url(当多次点击之后ArticleSaveEntity中url会保存为最新的url)，所以从mmkv的所有key中获取指定key
-                WebViewActivity.instance(MainActivity.this, ArticleRepository.getInstance().getAllSavedKeys().get(position));
+                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
                 break;
             case R.id.recyclerview_item_tv_img_layout_v:
                 switch (position) {
@@ -325,7 +323,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         ArchitectureActivity.instance(MainActivity.this);
                         break;
                     case 5:
-                        ServiceActivity.instance(MainActivity.this);
+                        FrameworkActivity.instance(MainActivity.this);
                         break;
                     case 6:
                         OpenGLESActivity.instance(MainActivity.this);

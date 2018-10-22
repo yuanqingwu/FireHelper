@@ -36,7 +36,6 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     private float lastIntercepty = 0;
     float deltaY = 0;
 
-
     public ExtRecyclerViewLayout(Context context) {
         this(context, null);
     }
@@ -269,8 +268,9 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
         if (absScrollY <= headHeight) {
             dampingFactor = 1;
-            float percent = absScrollY / headHeight;
-            loadingDot.setPercent(percent);
+            if (scrollY < 0) {
+                float percent = absScrollY / headHeight;
+                loadingDot.setPercent(percent);
 
             loadingDot.setVisibility(View.VISIBLE);
             if (percent < 0.5) {
@@ -279,6 +279,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float transY = headHeight * (percent - 0.5f);
                 headRecyclerView.setTranslationY(transY - loadingDot.getMeasuredHeight());
                 loadingDot.setTranslationY(transY);
+            }
             }
         } else {
             dampingFactor = 2;//阻尼增大

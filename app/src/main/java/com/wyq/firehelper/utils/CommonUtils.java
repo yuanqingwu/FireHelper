@@ -550,6 +550,7 @@ public class CommonUtils {
 
     /**
      * 获取屏幕高度（不包含导航栏高度）
+     *
      * @param context
      * @return
      */

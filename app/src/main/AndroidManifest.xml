@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
     <uses-feature android:name="android.hardware.location.gps" />
     <!-- 使用OpenGL ES 2.0 -->
@@ -23,7 +24,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".base.home.SplashActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -32,7 +32,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".base.home.MainActivity" />
+        <activity
+            android:name=".base.home.MainActivity"
+            android:launchMode="singleTask" />
         <activity android:name=".device.DeviceActivity" />
         <activity android:name=".device.bluetoothChat.BtActivity" />
         <activity android:name=".device.bluetoothChat.BtChatActivity" />
@@ -105,8 +107,21 @@
         <activity android:name=".ui.android.emoji.EmojiActivity" />
         <activity android:name=".media.opengles.OpenGLESActivity" />
         <activity android:name=".ui.android.drawable.DrawableActivity" />
-        <activity android:name=".device.PhoneInfo.PhoneInfoActivity" />
-        <activity android:name=".framework.broadcast.LocalBroadcastActivity"></activity>
+        <activity android:name=".device.PhoneInfo.PhoneInfoActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_DOCK_EVENT" />
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".framework.battery.PowerConnectionReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".framework.broadcast.LocalBroadcastActivity" />
+        <activity android:name=".framework.FrameworkActivity"></activity>
     </application>
 
 </manifest>

@@ -45,9 +45,9 @@ public abstract class BaseRecyclerViewActivity extends BaseActivity {
     @Override
     public void initView() {
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(Arrays.asList(listItemsNames()));
-//        if (getItemDecoration() != null) {
-//            baseRV.addItemDecoration(getItemDecoration());
-//        }
+        if (getItemDecoration() != null) {
+            baseRV.addItemDecoration(getItemDecoration());
+        }
         if (getLayoutManager() != null) {
             baseRV.setLayoutManager(getLayoutManager());
         }

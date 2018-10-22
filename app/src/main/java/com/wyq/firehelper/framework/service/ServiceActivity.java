@@ -6,23 +6,31 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.base.BaseCaseActivity;
+
+import java.util.List;
 
 import butterknife.BindView;
 
-public class ServiceActivity extends BaseActivity implements View.OnClickListener {
+public class ServiceActivity extends BaseCaseActivity implements View.OnClickListener {
 
     @BindView(R.id.service_activity_main_bt1)
     public Button button1;
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.service_activity_main_layout;
+        return R.layout.framework_activity_service;
     }
 
     @Override
-    public void initToolBar() {
+    public String toolBarName() {
+        return "Service";
+    }
 
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Service");
     }
 
     @Override
@@ -39,16 +47,17 @@ public class ServiceActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        startService(new Intent(ServiceActivity.this,FireService.class));
+        startService(new Intent(ServiceActivity.this, FireService.class));
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        stopService(new Intent(ServiceActivity.this,FireService.class));
+        stopService(new Intent(ServiceActivity.this, FireService.class));
     }
 
     public static void instance(Context context) {
         context.startActivity(new Intent(context, ServiceActivity.class));
     }
+
 }

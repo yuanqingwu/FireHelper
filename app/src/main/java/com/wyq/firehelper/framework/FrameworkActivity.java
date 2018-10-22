@@ -1,25 +1,24 @@
-package com.wyq.firehelper.architecture;
+package com.wyq.firehelper.framework;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
-import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.java.aop.AopActivity;
+import com.wyq.firehelper.framework.service.ServiceActivity;
 
-public class ArchitectureActivity extends BaseRecyclerViewActivity {
+public class FrameworkActivity extends BaseRecyclerViewActivity {
+
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"MVP[翻译]","MVVM","AOP"};
+        return new String[]{"Service", "Broadcast", "Thread"};
     }
 
     @Override
     public String toolBarName() {
-        return "architecture";
+        return "Framework";
     }
 
     @Override
@@ -34,13 +33,7 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
-                        startActivity(MvpActivity.class);
-                        break;
-                    case 1:
-                        startActivity(MvvmActivity.class);
-                        break;
-                    case 2:
-                        startActivity(AopActivity.class);
+                        ServiceActivity.instance(FrameworkActivity.this);
                         break;
                     default:
                         break;
@@ -49,8 +42,7 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
         };
     }
 
-    public static void instance(Context context) {
-        context.startActivity(new Intent(context, ArchitectureActivity.class));
+    public static void instance(Context context){
+        context.startActivity(new Intent(context,FrameworkActivity.class));
     }
-
 }

@@ -19,6 +19,7 @@ public class ArticleSaveEntity implements Serializable {
     private ArticleResource resource;
     private String webTitle;
     private String webIcon;
+    private String newUrl;
 
     private int scrollY;//记录收藏时的阅读位置
     private float scaleSize;//记录收藏时界面缩放大小，默认1
@@ -29,18 +30,11 @@ public class ArticleSaveEntity implements Serializable {
 
     }
 
-    public ArticleSaveEntity(ArticleResource resource) {
-        this.resource = resource;
-        this.scrollY = 0;
-        this.scaleSize = 1;
-        this.saveUserName = "";
-        this.saveDate = System.currentTimeMillis();
-    }
-
-    public ArticleSaveEntity(ArticleResource resource, String webTitle, Bitmap webIcon, int scrollY, float scaleSize, String saveUserName, long saveDate) {
+    public ArticleSaveEntity(ArticleResource resource, String webTitle, Bitmap webIcon, String newUrl, int scrollY, float scaleSize, String saveUserName, long saveDate) {
         this.resource = resource;
         this.webTitle = webTitle;
         this.webIcon = webIcon == null ? "" : BitmapUtils.bitmap2String(webIcon);
+        this.newUrl = (newUrl == null || newUrl.isEmpty()) ? resource.getUrl() : newUrl;
         this.scrollY = scrollY;
         this.scaleSize = scaleSize;
         this.saveUserName = saveUserName;
@@ -103,12 +97,21 @@ public class ArticleSaveEntity implements Serializable {
         this.saveDate = saveDate;
     }
 
+    public String getNewUrl() {
+        return newUrl;
+    }
+
+    public void setNewUrl(String newUrl) {
+        this.newUrl = newUrl;
+    }
+
     @Override
     public String toString() {
         return "ArticleSaveEntity{" +
                 "resource=" + resource.toString() +
                 ", \nwebTitle='" + webTitle + '\'' +
                 ", \nwebIcon=" + webIcon.length() +
+                ", \nnewUrl=" + newUrl +
                 ", \nscrollY=" + scrollY +
                 ", \nscaleSize=" + scaleSize +
                 ", \nsaveUserName='" + saveUserName + '\'' +
@@ -136,13 +139,13 @@ public class ArticleSaveEntity implements Serializable {
     public static ArticleSaveEntity convertFromBytes(byte[] bytes) {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ObjectInputStream ois = null;
-        ArticleSaveEntity entity  = null;
+        ArticleSaveEntity entity = null;
         try {
             ois = new ObjectInputStream(bis);
 
             //readObject 读取到末尾会抛出EOFException
             //java.io.EOFException:此异常主要被数据输入流用来表明到达流的末尾。注意，其他许多输入操作返回一个特殊值表示到达流的末尾，而不是抛出异常。
-            while ((entity = (ArticleSaveEntity) ois.readObject())!= null){
+            while ((entity = (ArticleSaveEntity) ois.readObject()) != null) {
                 return entity;
             }
         } catch (IOException e) {

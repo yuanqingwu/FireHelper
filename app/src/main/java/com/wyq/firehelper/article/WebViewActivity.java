@@ -48,8 +48,8 @@ public class WebViewActivity extends AppCompatActivity {
 
     private float xStart = -1;
     private float yStart = -1;
-    private String url;
-    private String newUrl = "";//fixme:多次跳转之后保存最新的url
+    private String url;//原始的URL，对应ArticleConstants
+    private String newUrl = "";//经过多次点击后的URL
     public boolean canDrag = false;//默认此页面不支持右滑返回
 
     private boolean isSaved = false;
@@ -59,6 +59,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     public WebViewClient webViewClient;
     public WebChromeClient webChromeClient;
+    public static final String WEBVIEW_CACHE_DIR = "webViewCache/";
 
     public static void instance(Context context, String url) {
         Intent intent = new Intent();
@@ -74,7 +75,7 @@ public class WebViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_webview_layout);
         ButterKnife.bind(this);
         url = getIntent().getStringExtra("url");
-
+        Logger.d(url);
         initView();
     }
 
@@ -124,14 +125,11 @@ public class WebViewActivity extends AppCompatActivity {
      */
     public boolean saveArticle() {
         ArticleResource resource = ArticleConstants.getArticleByUrl(url);
-        if (newUrl.length() > 0) {
-            resource.setUrl(newUrl);
-        }
         int scrollY = webView.getScrollY();
         float scaleSize = webView.getScaleY();
         Bitmap webIcon = webFavicon == null ? BitmapFactory.decodeResource(getResources(), R.drawable.ic_image_place_holder_128px) : webFavicon;
         String title = (webTitle == null || webTitle.isEmpty()) ? url : webTitle;
-        ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource, title, webIcon, scrollY, scaleSize, "", System.currentTimeMillis());
+        ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource, title, webIcon, newUrl, scrollY, scaleSize, "", System.currentTimeMillis());
         boolean result = ArticleRepository.getInstance().save(url, saveEntity);
         if (result) {
             isSaved = true;
@@ -173,10 +171,11 @@ public class WebViewActivity extends AppCompatActivity {
     private void recoverLocation() {
         ArticleSaveEntity entity = ArticleRepository.getInstance().get(url);
         if (entity != null) {
-            String savedUrl = entity.getResource().getUrl();
-            if (!savedUrl.equals(url)) {
+            String savedUrl = entity.getNewUrl();
+            if (savedUrl != null && !savedUrl.isEmpty() && !savedUrl.equals(url)) {
                 setNewUrl(savedUrl);
             }
+
             int scrollY = entity.getScrollY();
             float scale = entity.getScaleSize();
             if (webView != null) {
@@ -326,8 +325,14 @@ public class WebViewActivity extends AppCompatActivity {
 
         WebSettings settings = webView.getSettings();
         settings.setJavaScriptEnabled(true);
+
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
-//        settings.setDomStorageEnabled(true);
+        settings.setDomStorageEnabled(true);
+        String webViewCacheDir = getFilesDir().getAbsolutePath() + WEBVIEW_CACHE_DIR;
+        settings.setAppCachePath(webViewCacheDir);
+        settings.setDatabaseEnabled(true);
+        settings.setAppCacheEnabled(true);
+
         settings.setLoadsImagesAutomatically(true); //支持自动加载图片
         //缩放操作
         settings.setSupportZoom(true); //支持缩放，默认为true。是下面那个的前提。
@@ -337,12 +342,15 @@ public class WebViewActivity extends AppCompatActivity {
         //设置自适应屏幕，两者合用
         settings.setUseWideViewPort(true); //将图片调整到适合webview的大小
         settings.setLoadWithOverviewMode(true); // 缩放至屏幕的大小
-        if (getUrl() != null && !getUrl().isEmpty())
+        if (getUrl() != null && !getUrl().isEmpty()) {
             webView.loadUrl(getUrl());
+            Logger.d(getUrl());
+        }
     }
 
     /**
      * 获取要加载的URL
+     *
      * @return
      */
     private String getUrl() {
