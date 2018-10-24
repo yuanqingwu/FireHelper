@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/vd_radio_button_unchecked"
+        android:drawable="@drawable/vd_radio_button_unchecked_green_32dp"
+        android:state_checked="false"/>
+
+    <item
+        android:id="@+id/vd_radio_button_checked"
+        android:drawable="@drawable/vd_radio_button_checked_green_32dp"
+        android:state_checked="true" />
+
+    <transition
+        android:drawable="@drawable/avd_checkable_radiobutton_unchecked_to_checked"
+        android:fromId="@id/vd_radio_button_unchecked"
+        android:toId="@id/vd_radio_button_checked" />
+
+    <transition
+        android:drawable="@drawable/avd_checkable_radiobutton_checked_to_unchecked"
+        android:fromId="@id/vd_radio_button_checked"
+        android:toId="@id/vd_radio_button_unchecked" />
+</animated-selector>

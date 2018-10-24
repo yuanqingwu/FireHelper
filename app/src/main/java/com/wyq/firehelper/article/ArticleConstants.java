@@ -78,6 +78,8 @@ public class ArticleConstants {
     public static final ArticleResource _59 = new ArticleResource("https://www.jianshu.com/p/4115bcf9f92e", "Android(2017-2018)BAT面试题整理（Android篇，含答案）", "Blog", "博客","面试");
     public static final ArticleResource _60 = new ArticleResource("https://www.jianshu.com/p/5e7075f4875f", "Android：手把手教你构建 全面的WebView 缓存机制 & 资源加载方案", "Blog", "博客","优化");
     public static final ArticleResource _61 = new ArticleResource("https://github.com/mzlogin/awesome-adb", "ADB 用法大全", "Blog", "博客","测试");
+    public static final ArticleResource _62 = new ArticleResource("https://www.jianshu.com/p/a3cb1e23c2c4", "Android vector 标签 pathData 详解", "Blog", "博客","UI");
+    public static final ArticleResource _63 = new ArticleResource("https://www.jianshu.com/p/e3614e7abc03", "Android Vector曲折的兼容之路", "Blog", "博客","UI");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
