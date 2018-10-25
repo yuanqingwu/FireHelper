@@ -1,4 +1,4 @@
-package com.wyq.firehelper.framework;
+package com.wyq.firehelper.security;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,15 +7,20 @@ import android.view.View;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.framework.service.ServiceActivity;
+import com.wyq.firehelper.security.encryption.EncryptActivity;
 
 import java.util.List;
 
-public class FrameworkActivity extends BaseRecyclerViewActivity {
+public class SecurityActivity extends BaseRecyclerViewActivity {
+
+
+    public static void instance(Context context){
+        context.startActivity(new Intent(context,SecurityActivity.class));
+    }
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"Service", "Broadcast", "Thread"};
+        return new String[]{"Encryption"};
     }
 
     @Override
@@ -25,7 +30,7 @@ public class FrameworkActivity extends BaseRecyclerViewActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
-                        ServiceActivity.instance(FrameworkActivity.this);
+                        EncryptActivity.instance(SecurityActivity.this);
                         break;
                     default:
                         break;
@@ -34,17 +39,13 @@ public class FrameworkActivity extends BaseRecyclerViewActivity {
         };
     }
 
-    public static void instance(Context context){
-        context.startActivity(new Intent(context,FrameworkActivity.class));
-    }
-
     @Override
     public String getToolBarTitle() {
-        return "Framework";
+        return "Security";
     }
 
     @Override
     public List getArticleList() {
-        return ArticleConstants.getListByFilter("Android框架");
+        return ArticleConstants.getListByFilter("安全","Security");
     }
 }

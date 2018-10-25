@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
-public class TransitionActivity extends BaseActivity implements View.OnClickListener {
+public class TransitionFragment extends BaseCaseFragment {
 
     @BindView(R.id.ui_activity_transition_bt)
     public Button changeBt;
@@ -25,42 +26,45 @@ public class TransitionActivity extends BaseActivity implements View.OnClickList
 
     private boolean flag = true;
 
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"Transition"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "Transition";
+    }
+
     @Override
     protected int attachLayoutRes() {
         return R.layout.ui_activity_transition;
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
-        changeBt.setOnClickListener(this);
+    protected void initView(View view) {
 
-        mSceneRoot = (ViewGroup)findViewById(R.id.ui_activity_transition_scene_root);
+        mSceneRoot = (ViewGroup)view.findViewById(R.id.ui_activity_transition_scene_root);
         scene1 = new Scene(mSceneRoot,(ViewGroup)mSceneRoot.findViewById(R.id.ui_activity_transition_scene_container));
-        scene2 = Scene.getSceneForLayout(mSceneRoot,R.layout.ui_activty_transition_scene_2,this);
+        scene2 = Scene.getSceneForLayout(mSceneRoot,R.layout.ui_activty_transition_scene_2,getContext());
 
-         mTransitionManager = TransitionInflater.from(this).inflateTransitionManager(R.transition.changebounds_translate_manager,mSceneRoot);
+        mTransitionManager = TransitionInflater.from(getContext()).inflateTransitionManager(R.transition.changebounds_translate_manager,mSceneRoot);
 
-         //default
-         TransitionManager.go(scene1);
-
+        //default
+        TransitionManager.go(scene1);
 
     }
 
-    @Override
-    public void onClick(View v) {
-        //automatic transition
-//        TransitionManager.go(flag?scene2:scene1);
-
-        //custom TransitionManager
+    @OnClick(R.id.ui_activity_transition_bt)
+    public void onClick(){
         mTransitionManager.transitionTo(flag?scene2:scene1);
 
         flag = !flag;
-
-
     }
 }

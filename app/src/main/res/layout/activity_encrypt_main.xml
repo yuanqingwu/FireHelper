@@ -5,7 +5,7 @@
 
     <include
         android:id="@+id/activity_encrypt_toolbar"
-        layout="@layout/toolbar" />
+        layout="@layout/toolbar_with_article" />
 
     <Spinner
         android:id="@+id/activity_encrypt_spinner"

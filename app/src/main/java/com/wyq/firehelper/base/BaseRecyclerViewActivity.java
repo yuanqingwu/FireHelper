@@ -5,7 +5,6 @@ import android.support.annotation.CallSuper;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 
 import com.wyq.firehelper.R;
@@ -16,29 +15,18 @@ import java.util.Arrays;
 
 import butterknife.BindView;
 
-public abstract class BaseRecyclerViewActivity extends BaseActivity {
+public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
 
     public abstract String[] listItemsNames();
-
-    public abstract String toolBarName();
-
-    public abstract boolean isShowBackIcon();
 
     public abstract TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener();
 
     @BindView(R.id.list_activity_recycler_view)
     public RecyclerView baseRV;
-    @BindView(R.id.toolbar)
-    public Toolbar toolbar;
 
     @Override
     protected int attachLayoutRes() {
         return R.layout.list_activity_layout;
-    }
-
-    @Override
-    public void initToolBar() {
-        initToolBar(toolbar, toolBarName(), isShowBackIcon());
     }
 
     @CallSuper

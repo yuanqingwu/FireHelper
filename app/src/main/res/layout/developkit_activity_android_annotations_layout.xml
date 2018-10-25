@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".developkit.androidannotations.AndroidAnnotationsActivity">
-
-    <include
-        android:id="@+id/activity_developkit_androidannotations_toolbar"
-        layout="@layout/toolbar_with_article" />
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/activity_developkit_androidannotations_tv_1"
@@ -16,6 +9,5 @@
         android:layout_height="40dp"
         android:background="@color/darkgrey"
         android:gravity="center"
-        android:textColor="@color/lightblue"
-        app:layout_constraintTop_toBottomOf="@id/activity_developkit_androidannotations_toolbar" />
+        android:textColor="@color/lightblue" />
 </android.support.constraint.ConstraintLayout>

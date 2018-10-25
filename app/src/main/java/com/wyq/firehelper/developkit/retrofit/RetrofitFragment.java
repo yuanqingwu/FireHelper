@@ -1,12 +1,13 @@
 package com.wyq.firehelper.developkit.retrofit;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
@@ -14,22 +15,13 @@ import java.lang.reflect.Proxy;
 
 import butterknife.BindView;
 
-public class RetrofitFragment extends BaseFragment {
+public class RetrofitFragment extends BaseCaseFragment {
 
     @BindView(R.id.activity_developkit_retrofit_res_tv)
     public TextView resTv;
 
     @BindView(R.id.activity_developkit_retrofit_iv)
     public ImageView imageView;
-
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.developkit_activity_retrofit_layout,container,false);
-//        initData();
-//        initView();
-//        return view;
-//    }
 
     @Override
     public int attachLayoutRes() {
@@ -41,7 +33,7 @@ public class RetrofitFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
 
         Glide.with(getActivity()).load(R.drawable.retrofit).into(imageView);
 
@@ -82,6 +74,16 @@ public class RetrofitFragment extends BaseFragment {
                 return method.invoke(this,args);
             }
         });
+    }
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"Retrofit"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "Retrofit";
     }
 
     public interface IName{

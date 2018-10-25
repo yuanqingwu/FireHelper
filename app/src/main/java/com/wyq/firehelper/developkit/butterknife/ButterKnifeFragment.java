@@ -1,14 +1,14 @@
 package com.wyq.firehelper.developkit.butterknife;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
-public class ButterKnifeFragment extends BaseFragment {
+public class ButterKnifeFragment extends BaseCaseFragment {
 
     @BindView(R.id.activity_developkit_butterknife_tv_2)
     public TextView textView2;
@@ -33,7 +33,7 @@ public class ButterKnifeFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
 
         textView2.setText("1、在Activity 类中绑定 ：ButterKnife.bind(this);必须在setContentView();之后绑定；且父类bind绑定后，子类不需要再bind。\n" +
                 "\n" +
@@ -113,4 +113,13 @@ public class ButterKnifeFragment extends BaseFragment {
                 "}  ");
     }
 
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"ButterKnife"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "ButterKnife";
+    }
 }

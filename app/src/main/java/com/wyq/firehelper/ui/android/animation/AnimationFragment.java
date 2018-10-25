@@ -5,6 +5,7 @@ import android.animation.IntEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.AnimationDrawable;
+import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -15,11 +16,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
-public class AnimationActivity extends BaseActivity {
+public class AnimationFragment extends BaseCaseFragment {
 
     @BindView(R.id.ui_activity_animation_property_Bt)
     public Button propertyButton;
@@ -33,35 +34,32 @@ public class AnimationActivity extends BaseActivity {
     private ValueAnimator valueAnimator, floatAnimator;
     private ObjectAnimator animator, animator1;
 
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"Animation"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "Animation";
+    }
+
     @Override
     protected int attachLayoutRes() {
         return R.layout.ui_activity_animation_layout;
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
+    protected void initView(View view) {
         animationProperty();
         animationTween();
         animationFrame();
-    }
-
-    @Override
-    protected void onDestroy() {
-        valueAnimator.cancel();
-        valueAnimator = null;
-        floatAnimator.cancel();
-        floatAnimator = null;
-        animator.cancel();
-        animator = null;
-        animator1.cancel();
-        animator1 = null;
-
-        super.onDestroy();
     }
 
     private void animationProperty() {
@@ -118,8 +116,8 @@ public class AnimationActivity extends BaseActivity {
         String[] drawableName = new String[]{"article", "module", "ui", "security", "tool", "architecture"};
         AnimationDrawable animationDrawable = new AnimationDrawable();
         for (String s : drawableName) {
-            int id = getResources().getIdentifier(s, "drawable", getPackageName());
-            animationDrawable.addFrame(getDrawable(id), 150);
+            int id = getResources().getIdentifier(s, "drawable", getActivity().getPackageName());
+            animationDrawable.addFrame(getActivity().getDrawable(id), 150);
         }
 
         animationDrawable.setOneShot(false);
@@ -165,5 +163,19 @@ public class AnimationActivity extends BaseActivity {
 
         tweenButton1.startAnimation(translateAnimation);
 
+    }
+
+    @Override
+    public void onDestroy() {
+        valueAnimator.cancel();
+        valueAnimator = null;
+        floatAnimator.cancel();
+        floatAnimator = null;
+        animator.cancel();
+        animator = null;
+        animator1.cancel();
+        animator1 = null;
+
+        super.onDestroy();
     }
 }

@@ -1,6 +1,7 @@
 package com.wyq.firehelper.base;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,20 +20,22 @@ public abstract class BaseFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         initData();
-        initView();
+        initView(view);
 
         return view;
     }
 
-    public abstract int attachLayoutRes();
+    @LayoutRes
+    protected abstract int attachLayoutRes();
 
     /**
      * 在此填充页面需展示的数据
      */
-    public abstract void initData();
+    protected abstract void initData();
 
     /**
      * 在此初始化各页面模块
      */
-    public abstract void initView();
+    protected abstract void initView(View view);
+
 }

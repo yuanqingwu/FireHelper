@@ -6,25 +6,18 @@ import android.view.View;
 
 import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
+import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.java.aop.AopActivity;
+
+import java.util.List;
 
 public class ArchitectureActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
         return new String[]{"MVP[翻译]","MVVM","AOP"};
-    }
-
-    @Override
-    public String toolBarName() {
-        return "architecture";
-    }
-
-    @Override
-    public boolean isShowBackIcon() {
-        return true;
     }
 
     @Override
@@ -53,4 +46,13 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
         context.startActivity(new Intent(context, ArchitectureActivity.class));
     }
 
+    @Override
+    public String getToolBarTitle() {
+        return "Architecture";
+    }
+
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Architecture","架构");
+    }
 }

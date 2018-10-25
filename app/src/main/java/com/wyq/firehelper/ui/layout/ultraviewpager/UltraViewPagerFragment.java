@@ -4,17 +4,28 @@ import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
-public class UltraViewPagerActivity extends BaseActivity {
+public class UltraViewPagerFragment extends BaseCaseFragment {
 
     @BindView(R.id.ui_activity_ultra_view_pager)
     public UltraViewPager ultraViewPager;
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"UltraViewPager"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "UltraViewPager";
+    }
 
     @Override
     protected int attachLayoutRes() {
@@ -22,12 +33,12 @@ public class UltraViewPagerActivity extends BaseActivity {
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
+    protected void initView(View view) {
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         PagerAdapter adapter = new UltraPagerAdapter();
         ultraViewPager.setAdapter(adapter);
@@ -43,6 +54,5 @@ public class UltraViewPagerActivity extends BaseActivity {
         ultraViewPager.setInfiniteLoop(true);
         ultraViewPager.setAutoScroll(2000);
         ultraViewPager.setMultiScreen(1.0f);
-
     }
 }

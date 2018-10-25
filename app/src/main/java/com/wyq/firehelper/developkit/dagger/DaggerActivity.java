@@ -74,7 +74,7 @@ public class DaggerActivity extends BaseCaseActivity {
     }
 
     @Override
-    public String toolBarName() {
+    public String getToolBarTitle() {
         return "Dagger";
     }
 

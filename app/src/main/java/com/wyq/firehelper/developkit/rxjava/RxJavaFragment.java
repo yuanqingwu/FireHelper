@@ -2,18 +2,33 @@ package com.wyq.firehelper.developkit.rxjava;
 
 import android.text.Html;
 import android.text.Spanned;
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.BaseCaseFragment;
+
+import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.Completable;
+import io.reactivex.CompletableEmitter;
+import io.reactivex.CompletableOnSubscribe;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.MaybeEmitter;
+import io.reactivex.MaybeOnSubscribe;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
+import io.reactivex.Single;
+import io.reactivex.SingleEmitter;
+import io.reactivex.SingleOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.BiConsumer;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -73,7 +88,7 @@ import io.reactivex.schedulers.Schedulers;
  * <p>
  * window 按照实际划分窗口，将数据发送给不同的 Observable
  */
-public class RxJavaFragment extends BaseFragment {
+public class RxJavaFragment extends BaseCaseFragment {
 
     public String schedulers = "Schedulers.io() 代表io操作的线程, 通常用于网络,读写文件等io密集型的操作；\n" +
             " \n" +
@@ -97,7 +112,7 @@ public class RxJavaFragment extends BaseFragment {
             "  concatMap 与 FlatMap 的唯一区别就是 concatMap 保证了顺序\n" +
             "  <p>\n" +
             "  switchMap:与flatMap操作符不同的是，switchMap操作符会保存最新的Observable产生的\n" +
-            "                 结果而舍弃旧的结果"+
+            "                 结果而舍弃旧的结果" +
             "  <p>\n" +
             "  zip 操作符可以将多个 Observable 的数据结合为一个数据源再发射出去\n" +
             "  如：zip 操作符，实现多个接口数据共同更新 UI\n" +
@@ -131,6 +146,12 @@ public class RxJavaFragment extends BaseFragment {
             "  <p>\n" +
             "  window 按照实际划分窗口，将数据发送给不同的 Observable";
 
+    public String observableType = "Observable<T> \t能够发射0或n个数据，并以成功或错误事件终止。\n" +
+            "Flowable<T> \t能够发射0或n个数据，并以成功或错误事件终止。 支持Backpressure，可以控制数据源发射的速度。\n" +
+            "Single<T> \t只发射单个数据或错误事件。\n" +
+            "Completable \t它从来不发射数据，只处理 onComplete 和 onError 事件。可以看成是Rx的Runnable。\n" +
+            "Maybe<T> \t能够发射0或者1个数据，要么成功，要么失败。有点类似于Optional\n";
+
     @BindView(R.id.activity_developkit_rxjava_res_tv)
     public TextView resTv;
 
@@ -140,15 +161,8 @@ public class RxJavaFragment extends BaseFragment {
     @BindView(R.id.activity_developkit_rxjava_tv_2)
     public TextView textView2;
 
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.developkit_activity_rxjava_layout,container,false);
-//        initData();
-//        initView();
-//        return view;
-//    }
-
+    @BindView(R.id.activity_developkit_rxjava_tv_3)
+    public TextView textView3;
     @Override
     public int attachLayoutRes() {
         return R.layout.developkit_activity_rxjava_layout;
@@ -159,14 +173,30 @@ public class RxJavaFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
-        textView1.setText(schedulers);
+    public void initView(View view) {
+        textView1.setText(observableType);
+        textView2.setText(schedulers);
         Spanned spanned = Html.fromHtml(operator);
-        textView2.setText(spanned);
+        textView3.setText(spanned);
+
+        observable();
+        flowable();
+        completable();
+        single();
+        maybe();
     }
 
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"RxJava"};
+    }
 
-    public void observer() {
+    @Override
+    public String getToolBarTitle() {
+        return "RxJava";
+    }
+
+    public void observable() {
         Observable.create(new ObservableOnSubscribe<String>() {
 
             @Override
@@ -206,6 +236,8 @@ public class RxJavaFragment extends BaseFragment {
                 resTv.append("\nonComplete");
             }
         });
+
+        consumer();
     }
 
     public void consumer() {
@@ -217,7 +249,7 @@ public class RxJavaFragment extends BaseFragment {
         }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
             @Override
             public void accept(String s) throws Exception {
-                resTv.append(s);
+                resTv.append("\n" + s);
             }
         }, new Consumer<Throwable>() {
             @Override
@@ -225,5 +257,79 @@ public class RxJavaFragment extends BaseFragment {
 
             }
         });
+    }
+
+    public void flowable() {
+        Flowable.just("Flowable1", "Flowable2")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(
+                        new Consumer<String>() {
+                            @Override
+                            public void accept(String s) throws Exception {
+                                resTv.append("\n\n" + s);
+                            }
+                        }
+                );
+    }
+
+    public void completable() {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                resTv.append("\n\n" + "completable");
+            }
+        }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+        completableWithNext();
+    }
+
+    public void completableWithNext() {
+        Completable.create(new CompletableOnSubscribe() {
+            @Override
+            public void subscribe(CompletableEmitter emitter) throws Exception {
+                TimeUnit.SECONDS.sleep(1);
+                emitter.onComplete();
+            }
+        }).andThen(Observable.range(1, 3))
+                .subscribe(new Consumer<Integer>() {
+                    @Override
+                    public void accept(Integer integer) throws Exception {
+                        resTv.append("\n completable" + integer);
+                    }
+                });
+    }
+
+    public void single() {
+        Single.create(new SingleOnSubscribe<String>() {
+            @Override
+            public void subscribe(SingleEmitter<String> emitter) throws Exception {
+                emitter.onSuccess("single");
+            }
+        }).subscribe(new BiConsumer<String, Throwable>() {
+            @Override
+            public void accept(String s, Throwable throwable) throws Exception {
+                resTv.append("\n\n" + s);
+            }
+        });
+    }
+
+    public void maybe() {
+        Maybe.create(new MaybeOnSubscribe<String>() {
+            @Override
+            public void subscribe(MaybeEmitter<String> emitter) throws Exception {
+                emitter.onSuccess("Maybe1");
+                emitter.onComplete();
+                emitter.onSuccess("Maybe2");
+            }
+        }).subscribe(new Consumer<String>() {
+            @Override
+            public void accept(String s) throws Exception {
+                resTv.setText("\n" + s);
+            }
+        });
+
     }
 }

@@ -1,6 +1,5 @@
 package com.wyq.firehelper.ui.android.recyclerview;
 
-import android.net.Uri;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -10,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class RecyclerViewActivity extends BaseActivity implements SelectListener, DetailRVFragment.OnFragmentInteractionListener {
+public class RecyclerViewFragment extends BaseCaseFragment implements SelectListener {
 
     private DetailRVFragment detailRVFragment;
     private SelectListener selectListener;
@@ -29,20 +28,30 @@ public class RecyclerViewActivity extends BaseActivity implements SelectListener
     public RecyclerView recyclerView;
 
     @Override
+    public String[] getArticleFilters() {
+        return new String[]{"RecyclerView"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "RecyclerView";
+    }
+
+    @Override
     protected int attachLayoutRes() {
         return R.layout.ui_activity_recycler_view_layout;
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
-        linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+    protected void initView(View view) {
+        linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
             list.add("item: " + i);
@@ -59,23 +68,18 @@ public class RecyclerViewActivity extends BaseActivity implements SelectListener
 
         //初始化右侧界面
         detailRVFragment = DetailRVFragment.newInstance("", "");
+        detailRVFragment.setSelectListener(this);
         fragmentSelect(detailRVFragment, detailRVFragment.getClass().getSimpleName());
         if (detailRVFragment instanceof SelectListener) {
             this.selectListener = (SelectListener) detailRVFragment;
         }
     }
 
-
     private void fragmentSelect(Fragment fragment, String tag) {
-        FragmentManager manager = getSupportFragmentManager();
+        FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.ui_activity_recycler_view_frame_layout, fragment, tag);
         transaction.commit();
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     @Override

@@ -1,11 +1,10 @@
-package com.wyq.firehelper.encryption;
+package com.wyq.firehelper.security.encryption;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,9 +15,9 @@ import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.base.BaseCaseActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
-import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 import com.wyq.firehelper.utils.LogUtils;
 
 import java.lang.annotation.Annotation;
@@ -30,7 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class EncryptActivity extends BaseActivity {
+public class EncryptActivity extends BaseCaseActivity {
 
     @BindView(R.id.activity_encrypt_spinner)
     public Spinner spinner;
@@ -44,8 +43,6 @@ public class EncryptActivity extends BaseActivity {
     public TextInputLayout textInputLayout;
     @BindView(R.id.activity_encrypt_edittext)
     public TextInputEditText inputEt;
-    @BindView(R.id.toolbar)
-    public Toolbar toolbar;
 
     private List<Method> methods = null;
     private List<String> methodsFullName = null;
@@ -60,8 +57,13 @@ public class EncryptActivity extends BaseActivity {
     }
 
     @Override
-    public void initToolBar() {
-        initToolBar(toolbar, "Encryption", true);
+    public String getToolBarTitle() {
+        return "Encrypt";
+    }
+
+    @Override
+    public List getArticleList() {
+        return ArticleConstants.getListByFilter("Encrypt");
     }
 
     public void creatEditUnit(String hint) {

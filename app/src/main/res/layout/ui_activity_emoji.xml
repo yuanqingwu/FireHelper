@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.android.emoji.EmojiActivity">
+    android:layout_height="match_parent">
 
     <android.support.text.emoji.widget.EmojiTextView
         android:id="@+id/ui_activity_emoji_tv"
@@ -22,6 +20,6 @@
         android:id="@+id/ui_activity_emoji_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:maxEmojiCount="3"
-        app:layout_constraintTop_toBottomOf="@id/ui_activity_tv"/>
+        app:layout_constraintTop_toBottomOf="@id/ui_activity_tv"
+        app:maxEmojiCount="3" />
 </android.support.constraint.ConstraintLayout>

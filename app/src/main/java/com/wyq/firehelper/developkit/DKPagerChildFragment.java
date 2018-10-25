@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.utils.FireHelperUtils;
 
 import org.json.JSONArray;
@@ -45,7 +46,7 @@ public class DKPagerChildFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
         adapter = new DKRecyclerViewAdapter(getContext());
         adapter.setData(infoList);
 
@@ -55,13 +56,34 @@ public class DKPagerChildFragment extends BaseFragment {
         adapter.setOnItemClickListener(new DKRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                startActivityDynamic(getActivity(), infoList.get(position).getName());
+
+                String name = infoList.get(position).getName();
+                String pathBase = "com.wyq.firehelper.developkit." + name.toLowerCase() + "." + name;
+
+                //模块界面容器允许是fragment或者activity，优先查找fragment
+                String pathFragment = pathBase + "Fragment";
+                try {
+                    Class.forName(pathFragment);
+                    CaseActivity.instance(getContext(), pathFragment);
+                } catch (ClassNotFoundException e) {
+//                    e.printStackTrace();
+                    String pathActivity = pathBase + "Activity";
+                    try {
+                        Class.forName(pathActivity);
+                        startActivityDynamic(getContext(), pathActivity);
+                    } catch (ClassNotFoundException e1) {
+                        e1.printStackTrace();
+                        Toast.makeText(getContext(), "找不到相关界面，先浏览其他的吧~", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+//                startActivityDynamic(getActivity(), infoList.get(position).getName());
             }
         });
     }
 
-    private void startActivityDynamic(Context context, String kitName) {
-        String name = "com.wyq.firehelper.developkit." + kitName.toLowerCase() + "." + kitName + "Activity";
+    private void startActivityDynamic(Context context, String name) {
+//        String name = "com.wyq.firehelper.developkit." + kitName.toLowerCase() + "." + kitName + "Activity";
 //        Intent intent = new Intent();
 //        intent.setComponent(new ComponentName(context,name));
 //        context.startActivity(intent);

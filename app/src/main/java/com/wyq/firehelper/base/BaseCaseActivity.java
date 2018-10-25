@@ -22,23 +22,40 @@ public abstract class BaseCaseActivity extends BaseActivity {
 
     @Override
     public void initToolBar() {
-        initToolBar(toolbar,toolBarName(),true);
+        initToolBar(toolbar, getToolBarTitle(), true);
+        refreshArticleList();
         articleIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirePopupWindow.list(getArticleList()).showLocation(getWindow().getDecorView()).setOnItemClickListener(new FirePopupWindow.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(Object data) {
-                        if(data instanceof ArticleResource) {
-                            WebViewActivity.instance(BaseCaseActivity.this,((ArticleResource) data).getUrl());
+                List articleList = getArticleList();
+                if (articleList != null && articleList.size() > 0) {
+                    FirePopupWindow.list(getArticleList()).showLocation(getWindow().getDecorView()).setOnItemClickListener(new FirePopupWindow.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(Object data) {
+                            if (data instanceof ArticleResource) {
+                                WebViewActivity.instance(BaseCaseActivity.this, ((ArticleResource) data).getUrl());
+                            }
                         }
-                    }
-                });
+                    });
+                }
             }
         });
     }
 
-    public abstract String toolBarName();
+    public void refreshToolBarTitle() {
+        toolbar.setTitle(getToolBarTitle());
+    }
+
+    public void refreshArticleList() {
+        List articleList = getArticleList();
+        if (articleList == null || articleList.size() == 0) {
+            articleIv.setVisibility(View.GONE);
+        } else {
+            articleIv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public abstract String getToolBarTitle();
 
     public abstract List getArticleList();
 }

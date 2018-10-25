@@ -1,4 +1,4 @@
-package com.wyq.firehelper.encryption;
+package com.wyq.firehelper.security.encryption;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -23,21 +23,21 @@ public class ArticleConstants {
 
     public static final ArticleResource _6 = new ArticleResource("https://github.com/googlesamples/android-architecture", "googlesamples/android-architecture", "", "公司");
     public static final ArticleResource _7 = new ArticleResource("http://pingguohe.net/2016/12/20/Tangram-design-and-practice.html", " 页面动态化的基础 —— Tangram", "UI", "UI");
-    public static final ArticleResource _8 = new ArticleResource("http://tangram.pingguohe.net/", " Tangram", "UI", "UI","主页");
+    public static final ArticleResource _8 = new ArticleResource("http://tangram.pingguohe.net/", " Tangram", "UI", "UI", "主页");
     public static final ArticleResource _9 = new ArticleResource("https://guides.codepath.com/android/handling-scrolls-with-coordinatorlayout", "coordinatorlayout", "UI", "UI");
     public static final ArticleResource _10 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/72828483", "深入理解Java并发之synchronized实现原理", "Java", "Java");
 
     public static final ArticleResource _11 = new ArticleResource("https://www.jianshu.com/u/6b372d09b617", "YoKey(大搜车)", "Blog", "博客主页");
-    public static final ArticleResource _12 = new ArticleResource("https://www.jianshu.com/p/e66a1afe474c", "D项目Android模块化 VCS演进之路", "Blog", "优化","架构");
+    public static final ArticleResource _12 = new ArticleResource("https://www.jianshu.com/p/e66a1afe474c", "D项目Android模块化 VCS演进之路", "Blog", "优化", "架构");
     public static final ArticleResource _13 = new ArticleResource("https://tech.meituan.com/", "美团技术团队", "Blog", "公司");
     public static final ArticleResource _14 = new ArticleResource("http://f2e.souche.com/blog/", "搜车大无线团队博客", "Blog", "公司");
     public static final ArticleResource _15 = new ArticleResource("https://tech.youzan.com/", "有赞技术团队", "Blog", "公司");
-    public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计","AOP");
-    public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计","AOP");
+    public static final ArticleResource _16 = new ArticleResource("https://www.jianshu.com/p/c202853059b4", "Android AOP之字节码插桩", "Blog", "数据统计", "AOP");
+    public static final ArticleResource _17 = new ArticleResource("https://www.jianshu.com/p/b5ffe845fe2d", "Android无埋点数据收集SDK关键技术", "Blog", "数据统计", "AOP");
     public static final ArticleResource _18 = new ArticleResource("http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2017/0523/7963.html", "App开发架构指南（谷歌官方文档译文）", "Blog", "架构");
     public static final ArticleResource _19 = new ArticleResource("https://techblog.toutiao.com/", "今日头条技术博客", "Blog", "公司");
     public static final ArticleResource _20 = new ArticleResource("http://blogs.360.cn/", "奇虎360技术博客", "Blog", "公司");
-//    public static final ArticleResource _21 = new ArticleResource("https://androidweekly.io/", "Android 开发技术周报", "Blog", "博客主页");
+    //    public static final ArticleResource _21 = new ArticleResource("https://androidweekly.io/", "Android 开发技术周报", "Blog", "博客主页");
     public static final ArticleResource _22 = new ArticleResource("https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA", "一种极低成本的Android屏幕适配方式", "Blog", "优化");
     public static final ArticleResource _23 = new ArticleResource("https://blog.csdn.net/Luoshengyang", "老罗的Android之旅(罗升阳CSDN主页)", "Blog", "博客主页");
     public static final ArticleResource _24 = new ArticleResource("https://blog.csdn.net/eclipsexys", "eclipse_xu(徐宜生[沪江网])", "Blog", "博客主页");
@@ -57,10 +57,10 @@ public class ArticleConstants {
     public static final ArticleResource _38 = new ArticleResource("http://www.trinea.cn/android/didi-internationalization-android-evolution/", "滴滴国际化项目 Android 端演进", "Blog", "架构");
     public static final ArticleResource _39 = new ArticleResource("https://mp.weixin.qq.com/s/6Q818XA5FaHd7jJMFBG60w", "微信Android模块化架构重构实践 ", "Blog", "架构");
     public static final ArticleResource _40 = new ArticleResource("https://tech.meituan.com/meituan_food_delivery_android_architecture_evolution.html", "美团外卖Android平台化架构演进实践 ", "Blog", "架构");
-    public static final ArticleResource _41 = new ArticleResource("https://blog.csdn.net/qq_17766199/article/details/78450007", "Android单元测试(二)：Mockito框架的使用 ", "Blog", "测试","框架");
-    public static final ArticleResource _42 = new ArticleResource("https://github.com/mockito/mockito/wiki", "mockito/wiki", "Blog", "测试","框架");
-    public static final ArticleResource _43 = new ArticleResource("https://github.com/powermock/powermock", "PowerMock ", "Blog", "测试","框架");
-    public static final ArticleResource _44 = new ArticleResource("https://www.jianshu.com/p/c6d91b8a491f", "Android单元测试之Robolectric", "Blog", "测试","框架");
+    public static final ArticleResource _41 = new ArticleResource("https://blog.csdn.net/qq_17766199/article/details/78450007", "Android单元测试(二)：Mockito框架的使用 ", "Blog", "测试", "框架");
+    public static final ArticleResource _42 = new ArticleResource("https://github.com/mockito/mockito/wiki", "mockito/wiki", "Blog", "测试", "框架");
+    public static final ArticleResource _43 = new ArticleResource("https://github.com/powermock/powermock", "PowerMock ", "Blog", "测试", "框架");
+    public static final ArticleResource _44 = new ArticleResource("https://www.jianshu.com/p/c6d91b8a491f", "Android单元测试之Robolectric", "Blog", "测试", "框架");
     public static final ArticleResource _45 = new ArticleResource("https://mr-cao.gitbooks.io/android/content/", "Android框架分析系列", "Blog", "Android框架");
     public static final ArticleResource _46 = new ArticleResource("https://blog.csdn.net/javazejian/article/details/52709857", "关于Android Service真正的完全详解，你需要知道的一切", "Blog", "Android框架");
     public static final ArticleResource _47 = new ArticleResource("https://developer.android.google.cn/guide/components/tasks-and-back-stack", "任务和返回栈", "Blog", "Android框架");
@@ -69,17 +69,17 @@ public class ArticleConstants {
     public static final ArticleResource _50 = new ArticleResource("https://mp.weixin.qq.com/s/QRIy_apwqAaL2pM8a_lRUQ", "Android安装包相关知识汇总", "Blog", "优化");
     public static final ArticleResource _51 = new ArticleResource("https://developer.android.google.cn/guide/topics/graphics/opengl", "Android openGl", "Blog", "OpenGL");
     public static final ArticleResource _52 = new ArticleResource("https://blog.csdn.net/qq_32175491/article/details/79091647", "Android openGl开发详解(一)——绘制简单图形", "Blog", "OpenGL");
-    public static final ArticleResource _53 = new ArticleResource("https://www.jianshu.com/p/f1aeb0369746", "知乎 Android 客户端组件化实践", "Blog", "架构","优化");
-    public static final ArticleResource _54 = new ArticleResource("https://www.jianshu.com/nb/29902765", "知乎移动平台专栏", "Blog", "博客主页","公司");
-    public static final ArticleResource _55 = new ArticleResource("https://bbs.pediy.com/thread-219107.htm", "Android安全项目入门篇", "Blog", "博客","安全");
-    public static final ArticleResource _56 = new ArticleResource("https://bbs.pediy.com/forum-161.htm", "看雪论坛[Android安全]", "Blog", "博客","安全");
-    public static final ArticleResource _57 = new ArticleResource("https://www.jianshu.com/p/aff499a5953c", "关于RecyclerView你知道的不知道的都在这了（上）", "Blog", "博客","UI");
-    public static final ArticleResource _58 = new ArticleResource("https://www.jianshu.com/p/c70989bd5f29", "最全的BAT大厂面试题整理", "Blog", "博客","面试");
-    public static final ArticleResource _59 = new ArticleResource("https://www.jianshu.com/p/4115bcf9f92e", "Android(2017-2018)BAT面试题整理（Android篇，含答案）", "Blog", "博客","面试");
-    public static final ArticleResource _60 = new ArticleResource("https://www.jianshu.com/p/5e7075f4875f", "Android：手把手教你构建 全面的WebView 缓存机制 & 资源加载方案", "Blog", "博客","优化");
-    public static final ArticleResource _61 = new ArticleResource("https://github.com/mzlogin/awesome-adb", "ADB 用法大全", "Blog", "博客","测试");
-    public static final ArticleResource _62 = new ArticleResource("https://www.jianshu.com/p/a3cb1e23c2c4", "Android vector 标签 pathData 详解", "Blog", "博客","UI");
-    public static final ArticleResource _63 = new ArticleResource("https://www.jianshu.com/p/e3614e7abc03", "Android Vector曲折的兼容之路", "Blog", "博客","UI");
+    public static final ArticleResource _53 = new ArticleResource("https://www.jianshu.com/p/f1aeb0369746", "知乎 Android 客户端组件化实践", "Blog", "架构", "优化");
+    public static final ArticleResource _54 = new ArticleResource("https://www.jianshu.com/nb/29902765", "知乎移动平台专栏", "Blog", "博客主页", "公司");
+    public static final ArticleResource _55 = new ArticleResource("https://bbs.pediy.com/thread-219107.htm", "Android安全项目入门篇", "Blog", "博客", "安全");
+    public static final ArticleResource _56 = new ArticleResource("https://bbs.pediy.com/forum-161.htm", "看雪论坛[Android安全]", "Blog", "博客", "安全");
+    public static final ArticleResource _57 = new ArticleResource("https://www.jianshu.com/p/aff499a5953c", "关于RecyclerView你知道的不知道的都在这了（上）", "Blog", "博客", "UI");
+    public static final ArticleResource _58 = new ArticleResource("https://www.jianshu.com/p/c70989bd5f29", "最全的BAT大厂面试题整理", "Blog", "博客", "面试");
+    public static final ArticleResource _59 = new ArticleResource("https://www.jianshu.com/p/4115bcf9f92e", "Android(2017-2018)BAT面试题整理（Android篇，含答案）", "Blog", "博客", "面试");
+    public static final ArticleResource _60 = new ArticleResource("https://www.jianshu.com/p/5e7075f4875f", "Android：手把手教你构建 全面的WebView 缓存机制 & 资源加载方案", "Blog", "博客", "优化");
+    public static final ArticleResource _61 = new ArticleResource("https://github.com/mzlogin/awesome-adb", "ADB 用法大全", "Blog", "博客", "测试");
+    public static final ArticleResource _62 = new ArticleResource("https://www.jianshu.com/p/a3cb1e23c2c4", "Android vector 标签 pathData 详解", "Blog", "博客", "UI");
+    public static final ArticleResource _63 = new ArticleResource("https://www.jianshu.com/p/e3614e7abc03", "Android Vector曲折的兼容之路", "Blog", "博客", "UI");
 
     /**
      * mvvm:https://zhuanlan.zhihu.com/p/23772285?from=groupmessage
@@ -117,9 +117,9 @@ public class ArticleConstants {
      * http://gank.io/post/560e15be2dca930e00da1083
      * https://mcxiaoke.gitbooks.io/rxdocs/content/
      */
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/", "RxJava/2.x/javadoc", "", "主页", "框架","Java");
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_1 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60", "这可能是最好的RxJava 2.x 教程", "", "框架","Java");
-    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_2 = new ArticleResource("https://www.jianshu.com/p/b30de498c3cc", "Android - RxJava2.0 操作符整理归纳", "Blog", "框架","Java");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/", "RxJava/2.x/javadoc", "", "主页", "框架", "Java");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_1 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60", "这可能是最好的RxJava 2.x 教程", "", "框架", "Java");
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_2 = new ArticleResource("https://www.jianshu.com/p/b30de498c3cc", "Android - RxJava2.0 操作符整理归纳", "Blog", "框架", "Java");
 
 
     /**
@@ -177,14 +177,20 @@ public class ArticleConstants {
         return listWithTag;
     }
 
-    public static List<ArticleResource> getListByFilter(String filter) {
-        if (list == null || filter == null) {
+    public static List<ArticleResource> getListByFilter(String... filters) {
+        if (list == null || filters == null) {
             return null;
+        }
+        if (filters.length == 0) {
+            return list;
         }
         List<ArticleResource> listFilter = new ArrayList<>();
         for (ArticleResource resource : list) {
-            if (resource.toString().toUpperCase().contains(filter.toUpperCase())) {
-                listFilter.add(resource);
+            String str = resource.toString().toUpperCase();
+            for (String filter : filters) {
+                if (str.contains(filter.toUpperCase())) {
+                    listFilter.add(resource);
+                }
             }
         }
         return listFilter;
@@ -212,17 +218,18 @@ public class ArticleConstants {
 
     /**
      * 根据url获取文章完整信息
+     *
      * @param url
      * @return
      */
-    public static ArticleResource getArticleByUrl(String url){
+    public static ArticleResource getArticleByUrl(String url) {
 
-        if(list == null){
+        if (list == null) {
             list = getAllArticles();
         }
 
-        for(ArticleResource resource :list){
-            if(resource.getUrl().equals(url)){
+        for (ArticleResource resource : list) {
+            if (resource.getUrl().equals(url)) {
                 return resource;
             }
         }
@@ -233,19 +240,20 @@ public class ArticleConstants {
 
     /**
      * 根据传入的数组找出没有被包含在内的URL列表
+     *
      * @param urls
      * @return
      */
-    public static List<String> diffArticlesByUrl(Object[] urls){
-        if(urls == null || urls.length == 0){
+    public static List<String> diffArticlesByUrl(Object[] urls) {
+        if (urls == null || urls.length == 0) {
             return null;
         }
         List<String> diffUrls = new ArrayList<>();
-        for(Object url :urls){
-            if(url instanceof String)
-            if( getArticleByUrl((String) url) == null){
-                diffUrls.add((String)url);
-            }
+        for (Object url : urls) {
+            if (url instanceof String)
+                if (getArticleByUrl((String) url) == null) {
+                    diffUrls.add((String) url);
+                }
         }
         return diffUrls;
     }

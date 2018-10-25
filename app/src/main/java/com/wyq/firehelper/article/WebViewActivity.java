@@ -46,6 +46,7 @@ public class WebViewActivity extends AppCompatActivity {
     @BindView(R.id.activity_webview_toolbar_nail)
     public ImageView nailImage;
 
+    private static final String PARAM_NAME = "URL";
     private float xStart = -1;
     private float yStart = -1;
     private String url;//原始的URL，对应ArticleConstants
@@ -63,7 +64,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     public static void instance(Context context, String url) {
         Intent intent = new Intent();
-        intent.putExtra("url", url);
+        intent.putExtra(PARAM_NAME, url);
         ArticleRepository.getInstance().commitHotDegree(url);
         intent.setClass(context, WebViewActivity.class);
         context.startActivity(intent);
@@ -74,7 +75,7 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview_layout);
         ButterKnife.bind(this);
-        url = getIntent().getStringExtra("url");
+        url = getIntent().getStringExtra(PARAM_NAME);
         Logger.d(url);
         initView();
     }

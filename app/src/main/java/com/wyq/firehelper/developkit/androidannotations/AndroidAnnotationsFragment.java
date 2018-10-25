@@ -1,25 +1,17 @@
 package com.wyq.firehelper.developkit.androidannotations;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
-public class AndroidAnnotationsFragment extends BaseFragment {
+public class AndroidAnnotationsFragment extends BaseCaseFragment {
 
     @BindView(R.id.activity_developkit_androidannotations_tv_1)
     public TextView textView;
-
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.developkit_activity_android_annotations_layout,container,false);
-//        initData();
-//        initView();
-//        return view;
-//    }
 
     @Override
     public int attachLayoutRes() {
@@ -31,6 +23,16 @@ public class AndroidAnnotationsFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
+    }
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"AndroidAnnotations"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "AndroidAnnotations";
     }
 }

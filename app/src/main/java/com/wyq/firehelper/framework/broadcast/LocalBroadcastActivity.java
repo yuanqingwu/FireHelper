@@ -8,7 +8,7 @@ public class LocalBroadcastActivity extends BaseCaseActivity {
 
 
     @Override
-    public String toolBarName() {
+    public String getToolBarTitle() {
         return null;
     }
 

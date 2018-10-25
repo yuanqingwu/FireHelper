@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import butterknife.BindView;
 
-public class BottomDialogActivity extends BaseActivity implements View.OnClickListener {
+public class BottomDialogFragment extends BaseCaseFragment implements View.OnClickListener {
 
     @BindView(R.id.ui_activity_bottom_dialog_show_bt)
     public Button button;
@@ -32,25 +32,33 @@ public class BottomDialogActivity extends BaseActivity implements View.OnClickLi
         return R.layout.ui_activity_bottom_dialog_layout;
     }
 
+
     @Override
-    public void initToolBar() {
+    public String[] getArticleFilters() {
+        return new String[]{"BottomDialog"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "BottomDialog";
+    }
+
+    @Override
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
-
+    protected void initView(View view) {
         button.setText("showBottomSheetDialog");
         button.setOnClickListener(this);
 
         listBt.setText("showListBottomSheetDialog");
         listBt.setOnClickListener(this);
-
     }
 
-
     private void initBottomSheetDialog() {
-        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog = new BottomSheetDialog(getContext());
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.setContentView(R.layout.ui_idalog_bottom_dialog_layout);
@@ -63,12 +71,12 @@ public class BottomDialogActivity extends BaseActivity implements View.OnClickLi
 
 
     public void initBottomSheetListDialog(){
-        bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog = new BottomSheetDialog(getContext());
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.setContentView(R.layout.ui_idalog_bottom_dialog_list_layout);
         RecyclerView recyclerView = (RecyclerView)bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         List<String> list = new ArrayList<>();
         for(int i=0;i<20;i++){
             list.add("item: "+i);
@@ -76,7 +84,6 @@ public class BottomDialogActivity extends BaseActivity implements View.OnClickLi
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(list);
         recyclerView.setAdapter(adapter);
     }
-
 
     @Override
     public void onClick(View v) {

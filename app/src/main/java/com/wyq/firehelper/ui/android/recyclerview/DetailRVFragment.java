@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
@@ -84,7 +85,7 @@ public class DetailRVFragment extends BaseFragment implements SelectListener {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         stickHeaderDecoration = new StickHeaderDecoration(getContext());
@@ -130,13 +131,18 @@ public class DetailRVFragment extends BaseFragment implements SelectListener {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener && context instanceof SelectListener) {
-            mListener = (OnFragmentInteractionListener) context;
-            selectListener = (SelectListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener and SelectListener");
-        }
+//        if (context instanceof SelectListener) {
+//            mListener = (OnFragmentInteractionListener) context;
+//            selectListener = (SelectListener) context;
+//        }
+//        else {
+//            throw new RuntimeException(context.toString()
+//                    + " must implement OnFragmentInteractionListener and SelectListener");
+//        }
+    }
+
+    public void setSelectListener(SelectListener selectListener){
+        this.selectListener = selectListener;
     }
 
     @Override

@@ -33,11 +33,11 @@ import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
-import com.wyq.firehelper.encryption.EncryptActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
 import com.wyq.firehelper.media.opengles.OpenGLESActivity;
+import com.wyq.firehelper.security.SecurityActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.android.popupwindow.FirePopupWindow;
 import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
@@ -314,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         UiMainActivity.instance(MainActivity.this);
                         break;
                     case 2:
-                        EncryptActivity.instance(MainActivity.this);
+                        SecurityActivity.instance(MainActivity.this);
                         break;
                     case 3:
                         DevelopKitMainActivity.instance(MainActivity.this);

@@ -1,9 +1,10 @@
 package com.wyq.firehelper.developkit.dagger;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
@@ -11,7 +12,7 @@ import javax.inject.Provider;
 import butterknife.BindView;
 import dagger.Lazy;
 
-public class DaggerFragment extends BaseFragment {
+public class DaggerFragment extends BaseCaseFragment {
 
     @BindView(R.id.activity_developkit_dagger_res_tv)
     public TextView resTv;
@@ -60,7 +61,7 @@ public class DaggerFragment extends BaseFragment {
 
 
     @Override
-    public void initView() {
+    public void initView(View view) {
         //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
         PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(getActivity(),"wyq")).build();
         component.inject(this);
@@ -76,5 +77,15 @@ public class DaggerFragment extends BaseFragment {
 //        AppComponent appComponent = DaggerAppComponent.builder().appModule(new AppModule(getApplicationContext())).build();
 //        ActivityComponent activityComponent = DaggerActivityComponent.builder().appComponent(appComponent).activityModule(new ActivityModule()).build();
 //        activityComponent.inject(this);
+    }
+
+    @Override
+    public String[] getArticleFilters() {
+        return new String[]{"Dagger"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "Dagger";
     }
 }

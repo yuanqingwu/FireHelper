@@ -1,18 +1,16 @@
 package com.wyq.firehelper.ui.android.drawable;
 
 import android.graphics.Color;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.base.BaseCaseActivity;
-
-import java.util.List;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
 
-public class DrawableActivity extends BaseCaseActivity {
+public class DrawableFragment extends BaseCaseFragment {
 
     @BindView(R.id.ui_activity_drawable_iv)
     public ImageView imageView;
@@ -24,13 +22,13 @@ public class DrawableActivity extends BaseCaseActivity {
     private boolean isChecked = false;
 
     @Override
-    public String toolBarName() {
-        return "Drawable";
+    public String[] getArticleFilters() {
+        return new String[]{"Drawable","Vector"};
     }
 
     @Override
-    public List getArticleList() {
-        return ArticleConstants.getListByFilter("Drawable");
+    public String getToolBarTitle() {
+        return "Drawable";
     }
 
     @Override
@@ -39,7 +37,12 @@ public class DrawableActivity extends BaseCaseActivity {
     }
 
     @Override
-    public void initView() {
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initView(View view) {
         imageView.setImageDrawable(new CircularDrawable(Color.CYAN));
     }
 

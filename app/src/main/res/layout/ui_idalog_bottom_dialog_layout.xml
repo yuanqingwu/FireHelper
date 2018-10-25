@@ -8,11 +8,13 @@
         android:id="@+id/ui_dialog_bottom_dialog_ok_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="ok" />
 
     <Button
         android:id="@+id/ui_dialog_bottom_dialog_cancel_bt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="cancel" />
 </LinearLayout>

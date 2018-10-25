@@ -1,4 +1,4 @@
-package com.wyq.firehelper.encryption;
+package com.wyq.firehelper.security.encryption;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

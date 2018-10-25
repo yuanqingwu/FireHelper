@@ -5,18 +5,19 @@ import android.support.text.emoji.widget.EmojiEditText;
 import android.support.text.emoji.widget.EmojiTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
 /**
  * https://developer.android.google.cn/guide/topics/ui/look-and-feel/emoji-compat#java
  */
-public class EmojiActivity extends BaseActivity {
+public class EmojiFragment extends BaseCaseFragment {
 
     @BindView(R.id.ui_activity_emoji_tv)
     public EmojiTextView emojiTextView;
@@ -28,18 +29,27 @@ public class EmojiActivity extends BaseActivity {
     public EmojiEditText editText;
 
     @Override
+    public String[] getArticleFilters() {
+        return new String[]{"Emoji"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "Emoji";
+    }
+
+    @Override
     protected int attachLayoutRes() {
         return R.layout.ui_activity_emoji;
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
-
+    protected void initView(View view) {
         /**
          * You can always use the process() method to preprocess the CharSequence in your app and add it to any widget that can render Spanned instances; for example, TextView.
          */
@@ -49,7 +59,7 @@ public class EmojiActivity extends BaseActivity {
         emojiTextView.setText("neutral face \uD83D\uDE10");
 
         //Fixme what's the effect
-        Logger.d("MaxEmojiCount:"+editText.getMaxEmojiCount());
+        Logger.d("MaxEmojiCount:" + editText.getMaxEmojiCount());
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -59,7 +69,7 @@ public class EmojiActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Logger.d(s+" start:"+start+" before:"+before+" count:"+count);
+                Logger.d(s + " start:" + start + " before:" + before + " count:" + count);
                 textView.setText(s);
             }
 
@@ -69,5 +79,4 @@ public class EmojiActivity extends BaseActivity {
             }
         });
     }
-
 }

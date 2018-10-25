@@ -37,13 +37,13 @@ public class PhoneInfoActivity extends BaseCaseActivity {
     }
 
     @Override
-    public String toolBarName() {
+    public String getToolBarTitle() {
         return "PhoneInfo";
     }
 
     @Override
     public List getArticleList() {
-        return ArticleConstants.getListByFilter("设备");
+        return ArticleConstants.getListByFilter("PhoneInfo");
     }
 
     @Override

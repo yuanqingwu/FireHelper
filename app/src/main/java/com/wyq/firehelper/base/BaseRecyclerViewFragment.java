@@ -5,6 +5,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.View;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
@@ -30,7 +31,7 @@ public abstract class BaseRecyclerViewFragment extends BaseFragment {
 
     @CallSuper
     @Override
-    public void initView() {
+    public void initView(View view) {
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(Arrays.asList(listItemsNames()));
 //        if (getItemDecoration() != null) {
 //            baseRV.addItemDecoration(getItemDecoration());

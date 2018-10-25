@@ -24,7 +24,7 @@ public class ServiceActivity extends BaseCaseActivity implements View.OnClickLis
     }
 
     @Override
-    public String toolBarName() {
+    public String getToolBarTitle() {
         return "Service";
     }
 

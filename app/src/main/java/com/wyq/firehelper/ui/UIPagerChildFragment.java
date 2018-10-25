@@ -11,6 +11,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.utils.FireHelperUtils;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ public class UIPagerChildFragment extends BaseFragment {
     }
 
     @Override
-    public void initView() {
+    public void initView(View view) {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
         UIRecyclerViewAdapter adapter = new UIRecyclerViewAdapter(getContext());
@@ -49,7 +50,27 @@ public class UIPagerChildFragment extends BaseFragment {
         adapter.setOnItemClickListener(new UIRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onClick(View view, int position) {
-                startActivityDynamic(getContext(), uiType, uiInfoBeans.get(position).getName());
+//                startActivityDynamic(getContext(), uiType, uiInfoBeans.get(position).getName());
+                String name = uiInfoBeans.get(position).getName();
+                String pathBase = "com.wyq.firehelper.ui." + uiType.toLowerCase() + "." + name.toLowerCase() + "." + name;
+
+                //模块界面容器允许是fragment或者activity，优先查找fragment
+                String pathFragment = pathBase + "Fragment";
+                try {
+                    Class.forName(pathFragment);
+                    CaseActivity.instance(getContext(), pathFragment);
+                } catch (ClassNotFoundException e) {
+//                    e.printStackTrace();
+                    String pathActivity = pathBase + "Activity";
+                    try {
+                        Class.forName(pathActivity);
+                        startActivityDynamic(getContext(), pathActivity);
+                    } catch (ClassNotFoundException e1) {
+                        e1.printStackTrace();
+                        Toast.makeText(getContext(), "找不到相关界面，先浏览其他的吧~", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
             }
         });
     }
@@ -66,19 +87,18 @@ public class UIPagerChildFragment extends BaseFragment {
         return uiBeanList;
     }
 
-    private void startActivityDynamic(Context context, String category, String uiName) {
-        String name = "com.wyq.firehelper.ui." + category.toLowerCase() + "." + uiName.toLowerCase() + "." + uiName + "Activity";
+    private void startActivityDynamic(Context context, String path) {
+//        String name = "com.wyq.firehelper.ui." + category.toLowerCase() + "." + uiName.toLowerCase() + "." + uiName + "Activity";
 //        Intent intent = new Intent();
 //        intent.setComponent(new ComponentName(context,name));
 //        context.startActivity(intent);
 
         try {
-            Class clazz = Class.forName(name);
+            Class clazz = Class.forName(path);
 //            Logger.i(clazz.toString());
             context.startActivity(new Intent(context, clazz));
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-            Toast.makeText(getContext(),"找不到相关界面，先浏览其他的吧~",Toast.LENGTH_SHORT).show();
         }
     }
 

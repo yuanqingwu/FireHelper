@@ -9,8 +9,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_with_article"/>
-
         <TextView
             android:id="@+id/activity_developkit_butterknife_tv_2"
             android:layout_width="match_parent"

@@ -31,7 +31,7 @@ public class MMKVActivity extends BaseCaseActivity {
     }
 
     @Override
-    public String toolBarName() {
+    public String getToolBarTitle() {
         return "MMKV";
     }
 

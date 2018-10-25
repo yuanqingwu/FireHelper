@@ -1,6 +1,5 @@
 package com.wyq.firehelper.ui.widget.zoomimageview;
 
-
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -11,12 +10,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import butterknife.BindView;
 
-
-public class ZoomImageViewActivity extends BaseActivity {
+public class ZoomImageViewFragment extends BaseCaseFragment {
 
     @BindView(R.id.zoom_viewpager)
     public ViewPager mViewPager;
@@ -31,17 +29,27 @@ public class ZoomImageViewActivity extends BaseActivity {
 
 
     @Override
+    public String[] getArticleFilters() {
+        return new String[]{"ZoomImageView"};
+    }
+
+    @Override
+    public String getToolBarTitle() {
+        return "ZoomImageView";
+    }
+
+    @Override
     protected int attachLayoutRes() {
         return R.layout.zoom_imageview;
     }
 
     @Override
-    public void initToolBar() {
+    protected void initData() {
 
     }
 
     @Override
-    public void initView() {
+    protected void initView(View view) {
         photoView.setImageResource(mImgs[0]);
 
         mViewPager.setAdapter(new PagerAdapter() {
@@ -50,17 +58,16 @@ public class ZoomImageViewActivity extends BaseActivity {
             public Object instantiateItem(ViewGroup container, int position) {
 
                 ZoomImageView imageView = new ZoomImageView(
-                        getApplicationContext());
+                        getContext());
 //                imageView.setImageResource(mImgs[position]);
-                Glide.with(ZoomImageViewActivity.this).load(mImgs[position]).apply(RequestOptions.fitCenterTransform()).into(imageView);
+                Glide.with(getActivity()).load(mImgs[position]).apply(RequestOptions.fitCenterTransform()).into(imageView);
                 container.addView(imageView);
                 mImageViews[position] = imageView;
                 return imageView;
             }
 
             @Override
-            public void destroyItem(ViewGroup container, int position,
-                                    Object object) {
+            public void destroyItem(ViewGroup container, int position, Object object) {
                 container.removeView(mImageViews[position]);
             }
 
@@ -74,7 +81,6 @@ public class ZoomImageViewActivity extends BaseActivity {
                 return mImageViews.length;
             }
         });
-
 
     }
 }
