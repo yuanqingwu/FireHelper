@@ -3,9 +3,9 @@
     <color name="sc_transparent_background">#00111111</color>
 
     <!--导航栏颜色-->
-    <color name="colorPrimary">@color/gray</color>
+    <color name="colorPrimary">@color/darkcyan</color>
     <!--状态栏颜色-->
-    <color name="colorPrimaryDark">@color/gray</color>
+    <color name="colorPrimaryDark">@color/darkcyan</color>
     <!--空间选中后的颜色-->
     <color name="colorAccent">@color/darkgreen</color>
 
@@ -168,9 +168,7 @@
     <!-- 黄绿色 -->
     <color name="lightblue">#add8e6</color>
     <!-- 亮蓝色 -->
-    <color name="darkgray">#a9a9a9</color>
-    <!-- 暗灰色 -->
-    <color name="darkgrey">#a9a9a9</color>
+    <color name="darkgray">#333333</color>
     <!-- 暗灰色 -->
     <color name="brown">#a52a2a</color>
     <!-- 褐色 -->

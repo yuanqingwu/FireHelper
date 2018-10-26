@@ -71,7 +71,7 @@
         <item name="android:paddingBottom">24dp</item>
     </style>
 
-    <style name="HomeCardView" parent="CardView.Light">
+    <style name="HomeCardView" parent="Widget.CardContent">
         <item name="cardCornerRadius">5dp</item>
         <item name="android:foreground">?android:selectableItemBackground</item>
         <item name="android:layout_margin">5dp</item>

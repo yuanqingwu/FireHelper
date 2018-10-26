@@ -8,7 +8,7 @@
         android:id="@+id/activity_developkit_glide_tv"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/darkgrey"
+        android:background="@color/darkgray"
         android:gravity="center"
         android:textColor="@color/lightblue" />
 

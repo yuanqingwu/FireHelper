@@ -14,27 +14,27 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/darkgrey" />
+            android:background="@color/darkgray" />
 
         <TextView
             android:id="@+id/activity_developkit_butterknife_tv_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/darkgrey" />
+            android:background="@color/darkgray" />
 
         <TextView
             android:id="@+id/activity_developkit_butterknife_tv_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/darkgrey" />
+            android:background="@color/darkgray" />
 
         <TextView
             android:id="@+id/activity_developkit_butterknife_tv_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:background="@color/darkgrey" />
+            android:background="@color/darkgray" />
     </LinearLayout>
 </ScrollView>

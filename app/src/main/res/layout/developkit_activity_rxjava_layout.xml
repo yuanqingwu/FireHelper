@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/darkgrey"
+            android:background="@color/darkgray"
             android:gravity="center"
             android:textColor="@color/lightblue" />
 
@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/darkgrey"
+            android:background="@color/darkgray"
             android:padding="10dp"
             android:textColor="@color/lightblue"
             app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_res_tv" />
@@ -32,7 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/darkgrey"
+            android:background="@color/darkgray"
             android:padding="10dp"
             android:textColor="@color/lightblue"
             app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_1" />
@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:background="@color/darkgrey"
+            android:background="@color/darkgray"
             android:padding="10dp"
             android:textColor="@color/lightblue"
             app:layout_constraintTop_toBottomOf="@id/activity_developkit_rxjava_tv_2" />
