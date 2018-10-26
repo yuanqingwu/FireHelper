@@ -103,7 +103,11 @@
         <activity android:name=".framework.broadcast.LocalBroadcastActivity" />
         <activity android:name=".framework.FrameworkActivity" />
         <activity android:name=".base.CaseActivity" />
-        <activity android:name=".security.SecurityActivity"></activity>
+        <activity android:name=".security.SecurityActivity" />
+        <activity
+            android:name=".ui.layout.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

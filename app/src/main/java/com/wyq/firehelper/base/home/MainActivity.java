@@ -5,7 +5,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -56,7 +61,13 @@ import io.reactivex.functions.Consumer;
 /**
  * Created by Uni.W on 2016/8/10.
  */
-public class MainActivity extends AppCompatActivity implements TvImgRecyclerViewAdapter.OnTvImgItemClickListener, TvImgRecyclerViewAdapter.OnTvImgItemLongClickListener {
+public class MainActivity extends AppCompatActivity implements TvImgRecyclerViewAdapter.OnTvImgItemClickListener, TvImgRecyclerViewAdapter.OnTvImgItemLongClickListener,
+        NavigationView.OnNavigationItemSelectedListener {
+
+    @BindView(R.id.home_activity_main_drawer)
+    public DrawerLayout drawerLayout;
+    @BindView(R.id.home_activity_main_drawer_nav_view)
+    public NavigationView navigationView;
 
     @BindView(R.id.activity_main_rv)
     public RecyclerView baseRV;
@@ -91,16 +102,18 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_layout);
+        setContentView(R.layout.home_activity_main_drawer_layout);
         ButterKnife.bind(this);
 
-        initToolBar(toolbar, getString(R.string.app_name));
+//        initToolBar(toolbar, getString(R.string.app_name));
+        initToolBar(toolbar, null);
         initData();
         initView();
     }
 
     public void initToolBar(Toolbar toolbar, String title) {
-        toolbar.setTitle(title);
+        if (title != null)
+            toolbar.setTitle(title);
         setSupportActionBar(toolbar);
     }
 
@@ -111,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     public void initView() {
         AppCompatDelegate.setDefaultNightMode(NightThemeConfig.getInstance(this).getNightMode());
 
+        initDrawer();
         initRecyclerView();
 
         countTv.setText(String.format(getString(R.string.home_article_count_tv), ArticleConstants.getAllArticles().size()));
@@ -120,6 +134,14 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                 ArticleMainActivity.instance(MainActivity.this);
             }
         });
+    }
+
+    private void initDrawer() {
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.home_drawer_open, R.string.home_drawer_close);
+        drawerLayout.addDrawerListener(drawerToggle);
+        drawerToggle.syncState();
+
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @FireLogTime
@@ -359,5 +381,19 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 }

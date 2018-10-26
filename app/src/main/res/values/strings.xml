@@ -4,6 +4,9 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 
+    <string name="home_drawer_open">drawer open</string>
+    <string name="home_drawer_close">drawer close</string>
+
     <string name="common_default_load">加载中……</string>
     <string name="search_hint">search</string>
 
@@ -13,10 +16,17 @@
     <string name="menu_night_mode_day">Day (always)</string>
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
-
+    <string name="menu_home_drawer_nav_tools">工具</string>
 
     <string name="home_ext_view_title">已收藏文章</string>
     <string name="home_article_count_tv">已收录：%1$d 条目</string>
     <string name="home_article_tv">文章</string>
     <string name="home_article_more_tv">查看更多</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+
 </resources>

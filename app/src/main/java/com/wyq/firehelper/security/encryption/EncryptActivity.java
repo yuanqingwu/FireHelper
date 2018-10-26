@@ -53,7 +53,7 @@ public class EncryptActivity extends BaseCaseActivity {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_encrypt_main;
+        return R.layout.security_activity_encrypt_main;
     }
 
     @Override

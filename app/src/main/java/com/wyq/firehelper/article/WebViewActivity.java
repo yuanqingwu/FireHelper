@@ -73,7 +73,7 @@ public class WebViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_webview_layout);
+        setContentView(R.layout.webview_activity_layout);
         ButterKnife.bind(this);
         url = getIntent().getStringExtra(PARAM_NAME);
         Logger.d(url);

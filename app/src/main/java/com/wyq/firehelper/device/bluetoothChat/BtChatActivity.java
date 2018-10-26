@@ -32,7 +32,7 @@ public class BtChatActivity extends BtBaseActivity {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_bt_chat_layout;
+        return R.layout.devices_activity_bt_chat_layout;
     }
 
     @Override

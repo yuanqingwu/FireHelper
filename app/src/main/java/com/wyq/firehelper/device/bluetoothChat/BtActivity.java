@@ -166,7 +166,7 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
 
     @Override
     protected int attachLayoutRes() {
-        return R.layout.activity_bt;
+        return R.layout.devices_activity_bt;
     }
 
     @Override
