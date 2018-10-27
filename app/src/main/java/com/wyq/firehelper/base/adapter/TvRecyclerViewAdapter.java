@@ -154,7 +154,7 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
             holder.textView.setText(list.get(position).toString());
         }
         if (onItemClickListener != null) {
-            holder.textView.setOnClickListener(new View.OnClickListener() {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(holder.textView, position);

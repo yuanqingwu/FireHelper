@@ -164,7 +164,6 @@ dependencies {
     implementation project(':fireapt-annotation')
     kapt project(':fireapt-compiler')
 
-
 }
 repositories {
     mavenCentral()
