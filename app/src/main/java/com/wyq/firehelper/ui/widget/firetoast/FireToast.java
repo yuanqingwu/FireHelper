@@ -2,193 +2,265 @@ package com.wyq.firehelper.ui.widget.firetoast;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Handler;
+import android.graphics.drawable.Drawable;
 import android.os.Looper;
-import android.os.Message;
 import android.view.Gravity;
 import android.view.View;
-import android.view.View.OnLongClickListener;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
+import com.wyq.firehelper.R;
+
+import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FireToast {
+import androidx.annotation.ColorInt;
 
+/**
+ * @author Uni.W
+ * @time 2018/10/29 22:05
+ *
+ * @describe 一种功能更多的Toast封装，支持图片，连续显示，双击等功能
+ */
+
+public class FireToast {
     public static final int WARN_YELLOW = Color.parseColor("#FFD700");
     public static final int ERROR_RED = Color.parseColor("#FF3333");
 
-    private static Handler handler;
-    private static Thread thread;
-    private static Timer timer;
-    private static TimerTask task;
-    private static volatile boolean isCancel;
+    /**
+     * 停止标志位
+     */
+    private volatile static boolean isStop = false;
+    private static SoftReference<HashMap<String, FireToast>> softToastList;
+    private int gravity = Gravity.BOTTOM;
+    private int textSize = 16;
+    @ColorInt
+    private int textColor = Color.GRAY;
+    private boolean showShadowLayer;
+    private String text;
+    private Drawable headImg;
+    private int headImgWidth = 40;
+    private int headImgHeight = 40;
+    private long startTime;
+    private Context context;
+    private OnDoubleClickListener onDoubleClickListener;
+    private HashMap<String, FireToast> toastList;
 
-    public static void showCustomToast(Context context, String text, int textColor) {
-        context = context.getApplicationContext();
-        LinearLayout layout = new LinearLayout(context);
+    private FireToast(Context context, String name) {
+        this.context = context;
+
+        if (softToastList == null) {
+            toastList = new HashMap<>();
+            softToastList = new SoftReference<>(toastList);
+        }
+        toastList = softToastList.get();
+        if (toastList == null) {
+            toastList = new HashMap<>();
+            softToastList = new SoftReference<>(toastList);
+        }
+
+    }
+
+    public static FireToast instance(Context context, String name) {
+        FireToast fireToast = new FireToast(context, name);
+        fireToast.addInstance(name, fireToast);
+        return fireToast;
+    }
+
+    public static FireToast get(String name) {
+        FireToast fireToast = null;
+        if (softToastList != null) {
+            HashMap<String, FireToast> liveToastList = softToastList.get();
+            if (liveToastList != null) {
+                fireToast = liveToastList.get(name);
+            }
+        }
+        return fireToast;
+    }
+
+    private void addInstance(String name, FireToast fireToast) {
+        if (toastList != null)
+            toastList.put(name, fireToast);
+    }
+
+    public FireToast setOnDoubleClickListener(OnDoubleClickListener onDoubleClickListener) {
+        this.onDoubleClickListener = onDoubleClickListener;
+        return this;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public FireToast setText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public FireToast setGravity(int gravity) {
+        this.gravity = gravity;
+        return this;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public FireToast setTextSize(int textSize) {
+        this.textSize = textSize;
+        return this;
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public FireToast setTextColor(int textColor) {
+        this.textColor = textColor;
+        return this;
+    }
+
+    public boolean isShowShadowLayer() {
+        return showShadowLayer;
+    }
+
+    public FireToast setShowShadowLayer(boolean showShadowLayer) {
+        this.showShadowLayer = showShadowLayer;
+        return this;
+    }
+
+    public Drawable getHeadImg() {
+        return headImg;
+    }
+
+    public FireToast setHeadImg(Drawable headImg) {
+        this.headImg = headImg;
+        return this;
+    }
+
+    public int getHeadImgWidth() {
+        return headImgWidth;
+    }
+
+    public void setHeadImgWidth(int headImgWidth) {
+        this.headImgWidth = headImgWidth;
+    }
+
+    public int getHeadImgHeight() {
+        return headImgHeight;
+    }
+
+    public void setHeadImgHeight(int headImgHeight) {
+        this.headImgHeight = headImgHeight;
+    }
+
+    private void initView(Toast toast) {
+        Context appContext = context.getApplicationContext();
+        LinearLayout layout = new LinearLayout(appContext);
         layout.setOrientation(LinearLayout.VERTICAL);
-        TextView textView = new TextView(context);
+        layout.setGravity(Gravity.CENTER);
+
+        //是否设置了图片
+        if (headImg != null) {
+            ImageView imageView = new ImageView(appContext);
+            imageView.setImageDrawable(appContext.getDrawable(R.drawable.vd_ic_face_cyan_24dp));
+            layout.addView(imageView, headImgWidth, headImgHeight);
+        }
+
+        TextView textView = new TextView(appContext);
         textView.setText(text);
         textView.setGravity(Gravity.CENTER);
         // textView.setBackgroundColor(Color.GRAY);
-        textView.setShadowLayer(10, 0, 0, textColor);
-        textView.setTextColor(textColor);
-        textView.setTextSize(16);
-        layout.addView(textView, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT));
-        // layout.setPadding(20, 20, 20, 20);
-
-
-        if (Looper.myLooper() != null) {
-            Toast toast = new Toast(context);
-            toast.setView(layout);
-
-            // 如果使用了缺省异常toast则居中显示
-            if (textColor == ERROR_RED) {
-                toast.setGravity(Gravity.CENTER, 0, 0);
-            }
-            toast.show();
-        } else {
-            if (Looper.myLooper() == null)
-                Looper.prepare();
-            Toast toast = new Toast(context);
-            toast.setView(layout);
-
-            // 如果使用了缺省异常toast则居中显示
-            if (textColor == ERROR_RED) {
-                toast.setGravity(Gravity.CENTER, 0, 0);
-            }
-            toast.show();
-            Looper.loop();
+        if (showShadowLayer) {
+            textView.setShadowLayer(20, 2, 2, textColor);
         }
-    }
+        textView.setTextColor(textColor);
+        textView.setTextSize(textSize);
 
-    public static synchronized void showCustomToastContinuous(final Context context, final String text,
-                                                              final int textColor, final int period) {
-        if (thread == null) {
-            thread = new Thread(new Runnable() {
-                public void run() {
-                    if (Looper.myLooper() == null) {
-                        Looper.prepare();
+        FireToast fireToast = this;
+        if (onDoubleClickListener != null) {
+            layout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (System.currentTimeMillis() - startTime < 2000) {
+                        onDoubleClickListener.onDoubleClick(fireToast);
                     }
-
-                    handler = new Handler(Looper.myLooper()) {
-                        @Override
-                        public void handleMessage(Message msg) {
-                            super.handleMessage(msg);
-
-                            if (msg.what == 0) {
-                                if (msg.obj instanceof Timer) {
-                                    timer = (Timer) msg.obj;
-                                }
-                                Context appContext = context.getApplicationContext();
-                                LinearLayout layout = new LinearLayout(appContext);
-                                layout.setOrientation(LinearLayout.VERTICAL);
-                                TextView textView = new TextView(appContext);
-                                textView.setText(text);
-                                textView.setGravity(Gravity.CENTER);
-                                // textView.setBackgroundColor(Color.GRAY);
-                                textView.setShadowLayer(20, 2, 2, textColor);
-                                textView.setTextColor(textColor);
-                                textView.setTextSize(16);
-
-                                textView.setOnLongClickListener(new OnLongClickListener() {
-                                    @Override
-                                    public boolean onLongClick(View v) {
-                                        if (timer != null) {
-                                            timer.cancel();
-                                            timer.purge();
-                                            timer = null;
-                                            if (handler != null) {
-                                                handler.removeCallbacksAndMessages(null);
-                                                handler = null;
-                                            }
-                                            if (thread != null) {
-                                                if (!thread.isInterrupted())
-                                                    thread.interrupt();
-                                                thread = null;
-                                            }
-                                            return true;
-                                        } else {
-                                            return false;
-                                        }
-                                    }
-                                });
-
-                                layout.addView(textView, new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
-                                // layout.setPadding(20, 20, 20, 20);
-                                final Toast toast = new Toast(appContext);
-                                toast.setView(layout);
-
-                                // 设置toast可点击
-                                setToastClickable(toast);
-
-                                // 如果使用了缺省异常toast则居中显示
-                                if (textColor == ERROR_RED) {
-                                    toast.setGravity(Gravity.CENTER, 0, 0);
-                                }
-
-                                toast.show();
-                            }
-                        }
-                    };
-
-                    Looper.loop();
+                    startTime = System.currentTimeMillis();
                 }
             });
+        }
+        layout.addView(textView, new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+        toast.setView(layout);
+    }
 
-            thread.start();
+    public void showCustomToast() {
+        boolean haveLooper = true;
+        if (Looper.myLooper() == null) {
+            haveLooper = false;
+            Looper.prepare();
+        }
+        Toast toast = new Toast(context);
+        initView(toast);
 
-            // final Timer timer = new Timer();
-            if (timer == null) {
-                timer = new Timer();
-            }
+        // 如果使用了缺省异常toast则居中显示
+        if (textColor == ERROR_RED) {
+            toast.setGravity(Gravity.CENTER, 0, 0);
+        }
+        toast.show();
+        if (!haveLooper)
+            Looper.loop();
 
-            //reset flag
-            isCancel = false;
+    }
 
-            task = new TimerTask() {
-                @Override
-                public void run() {
-                    // toast.show();
-                    if (handler != null && !isCancel) {
-                        Message.obtain(handler, 0, timer).sendToTarget();
-                    }
+    public synchronized void showCustomToastContinuous(int period, int delay) {
+        isStop = false;
+
+        Timer timer = new Timer();
+        Toast toast = new Toast(context);
+        initView(toast);
+        setToastClickable(toast);
+        // 如果使用了缺省异常toast则居中显示
+        if (textColor == ERROR_RED) {
+            toast.setGravity(Gravity.CENTER, 0, 0);
+        }
+
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                Logger.i(text + Thread.currentThread().getName());
+                if (isStop) {
+                    cancel();
+                    timer.cancel();
+                } else {
+                    if (Looper.myLooper() == null)
+                        Looper.prepare();
+                    toast.show();
+                    Looper.myLooper().quit();
+                    Looper.loop();
                 }
-            };
-            if (timer != null) {
-                timer.schedule(task, 0, period);
             }
-        }
+        };
+
+        timer.schedule(timerTask, delay, period);
     }
 
-    public synchronized static void cancelToastContinuous() {
-        isCancel = true;
-        if (thread != null) {
-            thread.interrupt();
-            thread = null;
-        }
-        if (task != null) {
-            task.cancel();
-            task = null;
-        }
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-        if (handler != null) {
-            handler.removeCallbacksAndMessages(null);
-            handler = null;
-        }
+    public void cancel() {
+        isStop = true;
     }
 
-    private static void setToastClickable(Toast toast) {
+    private void setToastClickable(Toast toast) {
         try {
             Object mTN;
             mTN = getField(toast, "mTN");
@@ -210,7 +282,7 @@ public class FireToast {
         }
     }
 
-    private static Object getField(Object object, String fieldName) throws NoSuchFieldException, IllegalAccessException {
+    private Object getField(Object object, String fieldName) throws NoSuchFieldException, IllegalAccessException {
         Field field = object.getClass().getDeclaredField(fieldName);
         if (field != null) {
             field.setAccessible(true);
@@ -218,4 +290,9 @@ public class FireToast {
         }
         return null;
     }
+
+    public interface OnDoubleClickListener {
+        void onDoubleClick(FireToast fireToast);
+    }
+
 }

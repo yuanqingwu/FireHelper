@@ -26,16 +26,23 @@ public class FireToastFragment extends BaseCaseFragment {
 
     }
 
+
     @Override
     public void initView(View view) {
-        FireToast.showCustomToast(getContext(), "i am toast", FireToast.WARN_YELLOW);
-        FireToast.showCustomToastContinuous(getContext(), "i am toast", FireToast.ERROR_RED, 5000);
-
+        FireToast.instance(getContext(),"1").setText("123456789").setHeadImg(getContext().getDrawable(R.drawable.vd_ic_face_cyan_24dp)).setTextSize(30)
+                .setOnDoubleClickListener(new FireToast.OnDoubleClickListener() {
+                    @Override
+                    public void onDoubleClick(FireToast fireToast) {
+                        fireToast.cancel();
+                    }
+                }).showCustomToastContinuous(5000,0);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        FireToast.cancelToastContinuous();
+        if( FireToast.get("1") != null){
+            FireToast.get("1").cancel();
+        }
     }
 }
