@@ -2,15 +2,14 @@ package com.wyq.firehelper.ui;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.media.opengles.OpenGLESActivity;
 import com.wyq.firehelper.utils.FireHelperUtils;
 
 import java.util.ArrayList;

@@ -7,9 +7,6 @@ import android.graphics.BitmapFactory;
 import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -32,6 +29,9 @@ import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 

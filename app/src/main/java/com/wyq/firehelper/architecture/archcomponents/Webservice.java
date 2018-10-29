@@ -1,6 +1,6 @@
 package com.wyq.firehelper.architecture.archcomponents;
 
-import android.arch.lifecycle.LiveData;
+import androidx.lifecycle.LiveData;
 
 import com.wyq.firehelper.developkit.room.entity.UserEntity;
 

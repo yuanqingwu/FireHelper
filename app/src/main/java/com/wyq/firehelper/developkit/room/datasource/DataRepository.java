@@ -1,14 +1,13 @@
 package com.wyq.firehelper.developkit.room.datasource;
 
-import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
-import android.arch.lifecycle.Observer;
-import android.support.annotation.Nullable;
-
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.developkit.room.AppDatabase;
 import com.wyq.firehelper.developkit.room.entity.UserEntity;
 
+import androidx.annotation.Nullable;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 import io.reactivex.Completable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.functions.Action;

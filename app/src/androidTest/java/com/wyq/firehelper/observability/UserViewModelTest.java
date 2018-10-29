@@ -1,6 +1,6 @@
 package com.wyq.firehelper.observability;
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.wyq.firehelper.db.TestData;
 import com.wyq.firehelper.developkit.room.UserViewModel;

@@ -1,10 +1,10 @@
 package com.wyq.firehelper.base;
 
 import android.os.StrictMode;
-import android.support.annotation.Nullable;
-import android.support.multidex.MultiDexApplication;
-import android.support.text.emoji.EmojiCompat;
-import android.support.text.emoji.bundled.BundledEmojiCompatConfig;
+import androidx.annotation.Nullable;
+import androidx.multidex.MultiDexApplication;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.bundled.BundledEmojiCompatConfig;
 
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;

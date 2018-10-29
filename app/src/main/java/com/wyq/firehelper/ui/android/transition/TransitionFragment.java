@@ -1,8 +1,8 @@
 package com.wyq.firehelper.ui.android.transition;
 
-import android.support.transition.Scene;
-import android.support.transition.TransitionInflater;
-import android.support.transition.TransitionManager;
+import androidx.transition.Scene;
+import androidx.transition.TransitionInflater;
+import androidx.transition.TransitionManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;

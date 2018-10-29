@@ -1,6 +1,6 @@
 package com.wyq.firehelper.kotlin.mvpGitHub.view
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import com.wyq.firehelper.kotlin.mvpGitHub.model.Repository
 import com.wyq.firehelper.kotlin.mvpGitHub.model.RepositoryDetail
 import kotlinx.android.synthetic.main.kotlin_activity_mvp_github_recycler_view_item.view.*
 
-class GitHubRepoAdapter(private val repos: MutableList<Repository>) : RecyclerView.Adapter<GitHubRepoAdapter.ViewHolder>() {
+class GitHubRepoAdapter(private val repos: MutableList<Repository>) : androidx.recyclerview.widget.RecyclerView.Adapter<GitHubRepoAdapter.ViewHolder>() {
 
      interface OnItemClickListener {
         fun onItemCLick()
@@ -40,7 +40,7 @@ class GitHubRepoAdapter(private val repos: MutableList<Repository>) : RecyclerVi
         })
     }
 
-    class ViewHolder(repItemView: View) : RecyclerView.ViewHolder(repItemView) {
+    class ViewHolder(repItemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(repItemView) {
 
         fun bindData(repository: Repository,repoDetails: MutableMap<Long,RepositoryDetail>?) {
             with(repository) {

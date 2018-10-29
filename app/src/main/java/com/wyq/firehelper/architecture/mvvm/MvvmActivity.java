@@ -1,13 +1,13 @@
 package com.wyq.firehelper.architecture.mvvm;
 
-import android.databinding.DataBindingUtil;
-import android.databinding.OnRebindCallback;
-import android.databinding.ViewDataBinding;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.OnRebindCallback;
+import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;
-import android.support.transition.TransitionManager;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.transition.TransitionManager;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.view.ViewGroup;
 import android.widget.TextView;
 

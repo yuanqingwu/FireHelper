@@ -1,7 +1,7 @@
 package com.wyq.firehelper.ui.layout.tangram;
 
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnScrollListener;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.OnScrollListener;
 
 import java.util.ArrayList;
 import java.util.List;

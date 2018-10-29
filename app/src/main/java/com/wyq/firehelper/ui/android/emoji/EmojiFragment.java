@@ -1,8 +1,8 @@
 package com.wyq.firehelper.ui.android.emoji;
 
-import android.support.text.emoji.EmojiCompat;
-import android.support.text.emoji.widget.EmojiEditText;
-import android.support.text.emoji.widget.EmojiTextView;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.widget.EmojiEditText;
+import androidx.emoji.widget.EmojiTextView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;

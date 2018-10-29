@@ -18,13 +18,13 @@
             android:textSize="12sp" />
     </LinearLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ui_activity_pull_ext_view_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/ui_activity_pull_ext_view_title_layout"
         android:overScrollMode="never"
-        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+        android:scrollbars="none"></androidx.recyclerview.widget.RecyclerView>
 
     <com.wyq.firehelper.ui.layout.pullextviewlayout.LoadingDot
         android:layout_width="match_parent"

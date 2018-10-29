@@ -3,7 +3,7 @@ package com.wyq.firehelper.device.camera;
 import android.hardware.camera2.CameraDevice;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.wyq.firehelper.R;
 

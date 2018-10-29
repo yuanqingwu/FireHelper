@@ -2,7 +2,7 @@ package com.wyq.firehelper.base.home;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 
 public class NightThemeConfig {
     private SharedPreferences preferences = null;

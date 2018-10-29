@@ -26,10 +26,9 @@ package com.wyq.firehelper.ui.layout.tangram;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.IntDef;
+import androidx.annotation.IntDef;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.ImageView;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -37,7 +36,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * ImageView that can set ratio
  */
-public class RatioImageView extends android.support.v7.widget.AppCompatImageView {
+public class RatioImageView extends androidx.appcompat.widget.AppCompatImageView {
 
     private static final String TAG = "RatioImageView";
 

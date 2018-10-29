@@ -8,7 +8,7 @@ import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 
-public class MetroImageView extends android.support.v7.widget.AppCompatImageView {
+public class MetroImageView extends androidx.appcompat.widget.AppCompatImageView {
 
 	private static final String TAG = "MyImageView";
 

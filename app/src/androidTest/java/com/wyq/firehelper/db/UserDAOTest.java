@@ -1,10 +1,5 @@
 package com.wyq.firehelper.db;
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
-import android.arch.persistence.room.Room;
-import android.support.test.InstrumentationRegistry;
-import android.support.test.runner.AndroidJUnit4;
-
 import com.wyq.firehelper.LiveDataTestUtil;
 import com.wyq.firehelper.developkit.room.AppDatabase;
 import com.wyq.firehelper.developkit.room.UserDao;
@@ -18,6 +13,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.room.Room;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
 
 import static org.hamcrest.Matchers.is;
 

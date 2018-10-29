@@ -3,8 +3,8 @@ package com.wyq.firehelper.kotlin.mvpGitHub.view
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.appcompat.widget.SearchView
 import android.view.Menu
 import android.view.View
 import android.widget.Toast
@@ -61,7 +61,7 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
 
     override fun showRepository(repositories: MutableList<Repository>) {
         repoAdapter = GitHubRepoAdapter(repositories)
-        kotlin_activity_mvp_github_recycler_view.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        kotlin_activity_mvp_github_recycler_view.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this, androidx.recyclerview.widget.LinearLayoutManager.VERTICAL, false)
 //        kotlin_activity_mvp_github_recycler_view.addItemDecoration(DividerItemDecoration(this, DividerItemDecoration.VERTICAL))
         kotlin_activity_mvp_github_recycler_view.adapter = repoAdapter
 

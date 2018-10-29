@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewPager;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -15,7 +15,7 @@ import android.view.View.OnTouchListener;
 import android.view.ViewConfiguration;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 
-public class ZoomImageView extends android.support.v7.widget.AppCompatImageView implements
+public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView implements
 		OnGlobalLayoutListener, OnScaleGestureListener, OnTouchListener {
 
 	private boolean mOnce = false;

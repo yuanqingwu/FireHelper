@@ -1,7 +1,6 @@
 package com.wyq.firehelper.developkit.dagger;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.wyq.firehelper.R;
@@ -13,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import dagger.Lazy;
 

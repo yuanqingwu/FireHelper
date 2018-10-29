@@ -10,7 +10,7 @@
             <!--type="com.wyq.firehelper.developKit.Room.UserViewModel" />-->
     </data>
 
-    <android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -22,14 +22,14 @@
              app:barrierDirection="bottom"
              app:constraint_referenced_ids="developkit_activity_room_first_tv,developkit_activity_room_first_et" />
      -->
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/developkit_activity_room_guide_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="50dp" />
 
-        <android.support.constraint.Guideline
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/developkit_activity_room_guide_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -97,5 +97,5 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/developkit_activity_room_commit_bt" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

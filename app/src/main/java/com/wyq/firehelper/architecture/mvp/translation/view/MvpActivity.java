@@ -1,6 +1,5 @@
 package com.wyq.firehelper.architecture.mvp.translation.view;
 
-import android.support.v7.widget.Toolbar;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,6 +8,7 @@ import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.mvp.translation.presenter.PresenterImpl;
 import com.wyq.firehelper.base.BaseActivity;
 
+import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 

@@ -1,11 +1,11 @@
 package com.wyq.firehelper.base;
 
 import android.content.Intent;
-import android.support.annotation.CallSuper;
-import android.support.v7.widget.DividerItemDecoration;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import androidx.annotation.CallSuper;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;

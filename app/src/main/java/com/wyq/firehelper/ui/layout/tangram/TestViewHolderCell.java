@@ -24,7 +24,7 @@
 
 package com.wyq.firehelper.ui.layout.tangram;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.TextView;
 
 import com.tmall.wireless.tangram.structure.BaseCell;
