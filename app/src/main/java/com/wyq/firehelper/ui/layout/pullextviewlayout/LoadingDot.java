@@ -5,9 +5,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Vibrator;
-import androidx.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 public class LoadingDot extends View {
     private Paint paint;
@@ -77,7 +78,7 @@ public class LoadingDot extends View {
         } else if (getPercent() > percentThresholdHide && getPercent() <= 1) {
             if (shouldVibrator) {
                 Vibrator vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(50);
+                vibrator.vibrate(20);
                 shouldVibrator = false;
             }
             cy = getHeight() * percentThresholdHide;

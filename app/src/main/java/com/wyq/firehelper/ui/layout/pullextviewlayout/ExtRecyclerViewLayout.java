@@ -242,13 +242,14 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         smoothScrollTo(y);
         if (y == 0) {//头部未显示
             loadingDot.setPercent(0);
-//            loadingDot.setVisibility(View.VISIBLE);
         } else {//头部完全显示
             loadingDot.setPercent(1);
         }
         headRecyclerView.setTranslationY(0);
         loadingDot.setTranslationY(0);
-        headView.setTranslationY(0);
+        if (getScrollY() > -headHeight) {//如果下拉超出头部高度，需要特殊处理，1/2速度上移
+            headView.setTranslationY(0);
+        }
     }
 
     private void pullHeadView(float dy) {
@@ -263,7 +264,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
             if (scrollY > 0) {
                 dampingFactor = 2;
-            }else{
+            } else {
                 dampingFactor = 1;
             }
             return;
@@ -275,14 +276,14 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float percent = absScrollY / headHeight;
                 loadingDot.setPercent(percent);
 
-            loadingDot.setVisibility(View.VISIBLE);
-            if (percent < 0.5) {
-                headRecyclerView.setTranslationY(-loadingDot.getMeasuredHeight());
-            } else if (percent > 0.5) {
-                float transY = headHeight * (percent - 0.5f);
-                headRecyclerView.setTranslationY(transY - loadingDot.getMeasuredHeight());
-                loadingDot.setTranslationY(transY);
-            }
+                loadingDot.setVisibility(View.VISIBLE);
+                if (percent < 0.5) {
+                    headRecyclerView.setTranslationY(-loadingDot.getMeasuredHeight());
+                } else if (percent > 0.5) {
+                    float transY = headHeight * (percent - 0.5f);
+                    headRecyclerView.setTranslationY(transY - loadingDot.getMeasuredHeight());
+                    loadingDot.setTranslationY(transY);
+                }
             }
         } else {
             dampingFactor = 2;//阻尼增大
@@ -297,6 +298,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         int scrollY = getScrollY();
         int dy = y - scrollY;
         scroller.startScroll(0, scrollY, 0, dy, 500);
+        Logger.i("smoothScrollTo");
         invalidate();
     }
 
@@ -304,7 +306,12 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     public void computeScroll() {
         super.computeScroll();
         if (scroller.computeScrollOffset()) {
-            scrollTo(scroller.getCurrX(), scroller.getCurrY());
+            int scrollY = scroller.getCurrY();
+            scrollTo(scroller.getCurrX(), scrollY);
+            Logger.i("computeScroll " + scrollY);
+            if (scrollY < -headHeight) {//下拉超出头部高度时，以1/2速度上移
+                headView.setTranslationY((scrollY + headHeight) / 2);
+            }
             postInvalidate();
         }
     }
