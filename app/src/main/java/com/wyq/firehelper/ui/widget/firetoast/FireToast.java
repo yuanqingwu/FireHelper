@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
-import com.wyq.firehelper.R;
 
 import java.lang.ref.SoftReference;
 import java.lang.reflect.Field;
@@ -174,7 +173,7 @@ public class FireToast {
         //是否设置了图片
         if (headImg != null) {
             ImageView imageView = new ImageView(appContext);
-            imageView.setImageDrawable(appContext.getDrawable(R.drawable.vd_ic_face_cyan_24dp));
+            imageView.setImageDrawable(headImg);
             layout.addView(imageView, headImgWidth, headImgHeight);
         }
 

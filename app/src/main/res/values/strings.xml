@@ -16,7 +16,7 @@
     <string name="menu_night_mode_day">Day (always)</string>
     <string name="menu_night_mode_night">Night (always)</string>
     <string name="menu_night_mode_auto">Auto</string>
-    <string name="menu_home_drawer_nav_tools">工具</string>
+    <string name="menu_home_drawer_nav_tools">设置</string>
 
     <string name="home_ext_view_title">已收藏文章</string>
     <string name="home_article_count_tv">已收录：%1$d 条目</string>

@@ -6,4 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".framework.broadcast.LocalBroadcastActivity">
 
+    <TextView
+        android:id="@+id/framework_activity_local_broadcast_res_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </androidx.constraintlayout.widget.ConstraintLayout>

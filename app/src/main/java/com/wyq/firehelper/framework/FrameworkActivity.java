@@ -6,8 +6,11 @@ import android.view.View;
 
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
+import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.framework.broadcast.LocalBroadcastFragment;
 import com.wyq.firehelper.framework.service.ServiceActivity;
+import com.wyq.firehelper.framework.thread.HandlerThreadFragment;
 
 import java.util.List;
 
@@ -26,6 +29,12 @@ public class FrameworkActivity extends BaseRecyclerViewActivity {
                 switch (position) {
                     case 0:
                         ServiceActivity.instance(FrameworkActivity.this);
+                        break;
+                    case 1:
+                        CaseActivity.instance(FrameworkActivity.this,LocalBroadcastFragment.class.getName());
+                        break;
+                    case 2:
+                        CaseActivity.instance(FrameworkActivity.this,HandlerThreadFragment.class.getName());
                         break;
                     default:
                         break;

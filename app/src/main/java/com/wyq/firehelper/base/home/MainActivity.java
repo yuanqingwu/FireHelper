@@ -5,20 +5,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +12,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.android.material.navigation.NavigationView;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.architecture.ArchitectureActivity;
 import com.wyq.firehelper.article.ArticleConstants;
@@ -36,6 +23,9 @@ import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.base.home.drawer.SettingActivity;
+import com.wyq.firehelper.base.home.drawer.ShareActivity;
+import com.wyq.firehelper.base.home.drawer.SkinActivity;
 import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
@@ -54,6 +44,19 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
@@ -235,7 +238,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     private void initHotRv() {
         List<ArticleResource> topArticles = new ArrayList<>();
         hotAdapter = new TvRecyclerViewAdapter(topArticles);
-        hotRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        hotRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         hotAdapter.setTvLayoutParam(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         hotAdapter.setTvPadding(8);
@@ -394,6 +397,25 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.menu_home_drawer_setting:
+                SettingActivity.instance(MainActivity.this);
+                break;
+            case R.id.menu_home_drawer_skin:
+                SkinActivity.instance(MainActivity.this);
+                break;
+            case R.id.menu_home_drawer_share:
+                ShareActivity.instance(MainActivity.this);
+                break;
+            default:
+                break;
+        }
+        if (drawerLayout != null) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+//            navigationView.getMenu().setGroupCheckable(item.getGroupId(),true,true);
+//            navigationView.getMenu().setGroupCheckable(R.id.menu_home_drawer_group,false,true);
+        }
+        return true;
     }
 }

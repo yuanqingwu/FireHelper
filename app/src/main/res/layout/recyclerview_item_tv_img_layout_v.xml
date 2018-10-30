@@ -7,30 +7,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="80dp"
+        android:gravity="left"
         android:padding="8dp">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/recyclerview_item_tv_img_img"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/recyclerview_item_tv_img_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="10dp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/recyclerview_item_tv_img_img"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center_horizontal" />
-
-            <TextView
-                android:id="@+id/recyclerview_item_tv_img_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/recyclerview_item_tv_img_img"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
+            android:layout_alignParentBottom="true" />
 
     </RelativeLayout>
 

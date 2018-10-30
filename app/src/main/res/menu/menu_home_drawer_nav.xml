@@ -1,18 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group android:id="@+id/menu_home_drawer_group" android:checkableBehavior="none">
         <item
+            android:id="@+id/menu_home_drawer_setting"
             android:icon="@drawable/vd_ic_menu_manage"
             android:title="@string/menu_home_drawer_nav_tools" />
         <item
+            android:id="@+id/menu_home_drawer_skin"
             android:icon="@drawable/vd_ic_color_lens_gray_24dp"
             android:title="换肤" />
     </group>
 
     <item android:title="关于">
-        <menu >
-            <item android:title="分享"
-                android:icon="@drawable/vd_ic_menu_share"/>
+        <menu>
+            <item
+                android:id="@+id/menu_home_drawer_share"
+                android:icon="@drawable/vd_ic_menu_share"
+                android:title="分享" />
         </menu>
     </item>
 </menu>

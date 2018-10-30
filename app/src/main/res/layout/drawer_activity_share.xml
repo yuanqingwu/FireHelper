@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".framework.FrameworkActivity">
+    tools:context=".base.home.drawer.ShareActivity">
+
+    <include layout="@layout/toolbar_with_article"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

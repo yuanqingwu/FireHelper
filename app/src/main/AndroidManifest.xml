@@ -84,6 +84,7 @@
 
         <service android:name=".base.AppInitIntentService" />
         <service android:name=".framework.service.FireService" />
+        <service android:name=".framework.service.BackgroundService" />
 
         <activity android:name=".developkit.mmkv.MMKVActivity" />
         <activity android:name=".media.opengles.OpenGLESActivity" />
@@ -100,14 +101,12 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".framework.broadcast.LocalBroadcastActivity" />
         <activity android:name=".framework.FrameworkActivity" />
         <activity android:name=".base.CaseActivity" />
         <activity android:name=".security.SecurityActivity" />
-        <activity
-            android:name=".ui.layout.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme"></activity>
+        <activity android:name=".base.home.drawer.ShareActivity" />
+        <activity android:name=".base.home.drawer.SkinActivity" />
+        <activity android:name=".base.home.drawer.SettingActivity"></activity>
     </application>
 
 </manifest>

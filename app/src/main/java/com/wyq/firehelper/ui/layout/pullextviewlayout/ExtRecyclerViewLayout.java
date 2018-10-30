@@ -2,7 +2,6 @@ package com.wyq.firehelper.ui.layout.pullextviewlayout;
 
 import android.content.Context;
 import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +11,8 @@ import android.widget.Scroller;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.utils.CommonUtils;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class ExtRecyclerViewLayout extends LinearLayout {
 
@@ -114,7 +115,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         for (int i = 0; i < childCount; i++) {
             totalHeight += getChildAt(i).getHeight();
         }
-        Logger.i("totalHeight:" + totalHeight);
+//        Logger.i("totalHeight:" + totalHeight);
 
         headView = getChildAt(0);
         if (headView instanceof ViewGroup) {
@@ -153,7 +154,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float dx = x - lastInterceptX;
                 float dy = y - lastIntercepty;
 
-                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
+//                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
                 if (Math.abs(dy) > Math.abs(dx)) {
                     intercept = true;
                 } else {
@@ -254,17 +255,19 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         int scrollY = getScrollY();
         int absScrollY = Math.abs(scrollY);
 
+        scrollBy(0, (int) (-dy / dampingFactor));
+
         if (dy < 0) {//向上滑动
 //            resetHeadView(0);
             loadingDot.setVisibility(View.GONE);
 
             if (scrollY > 0) {
                 dampingFactor = 2;
-//                return;
+            }else{
+                dampingFactor = 1;
             }
+            return;
         }
-
-        scrollBy(0, (int) (-dy / dampingFactor));
 
         if (absScrollY <= headHeight) {
             dampingFactor = 1;
