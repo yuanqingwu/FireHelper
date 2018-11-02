@@ -1,6 +1,5 @@
 package com.wyq.firehelper.media.video;
 
-import android.os.Build;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,8 +11,6 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
-
-import static android.os.Build.VERSION_CODES.O;
 
 /**
  * Author: Uni.W
@@ -73,7 +70,6 @@ public class VideoFragment extends BaseCaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (Build.VERSION.SDK_INT < O)
             Jzvd.releaseAllVideos();
     }
 }

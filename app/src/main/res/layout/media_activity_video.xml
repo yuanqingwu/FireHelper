@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".media.video.VideoActivity">
 
+    <include layout="@layout/toolbar_with_article"/>
+
     <cn.jzvd.JzvdStd
         android:id="@+id/media_activity_video_jzvd"
         android:layout_width="match_parent"

@@ -5,10 +5,9 @@ import android.content.Intent;
 import android.view.View;
 
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
-import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.media.opengles.OpenGLESActivity;
-import com.wyq.firehelper.media.video.VideoFragment;
+import com.wyq.firehelper.media.video.VideoActivity;
 
 import java.util.List;
 
@@ -37,8 +36,8 @@ public class MediaActivity extends BaseRecyclerViewActivity {
 
                         break;
                     case 2:
-//                        VideoActivity.instance(MediaActivity.this);
-                        CaseActivity.instance(MediaActivity.this,VideoFragment.class.getName());
+                        VideoActivity.instance(MediaActivity.this);
+//                        CaseActivity.instance(MediaActivity.this,VideoFragment.class.getName());
                         break;
                     default:
                         break;

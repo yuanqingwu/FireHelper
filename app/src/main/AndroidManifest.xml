@@ -101,12 +101,13 @@
         </receiver>
 
         <activity android:name=".framework.FrameworkActivity" />
-        <activity android:name=".base.CaseActivity" />
+        <activity android:name=".base.CaseActivity"/>
         <activity android:name=".security.SecurityActivity" />
         <activity android:name=".base.home.drawer.ShareActivity" />
         <activity android:name=".base.home.drawer.SkinActivity" />
         <activity android:name=".base.home.drawer.SettingActivity" />
-        <activity android:name=".media.video.VideoActivity" />
+        <!--暂时为了兼容安卓8.0，去掉背景透明-->
+        <activity android:name=".media.video.VideoActivity" android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".media.MediaActivity"></activity>
     </application>
 

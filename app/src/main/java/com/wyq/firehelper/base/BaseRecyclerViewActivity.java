@@ -4,13 +4,11 @@ import android.content.Intent;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 
 import java.util.Arrays;
 
 import androidx.annotation.CallSuper;
 import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -42,8 +40,8 @@ public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
         baseRV.setAdapter(adapter);
         adapter.setOnItemClickListener(onListItemClickListener());
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
-        itemTouchHelper.attachToRecyclerView(baseRV);
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleItemTouchHelperCallback(adapter));
+//        itemTouchHelper.attachToRecyclerView(baseRV);
     }
 
     public RecyclerView.LayoutManager getLayoutManager() {

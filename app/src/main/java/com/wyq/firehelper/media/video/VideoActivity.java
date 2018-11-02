@@ -2,6 +2,7 @@ package com.wyq.firehelper.media.video;
 
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Button;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseActivity;
@@ -10,6 +11,7 @@ import com.wyq.firehelper.developkit.glide.GlideApp;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
@@ -17,6 +19,8 @@ public class VideoActivity extends BaseCaseActivity {
 
     @BindView(R.id.media_activity_video_jzvd)
     public JzvdStd jzvdStd;
+    @BindView(R.id.media_activity_video_bt)
+    public Button button;
 
 
     public static void instance(Context context){
@@ -44,6 +48,11 @@ public class VideoActivity extends BaseCaseActivity {
 //        jzvdStd.thumbImageView.setImageURI(Uri.parse("http://img0.zealer.com/88/c9/a7/5892259ecd92bead93dba05781.jpg"));
 
         GlideApp.with(this).load("http://img0.zealer.com/88/c9/a7/5892259ecd92bead93dba05781.jpg").into(jzvdStd.thumbImageView);
+    }
+
+    @OnClick(R.id.media_activity_video_bt)
+    public void onclick() {
+        jzvdStd.startWindowTiny();
     }
 
     @Override
