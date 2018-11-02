@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Environment;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.Display;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -65,6 +66,11 @@ public class CommonUtils {
     public static int dip2px(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    private float dipToPx(Context context,float dip) {
+        return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip,
+                context.getResources().getDisplayMetrics());
     }
 
     /**

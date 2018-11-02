@@ -147,8 +147,12 @@ dependencies {
     implementation deps.tagview
     implementation deps.photoview
 
-    implementation 'com.tencent:mmkv:1.0.10'
+    implementation deps.mmkv
     implementation 'com.yanzhikai:TextPathView:0.1.3'
+
+    implementation 'cn.jzvd:jiaozivideoplayer:6.3.1'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
 
     //AspectJ
     implementation deps.aspectj.rt

@@ -16,26 +16,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ExtRecyclerViewLayout extends LinearLayout {
 
+    float deltaY = 0;
     private LoadingDot loadingDot;
     private RecyclerView headRecyclerView;
     private View headView;
-
     private Scroller scroller;
-
     private float headHeight = 0;
-    private float headWidth = 0;
-
     private float dampingFactor = 1.0f;
-
-    private int maxHeadHeight = 100;
-
     private float totalHeight = 0;
-
     private float lastX = 0;
     private float lastY = 0;
     private float lastInterceptX = 0;
     private float lastIntercepty = 0;
-    float deltaY = 0;
 
     public ExtRecyclerViewLayout(Context context) {
         this(context, null);
@@ -128,14 +120,10 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                     } else if (view instanceof RecyclerView && headRecyclerView == null) {
                         headRecyclerView = (RecyclerView) view;
                     }
-
-                    maxHeadHeight += view.getMeasuredHeight();
                 }
-
             }
         }
         headHeight = headView.getMeasuredHeight();
-        headWidth = headView.getMeasuredWidth();
         if (getPaddingTop() != -(int) headHeight) {
             setPadding(0, -(int) headHeight, 0, 0);
         }
@@ -298,7 +286,6 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         int scrollY = getScrollY();
         int dy = y - scrollY;
         scroller.startScroll(0, scrollY, 0, dy, 500);
-        Logger.i("smoothScrollTo");
         invalidate();
     }
 
@@ -308,7 +295,6 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         if (scroller.computeScrollOffset()) {
             int scrollY = scroller.getCurrY();
             scrollTo(scroller.getCurrX(), scrollY);
-            Logger.i("computeScroll " + scrollY);
             if (scrollY < -headHeight) {//下拉超出头部高度时，以1/2速度上移
                 headView.setTranslationY((scrollY + headHeight) / 2);
             }

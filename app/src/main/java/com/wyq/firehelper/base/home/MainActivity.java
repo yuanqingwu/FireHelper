@@ -31,7 +31,7 @@ import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
-import com.wyq.firehelper.media.opengles.OpenGLESActivity;
+import com.wyq.firehelper.media.MediaActivity;
 import com.wyq.firehelper.security.SecurityActivity;
 import com.wyq.firehelper.ui.UiMainActivity;
 import com.wyq.firehelper.ui.android.popupwindow.FirePopupWindow;
@@ -351,7 +351,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         FrameworkActivity.instance(MainActivity.this);
                         break;
                     case 6:
-                        OpenGLESActivity.instance(MainActivity.this);
+                        MediaActivity.instance(MainActivity.this);
                         break;
                     case 7:
                         startActivity(new Intent(MainActivity.this,

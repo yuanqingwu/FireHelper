@@ -1,11 +1,6 @@
 package com.wyq.firehelper.base;
 
 import android.content.Intent;
-import androidx.annotation.CallSuper;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.ItemTouchHelper;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
@@ -13,6 +8,11 @@ import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouc
 
 import java.util.Arrays;
 
+import androidx.annotation.CallSuper;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
@@ -47,7 +47,7 @@ public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
     }
 
     public RecyclerView.LayoutManager getLayoutManager() {
-        return new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        return new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
     }
 
     public RecyclerView.ItemDecoration getItemDecoration() {

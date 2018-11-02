@@ -24,7 +24,6 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".base.home.SplashActivity"
-            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -106,7 +105,9 @@
         <activity android:name=".security.SecurityActivity" />
         <activity android:name=".base.home.drawer.ShareActivity" />
         <activity android:name=".base.home.drawer.SkinActivity" />
-        <activity android:name=".base.home.drawer.SettingActivity"></activity>
+        <activity android:name=".base.home.drawer.SettingActivity" />
+        <activity android:name=".media.video.VideoActivity" />
+        <activity android:name=".media.MediaActivity"></activity>
     </application>
 
 </manifest>

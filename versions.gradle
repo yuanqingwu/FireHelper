@@ -28,7 +28,7 @@ versions.atsl = "1.1.0"
 versions.arch_core = "2.0.0"
 versions.espresso = "3.1.0"
 versions.mockito = "2.10.0"
-versions.mmkv = "1.0.11"
+versions.mmkv = "1.0.10"
 versions.emoji = "1.0.0"
 def deps = [:]
 
