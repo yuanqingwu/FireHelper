@@ -13,6 +13,7 @@ public class ConnectivityUtils {
 
     /**
      * 查询活动网络并确定其是否连入了互联网
+     *
      * @param context
      * @return
      */
@@ -25,15 +26,16 @@ public class ConnectivityUtils {
     }
 
     /**
-     *设备连接可由移动数据、WiMAX、Wi-Fi 和以太网连接提供。
+     * 设备连接可由移动数据、WiMAX、Wi-Fi 和以太网连接提供。
      * <p>例如：boolean isWiFi = activeNetwork.getType() == ConnectivityManager.TYPE_WIFI;
+     *
      * @param context
      * @return
      */
-    public static int getActiveNetworkType(Context context){
+    public static int getActiveNetworkType(Context context) {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        return activeNetwork.getType();
+        return activeNetwork == null ? 0 : activeNetwork.getType();
     }
 
 

@@ -16,14 +16,27 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class ExtRecyclerViewLayout extends LinearLayout {
 
-    float deltaY = 0;
+
     private LoadingDot loadingDot;
     private RecyclerView headRecyclerView;
     private View headView;
     private Scroller scroller;
+    /**
+     * 头部长度
+     */
     private float headHeight = 0;
-    private float dampingFactor = 1.0f;
+    /**
+     * 布局总长度，
+     */
     private float totalHeight = 0;
+    /**
+     * 滑动阻尼
+     */
+    private float dampingFactor = 1.0f;
+    /**
+     * 每次滑动距离，向下为正
+     */
+    private float deltaY = 0;
     private float lastX = 0;
     private float lastY = 0;
     private float lastInterceptX = 0;
@@ -216,7 +229,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
     private int getResetHeight() {
         int screenHeight = CommonUtils.getScreenHeight(getContext());
-        int navigationBarHeight = CommonUtils.getWinHeight(getContext()) - screenHeight;
+        int navigationBarHeight = CommonUtils.getNavigationBarHeight(getContext());//即使是实体按键，这个也是有虚拟数值的
 //        Logger.i(screenHeight + " nav:" + navigationBarHeight + " scrollY:" + getScrollY() + " getHeight:" + getHeight() + " getTop:" + getTop() + " getPaddingTop:" + getPaddingTop() + " getPaddingBottom:" + getPaddingBottom() + " getBottom:" + getBottom() + " headHeight:" + headHeight);
         float bottomHideHeight = navigationBarHeight + (totalHeight - headHeight + getTop() - screenHeight);
 
@@ -228,15 +241,17 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
     private void resetHeadView(int y) {
         smoothScrollTo(y);
-        if (y == 0) {//头部未显示
+        if (y >= 0) {//头部未显示
             loadingDot.setPercent(0);
         } else {//头部完全显示
             loadingDot.setPercent(1);
         }
         headRecyclerView.setTranslationY(0);
         loadingDot.setTranslationY(0);
-        if (getScrollY() > -headHeight) {//如果下拉超出头部高度，需要特殊处理，1/2速度上移
+        if (getScrollY() > -headHeight) {
             headView.setTranslationY(0);
+        }else{
+            //如果下拉超出头部高度，需要特殊处理，1/2速度上移,见computeScroll（）
         }
     }
 
