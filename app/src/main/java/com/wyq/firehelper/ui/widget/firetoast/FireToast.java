@@ -73,6 +73,11 @@ public class FireToast {
         return fireToast;
     }
 
+    public static FireToast instance(Context context) {
+        FireToast fireToast = new FireToast(context, null);
+        return fireToast;
+    }
+
     public static FireToast get(String name) {
         FireToast fireToast = null;
         if (softToastList != null) {
@@ -202,6 +207,19 @@ public class FireToast {
         layout.addView(textView, new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
         toast.setView(layout);
+    }
+
+    public void show(){
+        boolean haveLooper = true;
+        if (Looper.myLooper() == null) {
+            haveLooper = false;
+            Looper.prepare();
+        }
+
+        Toast.makeText(context,text,Toast.LENGTH_SHORT).show();
+        if (!haveLooper)
+            Looper.loop();
+
     }
 
     public void showCustomToast() {

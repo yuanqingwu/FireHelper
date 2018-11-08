@@ -26,6 +26,7 @@ import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.home.drawer.SettingActivity;
 import com.wyq.firehelper.base.home.drawer.ShareActivity;
 import com.wyq.firehelper.base.home.drawer.SkinActivity;
+import com.wyq.firehelper.component.ComponentActivity;
 import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
@@ -351,9 +352,12 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         FrameworkActivity.instance(MainActivity.this);
                         break;
                     case 6:
-                        MediaActivity.instance(MainActivity.this);
+                        ComponentActivity.instance(MainActivity.this);
                         break;
                     case 7:
+                        MediaActivity.instance(MainActivity.this);
+                        break;
+                    case 8:
                         startActivity(new Intent(MainActivity.this,
                                 GitHubMainActivity.class));
                         break;

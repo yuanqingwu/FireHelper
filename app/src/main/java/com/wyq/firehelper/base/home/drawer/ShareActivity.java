@@ -5,14 +5,17 @@ import android.content.Intent;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseActivity;
+import com.wyq.firehelper.component.share.FireShare;
 
 import java.util.List;
+
+import butterknife.OnClick;
 
 public class ShareActivity extends BaseCaseActivity {
 
 
-    public static void instance(Context context){
-        context.startActivity(new Intent(context,ShareActivity.class));
+    public static void instance(Context context) {
+        context.startActivity(new Intent(context, ShareActivity.class));
     }
 
     @Override
@@ -35,4 +38,8 @@ public class ShareActivity extends BaseCaseActivity {
 
     }
 
+    @OnClick(R.id.drawer_activity_share_bt)
+    public void onClick() {
+        FireShare.shareTextWithSys(ShareActivity.this, "https://github.com/wuyuanqing527/FireHelper", "share");
+    }
 }
