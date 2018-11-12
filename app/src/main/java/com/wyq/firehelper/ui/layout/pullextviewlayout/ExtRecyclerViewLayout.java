@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
@@ -57,14 +58,33 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     public ExtRecyclerViewLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         scroller = new Scroller(context);
+
+        ViewTreeObserver observer = getViewTreeObserver();
+        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                if(observer.isAlive()){
+                    Logger.i("onGlobalLayout");
+                    observer.removeOnGlobalLayoutListener(this);
+                    initViewSize();
+                }
+            }
+        });
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Logger.i("onSizeChanged"+h+"  "+oldh);
+        initViewSize();
     }
 
     @Override
     public void onWindowFocusChanged(boolean hasWindowFocus) {
         super.onWindowFocusChanged(hasWindowFocus);
         if (hasWindowFocus) {
-            Logger.i("hasWindowFocus");
-            initViewSize();
+//            Logger.i("hasWindowFocus");
+//            initViewSize();
         }
     }
 
@@ -106,6 +126,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
         //do nothing
+//        initViewSize();
     }
 
     /**
@@ -203,17 +224,23 @@ public class ExtRecyclerViewLayout extends LinearLayout {
             case MotionEvent.ACTION_UP:
                 int scrollY = getScrollY();
                 float baseHeight = -headHeight / 2;
-                if (scrollY <= baseHeight) {//开
+                if (scrollY <= baseHeight) {
+                    //开
                     //当滑动距离在头部长度之内并且向上滑动则直接关闭头部
-                    if (scrollY > -headHeight && deltaY < 0)
+                    if (scrollY > -headHeight && deltaY < 0) {
                         resetHeadView(0);
-                    else
+                    }else {
                         resetHeadView((int) -headHeight);
-                } else {//关
-                    if (scrollY > getResetHeight())//如果上滑距离大于底部隐藏距离则，重置到底部刚好显示距离
+                    }
+                } else {
+                    //关
+                    //如果上滑距离大于底部隐藏距离则，重置到底部刚好显示距离
+                    if (scrollY > getResetHeight()) {
                         resetHeadView(getResetHeight());
-                    else if (scrollY < 0)//如果头部差一点没关掉就关掉
+                    }else if (scrollY < 0) {
+                        //如果头部差一点没关掉就关掉
                         resetHeadView(0);
+                    }
                 }
                 deltaY = 0;
                 break;

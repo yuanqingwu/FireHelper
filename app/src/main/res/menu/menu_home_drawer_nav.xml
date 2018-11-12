@@ -3,19 +3,23 @@
     <group android:id="@+id/menu_home_drawer_group" android:checkableBehavior="none">
         <item
             android:id="@+id/menu_home_drawer_setting"
-            android:icon="@drawable/vd_ic_menu_manage"
+            android:icon="@drawable/ic_vd_menu_manage"
             android:title="@string/menu_home_drawer_nav_tools" />
         <item
             android:id="@+id/menu_home_drawer_skin"
-            android:icon="@drawable/vd_ic_color_lens_gray_24dp"
+            android:icon="@drawable/ic_vd_color_lens_gray_24dp"
             android:title="换肤" />
+        <item
+            android:id="@+id/menu_home_drawer_night_mode"
+            android:icon="@drawable/ic_vd_brightness_7_gray_24dp"
+            android:title="@string/night_mode" />
     </group>
 
     <item android:title="关于">
         <menu>
             <item
                 android:id="@+id/menu_home_drawer_share"
-                android:icon="@drawable/vd_ic_menu_share"
+                android:icon="@drawable/ic_vd_menu_share"
                 android:title="分享" />
         </menu>
     </item>

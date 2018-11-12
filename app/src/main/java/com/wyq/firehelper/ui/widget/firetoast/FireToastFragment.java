@@ -29,7 +29,7 @@ public class FireToastFragment extends BaseCaseFragment {
 
     @Override
     public void initView(View view) {
-        FireToast.instance(getContext(),"1").setText("123456789").setHeadImg(getContext().getDrawable(R.drawable.vd_ic_face_cyan_24dp)).setTextSize(30)
+        FireToast.instance(getContext(),"1").setText("123456789").setHeadImg(getContext().getDrawable(R.drawable.ic_vd_face_cyan_24dp)).setTextSize(30)
                 .setOnDoubleClickListener(new FireToast.OnDoubleClickListener() {
                     @Override
                     public void onDoubleClick(FireToast fireToast) {

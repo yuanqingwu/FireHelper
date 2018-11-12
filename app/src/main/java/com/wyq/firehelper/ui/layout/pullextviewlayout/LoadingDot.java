@@ -8,8 +8,6 @@ import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.wyq.firehelper.utils.CommonUtils;
-
 import androidx.annotation.Nullable;
 
 public class LoadingDot extends View {
@@ -53,7 +51,7 @@ public class LoadingDot extends View {
      * 为不同分辨率的屏幕设置不同的大小
      */
     private void initParam() {
-        float density = CommonUtils.getScreenDensity(context);
+        float density = context.getResources().getDisplayMetrics().density;
 //        Logger.i("density:" + density);
         normalRadius = density * normalRadius;
         maxRadius = 2 * normalRadius;

@@ -5,15 +5,17 @@ import com.wyq.firehelper.architecture.mvp.translation.model.Translation;
 import com.wyq.firehelper.architecture.mvp.translation.view.IBaseView;
 import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 
+import java.lang.ref.WeakReference;
+
 import io.reactivex.functions.Consumer;
 
 public class PresenterImpl implements IPresenter {
 
     private Model model;
-    private IBaseView baseView;
+    private WeakReference<IBaseView> view;
 
     public PresenterImpl(MvpActivity activity) {
-        baseView = activity;
+        view = new WeakReference<>(activity);
         model = new Model();
     }
 
@@ -23,7 +25,8 @@ public class PresenterImpl implements IPresenter {
         Consumer<Translation> consumer = new Consumer<Translation>() {
             @Override
             public void accept(Translation translation) throws Exception {
-                baseView.showInfo(translation.getTranslateResult().get(0).get(0).getTgt());
+                if(view.get() != null)
+                view.get().showInfo(translation.getTranslateResult().get(0).get(0).getTgt());
             }
         };
         model.queryInfo(ip, consumer);

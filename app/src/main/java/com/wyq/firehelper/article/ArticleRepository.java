@@ -87,10 +87,11 @@ public class ArticleRepository {
             return null;
         }
         byte[] bytes = articleMMKV.decodeBytes(key);
-        if (bytes != null && bytes.length > 0)
+        if (bytes != null && bytes.length > 0) {
             return ArticleSaveEntity.convertFromBytes(bytes);
-        else
+        }else {
             return null;
+        }
     }
 
     public synchronized List<String> getAllSavedKeys(){

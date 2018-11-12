@@ -41,7 +41,7 @@ public class UIPagerChildFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
 
         UIRecyclerViewAdapter adapter = new UIRecyclerViewAdapter(getContext());
         adapter.setData(uiInfoBeans);

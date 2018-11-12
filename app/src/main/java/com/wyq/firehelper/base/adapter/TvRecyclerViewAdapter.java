@@ -2,9 +2,6 @@ package com.wyq.firehelper.base.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +16,11 @@ import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelpe
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAdapter.TvViewHolder> implements ItemTouchHelperAdapter {
 
@@ -92,7 +94,7 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
 //        notifyDataSetChanged();
     }
 
-    public void setSelectPosition(int position, int... selectedTextColor) {
+    public void setSelectPosition(int position, @ColorInt int... selectedTextColor) {
         this.selectPosition = position;
         if (selectedTextColor != null && selectedTextColor.length == 1) {
             this.selectedTextColor = selectedTextColor[0];
@@ -137,15 +139,17 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     @Override
     public void onBindViewHolder(@NonNull final TvViewHolder holder, final int position) {
         if (list.get(position) instanceof ArticleResource) {
-            if (layoutParams != null)
+            if (layoutParams != null) {
                 ((LinearLayout) holder.textView.getParent()).setLayoutParams(layoutParams);
+            }
             holder.textView.setPadding(padding, padding, padding, padding);
-            if (gravity != 0)
+            if (gravity != 0) {
                 holder.textView.setGravity(gravity);
+            }
             holder.textView.setText(((ArticleResource) list.get(position)).getTitle());
-        } else if (list.get(position) instanceof String) {
+        } else if (list.get(position) instanceof String && selectedTextColor>0) {
             if (position == selectPosition) {
-                holder.textView.setTextColor(selectedTextColor > 0 ? selectedTextColor : context.getResources().getColor(R.color.colorPrimary));
+                holder.textView.setTextColor(selectedTextColor);
             } else {
                 holder.textView.setTextColor(Color.BLACK);
             }
@@ -173,10 +177,11 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
 
         public TvViewHolder(int viewType, View itemView) {
             super(itemView);
-            if (isViewTypeEnable && viewType == TYPE_TITLE)
+            if (isViewTypeEnable && viewType == TYPE_TITLE) {
                 textView = itemView.findViewById(R.id.recyclerview_item_title_tv);
-            else
+            } else {
                 textView = itemView.findViewById(R.id.recyclerview_item_text);
+            }
         }
 
 
