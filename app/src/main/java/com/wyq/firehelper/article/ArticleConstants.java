@@ -32,7 +32,7 @@ public class ArticleConstants {
     public static final String TAG_JNI = "JNI";
     public static final String TAG_DEVICE = "设备";
     public static final String TAG_TEST = "测试";
-    public static final String TAG_ANDROID_FRAMEWORK = "安卓源码";
+    public static final String TAG_ANDROID_FRAMEWORK = "安卓框架";
     public static final String TAG_OPEN_GL = "OpenGL";
     public static final String TAG_SECURITY = "安全";
 
@@ -106,6 +106,9 @@ public class ArticleConstants {
     public static final ArticleResource _63 = new ArticleResource("https://www.jianshu.com/p/e3614e7abc03", "Android Vector曲折的兼容之路", CATEGORY_BLOG, TAG_UI);
     public static final ArticleResource _64 = new ArticleResource("http://pingguohe.net/2017/08/02/tac-1.0.html", "天猫APP改版之全新大首页架构&开发模式全面升级-TAC", CATEGORY_BLOG, TAG_ARCHITECTURE);
     public static final ArticleResource _65 = new ArticleResource("http://pingguohe.net/2017/12/27/deep-into-virtualview-android-1.html", "VirtualView Android实现详解（一）—— 文件格式与模板编译", CATEGORY_BLOG,  TAG_UI,TAG_FRAMEWORK);
+    public static final ArticleResource _66 = new ArticleResource("https://www.jianshu.com/p/ea8bc4aaf057", "关于ContentProvider的知识都在这里了！", CATEGORY_BLOG,  TAG_ANDROID_FRAMEWORK);
+    public static final ArticleResource _67 = new ArticleResource("https://developer.android.google.cn/training/articles/keystore", "Android 密钥库系统", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
+    public static final ArticleResource _68 = new ArticleResource("https://developer.android.google.cn/guide/practices/screens_support", "支持多种屏幕", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
 
 
     /**

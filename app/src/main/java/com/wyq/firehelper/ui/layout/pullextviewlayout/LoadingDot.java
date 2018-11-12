@@ -8,6 +8,8 @@ import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.wyq.firehelper.utils.CommonUtils;
+
 import androidx.annotation.Nullable;
 
 public class LoadingDot extends View {
@@ -15,8 +17,8 @@ public class LoadingDot extends View {
     private Context context;
     private boolean shouldVibrator = true;
 
-    //default
-    private float normalRadius = 8.0f;
+    //default size in 160dpi
+    private float normalRadius = 3.0f;
     private float maxRadius = 2 * normalRadius;
     private float maxDistance = 8 * normalRadius;
     private float percent = 0.0f;
@@ -43,7 +45,19 @@ public class LoadingDot extends View {
     public LoadingDot(Context context, @Nullable AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         this.context = context;
+        initParam();
         initPaint();
+    }
+
+    /**
+     * 为不同分辨率的屏幕设置不同的大小
+     */
+    private void initParam() {
+        float density = CommonUtils.getScreenDensity(context);
+//        Logger.i("density:" + density);
+        normalRadius = density * normalRadius;
+        maxRadius = 2 * normalRadius;
+        maxDistance = 8 * normalRadius;
     }
 
     private void initPaint() {
@@ -122,7 +136,7 @@ public class LoadingDot extends View {
 
     public void setPercent(float percent) {
         this.percent = percent;
-        if(percent == 0){
+        if (percent == 0) {
             shouldVibrator = true;
         }
         invalidate();
