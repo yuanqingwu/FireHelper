@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
@@ -59,34 +58,34 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         super(context, attrs, defStyleAttr, defStyleRes);
         scroller = new Scroller(context);
 
-        ViewTreeObserver observer = getViewTreeObserver();
-        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-            @Override
-            public void onGlobalLayout() {
-                if(observer.isAlive()){
-                    Logger.i("onGlobalLayout");
-                    observer.removeOnGlobalLayoutListener(this);
-                    initViewSize();
-                }
-            }
-        });
+//        ViewTreeObserver observer = getViewTreeObserver();
+//        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+//            @Override
+//            public void onGlobalLayout() {
+//                if(observer.isAlive()){
+//                    Logger.i("onGlobalLayout");
+//                    observer.removeOnGlobalLayoutListener(this);
+//                    initViewSize();
+//                }
+//            }
+//        });
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Logger.i("onSizeChanged"+h+"  "+oldh);
+        Logger.i("onSizeChanged "+h+"  oldHeight:"+oldh);
         initViewSize();
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasWindowFocus) {
-        super.onWindowFocusChanged(hasWindowFocus);
-        if (hasWindowFocus) {
+//    @Override
+//    public void onWindowFocusChanged(boolean hasWindowFocus) {
+//        super.onWindowFocusChanged(hasWindowFocus);
+//        if (hasWindowFocus) {
 //            Logger.i("hasWindowFocus");
 //            initViewSize();
-        }
-    }
+//        }
+//    }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
