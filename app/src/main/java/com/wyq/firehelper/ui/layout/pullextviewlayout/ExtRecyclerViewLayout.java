@@ -1,7 +1,6 @@
 package com.wyq.firehelper.ui.layout.pullextviewlayout;
 
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.utils.CommonUtils;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,24 +55,12 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     public ExtRecyclerViewLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         scroller = new Scroller(context);
-
-//        ViewTreeObserver observer = getViewTreeObserver();
-//        observer.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-//            @Override
-//            public void onGlobalLayout() {
-//                if(observer.isAlive()){
-//                    Logger.i("onGlobalLayout");
-//                    observer.removeOnGlobalLayoutListener(this);
-//                    initViewSize();
-//                }
-//            }
-//        });
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Logger.i("onSizeChanged "+h+"  oldHeight:"+oldh);
+//        Logger.i("onSizeChanged " + h + "  oldHeight:" + oldh);
         initViewSize();
     }
 
@@ -90,34 +76,32 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        //do nothing
-        if (getChildCount() > 0) {
-            for (int i = 0; i < getChildCount(); i++) {
-                final View child = getChildAt(i);
-                final int widthPadding;
-                final int heightPadding;
-                final int targetSdkVersion = getContext().getApplicationInfo().targetSdkVersion;
-                final LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) child.getLayoutParams();
-                if (targetSdkVersion >= Build.VERSION_CODES.M) {
-                    widthPadding = getPaddingLeft() + getPaddingRight() + lp.leftMargin + lp.rightMargin;
-                    heightPadding = getPaddingTop() + getPaddingBottom() + lp.topMargin + lp.bottomMargin;
-                } else {
-                    widthPadding = getPaddingLeft() + getPaddingRight();
-                    heightPadding = getPaddingTop() + getPaddingBottom();
-                }
+        int measuredWidth = 0;
+        int measuredHeight = 0;
+        int childCount = getChildCount();
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
 
-                final int desiredHeight = getMeasuredHeight() - heightPadding;
-                if (child.getMeasuredHeight() < desiredHeight) {
-                    final int childWidthMeasureSpec = getChildMeasureSpec(
-                            widthMeasureSpec, widthPadding, lp.width);
-//                    final int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-//                            desiredHeight, MeasureSpec.EXACTLY);
-                    final int childHeightMeasureSpec = getChildMeasureSpec(heightMeasureSpec, heightPadding, lp.height);
-                    child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
-                }
+        int widthSpaceSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSpaceSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        if (childCount == 0) {
+            setMeasuredDimension(0, 0);
+        } else if (widthSpecMode == MeasureSpec.AT_MOST && heightSpecMode == MeasureSpec.AT_MOST) {
+            measuredWidth = getChildAt(0).getMeasuredWidth();
+            for (int i = 0; i < childCount; i++) {
+                measuredHeight += getChildAt(i).getMeasuredHeight();
             }
-
-
+            setMeasuredDimension(measuredWidth, measuredHeight);
+        } else if (widthSpecMode == MeasureSpec.AT_MOST) {
+            measuredWidth = getChildAt(0).getMeasuredWidth();
+            setMeasuredDimension(measuredWidth, heightSpaceSize);
+        } else if (heightSpecMode == MeasureSpec.AT_MOST) {
+            for (int i = 0; i < childCount; i++) {
+                measuredHeight += getChildAt(i).getMeasuredHeight();
+            }
+            setMeasuredDimension(widthSpaceSize, measuredHeight);
         }
     }
 
@@ -138,9 +122,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         }
         totalHeight = 0;
         for (int i = 0; i < childCount; i++) {
-            totalHeight += getChildAt(i).getHeight();
+            totalHeight += getChildAt(i).getMeasuredHeight();
         }
-//        Logger.i("totalHeight:" + totalHeight);
 
         headView = getChildAt(0);
         if (headView instanceof ViewGroup) {
@@ -160,6 +143,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         if (getPaddingTop() != -(int) headHeight) {
             setPadding(0, -(int) headHeight, 0, 0);
         }
+
+//        Logger.i("totalHeight:" + totalHeight + " headHeight:" + headHeight);
     }
 
     @Override
@@ -228,7 +213,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                     //当滑动距离在头部长度之内并且向上滑动则直接关闭头部
                     if (scrollY > -headHeight && deltaY < 0) {
                         resetHeadView(0);
-                    }else {
+                    } else {
                         resetHeadView((int) -headHeight);
                     }
                 } else {
@@ -236,7 +221,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                     //如果上滑距离大于底部隐藏距离则，重置到底部刚好显示距离
                     if (scrollY > getResetHeight()) {
                         resetHeadView(getResetHeight());
-                    }else if (scrollY < 0) {
+                    } else if (scrollY < 0) {
                         //如果头部差一点没关掉就关掉
                         resetHeadView(0);
                     }
@@ -259,6 +244,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 //        Logger.i(screenHeight + " nav:" + navigationBarHeight + " scrollY:" + getScrollY() + " getHeight:" + getHeight() + " getTop:" + getTop() + " getPaddingTop:" + getPaddingTop() + " getPaddingBottom:" + getPaddingBottom() + " getBottom:" + getBottom() + " headHeight:" + headHeight);
         float bottomHideHeight = navigationBarHeight + (totalHeight - headHeight + getTop() - screenHeight);
 
+//        Logger.i("bottomHideHeight:" + bottomHideHeight);
         if (bottomHideHeight < 0) {
             return 0;
         }
@@ -276,7 +262,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
         loadingDot.setTranslationY(0);
         if (getScrollY() > -headHeight) {
             headView.setTranslationY(0);
-        }else{
+        } else {
             //如果下拉超出头部高度，需要特殊处理，1/2速度上移,见computeScroll（）
         }
     }

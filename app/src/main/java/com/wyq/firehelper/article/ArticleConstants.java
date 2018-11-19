@@ -109,6 +109,7 @@ public class ArticleConstants {
     public static final ArticleResource _66 = new ArticleResource("https://www.jianshu.com/p/ea8bc4aaf057", "关于ContentProvider的知识都在这里了！", CATEGORY_BLOG,  TAG_ANDROID_FRAMEWORK);
     public static final ArticleResource _67 = new ArticleResource("https://developer.android.google.cn/training/articles/keystore", "Android 密钥库系统", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
     public static final ArticleResource _68 = new ArticleResource("https://developer.android.google.cn/guide/practices/screens_support", "支持多种屏幕", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
+    public static final ArticleResource _69 = new ArticleResource("https://developer.android.google.cn/guide/topics/providers/content-provider-basics", "内容提供程序基础知识 ", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
 
 
     /**

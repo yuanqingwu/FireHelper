@@ -29,7 +29,7 @@ import com.wyq.firehelper.base.home.drawer.ShareActivity;
 import com.wyq.firehelper.base.home.drawer.SkinActivity;
 import com.wyq.firehelper.component.ComponentActivity;
 import com.wyq.firehelper.developkit.DevelopKitMainActivity;
-import com.wyq.firehelper.developkit.mmkv.MMKVManager;
+import com.wyq.firehelper.developkit.mmkv.MMKVContract;
 import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
@@ -423,14 +423,14 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                 SkinActivity.instance(MainActivity.this);
                 break;
             case R.id.menu_home_drawer_night_mode:
-                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVManager.KEY_NIGHT_MODE, false);
+                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
                 if (nightMode) {
-                    MMKV.defaultMMKV().encode(MMKVManager.KEY_NIGHT_MODE, false);
+                    MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, false);
                     item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
                     item.setTitle(R.string.day_mode);
                     setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                 } else {
-                    MMKV.defaultMMKV().encode(MMKVManager.KEY_NIGHT_MODE, true);
+                    MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, true);
                     item.setTitle(R.string.night_mode);
                     item.setIcon(R.drawable.ic_vd_brightness_2_gray_24dp);
                     setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
@@ -454,7 +454,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         int id = item.getItemId();
         switch (id) {
             case R.id.menu_home_drawer_night_mode:
-                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVManager.KEY_NIGHT_MODE, false);
+                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
                 if (nightMode) {
                     item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
                     item.setTitle(R.string.day_mode);
