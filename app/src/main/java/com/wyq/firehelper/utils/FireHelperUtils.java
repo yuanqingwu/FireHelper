@@ -2,6 +2,8 @@ package com.wyq.firehelper.utils;
 
 import android.content.Context;
 
+import com.wyq.firehelper.utils.common.CloseUtils;
+
 import java.io.IOException;
 import java.io.InputStream;
 

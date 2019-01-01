@@ -4,9 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,11 +14,15 @@ import android.widget.PopupWindow;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.utils.CommonUtils;
+import com.wyq.firehelper.utils.common.ScreenUtils;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class FirePopupWindow {
 
@@ -208,7 +209,7 @@ public class FirePopupWindow {
     public FirePopupWindow showLocation(View parent) {
         Context context = parent.getContext();
         View popView = LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
-        PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, CommonUtils.getScreenHeight(context)/2);
+        PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getHeightPX(context)/2);
         RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));

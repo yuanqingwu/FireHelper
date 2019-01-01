@@ -6,15 +6,15 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <uses-feature android:name="android.hardware.location.gps" />
     <!-- 使用OpenGL ES 2.0 -->
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".base.FireHelpApplication"
@@ -110,12 +110,8 @@
         <activity android:name=".base.home.drawer.ShareActivity" />
         <activity android:name=".base.home.drawer.SkinActivity" />
         <activity android:name=".base.home.drawer.SettingActivity" />
-        <!-- 暂时为了兼容安卓8.0，去掉背景透明 -->
-        <activity
-            android:name=".media.video.VideoActivity"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
+        <activity android:name=".media.video.VideoActivity" />
         <activity android:name=".media.MediaActivity" />
-        <activity android:name=".component.share.ShareActivity" />
         <activity android:name=".component.ComponentActivity"></activity>
     </application>
 

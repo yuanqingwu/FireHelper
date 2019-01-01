@@ -1,4 +1,4 @@
-package com.wyq.firehelper.utils;
+package com.wyq.firehelper.utils.common;
 
 import android.app.Activity;
 import android.content.Context;
@@ -511,86 +511,7 @@ public class CommonUtils {
         }
     }
 
-    /**
-     * 得到屏幕真实宽度
-     *
-     * @param context
-     * @return
-     */
-    public static int getWinWidth(Activity context) {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = windowManager.getDefaultDisplay();
-        DisplayMetrics dm = new DisplayMetrics();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            display.getRealMetrics(dm);
-        } else {
-            display.getMetrics(dm);
-        }
-        int realHeight = dm.widthPixels;
-        return realHeight;
-    }
 
-    /**
-     * 得到屏幕真实高度
-     *
-     * @param context
-     * @return
-     */
-    public static int getWinHeight(Context context) {
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        Display display = windowManager.getDefaultDisplay();
-        DisplayMetrics dm = new DisplayMetrics();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            display.getRealMetrics(dm);
-        } else {
-            display.getMetrics(dm);
-        }
-        int realHeight = dm.heightPixels;
-        return realHeight;
-    }
-
-    public static int getScreenWidth(Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.widthPixels;
-    }
-
-    /**
-     * 获取屏幕高度（不包含导航栏高度）
-     *
-     * @param context
-     * @return
-     */
-    public static int getScreenHeight(Context context) {
-        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
-        return metrics.heightPixels;
-    }
-
-    public static int getNavigationBarHeight(Context context) {
-        Resources resources = context.getResources();
-        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
-        int height = resources.getDimensionPixelSize(resourceId);
-        return height;
-
-    }
-
-    public static int getStatusBarHeight(Context context) {
-        Resources resources = context.getResources();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        int height = resources.getDimensionPixelSize(resourceId);
-        return height;
-    }
-
-    public static float getScreenDensity(Context context) {
-        try {
-            DisplayMetrics dm = new DisplayMetrics();
-            WindowManager manager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-            manager.getDefaultDisplay().getMetrics(dm);
-            return dm.density;
-        } catch (Exception ex) {
-
-        }
-        return 1.0f;
-    }
 
     public static int calculateCharLength(String src) {
         int counter = -1;

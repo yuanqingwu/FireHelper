@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
-import com.wyq.firehelper.utils.CommonUtils;
+import com.wyq.firehelper.utils.common.ScreenUtils;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +16,9 @@ public class ExtRecyclerViewLayout extends LinearLayout {
 
 
     private LoadingDot loadingDot;
+    /**
+     * 下拉时先上移loadingDot高度再缓缓下移
+     */
     private RecyclerView headRecyclerView;
     private View headView;
     private Scroller scroller;
@@ -239,8 +242,8 @@ public class ExtRecyclerViewLayout extends LinearLayout {
     }
 
     private int getResetHeight() {
-        int screenHeight = CommonUtils.getScreenHeight(getContext());
-        int navigationBarHeight = CommonUtils.getNavigationBarHeight(getContext());//即使是实体按键，这个也是有虚拟数值的
+        int screenHeight = ScreenUtils.getHeightPX(getContext());
+        int navigationBarHeight = ScreenUtils.getNavigationBarHeight(getContext());//即使是实体按键，这个也是有虚拟数值的
 //        Logger.i(screenHeight + " nav:" + navigationBarHeight + " scrollY:" + getScrollY() + " getHeight:" + getHeight() + " getTop:" + getTop() + " getPaddingTop:" + getPaddingTop() + " getPaddingBottom:" + getPaddingBottom() + " getBottom:" + getBottom() + " headHeight:" + headHeight);
         float bottomHideHeight = navigationBarHeight + (totalHeight - headHeight + getTop() - screenHeight);
 

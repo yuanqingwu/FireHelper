@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.utils.BitmapUtils;
+import com.wyq.firehelper.utils.common.BitmapUtils;
 
 import butterknife.BindView;
 

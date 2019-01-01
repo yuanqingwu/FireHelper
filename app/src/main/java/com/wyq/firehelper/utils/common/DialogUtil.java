@@ -1,5 +1,5 @@
 
-package com.wyq.firehelper.utils;
+package com.wyq.firehelper.utils.common;
 
 
 
@@ -20,7 +20,7 @@ public class DialogUtil {
 		dialog.setContentView(R.layout.common_dialog_request);	
 		Window window = dialog.getWindow();
 		WindowManager.LayoutParams lp = window.getAttributes();	
-		int width = CommonUtils.getScreenWidth(context);
+		int width = ScreenUtils.getWidthPX(context);
 		lp.width = (int)(0.6 * width);	
 		
 		TextView titleTxtv = (TextView) dialog.findViewById(R.id.tvLoad);

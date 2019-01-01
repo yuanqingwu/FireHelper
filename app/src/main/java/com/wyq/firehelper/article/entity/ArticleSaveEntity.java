@@ -2,8 +2,8 @@ package com.wyq.firehelper.article.entity;
 
 import android.graphics.Bitmap;
 
-import com.wyq.firehelper.utils.BitmapUtils;
-import com.wyq.firehelper.utils.CloseUtils;
+import com.wyq.firehelper.utils.common.BitmapUtils;
+import com.wyq.firehelper.utils.common.CloseUtils;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

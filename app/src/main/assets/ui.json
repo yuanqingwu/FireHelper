@@ -53,6 +53,14 @@
     "category": "widget",
     "info": [
       {
+        "name": "FireToast",
+        "description": ""
+      },
+      {
+        "name": "FireSeekBar",
+        "description": ""
+      },
+      {
         "name": "CircleImageView",
         "description": ""
       },
@@ -62,10 +70,6 @@
       },
       {
         "name": "ZoomImageView",
-        "description": ""
-      },
-      {
-        "name": "FireToast",
         "description": ""
       },
       {

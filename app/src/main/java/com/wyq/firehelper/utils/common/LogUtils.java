@@ -1,5 +1,5 @@
 
-package com.wyq.firehelper.utils;
+package com.wyq.firehelper.utils.common;
 
 import android.os.Environment;
 import android.util.Log;

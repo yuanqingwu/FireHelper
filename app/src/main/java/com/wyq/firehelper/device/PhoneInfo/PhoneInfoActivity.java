@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseCaseActivity;
-import com.wyq.firehelper.utils.BatteryUtils;
-import com.wyq.firehelper.utils.CommonUtils;
-import com.wyq.firehelper.utils.ConnectivityUtils;
+import com.wyq.firehelper.utils.common.BatteryUtils;
+import com.wyq.firehelper.utils.common.ConnectivityUtils;
+import com.wyq.firehelper.utils.common.ScreenUtils;
 
 import java.util.List;
 
@@ -62,12 +63,16 @@ public class PhoneInfoActivity extends BaseCaseActivity {
     private void refreshData() {
         StringBuilder builder = new StringBuilder();
         builder.append("Screen:\n");
-        builder.append("\nwidth:" + CommonUtils.getScreenWidth(this) + " px");
-        builder.append("\nheight:" + CommonUtils.getScreenHeight(this) + " px");
-        builder.append("\nScreenWidth:" + CommonUtils.getWinWidth(this) + " px");
-        builder.append("\nScreenHeight:" + CommonUtils.getWinHeight(this) + " px");
-        builder.append("\nNavigationBarHeight:" + CommonUtils.getNavigationBarHeight(this) + " px");
-        builder.append("\nStatusBarHeight:" + CommonUtils.getStatusBarHeight(this) + " px");
+        builder.append("\nsize:" + ScreenUtils.getScreenSizeInch(this)+" inch");
+        builder.append("\ndensity:" + ScreenUtils.getDensity(this));
+        builder.append("\nXdpi:" + ScreenUtils.getXdpi(this) + " dpi");
+        builder.append("\nYdpi:" + ScreenUtils.getYdpi(this) + " dpi");
+        builder.append("\nwidth:" + ScreenUtils.getWidthPX(this) + " px");
+        builder.append("\nheight:" + ScreenUtils.getHeightPX(this) + " px");
+        builder.append("\nScreenWidth:" + ScreenUtils.getScreenWidthPX(this) + " px");
+        builder.append("\nScreenHeight:" + ScreenUtils.getScreenHeightPX(this) + " px");
+        builder.append("\nNavigationBarHeight:" + ScreenUtils.getNavigationBarHeight(this) + " px");
+        builder.append("\nStatusBarHeight:" + ScreenUtils.getStatusBarHeight(this) + " px");
         screenInfoTv.setText(builder.toString());
 
         StringBuilder batteryInfo = new StringBuilder();
@@ -87,6 +92,15 @@ public class PhoneInfoActivity extends BaseCaseActivity {
         connectivityInfo.append("\nisConnected:" + ConnectivityUtils.isConnected(this));
         connectivityInfo.append("\nActiveNetworkType:" + convertNetType2Str(ConnectivityUtils.getActiveNetworkType(this)));
         connectivityinfoTv.setText(connectivityInfo.toString());
+
+            String path = getCacheDir().getAbsolutePath()+"\n" +
+//                    getDataDir().getAbsolutePath()+"\n" +
+                    getFilesDir().getAbsolutePath()+"\n" +
+                    getCodeCacheDir().getAbsolutePath()+"\n" +
+                    getExternalCacheDir().getAbsolutePath()+"\n" +
+                    getNoBackupFilesDir().getAbsolutePath()+"\n" +
+                    getObbDir().getAbsolutePath()+"\n";
+            Logger.i(path);
 
     }
 

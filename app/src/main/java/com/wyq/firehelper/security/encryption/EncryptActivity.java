@@ -2,9 +2,6 @@ package com.wyq.firehelper.security.encryption;
 
 import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -13,12 +10,14 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseCaseActivity;
 import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
-import com.wyq.firehelper.utils.LogUtils;
+import com.wyq.firehelper.utils.common.LogUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -27,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 
 public class EncryptActivity extends BaseCaseActivity {

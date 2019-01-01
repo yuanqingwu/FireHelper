@@ -110,6 +110,11 @@ public class ArticleConstants {
     public static final ArticleResource _67 = new ArticleResource("https://developer.android.google.cn/training/articles/keystore", "Android 密钥库系统", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
     public static final ArticleResource _68 = new ArticleResource("https://developer.android.google.cn/guide/practices/screens_support", "支持多种屏幕", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
     public static final ArticleResource _69 = new ArticleResource("https://developer.android.google.cn/guide/topics/providers/content-provider-basics", "内容提供程序基础知识 ", CATEGORY_BLOG,  TAG_ANDROID_DEVELOPER);
+    public static final ArticleResource _70 = new ArticleResource("https://guides.gradle.org/building-android-apps/", "gradle guides (Building Android Apps)", CATEGORY_WEBSITE,  TAG_ANDROID_DEVELOPER);
+    public static final ArticleResource _71 = new ArticleResource("https://www.jianshu.com/p/8a3eeeaf01e8", "Android 组件化 —— 路由设计最佳实践", CATEGORY_BLOG,  TAG_FRAMEWORK,TAG_ARCHITECTURE);
+    public static final ArticleResource _72 = new ArticleResource("https://www.infoq.cn/article/P99dKo0Lu9A5E8vI_NwQ", "51 信用卡 Android 架构演进实践", CATEGORY_BLOG,  TAG_OPTIMIZATION,TAG_ARCHITECTURE);
+    public static final ArticleResource _73 = new ArticleResource("http://atlas.taobao.org/docs/", "手机淘宝Atlas容器化框架文档", CATEGORY_WEBSITE, TAG_ARCHITECTURE);
+
 
 
     /**

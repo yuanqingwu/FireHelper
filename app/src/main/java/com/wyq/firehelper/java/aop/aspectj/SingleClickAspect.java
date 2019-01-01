@@ -2,7 +2,7 @@ package com.wyq.firehelper.java.aop.aspectj;
 
 import android.view.View;
 
-import com.wyq.firehelper.utils.LogUtils;
+import com.wyq.firehelper.utils.common.LogUtils;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
