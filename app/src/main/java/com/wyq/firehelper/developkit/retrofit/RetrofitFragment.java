@@ -4,8 +4,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseFragment;
 
@@ -35,15 +33,13 @@ public class RetrofitFragment extends BaseCaseFragment {
     @Override
     public void initView(View view) {
 
-        Glide.with(getActivity()).load(R.drawable.retrofit).into(imageView);
-
         IName name = proxy(IName.class);
         String res = "proxy class name:"+name.getClass().getName()+"\n"+name.getName();
 
 //        IAge age = proxy(IAge.class);
 //        res = age.getClass().getName()+"\n"+age.getAge();
         resTv.setText(res);
-        Logger.i(res);
+//        Logger.i(res);
     }
 
 

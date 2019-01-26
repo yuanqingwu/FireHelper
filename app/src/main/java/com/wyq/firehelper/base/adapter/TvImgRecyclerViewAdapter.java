@@ -4,10 +4,6 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +19,10 @@ import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.ItemTouchHelpe
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecyclerViewAdapter.TvViewHolder> implements ItemTouchHelperAdapter {
 
@@ -170,12 +170,12 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
 
         @Override
         public void onItemSelected() {
-            itemView.setBackgroundColor(Color.LTGRAY);
+//            itemView.setBackgroundColor(Color.LTGRAY);
         }
 
         @Override
         public void onItemClear() {
-            itemView.setBackgroundColor(0);
+//            itemView.setBackgroundColor(0);
         }
     }
 

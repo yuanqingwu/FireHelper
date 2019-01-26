@@ -1,11 +1,9 @@
 package com.wyq.firehelper.ui.android.bottomdialog;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
@@ -13,6 +11,8 @@ import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public class BottomDialogFragment extends BaseCaseFragment implements View.OnClickListener {
@@ -76,7 +76,7 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.setContentView(R.layout.ui_idalog_bottom_dialog_list_layout);
         RecyclerView recyclerView = (RecyclerView)bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         List<String> list = new ArrayList<>();
         for(int i=0;i<20;i++){
             list.add("item: "+i);

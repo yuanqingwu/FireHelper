@@ -148,6 +148,7 @@ dependencies {
     implementation deps.photoview
 
     implementation deps.mmkv
+
     implementation 'com.yanzhikai:TextPathView:0.1.3'
 
     implementation 'cn.jzvd:jiaozivideoplayer:6.4.0'

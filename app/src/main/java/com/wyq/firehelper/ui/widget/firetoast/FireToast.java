@@ -90,8 +90,9 @@ public class FireToast {
     }
 
     private void addInstance(String name, FireToast fireToast) {
-        if (toastList != null)
+        if (toastList != null) {
             toastList.put(name, fireToast);
+        }
     }
 
     public FireToast setOnDoubleClickListener(OnDoubleClickListener onDoubleClickListener) {
@@ -217,8 +218,9 @@ public class FireToast {
         }
 
         Toast.makeText(context,text,Toast.LENGTH_SHORT).show();
-        if (!haveLooper)
+        if (!haveLooper) {
             Looper.loop();
+        }
 
     }
 
@@ -236,8 +238,9 @@ public class FireToast {
             toast.setGravity(Gravity.CENTER, 0, 0);
         }
         toast.show();
-        if (!haveLooper)
+        if (!haveLooper) {
             Looper.loop();
+        }
 
     }
 
@@ -261,8 +264,9 @@ public class FireToast {
                     cancel();
                     timer.cancel();
                 } else {
-                    if (Looper.myLooper() == null)
+                    if (Looper.myLooper() == null) {
                         Looper.prepare();
+                    }
                     toast.show();
                     Looper.myLooper().quit();
                     Looper.loop();

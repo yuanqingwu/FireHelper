@@ -2,9 +2,6 @@ package com.wyq.firehelper.ui.layout.tangram;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -40,6 +37,9 @@ import org.json.JSONObject;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -72,6 +72,7 @@ public class TangramActivity extends BaseActivity {
 
     }
 
+    @Override
     public void initView() {
         //1.引入依赖
         //2.初始化 Tangram 环境
