@@ -61,7 +61,7 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
         bottomSheetDialog = new BottomSheetDialog(getContext());
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
-        bottomSheetDialog.setContentView(R.layout.ui_idalog_bottom_dialog_layout);
+        bottomSheetDialog.setContentView(R.layout.ui_dialog_bottom_dialog_layout);
 
         okButton = (Button) bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
         cancelButton = (Button) bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
@@ -74,7 +74,7 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
         bottomSheetDialog = new BottomSheetDialog(getContext());
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
-        bottomSheetDialog.setContentView(R.layout.ui_idalog_bottom_dialog_list_layout);
+        bottomSheetDialog.setContentView(R.layout.ui_dialog_bottom_dialog_list_layout);
         RecyclerView recyclerView = (RecyclerView)bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
         List<String> list = new ArrayList<>();

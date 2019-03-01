@@ -67,9 +67,17 @@ kapt {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
 
+    // Support libraries
+    implementation deps.support.material
+    implementation deps.support.v4
+    implementation deps.support.appcompat
+    implementation deps.support.cardview
+    implementation deps.support.recyclerview
+    implementation deps.constraint_layout
+
     // Android Testing Support Library's runner and rules
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+//    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
+//    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     androidTestImplementation deps.atsl.runner
     androidTestImplementation deps.atsl.rules
     androidTestImplementation deps.room.testing
@@ -87,14 +95,6 @@ dependencies {
     androidTestImplementation deps.support.v4
     androidTestImplementation deps.support.appcompat
     androidTestImplementation deps.support.material
-
-    // Support libraries
-    implementation deps.support.material
-    implementation deps.support.v4
-    implementation deps.support.appcompat
-    implementation deps.support.cardview
-    implementation deps.support.recyclerview
-    implementation deps.constraint_layout
 
     implementation deps.emoji
 

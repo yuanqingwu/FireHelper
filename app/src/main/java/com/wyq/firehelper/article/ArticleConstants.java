@@ -115,6 +115,8 @@ public class ArticleConstants {
     public static final ArticleResource _72 = new ArticleResource("https://www.infoq.cn/article/P99dKo0Lu9A5E8vI_NwQ", "51 信用卡 Android 架构演进实践", CATEGORY_BLOG,  TAG_OPTIMIZATION,TAG_ARCHITECTURE);
     public static final ArticleResource _73 = new ArticleResource("http://atlas.taobao.org/docs/", "手机淘宝Atlas容器化框架文档", CATEGORY_WEBSITE, TAG_ARCHITECTURE);
     public static final ArticleResource _74 = new ArticleResource("https://flutterchina.club/flutter-for-android/", "flutter-for-android", CATEGORY_WEBSITE, TAG_ARCHITECTURE);
+    public static final ArticleResource _75 = new ArticleResource("https://mp.weixin.qq.com/s/2MsEAR9pQfMr1Sfs7cPdWQ", "Android 内存优化总结&实践", CATEGORY_BLOG, TAG_OPTIMIZATION);
+    public static final ArticleResource _76 = new ArticleResource("http://akarnokd.blogspot.com/", "Advanced Reactive Java", CATEGORY_BLOG, TAG_PERSONAL_BLOG_SITE, TAG_JAVA);
 
 
     /**

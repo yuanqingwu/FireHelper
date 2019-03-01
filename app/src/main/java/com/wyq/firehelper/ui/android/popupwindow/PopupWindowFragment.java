@@ -2,8 +2,6 @@ package com.wyq.firehelper.ui.android.popupwindow;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +16,8 @@ import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 
 public class PopupWindowFragment extends BaseCaseFragment {
@@ -69,7 +69,7 @@ public class PopupWindowFragment extends BaseCaseFragment {
     }
 
     private void showPopupWindow() {
-        View popView = LayoutInflater.from(getContext()).inflate(R.layout.ui_idalog_bottom_dialog_layout, null);
+        View popView = LayoutInflater.from(getContext()).inflate(R.layout.ui_dialog_bottom_dialog_layout, null);
         popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         popupWindow.setOutsideTouchable(true);
@@ -80,7 +80,7 @@ public class PopupWindowFragment extends BaseCaseFragment {
     }
 
     private void showPopupWindowBottom() {
-        View popView = LayoutInflater.from(getContext()).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
+        View popView = LayoutInflater.from(getContext()).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
         popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
         popupWindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));
         popupWindow.setOutsideTouchable(true);

@@ -143,7 +143,7 @@ public class FirePopupWindow {
 
         if (contentList == null) {
 
-            LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_layout, null);
+            LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_layout, null);
             popView.setOrientation(orientation);
 
             PopupWindow popupWindow = new PopupWindow(popView, width, height);
@@ -186,7 +186,7 @@ public class FirePopupWindow {
             }
             popupWindow.showAsDropDown(anchor, xoff, yoff);
         } else {
-            View popView = LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
+            View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
             PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
             RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
@@ -208,7 +208,7 @@ public class FirePopupWindow {
 
     public FirePopupWindow showLocation(View parent) {
         Context context = parent.getContext();
-        View popView = LayoutInflater.from(context).inflate(R.layout.ui_idalog_bottom_dialog_list_layout, null);
+        View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
         PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getHeightPX(context)/2);
         RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
