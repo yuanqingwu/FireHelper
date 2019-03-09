@@ -1,6 +1,5 @@
 package com.wyq.firehelper.base.home;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
@@ -12,34 +11,27 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.google.android.material.navigation.NavigationView;
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.architecture.ArchitectureActivity;
-import com.wyq.firehelper.article.ArticleConstants;
-import com.wyq.firehelper.article.ArticleMainActivity;
 import com.wyq.firehelper.article.ArticleRepository;
-import com.wyq.firehelper.article.WebViewActivity;
-import com.wyq.firehelper.article.entity.ArticleResource;
-import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.base.aop.aspectj.FireLogTime;
+import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.base.article.entity.ArticleResource;
+import com.wyq.firehelper.base.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.home.drawer.SettingActivity;
 import com.wyq.firehelper.base.home.drawer.ShareActivity;
 import com.wyq.firehelper.base.home.drawer.SkinActivity;
+import com.wyq.firehelper.base.navigation.NavigationManager;
+import com.wyq.firehelper.base.utils.FireHelperUtils;
+import com.wyq.firehelper.base.widget.FirePopupWindow;
+import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 import com.wyq.firehelper.component.ComponentActivity;
-import com.wyq.firehelper.developkit.DevelopKitMainActivity;
 import com.wyq.firehelper.developkit.mmkv.MMKVContract;
-import com.wyq.firehelper.device.DeviceActivity;
 import com.wyq.firehelper.framework.FrameworkActivity;
-import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
-import com.wyq.firehelper.kotlin.mvpGitHub.view.GitHubMainActivity;
-import com.wyq.firehelper.media.MediaActivity;
-import com.wyq.firehelper.security.SecurityActivity;
-import com.wyq.firehelper.ui.UiMainActivity;
-import com.wyq.firehelper.ui.android.popupwindow.FirePopupWindow;
-import com.wyq.firehelper.ui.android.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
-import com.wyq.firehelper.utils.FireHelperUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -99,7 +91,10 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
             hotAdapter.refreshData(articleResources);
             hotAdapter.setOnItemClickListener((view, position) -> {
                 if (articleResources != null && articleResources.size() > position) {
-                    WebViewActivity.instance(MainActivity.this, articleResources.get(position).getUrl());
+//                    WebViewActivity.instance(MainActivity.this, articleResources.get(position).getUrl());
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
+                            .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, articleResources.get(position).getUrl())
+                            .navigation();
                 }
             });
         }
@@ -137,7 +132,8 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         moreTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArticleMainActivity.instance(MainActivity.this);
+//                ArticleMainActivity.instance(MainActivity.this);
+                ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_MAIN_ACTIVITY).navigation();
             }
         });
     }
@@ -342,24 +338,32 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
         switch (view.getId()) {
             case R.id.recyclerview_item_tv_img_layout_h:
                 //点击头部收藏文章时跳转浏览界面
-                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
+//                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
+                ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
+                        .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, articleSaveEntities.get(position).getResource().getUrl())
+                        .navigation();
                 break;
             case R.id.recyclerview_item_tv_img_layout_v:
                 switch (position) {
                     case 0:
-                        DeviceActivity.instance(MainActivity.this);
+//                        DeviceActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVICE_MAIN_ACTIVITY).navigation();
                         break;
                     case 1:
-                        UiMainActivity.instance(MainActivity.this);
+//                        UiMainActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY).navigation();
                         break;
                     case 2:
-                        SecurityActivity.instance(MainActivity.this);
+//                        SecurityActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_SECURITY_MAIN_ACTIVITY).navigation();
                         break;
                     case 3:
-                        DevelopKitMainActivity.instance(MainActivity.this);
+//                        DevelopKitMainActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY).navigation();
                         break;
                     case 4:
-                        ArchitectureActivity.instance(MainActivity.this);
+//                        ArchitectureActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY).navigation();
                         break;
                     case 5:
                         FrameworkActivity.instance(MainActivity.this);
@@ -368,11 +372,13 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         ComponentActivity.instance(MainActivity.this);
                         break;
                     case 7:
-                        MediaActivity.instance(MainActivity.this);
+//                        MediaActivity.instance(MainActivity.this);
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation();
                         break;
                     case 8:
-                        startActivity(new Intent(MainActivity.this,
-                                GitHubMainActivity.class));
+//                        startActivity(new Intent(MainActivity.this,
+//                                GitHubMainActivity.class));
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation();
                         break;
 
                     default:

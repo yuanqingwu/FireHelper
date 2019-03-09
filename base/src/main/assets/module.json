@@ -1,0 +1,52 @@
+[
+  {
+    "title_en": "Article",
+    "title_zh": "文章",
+    "headImage": "article"
+  },
+  {
+    "title_en": "Device",
+    "title_zh": "设备",
+    "headImage": "module"
+  },
+  {
+    "title_en": "UI",
+    "title_zh": "界面",
+    "headImage": "ui"
+  },
+  {
+    "title_en": "security",
+    "title_zh": "安全",
+    "headImage": "security"
+  },
+  {
+    "title_en": "DevelopKit",
+    "title_zh": "开发框架",
+    "headImage": "tool"
+  },
+  {
+    "title_en": "Architecture",
+    "title_zh": "开发架构",
+    "headImage": "architecture"
+  },
+  {
+    "title_en": "Android Component",
+    "title_zh": "Android框架",
+    "headImage": "android"
+  },
+  {
+    "title_en": "Component",
+    "title_zh": "常用组件",
+    "headImage": "component"
+  },
+  {
+    "title_en": "Media",
+    "title_zh": "媒体",
+    "headImage": "media"
+  },
+  {
+    "title_en": "kotlin",
+    "title_zh": "kotlin",
+    "headImage": "kotlin"
+  }
+]

@@ -1,11 +1,8 @@
 package com.wyq.firehelper.base;
 
 import android.os.StrictMode;
-import androidx.annotation.Nullable;
-import androidx.multidex.MultiDexApplication;
-import androidx.emoji.text.EmojiCompat;
-import androidx.emoji.bundled.BundledEmojiCompatConfig;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
@@ -16,10 +13,11 @@ import com.squareup.leakcanary.DisplayLeakService;
 import com.squareup.leakcanary.ExcludedRefs;
 import com.squareup.leakcanary.LeakCanary;
 import com.tencent.mmkv.MMKV;
-import com.wyq.firehelper.developkit.room.AppDatabase;
+import com.wyq.firehelper.base.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.developkit.room.AppExecutors;
-import com.wyq.firehelper.developkit.room.datasource.DataRepository;
-import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
+
+import androidx.annotation.Nullable;
+import androidx.multidex.MultiDexApplication;
 
 public class FireHelpApplication extends MultiDexApplication {
 
@@ -44,11 +42,15 @@ public class FireHelpApplication extends MultiDexApplication {
         if (isDebug) {
             initLeakCanary();
             initLogger();
+            ARouter.openLog();     // 打印日志
+            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
+
+        ARouter.init(this);
 
         initMMKV();
 
-        initEmojiCompat();
+//        initEmojiCompat();
 
     }
 
@@ -64,23 +66,23 @@ public class FireHelpApplication extends MultiDexApplication {
         //todo
     }
 
-    public AppDatabase getDatabase() {
-        return AppDatabase.getInstance(this, appExecutors);
-    }
-
-    public DataRepository getRepository() {
-        return DataRepository.getInstance(getDatabase());
-    }
+//    public AppDatabase getDatabase() {
+//        return AppDatabase.getInstance(this, appExecutors);
+//    }
+//
+//    public DataRepository getRepository() {
+//        return DataRepository.getInstance(getDatabase());
+//    }
 
     public void initMMKV() {
         String path = MMKV.initialize(this);
         Logger.i("MMKV PATH:" + path);
     }
-
-    public void initEmojiCompat() {
-        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
-        EmojiCompat.init(config);
-    }
+//
+//    public void initEmojiCompat() {
+//        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
+//        EmojiCompat.init(config);
+//    }
 
     /**
      * 初始化内存泄漏检测框架LeakCanary

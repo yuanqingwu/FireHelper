@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wyq.firehelper">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,11 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
-    <uses-feature android:name="android.hardware.location.gps" />
-    <!-- 使用OpenGL ES 2.0 -->
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
+    <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_arm64,com.example.ijkplayer_x86_64" />
 
     <application
         android:name=".base.FireHelpApplication"
@@ -34,22 +31,8 @@
         <activity
             android:name=".base.home.MainActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".device.DeviceActivity" />
-        <activity android:name=".device.bluetoothChat.BtActivity" />
-        <activity android:name=".device.bluetoothChat.BtChatActivity" />
-        <activity
-            android:name=".article.ArticleMainActivity"
-            android:launchMode="singleTop">
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH" />
-            </intent-filter>
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
-            <!-- <meta-data android:name="android.app.default_searchable" -->
-            <!-- android:value="com.wyq.firehelper.article.SearchableActivity" /> -->
-        </activity>
+
         <!-- <activity android:name=".article.SearchableActivity" android:launchMode="singleTop"> -->
         <!-- <intent-filter> -->
         <!-- <action android:name="android.intent.action.SEARCH" /> -->
@@ -58,29 +41,7 @@
         <!-- android:name="android.app.searchable" -->
         <!-- android:resource="@xml/searchable" /> -->
         <!-- </activity> -->
-        <activity
-            android:name=".article.WebViewActivity"
-            android:launchMode="singleTask"
-            android:process=":support">
-            <intent-filter>
-                <action android:name="android.intent.action.SEND" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".architecture.ArchitectureActivity" />
-        <activity android:name=".ui.UiMainActivity" />
-        <activity android:name=".security.encryption.EncryptActivity" />
-        <activity android:name=".developkit.DevelopKitMainActivity" />
-        <activity android:name=".architecture.mvp.translation.view.MvpActivity" />
-        <activity android:name=".ui.layout.tangram.TangramActivity" />
-        <activity android:name=".kotlin.mvpGitHub.view.GitHubMainActivity" />
-        <activity
-            android:name=".architecture.mvvm.MvvmActivity"
-            android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".java.aop.apt.AptActivity" />
-        <activity android:name=".java.aop.AopActivity" />
-        <activity android:name=".device.camera.CameraActivity" />
-        <activity android:name=".developkit.room.RoomActivity" />
-        <activity android:name=".architecture.archcomponents.ArchComponentsActivity" />
+
         <activity
             android:name=".framework.service.ServiceActivity"
             android:launchMode="singleTask" />
@@ -88,15 +49,6 @@
         <service android:name=".base.AppInitIntentService" />
         <service android:name=".framework.service.FireService" />
         <service android:name=".framework.service.BackgroundService" />
-
-        <activity android:name=".developkit.mmkv.MMKVActivity" />
-        <activity android:name=".media.opengles.OpenGLESActivity" />
-        <activity android:name=".device.PhoneInfo.PhoneInfoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.ACTION_DOCK_EVENT" />
-            </intent-filter>
-        </activity>
-
         <receiver android:name=".framework.battery.PowerConnectionReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
@@ -106,13 +58,12 @@
 
         <activity android:name=".framework.FrameworkActivity" />
         <activity android:name=".base.CaseActivity" />
-        <activity android:name=".security.SecurityActivity" />
+
         <activity android:name=".base.home.drawer.ShareActivity" />
         <activity android:name=".base.home.drawer.SkinActivity" />
         <activity android:name=".base.home.drawer.SettingActivity" />
-        <activity android:name=".media.video.VideoActivity" />
-        <activity android:name=".media.MediaActivity" />
-        <activity android:name=".component.ComponentActivity"></activity>
+
+        <activity android:name=".component.ComponentActivity" />
     </application>
 
 </manifest>

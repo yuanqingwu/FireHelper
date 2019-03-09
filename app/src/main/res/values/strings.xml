@@ -7,7 +7,7 @@
     <string name="home_drawer_open">drawer open</string>
     <string name="home_drawer_close">drawer close</string>
 
-    <string name="common_default_load">加载中……</string>
+
     <string name="search_hint">search</string>
 
     <!--menu-->
@@ -30,5 +30,6 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="night_mode">夜间模式</string>
     <string name="day_mode">日间模式</string>
+    <string name="title_device">device</string>
 
 </resources>

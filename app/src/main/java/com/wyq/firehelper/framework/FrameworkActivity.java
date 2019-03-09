@@ -4,10 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.base.article.ArticleConstants;
 import com.wyq.firehelper.framework.broadcast.LocalBroadcastFragment;
 import com.wyq.firehelper.framework.service.ServiceActivity;
 import com.wyq.firehelper.framework.thread.HandlerThreadFragment;
