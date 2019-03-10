@@ -3,8 +3,8 @@ package com.wyq.firehelper.developkit.dagger;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import com.wyq.firehelper.base.BaseCaseActivity;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.developkit.R;
 import com.wyq.firehelper.developkit.R2;
 
@@ -49,8 +49,8 @@ public class DaggerActivity extends BaseCaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
-//        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this, "wyq")).build();
-//        component.inject(this);
+        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this, "wyq")).build();
+        component.inject(this);
         StringBuilder builder = new StringBuilder();
         builder.append(person1.logPerson() + "\n");
         builder.append(person2.logPerson() + "\n");

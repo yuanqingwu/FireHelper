@@ -5,8 +5,8 @@ import android.content.SharedPreferences;
 import android.widget.TextView;
 
 import com.tencent.mmkv.MMKV;
-import com.wyq.firehelper.base.BaseCaseActivity;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
 import com.wyq.firehelper.developkit.R;
 import com.wyq.firehelper.developkit.R2;

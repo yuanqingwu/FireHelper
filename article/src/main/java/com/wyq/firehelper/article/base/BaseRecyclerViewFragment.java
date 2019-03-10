@@ -1,8 +1,11 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.article.base;
 
 import android.view.View;
 
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.article.R2;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.base.BaseFragment;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 
 import java.util.Arrays;

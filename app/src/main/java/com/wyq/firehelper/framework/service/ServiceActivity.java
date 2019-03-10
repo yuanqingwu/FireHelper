@@ -6,8 +6,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseCaseActivity;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 
 import java.util.List;
 

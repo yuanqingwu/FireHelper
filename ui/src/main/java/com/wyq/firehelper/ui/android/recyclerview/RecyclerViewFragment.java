@@ -2,8 +2,8 @@ package com.wyq.firehelper.ui.android.recyclerview;
 
 import android.view.View;
 
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.ui.R;
 import com.wyq.firehelper.ui.R2;
 

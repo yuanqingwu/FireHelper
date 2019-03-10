@@ -1,27 +1,30 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.article.base;
 
 import android.view.View;
 import android.widget.ImageView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.wyq.firehelper.base.article.entity.ArticleResource;
+import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.article.entity.ArticleResource;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
-import com.wyq.firehelper.base.widget.FirePopupWindow;
 
 import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
 
 public abstract class BaseCaseActivity extends BaseActivity {
 
-    @BindView(R2.id.toolbar_article)
+    //    @BindView(R2.id.toolbar_article)
     public Toolbar toolbar;
-    @BindView(R2.id.toolbar_article_iv)
+    //    @BindView(R2.id.toolbar_article_iv)
     public ImageView articleIv;
 
     @Override
     public void initToolBar() {
+        toolbar = findViewById(R.id.toolbar_article);
+        articleIv = toolbar.findViewById(R.id.toolbar_article_iv);
+
         initToolBar(toolbar, getToolBarTitle(), true);
         refreshArticleList();
         articleIv.setOnClickListener(new View.OnClickListener() {

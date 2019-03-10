@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base.widget;
+package com.wyq.firehelper.article.base;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
-import com.wyq.firehelper.base.R;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.utils.common.ScreenUtils;
 
 import java.lang.ref.WeakReference;

@@ -3,6 +3,8 @@ package com.wyq.firehelper.base;
 import android.os.Bundle;
 import android.view.View;
 
+import com.orhanobut.logger.Logger;
+
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
@@ -33,6 +35,10 @@ public abstract class BaseActivity extends SwipeBackActivity {
     }
 
     public void initToolBar(Toolbar toolbar, String title, boolean isShowBackIcon) {
+        if (toolbar == null) {
+            Logger.e("toolbar is null  !!!!");
+            return;
+        }
         toolbar.setTitle(title);
         setSupportActionBar(toolbar);
         if (isShowBackIcon) {

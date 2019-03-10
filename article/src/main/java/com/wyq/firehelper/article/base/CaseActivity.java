@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.article.base;
 
 
 import android.content.Context;
@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleRepository;
+import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.base.BaseCaseFragment;
 
 import java.util.List;
 
@@ -27,7 +29,7 @@ public class CaseActivity extends BaseCaseActivity {
 
     @Override
     public List getArticleList() {
-        return ArticleConstants.getListByFilter(filters);
+        return ArticleRepository.getInstance().getListByFilter(filters);
     }
 
     @Override
@@ -68,7 +70,7 @@ public class CaseActivity extends BaseCaseActivity {
         Logger.i("fragmentPath:"+fragmentPath);
         Intent intent = new Intent();
         intent.putExtra(PARAM_NAME,fragmentPath);
-        intent.setClass(context,CaseActivity.class);
+        intent.setClass(context, CaseActivity.class);
         context.startActivity(intent);
     }
 }

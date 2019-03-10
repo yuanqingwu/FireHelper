@@ -23,7 +23,7 @@ android {
                 arguments = [
                         "room.schemaLocation": "$projectDir/schemas".toString(),
                         "AROUTER_MODULE_NAME": project.getName(),
-                         AROUTER_GENERATE_DOC: "enable"
+                        "AROUTER_GENERATE_DOC": "enable"
                 ]
             }
         }
@@ -108,6 +108,9 @@ dependencies {
 
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
     implementation project(':base')
     implementation project(':architecture')

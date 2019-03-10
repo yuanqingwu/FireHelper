@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.ui.R;
 import com.wyq.firehelper.ui.R2;
 

@@ -1,8 +1,9 @@
-package com.wyq.firehelper.base;
+package com.wyq.firehelper.article.base;
 
 import android.content.Intent;
 
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 
 import java.util.Arrays;
 
@@ -10,7 +11,6 @@ import androidx.annotation.CallSuper;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
 
 public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
 
@@ -18,7 +18,7 @@ public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
 
     public abstract TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener();
 
-    @BindView(R2.id.list_activity_recycler_view)
+    //    @BindView(R2.id.list_activity_recycler_view)
     public RecyclerView baseRV;
 
     @Override
@@ -29,6 +29,8 @@ public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
     @CallSuper
     @Override
     public void initView() {
+        baseRV = findViewById(R.id.list_activity_recycler_view);
+
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(Arrays.asList(listItemsNames()));
         if (getItemDecoration() != null) {
             baseRV.addItemDecoration(getItemDecoration());

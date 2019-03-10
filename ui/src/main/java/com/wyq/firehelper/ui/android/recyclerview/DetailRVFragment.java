@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.orhanobut.logger.Logger;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseFragment;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.ui.R;
 import com.wyq.firehelper.ui.R2;
 

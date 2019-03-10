@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.Button;
 
-import com.wyq.firehelper.base.BaseCaseActivity;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.media.R;
 import com.wyq.firehelper.media.R2;
 

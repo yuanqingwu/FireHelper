@@ -25,11 +25,10 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.orhanobut.logger.Logger;
-import com.wyq.firehelper.base.R2;
-import com.wyq.firehelper.base.article.ArticleConstants;
-import com.wyq.firehelper.base.article.entity.ArticleResource;
-import com.wyq.firehelper.base.article.entity.ArticleSaveEntity;
+import com.wyq.firehelper.article.entity.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 
 import androidx.annotation.Nullable;
@@ -55,7 +54,7 @@ public class WebViewActivity extends AppCompatActivity {
     private float yStart = -1;
 
     @Autowired
-    private String url;//原始的URL，对应ArticleConstants
+    public String url;//原始的URL，对应ArticleConstants
     private String newUrl = "";//经过多次点击后的URL
     public boolean canDrag = false;//默认此页面不支持右滑返回
 
@@ -81,6 +80,8 @@ public class WebViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity_layout);
         ButterKnife.bind(this);
+        ARouter.getInstance().inject(this);
+
         url = getIntent().getStringExtra(PARAM_NAME);
         Logger.d(url);
         initView();

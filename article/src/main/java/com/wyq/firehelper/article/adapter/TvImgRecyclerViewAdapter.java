@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base.adapter;
+package com.wyq.firehelper.article.adapter;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.FireModule;
 import com.wyq.firehelper.base.R;
-import com.wyq.firehelper.base.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 

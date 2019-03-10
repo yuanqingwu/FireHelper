@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base.article.entity;
+package com.wyq.firehelper.article.entity;
 
 import java.io.Serializable;
 import java.util.Arrays;

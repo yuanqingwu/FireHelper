@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
-import com.wyq.firehelper.base.BaseCaseActivity;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.base.utils.common.BatteryUtils;
 import com.wyq.firehelper.base.utils.common.ConnectivityUtils;
 import com.wyq.firehelper.base.utils.common.ScreenUtils;
@@ -25,7 +25,7 @@ import butterknife.BindView;
 
 public class PhoneInfoActivity extends BaseCaseActivity {
 
-    @BindView(R2.id.device_activity_phone_info_refresh_bt)
+    //    @BindView(R2.id.device_activity_phone_info_refresh_bt)
     public Button refreshBt;
 
     @BindView(R2.id.device_activity_phone_info_screen_tv)
@@ -52,6 +52,7 @@ public class PhoneInfoActivity extends BaseCaseActivity {
 
     @Override
     public void initView() {
+        refreshBt = findViewById(R.id.device_activity_phone_info_refresh_bt);
         refreshBt.setText("refresh");
         refreshBt.setOnClickListener(new View.OnClickListener() {
             @Override

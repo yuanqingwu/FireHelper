@@ -15,6 +15,12 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        kapt {
+            arguments {
+                arg("AROUTER_MODULE_NAME", project.getName())
+            }
+        }
+
     }
 
     buildTypes {
@@ -50,7 +56,16 @@ dependencies {
     implementation 'com.google.dagger:dagger-android:2.21'
     implementation 'com.google.dagger:dagger-android-support:2.21'
     kapt 'com.google.dagger:dagger-android-processor:2.21'
-    implementation project(':base')
+
+//    implementation 'com.alibaba:arouter-api:1.4.1'
+    kapt 'com.alibaba:arouter-compiler:1.2.2'
+    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+    kapt deps.glide.compiler
+    kapt deps.dagger.compiler
+
+//    implementation project(':base')
+    implementation project(':article')
+
 }
 repositories {
     mavenCentral()

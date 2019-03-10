@@ -1,4 +1,4 @@
-package com.wyq.firehelper.base.adapter;
+package com.wyq.firehelper.article.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.base.R;
-import com.wyq.firehelper.base.article.entity.ArticleResource;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 

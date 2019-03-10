@@ -7,8 +7,8 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.wyq.firehelper.article.base.CaseActivity;
 import com.wyq.firehelper.base.BaseFragment;
-import com.wyq.firehelper.base.CaseActivity;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
 
 import java.util.ArrayList;

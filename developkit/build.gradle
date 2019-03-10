@@ -1,8 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.jakewharton.butterknife'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
+//apply plugin: 'kotlin-android'
+//apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
@@ -16,6 +16,15 @@ android {
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString(),
+                        "AROUTER_MODULE_NAME": project.getName(),
+                        "AROUTER_GENERATE_DOC": "enable"
+                ]
+            }
+        }
     }
 
     dataBinding {
@@ -29,9 +38,9 @@ android {
         }
     }
 
-    kapt {
-        generateStubs = true
-    }
+//    kapt {
+//        generateStubs = true
+//    }
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -50,10 +59,18 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.1.0-alpha03'
     annotationProcessor "androidx.room:room-compiler:2.1.0-alpha03"
     implementation deps.dagger.runtime
-    kapt deps.dagger.compiler
+    annotationProcessor deps.dagger.compiler
     implementation deps.glide.runtime
-    kapt deps.glide.compiler
+    annotationProcessor deps.glide.compiler
     implementation deps.picasso
     implementation deps.eventbus
-    implementation project(':base')
+
+//    implementation 'com.alibaba:arouter-api:1.4.1'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    annotationProcessor deps.glide.compiler
+    annotationProcessor deps.dagger.compiler
+
+    implementation project(':article')
+//    implementation project(':base')
 }

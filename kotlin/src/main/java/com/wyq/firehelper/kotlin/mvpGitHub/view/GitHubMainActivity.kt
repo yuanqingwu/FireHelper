@@ -12,11 +12,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.wyq.firehelper.article.R2.id.toolbar
 import com.wyq.firehelper.base.BaseActivity
-import com.wyq.firehelper.base.R2.id.toolbar
 import com.wyq.firehelper.base.navigation.NavigationManager
 import com.wyq.firehelper.kotlin.R
 import com.wyq.firehelper.kotlin.mvpGitHub.Contract
+import com.wyq.firehelper.kotlin.mvpGitHub.injection.component.DaggerPresenterComponent
 import com.wyq.firehelper.kotlin.mvpGitHub.model.Repository
 import com.wyq.firehelper.kotlin.mvpGitHub.model.RepositoryDetail
 import com.wyq.firehelper.kotlin.mvpGitHub.presenter.GitHubPresenter
@@ -47,8 +48,8 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        val presenterComponent = DaggerPresenterComponent.builder().build()
-//        presenterComponent.inject(this)
+        val presenterComponent = DaggerPresenterComponent.builder().build()
+        presenterComponent.inject(this)
         presenter.attachView(this)
         loadRepositories("wuyuanqing527")
     }

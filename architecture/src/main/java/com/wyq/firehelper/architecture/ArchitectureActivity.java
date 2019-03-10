@@ -7,9 +7,9 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
-import com.wyq.firehelper.base.BaseRecyclerViewActivity;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
-import com.wyq.firehelper.base.article.ArticleConstants;
+import com.wyq.firehelper.article.ArticleConstants;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 
 import java.util.List;

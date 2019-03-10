@@ -1,6 +1,6 @@
-package com.wyq.firehelper.base.article;
+package com.wyq.firehelper.article;
 
-import com.wyq.firehelper.base.article.entity.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleResource;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;

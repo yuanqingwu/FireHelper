@@ -64,8 +64,8 @@ public class DaggerFragment extends BaseCaseFragment {
     @Override
     public void initView(View view) {
         //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
-//        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(getActivity(),"wyq")).build();
-//        component.inject(this);
+        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(getActivity(), "wyq")).build();
+        component.inject(this);
         StringBuilder builder = new StringBuilder();
         builder.append(person1.logPerson()+"\n");
         builder.append(person2.logPerson()+"\n");

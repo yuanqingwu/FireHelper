@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.wyq.firehelper.base.BaseRecyclerViewActivity;
-import com.wyq.firehelper.base.CaseActivity;
-import com.wyq.firehelper.base.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.base.BaseRecyclerViewActivity;
+import com.wyq.firehelper.article.base.CaseActivity;
 import com.wyq.firehelper.component.share.ShareFragment;
 
 import java.util.List;

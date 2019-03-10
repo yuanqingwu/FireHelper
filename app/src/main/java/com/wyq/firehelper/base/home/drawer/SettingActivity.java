@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.wyq.firehelper.R;
-import com.wyq.firehelper.base.BaseCaseActivity;
+import com.wyq.firehelper.article.base.BaseCaseActivity;
 
 import java.util.List;
 

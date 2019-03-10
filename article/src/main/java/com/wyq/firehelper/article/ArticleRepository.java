@@ -3,10 +3,9 @@ package com.wyq.firehelper.article;
 import android.util.LruCache;
 
 import com.tencent.mmkv.MMKV;
+import com.wyq.firehelper.article.entity.ArticleResource;
+import com.wyq.firehelper.article.entity.ArticleSaveEntity;
 import com.wyq.firehelper.base.aop.aspectj.FireLogTime;
-import com.wyq.firehelper.base.article.ArticleConstants;
-import com.wyq.firehelper.base.article.entity.ArticleResource;
-import com.wyq.firehelper.base.article.entity.ArticleSaveEntity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -102,6 +101,10 @@ public class ArticleRepository {
         return Arrays.asList(articleMMKV.allKeys());
     }
 
+    public synchronized List<ArticleResource> getListByFilter(String[] filters) {
+        return ArticleConstants.getListByFilter(filters);
+    }
+
     public synchronized List<ArticleSaveEntity> getAllSavedArticles() {
         if (articleMMKV.count() == 0) {
             return null;
@@ -130,7 +133,6 @@ public class ArticleRepository {
     private synchronized int getAllArticleSize() {
         return ArticleConstants.getAllArticles().size();
     }
-
 
     public class LruMap<K, V> extends LinkedHashMap<K, V> implements Map<K, V> {
 

@@ -25,8 +25,10 @@ buildscript {
         // in the individual module build.gradle files
     }
     repositories {
-        mavenCentral()
         google()
+        jcenter()
+        mavenCentral()
+        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
     }
 
     tasks.withType(JavaCompile) {
@@ -45,4 +47,14 @@ allprojects {
     tasks.withType(JavaCompile) {
         options.encoding = "UTF-8"
     }
+
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "500"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }
