@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
+import com.wyq.firehelper.article.R;
 import com.wyq.firehelper.article.entity.ArticleSaveEntity;
-import com.wyq.firehelper.base.FireModule;
-import com.wyq.firehelper.base.R;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
@@ -109,7 +109,7 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     @NonNull
     @Override
     public TvViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layoutId = orientation == VERTICAL ? R.layout.recyclerview_item_tv_img_layout_v : R.layout.base_recyclerview_item_tv_img_layout_h;
+        int layoutId = orientation == VERTICAL ? R.layout.recyclerview_item_tv_img_layout_v : R.layout.recyclerview_item_tv_img_layout_h;
         TvViewHolder holder = new TvViewHolder(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
         return holder;
     }
@@ -124,6 +124,8 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
             ArticleSaveEntity entity = (ArticleSaveEntity) list.get(position);
             holder.textView.setText(entity.getWebTitle());
             holder.imageView.setImageBitmap(entity.getWebIcon());
+        } else {
+            Logger.i("not found TextImage instance");
         }
 
         if (onTvImgItemClickListener != null) {

@@ -17,6 +17,7 @@ import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.ArticleRepository;
+import com.wyq.firehelper.article.adapter.FireModule;
 import com.wyq.firehelper.article.adapter.TvImgRecyclerViewAdapter;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.article.base.FirePopupWindow;

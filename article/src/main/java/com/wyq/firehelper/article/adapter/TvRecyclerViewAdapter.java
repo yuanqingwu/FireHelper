@@ -8,8 +8,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.wyq.firehelper.article.R;
 import com.wyq.firehelper.article.entity.ArticleResource;
-import com.wyq.firehelper.base.R;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperAdapter;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.ItemTouchHelperViewHolder;
 
