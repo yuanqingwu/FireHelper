@@ -9,8 +9,8 @@ android {
 
     defaultConfig {
 //        applicationId "com.wyq.firehelper.developkit"
-        minSdkVersion 14
-        targetSdkVersion 28
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"
 
