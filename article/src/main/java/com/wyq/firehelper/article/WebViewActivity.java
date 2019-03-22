@@ -82,8 +82,8 @@ public class WebViewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
 
-        url = getIntent().getStringExtra(PARAM_NAME);
-        Logger.d(url);
+//        url = getIntent().getStringExtra(PARAM_NAME);
+//        Logger.d(url);
         initView();
     }
 

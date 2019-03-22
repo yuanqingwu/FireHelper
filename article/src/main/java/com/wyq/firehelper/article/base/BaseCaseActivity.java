@@ -38,7 +38,7 @@ public abstract class BaseCaseActivity extends BaseActivity {
                             if (data instanceof ArticleResource) {
 //                                WebViewActivity.instance(BaseCaseActivity.this, ((ArticleResource) data).getUrl());
                                 ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
-                                        .withString("url", ((ArticleResource) data).getUrl())
+                                        .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, ((ArticleResource) data).getUrl())
                                         .navigation();
                             }
                         }

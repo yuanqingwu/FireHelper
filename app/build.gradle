@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion build_versions.target_sdk
-    buildToolsVersion build_versions.build_tools
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "com.wyq.firehelper"
@@ -55,8 +55,8 @@ android {
 //    }
 
     compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -105,13 +105,10 @@ dependencies {
     releaseImplementation deps.leakcanary.no_op
     // Optional, if you use support library fragments:
     debugImplementation deps.leakcanary.support_fragment
-
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-
     implementation 'com.alibaba:arouter-api:1.4.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-
     implementation project(':base')
     implementation project(':architecture')
     implementation project(':article')
@@ -124,7 +121,6 @@ dependencies {
     implementation project(':media')
     implementation project(':security')
     implementation project(':ui')
-
     implementation project(':fireapt')
     implementation project(':fireapt-annotation')
     annotationProcessor project(':fireapt-compiler')

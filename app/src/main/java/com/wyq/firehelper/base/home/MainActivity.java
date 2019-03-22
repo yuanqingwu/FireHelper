@@ -342,29 +342,29 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 //                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
                 ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
                         .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, articleSaveEntities.get(position).getResource().getUrl())
-                        .navigation();
+                        .navigation(MainActivity.this);
                 break;
             case R.id.recyclerview_item_tv_img_layout_v:
                 switch (position) {
                     case 0:
 //                        DeviceActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVICE_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVICE_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 1:
 //                        UiMainActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 2:
 //                        SecurityActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_SECURITY_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_SECURITY_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 3:
 //                        DevelopKitMainActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 4:
 //                        ArchitectureActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 5:
                         FrameworkActivity.instance(MainActivity.this);
@@ -374,12 +374,12 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         break;
                     case 7:
 //                        MediaActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 8:
 //                        startActivity(new Intent(MainActivity.this,
 //                                GitHubMainActivity.class));
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation();
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
 
                     default:

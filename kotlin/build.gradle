@@ -66,6 +66,8 @@ dependencies {
 //    implementation project(':base')
     implementation project(':article')
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1'
+
 }
 repositories {
     mavenCentral()
