@@ -1,34 +1,93 @@
 package com.wyq.firehelper.device.bluetoothChat;
 
 import android.bluetooth.BluetoothAdapter;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.device.R;
+import com.wyq.firehelper.device.R2;
 
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class BtChatActivity extends BtBaseActivity {
+import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
 
-    private TextView titleTextView;
+public class BtChatActivity extends BaseActivity {
+
+    @BindView(R2.id.toolbar)
+    public Toolbar toolbar;
     private ListView chatListView;
     private EditText editText;
     private Button sendButton;
 
     private String userName;
-    public static ChatListAdapter adapter;
+    public ChatListAdapter adapter;
     // private List<BtMessage> list;
     private BluetoothAdapter bluetoothAdapter;
 
-    // private BtChatService btChatService = BtActivity.btChatService;
+    private BtChatService btChatService;
+
+    private static final String DEVICE_NAME = "DEVICE_NAME";
+
+    private Handler chatHandler = new ChatHandler(this);
+
+    public class ChatHandler extends Handler {
+        private WeakReference<BtChatActivity> chatActivity;
+
+        public ChatHandler(BtChatActivity activity) {
+            chatActivity = new WeakReference<BtChatActivity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            if (chatActivity.get() == null) {
+                return;
+            }
+
+            switch (msg.what) {
+                case Constants.MESSAGE_READ:
+                    try {
+                        BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
+                                BtMessage.class);
+                        btReadMessage.setContent(userName + ":" + btReadMessage.getContent());
+                        btChatService.messageList.add(btReadMessage);
+                        adapter.notifyDataSetChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(chatActivity.get(), "数据非法", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                case Constants.MESSAGE_WRITE:
+                    try {
+                        BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
+                        btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
+                        btChatService.messageList.add(btWriteMessage);
+                        adapter.notifyDataSetChanged();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Toast.makeText(chatActivity.get(), "数据非法", Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
     @Override
     protected int attachLayoutRes() {
@@ -37,12 +96,23 @@ public class BtChatActivity extends BtBaseActivity {
 
     @Override
     public void initToolBar() {
+        initToolBar(toolbar, "Chat", true);
+    }
 
+    public static void instance(Context context, String deviceName) {
+        Intent intent = new Intent();
+        Bundle bundle = new Bundle();
+        bundle.putString(DEVICE_NAME, deviceName);
+        intent.putExtras(bundle);
+        intent.setClass(context, BtChatActivity.class);
+        context.startActivity(intent);
     }
 
     @Override
     public void initView() {
-        titleTextView = (TextView) findViewById(R.id.bt_chat_title);
+        btChatService = BtChatService.getInstance();
+        btChatService.setHandler(chatHandler);
+
         chatListView = (ListView) findViewById(R.id.bt_chat_listview);
         editText = (EditText) findViewById(R.id.bt_chat_edit);
         sendButton = (Button) findViewById(R.id.bt_chat_sendbt);
@@ -78,26 +148,27 @@ public class BtChatActivity extends BtBaseActivity {
             }
         });
 
-        userName = getIntent().getStringExtra("btname");
-
-        titleTextView.setText(userName);
+        userName = getIntent().getStringExtra(DEVICE_NAME);
+        if (userName != null && !userName.isEmpty() && toolbar != null) {
+            toolbar.setTitle(userName);
+        }
         // list = new ArrayList<BtMessage>();
-        messageList = new ArrayList<BtMessage>();
-        adapter = new ChatListAdapter(BtChatActivity.this, messageList);
+        btChatService.messageList = new ArrayList<BtMessage>();
+        adapter = new ChatListAdapter(BtChatActivity.this, btChatService.messageList);
         chatListView.setAdapter(adapter);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        
+
     }
-    
+
     @Override
     protected void onResume() {
         super.onResume();
         if (btChatService != null) {
-            if (btChatService.getState() == btChatService.STATE_NONE) {
+            if (btChatService.getState() == BtChatService.STATE_NONE) {
                 btChatService.start();
             }
         }

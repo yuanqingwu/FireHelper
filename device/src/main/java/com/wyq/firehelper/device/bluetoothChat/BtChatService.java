@@ -4,7 +4,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
-import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +11,7 @@ import android.os.Message;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.UUID;
 
 public class BtChatService {
@@ -28,7 +28,6 @@ public class BtChatService {
     public static final int STATE_CONNECTING = 2; // now initiating an outgoing connection
     public static final int STATE_CONNECTED = 3; // now connected to a remote device
 
-    private Context context;
     private Handler handler;
     private int state;
     private AcceptThread secureAcceptThread;
@@ -38,11 +37,28 @@ public class BtChatService {
 
     private BluetoothAdapter adapter;
 
-    public BtChatService(Context context, Handler handler) {
+    public List<BtMessage> messageList;
+
+    private static volatile BtChatService chatService;
+
+    private BtChatService() {
         adapter = BluetoothAdapter.getDefaultAdapter();
-        this.context = context;
-        this.handler = handler;
         state = STATE_NONE;
+    }
+
+    public void setHandler(Handler handler){
+        this.handler = handler;
+    }
+
+    public static BtChatService getInstance(){
+        if(chatService == null){
+            synchronized (BtChatService.class){
+                if(chatService == null) {
+                    chatService = new BtChatService();
+                }
+            }
+        }
+        return chatService;
     }
 
     private synchronized void setState(int state) {
@@ -191,7 +207,7 @@ public class BtChatService {
                     break;
                 }
 
-                if (bluetoothSocket != null) {
+                if (bluetoothSocket != null && bluetoothSocket.isConnected()) {
                     synchronized (BtChatService.this) {
                         switch (state) {
                             case STATE_LISTEN:

@@ -4,31 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@android:color/holo_blue_dark" >
-
-        <Button
-            android:id="@+id/bluetooth_back_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:background="@null"
-            android:text="back" />
-
-        <Button
-            android:id="@+id/bluetooth_discoverable_bt"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="canDiscover  "
-            android:background="@null"
-            android:layout_alignParentRight="true"
-            android:textSize="16sp" />
-    </RelativeLayout>
+   <include layout="@layout/toolbar"/>
 
     <Button
-        android:id="@+id/bluetooth_start_scan_bt"
+        android:id="@+id/device_bt_start_scan_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -36,7 +15,7 @@
         android:text="start scan" />
 
     <Button
-        android:id="@+id/bluetooth_close_bt"
+        android:id="@+id/device_bt_close_bt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
@@ -44,10 +23,13 @@
         android:text="close bluetooth" />
 
     <ListView
-        android:id="@+id/bluetooth_finded_list"
+        android:id="@+id/device_bt_finded_list_lv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp" >
-    </ListView>
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/device_bt_finded_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

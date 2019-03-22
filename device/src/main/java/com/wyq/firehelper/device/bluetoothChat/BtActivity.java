@@ -1,6 +1,5 @@
 package com.wyq.firehelper.device.bluetoothChat;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
@@ -21,97 +20,55 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
+import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.device.R;
+import com.wyq.firehelper.device.R2;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.Set;
 
-public class BtActivity extends BtBaseActivity implements OnClickListener {
+import androidx.appcompat.widget.Toolbar;
+import butterknife.BindView;
 
-    private Button scanBt, closeBt, backBt, discoverBt;
+public class BtActivity extends BaseActivity implements OnClickListener {
+
+    @BindView(R2.id.toolbar)
+    public Toolbar toolbar;
+    @BindView(R2.id.device_bt_start_scan_bt)
+    public Button scanBt;
+    @BindView(R2.id.device_bt_close_bt)
+    public Button closeBt;
+    @BindView(R2.id.device_bt_finded_list_lv)
+    public ListView listView;
+
     private BtReceiver btReceiver;
-    private ListView listView;
     private LinkedList<String> btInfoLinkedList;
     private ArrayAdapter<String> arrayAdapter;
     public BluetoothSocket socket;
     public BluetoothDevice device;
     public BluetoothAdapter bluetoothAdapter;
 
-    private String deviceName; // 连接设备的名字
+    private BtChatService btChatService;
+
+    public String deviceName; // 连接设备的名字
 
     private static final int REQUEST_ENABLE_BT = 3;
 
-    public BtHandler handler = new BtHandler(this,deviceName);
-    //FIXME memory leak
-//    private Handler handler = new Handler() {
-//        public void handleMessage(android.os.Message msg) {
-//            switch (msg.what) {
-//                case Constants.MESSAGE_STATE_CHANGE:
-//                    switch (msg.arg1) {
-//                        case BtChatService.STATE_CONNECTED:
-//
-//                            break;
-//                        case BtChatService.STATE_CONNECTING:
-//                            // 连接ing
-//                            break;
-//                        case BtChatService.STATE_LISTEN:
-//                        case BtChatService.STATE_NONE:
-//                            // 未连接
-//                            break;
-//
-//                        default:
-//                            break;
-//                    }
-//                    break;
-//                case Constants.MESSAGE_READ:
-//                    BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
-//                            BtMessage.class);
-//                    btReadMessage.setContent(deviceName + ":" + btReadMessage.getContent());
-//                    messageList.add(btReadMessage);
-//                    BtChatActivity.adapter.notifyDataSetChanged();
-//                    break;
-//                case Constants.MESSAGE_WRITE:
-//                    BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
-//                    btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
-//                    messageList.add(btWriteMessage);
-//                    BtChatActivity.adapter.notifyDataSetChanged();
-//                    break;
-//
-//                case Constants.MESSAGE_DEVICE_NAME:
-//                    deviceName = msg.getData().getString(Constants.DEVICE_NAME);
-//                    Toast.makeText(BtActivity.this, "Connected to " + deviceName, Toast.LENGTH_SHORT).show();
-//                    // 连接成功
-//                    Intent intent = new Intent();
-//                    intent.putExtra("btname", deviceName);
-//                    intent.setClass(BtActivity.this, BtChatActivity.class);
-//                    startActivity(intent);
-//                    break;
-//                case Constants.MESSAGE_TOAST:
-//                    Toast.makeText(BtActivity.this, msg.getData().getString(Constants.TOAST), Toast.LENGTH_SHORT)
-//                            .show();
-//                    break;
-//                default:
-//                    break;
-//            }
-//        };
-//    };
+    public BtHandler handler = new BtHandler(this);
 
-    public static class BtHandler extends Handler{
+    public static class BtHandler extends Handler {
         public WeakReference<BtActivity> btActivityWeakReference;
-        public String deviceName;
 
-        public BtHandler(BtActivity btActivity,String deviceName){
+        public BtHandler(BtActivity btActivity) {
             btActivityWeakReference = new WeakReference<BtActivity>(btActivity);
-            this.deviceName = deviceName;
         }
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             BtActivity btActivity = btActivityWeakReference.get();
-            if(btActivity != null){
+            if (btActivity != null) {
                 switch (msg.what) {
                     case Constants.MESSAGE_STATE_CHANGE:
                         switch (msg.arg1) {
@@ -130,31 +87,14 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
                                 break;
                         }
                         break;
-                    case Constants.MESSAGE_READ:
-                        BtMessage btReadMessage = new Gson().fromJson(new String((byte[]) msg.obj, 0, msg.arg1),
-                                BtMessage.class);
-                        btReadMessage.setContent(deviceName + ":" + btReadMessage.getContent());
-                        messageList.add(btReadMessage);
-                        BtChatActivity.adapter.notifyDataSetChanged();
-                        break;
-                    case Constants.MESSAGE_WRITE:
-                        BtMessage btWriteMessage = new Gson().fromJson(new String((byte[]) msg.obj), BtMessage.class);
-                        btWriteMessage.setContent("Me:" + btWriteMessage.getContent());
-                        messageList.add(btWriteMessage);
-                        BtChatActivity.adapter.notifyDataSetChanged();
-                        break;
-
                     case Constants.MESSAGE_DEVICE_NAME:
-                        deviceName = msg.getData().getString(Constants.DEVICE_NAME);
-                        Toast.makeText(btActivity, "Connected to " + deviceName, Toast.LENGTH_SHORT).show();
+                        btActivity.deviceName = msg.getData().getString(Constants.DEVICE_NAME);
+                        Toast.makeText(btActivity, "Connected to " + btActivity.deviceName, Toast.LENGTH_SHORT).show();
                         // 连接成功
-                        Intent intent = new Intent();
-                        intent.putExtra("btname", deviceName);
-                        intent.setClass(btActivity, BtChatActivity.class);
-                        btActivity.startActivity(intent);
+                        BtChatActivity.instance(btActivity,btActivity.deviceName);
                         break;
                     case Constants.MESSAGE_TOAST:
-                        Toast.makeText(btActivity, msg.getData().getString(Constants.TOAST), Toast.LENGTH_SHORT)
+                        Toast.makeText(btActivity, msg.obj.toString(), Toast.LENGTH_SHORT)
                                 .show();
                         break;
                     default:
@@ -171,20 +111,21 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
 
     @Override
     public void initToolBar() {
-
+        initToolBar(toolbar, "BT", true);
     }
 
     @Override
     public void initView() {
-        listView = (ListView) findViewById(R.id.bluetooth_finded_list);
         btInfoLinkedList = new LinkedList<String>();
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+        makeDiscoverable();
+        btChatService = BtChatService.getInstance();
+        btChatService.setHandler(handler);
 
         arrayAdapter = new ArrayAdapter<String>(BtActivity.this, android.R.layout.simple_list_item_1, btInfoLinkedList);
         listView.setAdapter(arrayAdapter);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
-            @SuppressLint("NewApi")
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String address = btInfoLinkedList.get(position).substring(0, 17);
@@ -192,13 +133,9 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
             }
         });
 
-        backBt = (Button) findViewById(R.id.bluetooth_back_bt);
-        backBt.setOnClickListener(this);
-        discoverBt = (Button) findViewById(R.id.bluetooth_discoverable_bt);
-        discoverBt.setOnClickListener(this);
-        scanBt = (Button) findViewById(R.id.bluetooth_start_scan_bt);
+//        discoverBt = (Button) findViewById(R.id.bluetooth_discoverable_bt);
+//        discoverBt.setOnClickListener(this);
         scanBt.setOnClickListener(this);
-        closeBt = (Button) findViewById(R.id.bluetooth_close_bt);
         closeBt.setOnClickListener(this);
 
         btReceiver = new BtReceiver();
@@ -210,36 +147,54 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        // makeDiscoverable();
+        checkEnable();
+        addBondedDevice();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bluetoothAdapter.isEnabled()) {
+            if (btChatService != null) {
+                if (btChatService.getState() == BtChatService.STATE_NONE) {
+                    btChatService.start();
+                }
+            }
+        }
+    }
+
+    private void startDiscovery(){
+        checkEnable();
+        // 如果正在搜寻，先关闭
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
+        bluetoothAdapter.startDiscovery();
+    }
+
+    private void disableBt(){
+
+        if (bluetoothAdapter.isDiscovering()) {
+            bluetoothAdapter.cancelDiscovery();
+        }
+        if (bluetoothAdapter.isEnabled()) {
+            bluetoothAdapter.disable();
+        }
+        // btInfoList.clear();
+        btInfoLinkedList.clear();
+        arrayAdapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void onClick(View v) {
         int i = v.getId();
-        if (i == R.id.bluetooth_start_scan_bt) {
-            setProgressBarIndeterminateVisibility(true);
-            checkEnable();
-            // 如果正在搜寻，先关闭
-            if (bluetoothAdapter.isDiscovering()) {
-                bluetoothAdapter.cancelDiscovery();
-            }
-            bluetoothAdapter.startDiscovery();
-
-
-        } else if (i == R.id.bluetooth_close_bt) {
-            BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();
-            if (adapter.isDiscovering()) {
-                adapter.cancelDiscovery();
-            }
-            if (adapter.isEnabled()) {
-                adapter.disable();
-            }
-            // btInfoList.clear();
-            btInfoLinkedList.clear();
-            arrayAdapter.notifyDataSetChanged();
-
-        } else if (i == R.id.bluetooth_back_bt) {
-            finish();
-
-        } else if (i == R.id.bluetooth_discoverable_bt) {
-            makeDiscoverable();
-
+        if (i == R.id.device_bt_start_scan_bt) {
+            startDiscovery();
+        } else if (i == R.id.device_bt_close_bt) {
+            disableBt();
         } else {
         }
     }
@@ -276,28 +231,7 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        // makeDiscoverable();
-        checkEnable();
-        addBondedDevice();
-        if (btChatService == null) {
-            btChatService = new BtChatService(getApplicationContext(), handler);
-        }
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (bluetoothAdapter.isEnabled()) {
-            if (btChatService != null) {
-                if (btChatService.getState() == BtChatService.STATE_NONE) {
-                    btChatService.start();
-                }
-            }
-        }
-    }
 
     private class BtReceiver extends BroadcastReceiver {
         @Override
@@ -314,7 +248,6 @@ public class BtActivity extends BtBaseActivity implements OnClickListener {
                     }
                 } else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
                     // 搜索完成
-                    setProgressBarIndeterminateVisibility(false);
                     Log.i("Test", "搜索完成");
                 }
 
