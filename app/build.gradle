@@ -113,7 +113,6 @@ dependencies {
     implementation project(':architecture')
     implementation project(':article')
     implementation project(':developkit')
-    implementation project(':developkit')
     implementation project(':device')
     implementation project(':hybrid')
     implementation project(':java')
