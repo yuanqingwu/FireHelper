@@ -1,4 +1,4 @@
-package com.wyq.firehelper.device.bluetoothChat;
+package com.wyq.firehelper.device.bluetooth.chat;
 
 public class Constants {
     // Message types sent from the BluetoothChatService Handler

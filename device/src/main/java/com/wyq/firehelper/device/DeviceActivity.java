@@ -10,7 +10,7 @@ import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.article.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 import com.wyq.firehelper.device.PhoneInfo.PhoneInfoActivity;
-import com.wyq.firehelper.device.bluetoothChat.BtActivity;
+import com.wyq.firehelper.device.bluetooth.chat.BtActivity;
 
 import java.util.List;
 
