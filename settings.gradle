@@ -1,1 +1,1 @@
-include ':app', ':fireapt-compiler', ':fireapt', ':fireapt-annotation', ':device', ':base', ':architecture', ':developkit', ':java', ':ui', ':media', ':security', ':kotlin', ':hybrid', ':article'
+include ':app', ':fireapt-compiler', ':fireapt', ':fireapt-annotation', ':device', ':base', ':architecture', ':developkit', ':java', ':ui', ':media', ':security', ':kotlin', ':hybrid', ':article', ':buildSrc'

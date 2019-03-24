@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin:'fireplugin'
 
 android {
     compileSdkVersion 28
@@ -123,7 +124,4 @@ dependencies {
     implementation project(':fireapt')
     implementation project(':fireapt-annotation')
     annotationProcessor project(':fireapt-compiler')
-}
-repositories {
-    mavenCentral()
 }
