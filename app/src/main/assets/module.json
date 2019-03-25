@@ -45,6 +45,11 @@
     "headImage": "media"
   },
   {
+    "title_en": "Hybrid",
+    "title_zh": "web APP",
+    "headImage": "web"
+  },
+  {
     "title_en": "kotlin",
     "title_zh": "kotlin",
     "headImage": "kotlin"

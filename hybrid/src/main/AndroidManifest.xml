@@ -3,8 +3,8 @@
     package="com.wyq.firehelper.hybrid">
 
     <application>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".jsbridge.JsBridgeActivity"></activity>
+        <activity android:name=".HybridMainActivity"></activity>
     </application>
 
 </manifest>

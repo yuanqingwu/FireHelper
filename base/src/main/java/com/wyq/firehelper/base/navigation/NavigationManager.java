@@ -12,6 +12,7 @@ public class NavigationManager {
     public static final String NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY = "/developkit/DevelopKitMainActivity";
     public static final String NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY = "/architecture/ArchitectureActivity";
     public static final String NAVIGATION_MEDIA_MAIN_ACTIVITY = "/media/MediaActivity";
+    public static final String NAVIGATION_HYBRID_MAIN_ACTIVITY = "/hybrid/HybridMainActivity";
     public static final String NAVIGATION_KOTLIN_MAIN_ACTIVITY = "/kotlin/GitHubMainActivity";
     public static final String NAVIGATION_ARTICLE_MAIN_ACTIVITY = "/article/ArticleMainActivity";
     public static final String NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY = "/article/WebViewActivity";

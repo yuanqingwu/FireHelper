@@ -377,6 +377,9 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
                         ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation(MainActivity.this);
                         break;
                     case 8:
+                        ARouter.getInstance().build(NavigationManager.NAVIGATION_HYBRID_MAIN_ACTIVITY).navigation(MainActivity.this);
+                        break;
+                    case 9:
 //                        startActivity(new Intent(MainActivity.this,
 //                                GitHubMainActivity.class));
                         ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation(MainActivity.this);

@@ -1,0 +1,111 @@
+<html>
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <title>
+        js调用java
+    </title>
+</head>
+
+<body>
+<p>
+    <xmp id="show">
+    </xmp>
+</p>
+<p>
+    <xmp id="init">
+    </xmp>
+</p>
+<p>
+    <input type="text" id="text" value="js"/>
+</p>
+<p>
+    <input type="button" id="enter" value="发消息给Native" onclick="sendToNative();"
+    />
+</p>
+<p>
+    <input type="button" id="enter1" value="调用Native方法" onclick="callNative();"
+    />
+</p>
+<p>
+    <input type="button" id="enter2" value="显示html" onclick="testDiv();"/>
+</p>
+<p>
+    <input type="file" value="打开文件"/>
+</p>
+</body>
+<script>
+        <!--function testDiv() {-->
+            <!--document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;-->
+        <!--}-->
+
+        function sendToNative() {
+            var str1 = document.getElementById("text").value;
+
+            //send message to native
+            var data = str1+",我从web来~";
+            window.WebViewJavascriptBridge.send(
+                data
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "repsonseData from java\n, data： " + responseData
+                }
+            );
+
+        }
+
+        function callNative() {
+            var str1 = document.getElementById("text").value;
+
+            //call native method
+            window.WebViewJavascriptBridge.callHandler(
+                'submitFromWeb'
+                , str1
+                , function(responseData) {
+                    document.getElementById("show").innerHTML = "get responseData from java, data: " + responseData
+                }
+            );
+        }
+
+        function bridgeLog(logContent) {
+            document.getElementById("show").innerHTML = logContent;
+        }
+
+        function connectWebViewJavascriptBridge(callback) {
+            if (window.WebViewJavascriptBridge) {
+                callback(WebViewJavascriptBridge)
+            } else {
+                document.addEventListener(
+                    'WebViewJavascriptBridgeReady'
+                    , function() {
+                        callback(WebViewJavascriptBridge)
+                    },
+                    false
+                );
+            }
+        }
+
+        connectWebViewJavascriptBridge(function(bridge) {
+            bridge.init(function(message, responseCallback) {
+                console.log('JS got a message', message);
+                var data = {
+                    'Javascript Responds': '结果!'
+                };
+
+                if (responseCallback) {
+                    console.log('JS responding with', data);
+                    responseCallback(data);
+                }
+            });
+
+            bridge.registerHandler("functionInJs", function(data, responseCallback) {
+                document.getElementById("show").innerHTML = ("data from Java: = " + data);
+                if (responseCallback) {
+                    var responseData = "JS方法调用完成，JS已收到："+ data;
+                    responseCallback(responseData);
+                }
+            });
+        })
+
+</script>
+
+</html>
+
