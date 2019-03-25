@@ -27,14 +27,14 @@
     />
 </p>
 <p>
-    <input type="button" id="enter2" value="显示html" onclick="testDiv();"/>
+    <input type="button" id="enter2" value="显示html" onclick="showHtml();"/>
 </p>
 <p>
     <input type="file" value="打开文件"/>
 </p>
 </body>
 <script>
-        function testDiv() {
+        function showHtml() {
             document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;
         }
 
