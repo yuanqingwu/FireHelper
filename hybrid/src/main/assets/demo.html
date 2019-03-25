@@ -34,9 +34,9 @@
 </p>
 </body>
 <script>
-        <!--function testDiv() {-->
-            <!--document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;-->
-        <!--}-->
+        function testDiv() {
+            document.getElementById("show").innerHTML = document.getElementsByTagName("html")[0].innerHTML;
+        }
 
         function sendToNative() {
             var str1 = document.getElementById("text").value;
@@ -86,13 +86,10 @@
         connectWebViewJavascriptBridge(function(bridge) {
             bridge.init(function(message, responseCallback) {
                 console.log('JS got a message', message);
-                var data = {
-                    'Javascript Responds': '结果!'
-                };
-
+                document.getElementById("show").innerHTML = ("data from Java: = " + message);
                 if (responseCallback) {
                     console.log('JS responding with', data);
-                    responseCallback(data);
+                    responseCallback("JS收到java数据，直接返回：" + message);
                 }
             });
 
@@ -104,6 +101,7 @@
                 }
             });
         })
+
 
 </script>
 

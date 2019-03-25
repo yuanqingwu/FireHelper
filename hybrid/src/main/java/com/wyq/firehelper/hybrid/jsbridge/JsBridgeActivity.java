@@ -110,7 +110,7 @@ public class JsBridgeActivity extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
 
-        bridgeWebView.send("123123", new CallBackFunction() {
+        bridgeWebView.send(operateBt.getText().toString(), new CallBackFunction() {
             @Override
             public void onCallBack(String data) {
                 operateTv.append("\n" + data);
