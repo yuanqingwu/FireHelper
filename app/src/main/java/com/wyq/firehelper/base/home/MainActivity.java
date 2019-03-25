@@ -29,9 +29,9 @@ import com.wyq.firehelper.base.home.drawer.ShareActivity;
 import com.wyq.firehelper.base.home.drawer.SkinActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
+import com.wyq.firehelper.base.utils.MMKVContract;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 import com.wyq.firehelper.component.ComponentActivity;
-import com.wyq.firehelper.developkit.mmkv.MMKVContract;
 import com.wyq.firehelper.framework.FrameworkActivity;
 
 import org.json.JSONArray;

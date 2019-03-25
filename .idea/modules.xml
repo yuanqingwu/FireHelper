@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/architecture/architecture.iml" filepath="$PROJECT_DIR$/architecture/architecture.iml" />
       <module fileurl="file://$PROJECT_DIR$/article/article.iml" filepath="$PROJECT_DIR$/article/article.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
       <module fileurl="file://$PROJECT_DIR$/developkit/developkit.iml" filepath="$PROJECT_DIR$/developkit/developkit.iml" />
       <module fileurl="file://$PROJECT_DIR$/device/device.iml" filepath="$PROJECT_DIR$/device/device.iml" />
       <module fileurl="file://$PROJECT_DIR$/fireapt/fireapt.iml" filepath="$PROJECT_DIR$/fireapt/fireapt.iml" />

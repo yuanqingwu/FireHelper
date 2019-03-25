@@ -9,10 +9,12 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
+import com.wyq.firehelper.base.utils.MMKVContract;
 
 import java.util.List;
 
@@ -128,6 +130,10 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
     }
 
     public void initTagLayout() {
+        boolean isNightMode = MMKV.defaultMMKV().decodeBool(MMKVContract.KEY_NIGHT_MODE, false);
+        tagContainerLayout.setBackgroundColor(isNightMode ? Color.DKGRAY : Color.WHITE);
+        tagContainerLayout.setTagBackgroundColor(isNightMode ? Color.DKGRAY : Color.WHITE);
+        tagContainerLayout.setBorderRadius(0);
         tagContainerLayout.setVisibility(View.GONE);
         tags = ArticleConstants.getAllTags();
         if (tags != null && tags.size() > 0) {
@@ -140,7 +146,7 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
              */
             tagContainerLayout.setTheme(ColorFactory.NONE);
             tagContainerLayout.setRippleDuration(100);
-            tagContainerLayout.setTagBackgroundColor(Color.WHITE);
+//            tagContainerLayout.setTagBackgroundColor(Color.WHITE);
             tagContainerLayout.setTags(tags);
             tagContainerLayout.setOnTagClickListener(new TagView.OnTagClickListener() {
                 @Override
@@ -148,7 +154,7 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
                     resourceList = ArticleConstants.getListByTag(text);
                     adapter.refreshData(resourceList);
 
-                    tagContainerLayout.setTagBackgroundColor(Color.WHITE);
+//                    tagContainerLayout.setTagBackgroundColor(Color.WHITE);
                     tagContainerLayout.setTags(tags);
                     tagContainerLayout.getTagView(position).setTagBackgroundColor(Color.GRAY);
 

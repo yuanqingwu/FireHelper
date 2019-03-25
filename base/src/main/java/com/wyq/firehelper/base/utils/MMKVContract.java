@@ -1,4 +1,4 @@
-package com.wyq.firehelper.developkit.mmkv;
+package com.wyq.firehelper.base.utils;
 
 /**
  * Author: Uni.W
