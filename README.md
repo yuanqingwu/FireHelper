@@ -36,7 +36,7 @@ Android开发帮助应用集大成者。
 目前文章列表暂时静态定义在（未排序整理）：
 [ArticleConstants.java](https://github.com/wuyuanqing527/FireHelper/blob/master/app/src/main/java/com/wyq/firehelper/article/ArticleConstants.java "ArticleConstants")
 
-![article](https://github.com/wuyuanqing527/FireHelper/tree/master/screenCapture/article.gif)
+![article](https://github.com/wuyuanqing527/FireHelper/blob/master/screenCapture/article.gif)
 
 
 
