@@ -120,10 +120,10 @@ public class MetroImageView extends androidx.appcompat.widget.AppCompatImageView
                         mScaleHandler.sendEmptyMessage(SCALING);
                     } else {
                         isFinish = true;
-                        if (MetroImageView.this.mOnViewClickListener != null
+                        if (mOnViewClickListener != null
                                 && !isClicked) {
                             isClicked = true;
-                            MetroImageView.this.mOnViewClickListener
+                            mOnViewClickListener
                                     .onViewClick(MetroImageView.this);
                         } else {
                             isClicked = false;
@@ -172,7 +172,7 @@ public class MetroImageView extends androidx.appcompat.widget.AppCompatImageView
     private OnViewClickListener mOnViewClickListener;
 
     public void setOnClickIntent(OnViewClickListener onViewClickListener) {
-        this.mOnViewClickListener = onViewClickListener;
+        mOnViewClickListener = onViewClickListener;
     }
 
     public interface OnViewClickListener {
