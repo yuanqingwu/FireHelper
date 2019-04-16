@@ -59,7 +59,7 @@ dependencies {
 
 //    implementation 'com.alibaba:arouter-api:1.4.1'
     kapt 'com.alibaba:arouter-compiler:1.2.2'
-    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+//    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
     kapt deps.glide.compiler
     kapt deps.dagger.compiler
 

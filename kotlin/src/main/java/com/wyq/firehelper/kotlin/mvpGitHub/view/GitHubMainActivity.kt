@@ -9,10 +9,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.SearchView
-import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.RecyclerView
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.wyq.firehelper.article.R2.id.toolbar
 import com.wyq.firehelper.base.BaseActivity
 import com.wyq.firehelper.base.navigation.NavigationManager
 import com.wyq.firehelper.kotlin.R
@@ -32,7 +30,7 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
     }
 
     override fun initToolBar() {
-        initToolBar(findViewById<Toolbar>(toolbar), "GitHub", true)
+        initToolBar(toolbar, "GitHub", true)
     }
 
     override fun initView() {
@@ -73,7 +71,7 @@ class GitHubMainActivity : BaseActivity(), Contract.IView {
 
         kotlin_activity_mvp_github_progress_bar.visibility = View.GONE
         closeSearchView()
-        findViewById<Toolbar>(toolbar).title = repoUserName
+        toolbar.title = repoUserName
     }
 
     override fun showRepositoryFailed(error: String?) {
