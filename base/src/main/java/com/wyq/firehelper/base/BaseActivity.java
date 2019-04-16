@@ -6,11 +6,11 @@ import android.view.View;
 import com.orhanobut.logger.Logger;
 
 import androidx.annotation.LayoutRes;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import butterknife.ButterKnife;
-import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
 
-public abstract class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * 绑定布局文件

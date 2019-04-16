@@ -56,14 +56,6 @@ public class VideoActivity extends BaseCaseActivity {
     }
 
     @Override
-    public void onBackPressedSupport() {
-        super.onBackPressedSupport();
-        if (Jzvd.backPress()) {
-            return;
-        }
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         Jzvd.releaseAllVideos();

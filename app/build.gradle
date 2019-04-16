@@ -100,8 +100,6 @@ dependencies {
     annotationProcessor deps.lifecycle.compiler
     implementation deps.eventbus
     implementation deps.logger
-    implementation deps.fragmentation.runtime
-    implementation deps.fragmentation.swipeback
     debugImplementation deps.leakcanary.runtime
     releaseImplementation deps.leakcanary.no_op
     // Optional, if you use support library fragments:
