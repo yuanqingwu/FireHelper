@@ -15,20 +15,19 @@
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:titleTextAppearance="@style/Toolbar_TextAppearance_White"></androidx.appcompat.widget.Toolbar>
+            app:titleTextAppearance="@style/Toolbar_TextAppearance_White"/>
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/developkit_activity_main_tablayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
-            app:tabMode="scrollable"
-            app:tabSelectedTextColor="@color/white"></com.google.android.material.tabs.TabLayout>
+            app:tabMode="scrollable"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/developkit_activity_main_viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"></androidx.viewpager.widget.ViewPager>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

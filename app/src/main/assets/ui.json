@@ -33,6 +33,10 @@
       {
         "name": "Emoji",
         "description": ""
+      },
+      {
+        "name": "Chip",
+        "description": ""
       }
     ]
   },
