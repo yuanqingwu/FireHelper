@@ -1,6 +1,5 @@
 package com.wyq.firehelper.base.utils.common;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
@@ -15,6 +14,7 @@ import android.view.WindowManager;
 import java.util.List;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * @author Uni.W
@@ -23,7 +23,7 @@ import androidx.annotation.RequiresApi;
 public class ScreenUtils {
 
     @RequiresApi(Build.VERSION_CODES.P)
-    public static boolean isNotchScreen(Activity activity) {
+    public static boolean isNotchScreen(AppCompatActivity activity) {
         boolean isNotchScreen = false;
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             View decorView = activity.getWindow().getDecorView();
@@ -48,7 +48,7 @@ public class ScreenUtils {
      * @param context
      * @return
      */
-    public static int getScreenWidthPX(Activity context) {
+    public static int getScreenWidthPX(AppCompatActivity context) {
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         DisplayMetrics dm = new DisplayMetrics();

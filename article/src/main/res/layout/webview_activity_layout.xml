@@ -24,7 +24,7 @@
                 android:layout_gravity="right"
                 android:layout_marginRight="10dp"
                 android:clickable="true"
-                android:src="@drawable/ic_nail_white_64px" />
+                app:srcCompat="@drawable/ic_nail_white_64px" />
         </androidx.appcompat.widget.Toolbar>
 
         <ProgressBar

@@ -28,14 +28,14 @@
 
     <style name="HomeCardView" parent="Widget.CardContent">
         <item name="cardCornerRadius">5dp</item>
-        <item name="android:foreground">?android:selectableItemBackground</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:layout_margin">5dp</item>
     </style>
 
     <style name="base_requst_dialog" parent="@android:style/Theme.Dialog">
         <item name="android:windowIsFloating">true</item>
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowNoTitle">true</item>
+        <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:backgroundDimEnabled">true</item>
     </style>

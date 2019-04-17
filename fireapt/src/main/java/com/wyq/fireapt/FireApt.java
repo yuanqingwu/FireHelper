@@ -1,13 +1,13 @@
 package com.wyq.fireapt;
 
-import android.app.Activity;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class FireApt {
 
-    public static void bind(Activity activity){
+    public static void bind(AppCompatActivity activity){
 
         Class aClass = activity.getClass();
         try {

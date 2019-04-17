@@ -75,6 +75,10 @@
       {
         "name": "TextPathView",
         "description": ""
+      },
+      {
+        "name": "MultiEditText",
+        "description": ""
       }
     ]
   }

@@ -9,7 +9,7 @@
         android:id="@+id/media_video_fire_player_view_back_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_vd_navigate_before_gray_24dp"
+        app:srcCompat="@drawable/ic_vd_navigate_before_gray_24dp"
         app:layout_constraintBottom_toTopOf="@id/media_video_fire_player_view_top_guide"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/media_video_fire_player_view_title_tv"
@@ -27,7 +27,7 @@
         android:id="@+id/media_video_fire_player_view_setting_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_vd_more_vert_gray_24dp"
+        app:srcCompat="@drawable/ic_vd_more_vert_gray_24dp"
         app:layout_constraintBottom_toTopOf="@id/media_video_fire_player_view_top_guide"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

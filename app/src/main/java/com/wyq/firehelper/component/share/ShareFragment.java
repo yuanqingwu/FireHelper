@@ -12,7 +12,7 @@ import com.wyq.firehelper.base.widget.firetoast.FireToast;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static android.app.Activity.RESULT_OK;
+import static androidx.appcompat.app.AppCompatActivity.RESULT_OK;
 
 /**
  * Author: Uni.W

@@ -8,7 +8,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:textAllCaps">false</item><!--关闭默认大写-->
+        <item name="textAllCaps">false</item><!--关闭默认大写-->
         <item name="android:windowAnimationStyle">@style/activityAnimation</item>
     </style>
 
@@ -44,7 +44,7 @@
 
     <style name="HomeCardView" parent="Widget.CardContent">
         <item name="cardCornerRadius">5dp</item>
-        <item name="android:foreground">?android:selectableItemBackground</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="android:layout_margin">5dp</item>
     </style>
 </resources>
