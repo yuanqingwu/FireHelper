@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.base.widget.firetoast.FireToast;
+import com.wyq.firehelper.ui.widget.firetoast.FireToast;
 
 import butterknife.BindView;
 import butterknife.OnClick;

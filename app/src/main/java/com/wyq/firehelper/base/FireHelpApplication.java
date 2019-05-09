@@ -8,11 +8,8 @@ import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
-import com.squareup.leakcanary.AndroidExcludedRefs;
-import com.squareup.leakcanary.DisplayLeakService;
-import com.squareup.leakcanary.ExcludedRefs;
-import com.squareup.leakcanary.LeakCanary;
 import com.tencent.mmkv.MMKV;
+import com.wyq.firehelper.BuildConfig;
 import com.wyq.firehelper.base.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.developkit.room.AppExecutors;
 
@@ -25,11 +22,11 @@ public class FireHelpApplication extends MultiDexApplication {
      * 当前版本是否为debug版本
      * 1.控制是否打印调试日志
      */
-    public static final boolean isDebug = true;
+    public static final boolean isDebug = BuildConfig.DEBUG;
 
     private AppExecutors appExecutors;
 
-    @FireLogTime(isLog = isDebug)//AOP打印执行时间
+    @FireLogTime(isLog = true)//AOP打印执行时间
     @Override
     public void onCreate() {
         super.onCreate();
@@ -40,7 +37,6 @@ public class FireHelpApplication extends MultiDexApplication {
         AppInitIntentService.start(this);
 
         if (isDebug) {
-            initLeakCanary();
             initLogger();
             ARouter.openLog();     // 打印日志
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
@@ -83,30 +79,6 @@ public class FireHelpApplication extends MultiDexApplication {
 //        EmojiCompat.Config config = new BundledEmojiCompatConfig(this);
 //        EmojiCompat.init(config);
 //    }
-
-    /**
-     * 初始化内存泄漏检测框架LeakCanary
-     */
-    private void initLeakCanary() {
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-//        enabledStrictMode();
-
-        ExcludedRefs excludedRefs = AndroidExcludedRefs.createAppDefaults()
-                .instanceField("android.view.inputmethod.InputMethodManager", "sInstance")
-                .instanceField("android.view.inputmethod.InputMethodManager", "mLastSrvView")
-                .instanceField("com.android.internal.policy.PhoneWindow$DecorView", "mContext")
-                .instanceField("android.support.v7.widget.SearchView$SearchAutoComplete", "mContext")
-                .instanceField(" com.android.tools.profiler.support.event.InputConnectionWrapper", "mTarget")
-                .build();
-        LeakCanary.refWatcher(this).listenerServiceClass(DisplayLeakService.class)
-                .excludedRefs(excludedRefs)
-                .buildAndInstall();
-//        LeakCanary.install(this);
-    }
 
     private void enabledStrictMode() {
         StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().penaltyDeath().build());

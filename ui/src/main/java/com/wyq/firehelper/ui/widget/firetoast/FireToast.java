@@ -3,6 +3,7 @@ package com.wyq.firehelper.ui.widget.firetoast;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
@@ -51,6 +52,8 @@ public class FireToast {
     private OnDoubleClickListener onDoubleClickListener;
     private HashMap<String, FireToast> toastList;
 
+    private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+
     private FireToast(Context context, String name) {
         this.context = context;
 
@@ -97,6 +100,23 @@ public class FireToast {
     public FireToast setOnDoubleClickListener(OnDoubleClickListener onDoubleClickListener) {
         this.onDoubleClickListener = onDoubleClickListener;
         return this;
+    }
+
+    /**
+     * 弹出简单吐司
+     * @param msg
+     */
+    public void msg(String msg){
+        if(Looper.myLooper() != null){
+            Toast.makeText(context,msg,Toast.LENGTH_SHORT).show();
+        }else{
+            mainThreadHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    msg(msg);
+                }
+            });
+        }
     }
 
     public String getText() {

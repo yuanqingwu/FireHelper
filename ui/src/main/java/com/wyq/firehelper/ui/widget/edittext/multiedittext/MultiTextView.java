@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget.multiedittext;
+package com.wyq.firehelper.ui.widget.edittext.multiedittext;
 
 import android.content.Context;
 import android.graphics.Canvas;

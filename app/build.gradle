@@ -101,9 +101,7 @@ dependencies {
     implementation deps.eventbus
     implementation deps.logger
     debugImplementation deps.leakcanary.runtime
-    releaseImplementation deps.leakcanary.no_op
     // Optional, if you use support library fragments:
-    debugImplementation deps.leakcanary.support_fragment
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'com.alibaba:arouter-api:1.4.1'

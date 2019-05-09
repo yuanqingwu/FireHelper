@@ -1,4 +1,4 @@
-package com.wyq.firehelper.ui.widget.multiedittext;
+package com.wyq.firehelper.ui.widget.edittext.multiedittext;
 
 public interface MultiEditText {
 

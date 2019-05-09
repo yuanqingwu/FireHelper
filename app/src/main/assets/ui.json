@@ -81,7 +81,7 @@
         "description": ""
       },
       {
-        "name": "MultiEditText",
+        "name": "EditText",
         "description": ""
       }
     ]

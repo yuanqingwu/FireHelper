@@ -5,6 +5,7 @@ import android.text.Spanned;
 import android.view.View;
 import android.widget.TextView;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.developkit.R;
 import com.wyq.firehelper.developkit.R2;
@@ -12,10 +13,13 @@ import com.wyq.firehelper.developkit.R2;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
 import io.reactivex.CompletableOnSubscribe;
 import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.Maybe;
 import io.reactivex.MaybeEmitter;
 import io.reactivex.MaybeOnSubscribe;
@@ -261,17 +265,34 @@ public class RxJavaFragment extends BaseCaseFragment {
     }
 
     public void flowable() {
-        Flowable.just("Flowable1", "Flowable2")
+
+        Flowable.create(new FlowableOnSubscribe<String>() {
+            @Override
+            public void subscribe(FlowableEmitter<String> emitter) throws Exception {
+
+                emitter.onNext("Flowable");
+                emitter.onComplete();
+            }
+        }, BackpressureStrategy.DROP)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        new Consumer<String>() {
-                            @Override
-                            public void accept(String s) throws Exception {
-                                resTv.append("\n\n" + s);
-                            }
-                        }
-                );
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        Logger.d("doFinally");
+                    }
+                })
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        resTv.append("\n\n" + s);
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                });
     }
 
     public void completable() {

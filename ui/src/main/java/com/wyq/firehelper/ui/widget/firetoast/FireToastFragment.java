@@ -36,6 +36,14 @@ public class FireToastFragment extends BaseCaseFragment {
                         fireToast.cancel();
                     }
                 }).showCustomToastContinuous(5000,0);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                FireToast.instance(getContext(),"2").msg("子线程简单Toast");
+            }
+        }).start();
+
     }
 
     @Override
