@@ -35,6 +35,8 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.BiConsumer;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -168,6 +170,7 @@ public class RxJavaFragment extends BaseCaseFragment {
 
     @BindView(R2.id.activity_developkit_rxjava_tv_3)
     public TextView textView3;
+
     @Override
     public int attachLayoutRes() {
         return R.layout.developkit_activity_rxjava_layout;
@@ -214,33 +217,48 @@ public class RxJavaFragment extends BaseCaseFragment {
                 emitter.onNext("4");
 
             }
-        }).subscribe(new Observer<String>() {
+        })
+                .filter(new Predicate<String>() {
+                    @Override
+                    public boolean test(String s) throws Exception {
+                        return s.equalsIgnoreCase("2");
+                    }
+                })
+                .map(new Function<String, Integer>() {
+                    @Override
+                    public Integer apply(String s) throws Exception {
 
-            Disposable disposable;
+                        return null;
+                    }
+                }).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Integer>() {
 
-            @Override
-            public void onSubscribe(Disposable d) {
-                disposable = d;
-            }
+                    Disposable disposable;
 
-            @Override
-            public void onNext(String s) {
-                if (s.equals("2")) {
-                    disposable.dispose();
-                }
-                resTv.append(s);
-            }
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        disposable = d;
+                    }
 
-            @Override
-            public void onError(Throwable e) {
-                resTv.append("\n" + e.toString());
-            }
+                    @Override
+                    public void onNext(Integer s) {
+                        if (s == 2) {
+                            disposable.dispose();
+                        }
+                        resTv.append(s + "");
+                    }
 
-            @Override
-            public void onComplete() {
-                resTv.append("\nonComplete");
-            }
-        });
+                    @Override
+                    public void onError(Throwable e) {
+                        resTv.append("\n" + e.toString());
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        resTv.append("\nonComplete");
+                    }
+                });
 
         consumer();
     }

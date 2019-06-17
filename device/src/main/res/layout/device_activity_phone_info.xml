@@ -39,4 +39,13 @@
         android:paddingLeft="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/device_activity_phone_info_battery_tv" />
+
+    <TextView
+        android:id="@+id/device_activity_phone_info_app_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/device_activity_phone_info_connectivity_tv" />
 </androidx.constraintlayout.widget.ConstraintLayout>

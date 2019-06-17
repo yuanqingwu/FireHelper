@@ -165,6 +165,7 @@ public class ArticleConstants {
     public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_0 = new ArticleResource("http://reactivex.io/RxJava/2.x/javadoc/", "RxJava/2.x/javadoc", CATEGORY_WEBSITE, TAG_FRAMEWORK, TAG_JAVA);
     public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_1 = new ArticleResource("https://www.jianshu.com/p/0cd258eecf60", "这可能是最好的RxJava 2.x 教程", CATEGORY_BLOG, TAG_FRAMEWORK, TAG_JAVA);
     public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_2 = new ArticleResource("https://www.jianshu.com/p/b30de498c3cc", "Android - RxJava2.0 操作符整理归纳", CATEGORY_BLOG, TAG_FRAMEWORK, TAG_JAVA);
+    public static final ArticleResource DEVKIT_REACTIVEX_RXJAVA_3 = new ArticleResource("https://juejin.im/post/5b1fbd796fb9a01e8c5fd847", "详解 RxJava 的消息订阅和线程切换原理", CATEGORY_BLOG, TAG_FRAMEWORK, TAG_JAVA);
 
 
     /**
