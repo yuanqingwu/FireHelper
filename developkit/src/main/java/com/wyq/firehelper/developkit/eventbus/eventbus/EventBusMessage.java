@@ -1,12 +1,6 @@
-package com.wyq.firehelper.developkit.eventbus;
+package com.wyq.firehelper.developkit.eventbus.eventbus;
 
 public class EventBusMessage {
-
-    /**
-     * 网页回退
-     */
-    public static final int WEBVIEW_GO_BACK = 1;
-    public static final int WEBVIEW_GO_FORWARD = 2;
 
     private int message = 0;
 

@@ -8,9 +8,10 @@ import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.developkit.R;
 import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.eventbus.eventbus.EventBusMessage;
+import com.wyq.firehelper.developkit.eventbus.eventbus.EventBusMessage1;
 import com.wyq.firehelper.developkit.eventbus.livedata.LiveDataBus;
 import com.wyq.firehelper.developkit.eventbus.rx.RxBus;
-import com.wyq.firehelper.developkit.eventbus.rx.RxBusSimple;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -18,7 +19,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import androidx.lifecycle.Observer;
 import butterknife.BindView;
-import io.reactivex.functions.Consumer;
 
 public class EventBusFragment extends BaseCaseFragment {
 
@@ -89,11 +89,24 @@ public class EventBusFragment extends BaseCaseFragment {
 
     @Subscribe(priority = 1, sticky = true, threadMode = ThreadMode.MAIN_ORDERED)
     public void testEventBus(EventBusMessage message) {
-        Logger.i("message:" + message.getMessage());
+        Logger.i("testEventBus message:" + message.getMessage()+Thread.currentThread().getName());
+    }
+
+    @Subscribe(priority = 1, sticky = true, threadMode = ThreadMode.ASYNC)
+    public void testEventBus1(EventBusMessage message) {
+        Logger.i("testEventBus1 message:" + message.getMessage() +Thread.currentThread().getName());
     }
 
     private void testEventBus(){
-        EventBus.getDefault().post(new EventBusMessage(1));
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                EventBus.getDefault().post(new EventBusMessage(0));
+                EventBus.getDefault().post(new EventBusMessage1(1));
+            }
+        }).start();
+
     }
 
     private void registerRxBus(){
