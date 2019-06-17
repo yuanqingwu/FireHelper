@@ -1,6 +1,7 @@
 package com.wyq.firehelper.device.PhoneInfo;
 
 import android.annotation.TargetApi;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -34,6 +35,8 @@ public class PhoneInfoActivity extends BaseCaseActivity {
     public TextView batteryInfoTv;
     @BindView(R2.id.device_activity_phone_info_connectivity_tv)
     public TextView connectivityinfoTv;
+    @BindView(R2.id.device_activity_phone_info_app_tv)
+    public TextView appInfoTv;
 
     @Override
     protected int attachLayoutRes() {
@@ -97,6 +100,14 @@ public class PhoneInfoActivity extends BaseCaseActivity {
         connectivityInfo.append("\nisConnected:" + ConnectivityUtils.isConnected(this));
         connectivityInfo.append("\nActiveNetworkType:" + convertNetType2Str(ConnectivityUtils.getActiveNetworkType(this)));
         connectivityinfoTv.setText(connectivityInfo.toString());
+
+
+        ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);
+        StringBuilder appInfo = new StringBuilder();
+        appInfo.append("APP\n");
+        appInfo.append("\nmemory limit:"+am.getMemoryClass() +"M");
+
+        appInfoTv.setText(appInfo);
 
         String path = getCacheDir().getAbsolutePath()+"\n" +
 //                    getDataDir().getAbsolutePath()+"\n" +
