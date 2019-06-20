@@ -135,7 +135,6 @@
     <orderEntry type="library" name="Gradle: androidx.slidingpanelayout:slidingpanelayout:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.media:media:1.0.0@aar" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: androidx.test.espresso:espresso-core:3.1.0-alpha3@aar" level="project" />
-    <orderEntry type="library" name="Gradle: co.lujun:androidtagview:1.1.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.coordinatorlayout:coordinatorlayout:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.1.0-alpha01@aar" level="project" />
     <orderEntry type="library" name="Gradle: me.yokeyword:fragmentation:1.3.6@aar" level="project" />
@@ -190,6 +189,7 @@
     <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.1.0-alpha01@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.8.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okio:okio:1.15.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: co.lujun:androidtagview:1.1.7@aar" level="project" />
     <orderEntry type="module" module-name="fireapt-annotation" />
     <orderEntry type="module" module-name="fireapt" />
     <orderEntry type="module" module-name="base" />

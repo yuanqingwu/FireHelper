@@ -176,12 +176,13 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
                 }
 
                 @Override
+                public void onSelectedTagDrag(int position, String text) {
+
+                }
+
+                @Override
                 public void onTagCrossClick(int position) {
-                    //cross间距太大
-//                    if (tagContainerLayout.getTagView(position).isEnableCross()) {
-//                        tagContainerLayout.getTagView(position).setEnableCross(false);
-//                        tagContainerLayout.getTagView(position).setTagBackgroundColor(Color.WHITE);
-//                    }
+
                 }
             });
         }
