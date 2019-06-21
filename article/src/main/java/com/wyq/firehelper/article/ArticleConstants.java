@@ -118,6 +118,7 @@ public class ArticleConstants {
     public static final ArticleResource _75 = new ArticleResource("https://mp.weixin.qq.com/s/2MsEAR9pQfMr1Sfs7cPdWQ", "Android 内存优化总结&实践", CATEGORY_BLOG, TAG_OPTIMIZATION);
     public static final ArticleResource _76 = new ArticleResource("http://akarnokd.blogspot.com/", "Advanced Reactive Java", CATEGORY_BLOG, TAG_PERSONAL_BLOG_SITE, TAG_JAVA);
     public static final ArticleResource _77 = new ArticleResource("http://blog.nimbledroid.com/2016/04/06/slow-ClassLoader.getResourceAsStream-zh.html", "揭秘在安卓平台上奇慢无比的 ClassLoader.getResourceAsStream", CATEGORY_BLOG, TAG_OPTIMIZATION);
+    public static final ArticleResource _78 = new ArticleResource("http://benjaminwhx.com/2018/05/05/%E8%AF%B4%E8%AF%B4%E9%98%9F%E5%88%97Queue/", "说说队列Queue", CATEGORY_BLOG, TAG_JAVA);
 
 
     /**

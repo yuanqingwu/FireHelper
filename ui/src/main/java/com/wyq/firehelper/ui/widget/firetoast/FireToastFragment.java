@@ -2,6 +2,7 @@ package com.wyq.firehelper.ui.widget.firetoast;
 
 import android.view.View;
 
+import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
 
@@ -29,6 +30,8 @@ public class FireToastFragment extends BaseCaseFragment {
 
     @Override
     public void initView(View view) {
+        Logger.i("notificationEnabled:"+FireCustomToast.notificationEnabled(getContext()));
+
         FireToast.instance(getContext(), "1").setText("123456789").setHeadImg(getContext().getResources().getDrawable(R.drawable.ic_vd_face_cyan_24dp)).setTextSize(30)
                 .setOnDoubleClickListener(new FireToast.OnDoubleClickListener() {
                     @Override
