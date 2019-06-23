@@ -119,6 +119,7 @@ public class ArticleConstants {
     public static final ArticleResource _76 = new ArticleResource("http://akarnokd.blogspot.com/", "Advanced Reactive Java", CATEGORY_BLOG, TAG_PERSONAL_BLOG_SITE, TAG_JAVA);
     public static final ArticleResource _77 = new ArticleResource("http://blog.nimbledroid.com/2016/04/06/slow-ClassLoader.getResourceAsStream-zh.html", "揭秘在安卓平台上奇慢无比的 ClassLoader.getResourceAsStream", CATEGORY_BLOG, TAG_OPTIMIZATION);
     public static final ArticleResource _78 = new ArticleResource("http://benjaminwhx.com/2018/05/05/%E8%AF%B4%E8%AF%B4%E9%98%9F%E5%88%97Queue/", "说说队列Queue", CATEGORY_BLOG, TAG_JAVA);
+    public static final ArticleResource _79 = new ArticleResource("https://www.jianshu.com/u/1c68d0bad5a2", "得到团队组件化", CATEGORY_BLOG, TAG_ARCHITECTURE,TAG_COMPANY_BLOG_SITE);
 
 
     /**
