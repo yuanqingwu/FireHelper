@@ -37,6 +37,21 @@ android {
         }
     }
 
+    signingConfigs {
+        release {
+            storeFile file('../fire_common_keystore.jks')
+            storePassword 'fire_common_keystore'
+            keyAlias 'fire_common_keystore'
+            keyPassword 'fire_common_keystore'
+        }
+        debug {
+            storeFile file('../fire_common_keystore.jks')
+            storePassword 'fire_common_keystore'
+            keyAlias 'fire_common_keystore'
+            keyPassword 'fire_common_keystore'
+        }
+    }
+
     dataBinding {
         enabled = true
     }
