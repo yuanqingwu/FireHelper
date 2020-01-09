@@ -8,12 +8,14 @@ import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
 import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.widget.firetoast.FireToast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 
 public class BottomDialogFragment extends BaseCaseFragment implements View.OnClickListener {
@@ -71,19 +73,21 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
     }
 
 
-    public void initBottomSheetListDialog(){
-        bottomSheetDialog = new BottomSheetDialog(getContext());
-        bottomSheetDialog.setCancelable(true);
-        bottomSheetDialog.setCanceledOnTouchOutside(true);
-        bottomSheetDialog.setContentView(R.layout.ui_dialog_bottom_dialog_list_layout);
-        RecyclerView recyclerView = (RecyclerView)bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.VERTICAL,false));
+    public void initBottomSheetListDialog() {
         List<String> list = new ArrayList<>();
-        for(int i=0;i<20;i++){
-            list.add("item: "+i);
+        for (int i = 0; i < 20; i++) {
+            list.add("item: " + i);
         }
-        TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(list);
-        recyclerView.setAdapter(adapter);
+
+        BottomChooserDialog bottomChooserDialog = new BottomChooserDialog();
+
+        bottomChooserDialog.build(getContext(), list, new BottomChooserDialog.OnItemChooseListener() {
+            @Override
+            public void onChoose(int position) {
+                FireToast.instance(getContext()).setText("" + position).show();
+                bottomChooserDialog.dismiss();
+            }
+        }).show();
     }
 
     @Override
@@ -95,7 +99,7 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
 
         } else if (i == R.id.ui_activity_bottom_dialog_show_list_bt) {
             initBottomSheetListDialog();
-            bottomSheetDialog.show();
+//            bottomSheetDialog.show();
 
         } else if (i == R.id.ui_dialog_bottom_dialog_ok_bt || i == R.id.ui_dialog_bottom_dialog_cancel_bt) {
             bottomSheetDialog.cancel();

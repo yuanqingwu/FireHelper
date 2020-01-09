@@ -149,13 +149,13 @@ ext.build_versions = build_versions
 ext.deps = deps
 
 def addRepos(RepositoryHandler handler) {
-    handler.google()
-    handler.jcenter()
     handler.maven {
         url "https://jitpack.io"
     }
     handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
     handler.maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+    handler.google()
+    handler.jcenter()
 }
 
 ext.addRepos = this.&addRepos
