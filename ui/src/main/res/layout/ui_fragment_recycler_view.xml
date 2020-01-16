@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ui_fragment_recycler_view_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/ui_fragment_recycler_view_menu_chooser_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="menu chooser" />
+
+    <Button
+        android:id="@+id/ui_fragment_recycler_view_snap_helper_bt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="snap helper" />
+</LinearLayout>

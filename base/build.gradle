@@ -64,6 +64,8 @@ dependencies {
     api 'me.yokeyword:fragmentation:1.3.6'
     api 'me.yokeyword:fragmentation-swipeback:1.3.6'
 
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+
     implementation deps.dagger.runtime
     annotationProcessor deps.dagger.compiler
 
