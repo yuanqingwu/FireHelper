@@ -3,13 +3,16 @@ package com.wyq.firehelper.developkit;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.wyq.firehelper.article.base.CaseActivity;
 import com.wyq.firehelper.base.BaseFragment;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
+import com.wyq.firehelper.developkit.databinding.DevelopkitFragmentChildLayoutBinding;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,22 +20,24 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class DKPagerChildFragment extends BaseFragment {
 
-    @BindView(R2.id.developkit_fragment_child_recycler_view)
     public RecyclerView recyclerView;
 
     private DKRecyclerViewAdapter adapter;
 
     private List<KitInfo> infoList;
 
+
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_fragment_child_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitFragmentChildLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -46,6 +51,7 @@ public class DKPagerChildFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        recyclerView = ((DevelopkitFragmentChildLayoutBinding)binding).developkitFragmentChildRecyclerView;
         adapter = new DKRecyclerViewAdapter(getContext());
         adapter.setData(infoList);
 

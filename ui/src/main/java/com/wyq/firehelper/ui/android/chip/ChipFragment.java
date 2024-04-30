@@ -1,14 +1,17 @@
 package com.wyq.firehelper.ui.android.chip;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
-
-import butterknife.BindView;
+import com.wyq.firehelper.ui.databinding.UiFragmentAndroidChipBinding;
 
 /**
  * @author yuanqingwu
@@ -16,10 +19,7 @@ import butterknife.BindView;
  */
 public class ChipFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_fragment_android_chip_chip_group)
     public ChipGroup chipGroup;
-    @BindView(R2.id.ui_fragment_android_chip_chip)
-    public Chip chip;
 
     @Override
     public String[] getArticleFilters() {
@@ -32,8 +32,8 @@ public class ChipFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_android_chip;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentAndroidChipBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -43,6 +43,7 @@ public class ChipFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
+        chipGroup = ((UiFragmentAndroidChipBinding)binding).uiFragmentAndroidChipChipGroup;
         chipGroup.setChipSpacing(16);
         for (int i = 0; i < 20; i++) {
             Chip chip = new Chip(getContext());

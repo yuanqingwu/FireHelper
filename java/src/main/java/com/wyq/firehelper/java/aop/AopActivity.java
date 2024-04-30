@@ -1,31 +1,30 @@
 package com.wyq.firehelper.java.aop;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.java.R;
-import com.wyq.firehelper.java.R2;
 import com.wyq.firehelper.java.aop.aspectj.FireSingleClick;
+import com.wyq.firehelper.java.databinding.AopActivityAopLayoutBinding;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class AopActivity extends BaseActivity {
 
-    @BindView(R2.id.toolbar)
     public Toolbar toolbar;
-    @BindView(R2.id.aop_activity_aop_tv)
     public TextView textView;
-    @BindView(R2.id.aop_activity_aop_bt)
     public Button button;
 
     public int index = 0;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.aop_activity_aop_layout;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return AopActivityAopLayoutBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -35,6 +34,10 @@ public class AopActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        toolbar = ((AopActivityAopLayoutBinding)viewBinding).aopActivityAopToolbar.toolbar;
+        textView = ((AopActivityAopLayoutBinding)viewBinding).aopActivityAopTv;
+        button = ((AopActivityAopLayoutBinding)viewBinding).aopActivityAopBt;
+
         textView.setText("AOP");
         button.setText("Filtering too fast clicks");
         button.setOnClickListener(new View.OnClickListener() {

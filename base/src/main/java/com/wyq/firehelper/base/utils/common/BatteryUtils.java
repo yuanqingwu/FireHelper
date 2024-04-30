@@ -14,7 +14,7 @@ import static android.content.Intent.EXTRA_DOCK_STATE_LE_DESK;
 
 public class BatteryUtils {
 
-    private static String TAG = BatteryUtils.class.getSimpleName();
+    private static final String TAG = BatteryUtils.class.getSimpleName();
 
     public static int getLevel(Context context) {
         IntentFilter filter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);

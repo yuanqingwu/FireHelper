@@ -29,9 +29,9 @@ public class BottomChooserDialog {
         bottomSheetDialog.setCancelable(true);
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.setContentView(R.layout.ui_dialog_bottom_dialog_list_layout);
-        bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
+        bottomSheetDialog.getWindow().findViewById(com.google.android.material.R.id.design_bottom_sheet).setBackgroundResource(android.R.color.transparent);
 
-        RecyclerView recyclerView = (RecyclerView) bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+        RecyclerView recyclerView = bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, RecyclerView.VERTICAL, false));
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(titleList);
         recyclerView.setAdapter(adapter);

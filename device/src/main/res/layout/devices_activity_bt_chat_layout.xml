@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/toolbar"/>
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
     <ListView
         android:id="@+id/bt_chat_listview"

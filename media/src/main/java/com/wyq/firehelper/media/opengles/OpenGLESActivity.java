@@ -4,25 +4,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLSurfaceView;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 
-import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.media.R;
-import com.wyq.firehelper.media.R2;
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
-import butterknife.BindView;
+import com.wyq.firehelper.base.BaseActivity;
+import com.wyq.firehelper.media.databinding.MediaActivityOpenglesBinding;
 
 public class OpenGLESActivity extends BaseActivity implements SurfaceTexture.OnFrameAvailableListener {
 
 
-    @BindView(R2.id.media_activity_opengles_gl_sv)
     public GLSurfaceView glSurfaceView;
 
     private FireGlRenderer glRenderer;
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.media_activity_opengles;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return MediaActivityOpenglesBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -32,6 +33,8 @@ public class OpenGLESActivity extends BaseActivity implements SurfaceTexture.OnF
 
     @Override
     public void initView() {
+        glSurfaceView = ((MediaActivityOpenglesBinding)viewBinding).mediaActivityOpenglesGlSv;
+
         glRenderer = new FireGlRenderer();
         glSurfaceView.setEGLContextClientVersion(2);
         glSurfaceView.setRenderer(glRenderer);

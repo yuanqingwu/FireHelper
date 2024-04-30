@@ -17,8 +17,8 @@ import java.util.List;
 
 public class ChatListAdapter extends BaseAdapter {
 
-    private List<BtMessage> list;
-    private Context context;
+    private final List<BtMessage> list;
+    private final Context context;
 
     public ChatListAdapter(Context context, List<BtMessage> list) {
         this.context = context;
@@ -45,7 +45,7 @@ public class ChatListAdapter extends BaseAdapter {
         Holder holder = new Holder();
         if (convertView == null) {
             convertView = LayoutInflater.from(context).inflate(R.layout.bt_chat_item, parent, false);
-            holder.textView = (TextView) convertView.findViewById(R.id.bt_chat_message_text);
+            holder.textView = convertView.findViewById(R.id.bt_chat_message_text);
             convertView.setTag(holder);
         } else {
             holder = (Holder) convertView.getTag();

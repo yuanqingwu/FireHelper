@@ -9,24 +9,21 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import butterknife.ButterKnife;
+import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<VB extends ViewBinding> extends Fragment {
 
+    protected VB binding;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(attachLayoutRes(), container, false);
-        ButterKnife.bind(this, view);
-
+        binding = getViewBinding(inflater,container);
         initData();
-        initView(view);
-
-        return view;
+        initView(binding.getRoot());
+        return binding.getRoot();
     }
 
-    @LayoutRes
-    protected abstract int attachLayoutRes();
+    protected abstract VB getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container);
 
     /**
      * 在此填充页面需展示的数据

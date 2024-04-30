@@ -24,8 +24,8 @@ public class UIRecyclerViewAdapter extends RecyclerView.Adapter<UIRecyclerViewAd
         this.listener = listener;
     }
 
-    private List<UiInfoBean> infoList = new ArrayList<>();
-    private LayoutInflater inflater;
+    private final List<UiInfoBean> infoList = new ArrayList<>();
+    private final LayoutInflater inflater;
 
     public UIRecyclerViewAdapter(Context context) {
         inflater = LayoutInflater.from(context);
@@ -71,12 +71,13 @@ public class UIRecyclerViewAdapter extends RecyclerView.Adapter<UIRecyclerViewAd
 
     class UIViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView titleTV, descTv;
+        private final TextView titleTV;
+        private final TextView descTv;
 
         public UIViewHolder(View itemView) {
             super(itemView);
-            titleTV = (TextView) itemView.findViewById(R.id.activity_developkit_main_recycler_view_title);
-            descTv = (TextView) itemView.findViewById(R.id.activity_developkit_main_recycler_view_desc);
+            titleTV = itemView.findViewById(R.id.activity_developkit_main_recycler_view_title);
+            descTv = itemView.findViewById(R.id.activity_developkit_main_recycler_view_desc);
         }
     }
 }

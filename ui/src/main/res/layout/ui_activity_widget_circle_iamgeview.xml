@@ -9,13 +9,4 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.wyq.firehelper.ui.widget.circleimageview.CircleImageView
-        android:id="@+id/ui_activity_widget_circle_iamgeview_image_alpha"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@+id/ui_activity_widget_circle_iamgeview_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 </RelativeLayout>

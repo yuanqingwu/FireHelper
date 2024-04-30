@@ -15,12 +15,12 @@ import retrofit2.Response;
 @Singleton
 public class UserRepository {
 
-    private Webservice webservice;
+    private final Webservice webservice;
 
-    private ConcurrentHashMap<String, LiveData<UserEntity>> userCache;
+    private final ConcurrentHashMap<String, LiveData<UserEntity>> userCache;
 
-    private UserDao userDao;
-    private Executor executor;
+    private final UserDao userDao;
+    private final Executor executor;
 
     public static final int FRESH_TIMEOUT = 24 * 60 * 60 * 1000;
 

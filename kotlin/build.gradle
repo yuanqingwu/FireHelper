@@ -1,17 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.wyq.firehelper.kotlin'
+    compileSdkVersion build_versions.target_sdk
 
     defaultConfig {
 //        applicationId "com.wyq.firehelper.kotlin"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -34,8 +33,15 @@ android {
         generateStubs = true
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    viewBinding{
+        enable = true
     }
 }
 
@@ -57,9 +63,8 @@ dependencies {
     implementation 'com.google.dagger:dagger-android-support:2.21'
     kapt 'com.google.dagger:dagger-android-processor:2.21'
 
-//    implementation 'com.alibaba:arouter-api:1.4.1'
-    kapt 'com.alibaba:arouter-compiler:1.2.2'
-//    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation deps.arouter.api
+    annotationProcessor deps.arouter.compiler
     kapt deps.glide.compiler
     kapt deps.dagger.compiler
 

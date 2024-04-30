@@ -4,15 +4,19 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.orhanobut.logger.Logger;
-import com.wyq.firehelper.R;
 import com.wyq.firehelper.base.BaseCaseFragment;
+import com.wyq.firehelper.databinding.FrameworkFragmentLocalBroadcastBinding;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * author: Uni.W
@@ -22,11 +26,10 @@ import butterknife.BindView;
  */
 public class LocalBroadcastFragment extends BaseCaseFragment {
 
-    @BindView(R.id.framework_activity_local_broadcast_res_tv)
     public TextView textView;
 
     private LBReceiver receiver;
-    private String ACTION = "LocalBroadcast";
+    private final String ACTION = "LocalBroadcast";
 
     @Override
     public String[] getArticleFilters() {
@@ -39,8 +42,8 @@ public class LocalBroadcastFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.framework_fragment_local_broadcast;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return FrameworkFragmentLocalBroadcastBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -50,6 +53,7 @@ public class LocalBroadcastFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
+        textView = ((FrameworkFragmentLocalBroadcastBinding)binding).frameworkActivityLocalBroadcastResTv;
         receiver = new LBReceiver();
         LocalBroadcastManager.getInstance(getActivity()).registerReceiver(receiver, new IntentFilter(ACTION));
 

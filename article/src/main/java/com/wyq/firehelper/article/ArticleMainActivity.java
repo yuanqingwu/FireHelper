@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.databinding.ArticleActivityMainBinding;
 import com.wyq.firehelper.article.entity.ArticleResource;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
@@ -18,6 +20,7 @@ import com.wyq.firehelper.base.utils.MMKVContract;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
@@ -25,7 +28,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
+
 import co.lujun.androidtagview.ColorFactory;
 import co.lujun.androidtagview.TagContainerLayout;
 import co.lujun.androidtagview.TagView;
@@ -36,11 +40,8 @@ import co.lujun.androidtagview.TagView;
 @Route(path = NavigationManager.NAVIGATION_ARTICLE_MAIN_ACTIVITY)
 public class ArticleMainActivity extends BaseActivity implements SearchView.OnCloseListener, View.OnClickListener, SearchView.OnQueryTextListener, View.OnFocusChangeListener {
 
-    @BindView(R2.id.activity_article_recyclerview)
     public RecyclerView recyclerView;
-    @BindView(R2.id.activity_article_tag_container_layout)
     public TagContainerLayout tagContainerLayout;
-    @BindView(R2.id.activity_article_main_toolbar)
     public Toolbar toolbar;
 
     public List<ArticleResource> resourceList;
@@ -53,9 +54,10 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
      * 记录上次点击tag的位置
      */
 //    public int tagClickPos = 0;
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.article_activity_main;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return ArticleActivityMainBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -65,6 +67,9 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
 
     @Override
     public void initView() {
+        recyclerView = findViewById(R.id.activity_article_recyclerview);
+        tagContainerLayout = findViewById(R.id.activity_article_tag_container_layout);
+        toolbar = findViewById(R.id.activity_article_main_toolbar);
 //        initSearchView();
         initTagLayout();
         initRecycleView();
@@ -213,16 +218,16 @@ public class ArticleMainActivity extends BaseActivity implements SearchView.OnCl
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        getMenuInflater().inflate(R.menu.menu_search, menu);
-        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
-        searchView.setQueryHint("文章搜索");
-
-        searchView.setOnSearchClickListener(this);
-
-//        searchView.setOnCloseListener(this);
-        searchView.setOnQueryTextFocusChangeListener(this);
-
-        searchView.setOnQueryTextListener(this);
+//        getMenuInflater().inflate(R.menu.menu_search, menu);
+//        searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+//        searchView.setQueryHint("文章搜索");
+//
+//        searchView.setOnSearchClickListener(this);
+//
+////        searchView.setOnCloseListener(this);
+//        searchView.setOnQueryTextFocusChangeListener(this);
+//
+//        searchView.setOnQueryTextListener(this);
 
         return super.onCreateOptionsMenu(menu);
     }

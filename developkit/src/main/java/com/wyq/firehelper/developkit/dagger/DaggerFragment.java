@@ -1,21 +1,24 @@
 package com.wyq.firehelper.developkit.dagger;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
+
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityDaggerLayoutBinding;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
-import butterknife.BindView;
 import dagger.Lazy;
 
 public class DaggerFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.activity_developkit_dagger_res_tv)
     public TextView resTv;
 
     //@Named("context")
@@ -30,7 +33,7 @@ public class DaggerFragment extends BaseCaseFragment {
 
     /**
      * 懒加载Lazy和强制重新加载Provider
-     *  lazyPerson 多次get 的是同一个对象，providerPerson多次get，每次get都会尝试创建新的对象。
+     * lazyPerson 多次get 的是同一个对象，providerPerson多次get，每次get都会尝试创建新的对象。
      */
     @PersonWithName
     @Inject
@@ -51,8 +54,8 @@ public class DaggerFragment extends BaseCaseFragment {
 //    }
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_activity_dagger_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitActivityDaggerLayoutBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -63,14 +66,15 @@ public class DaggerFragment extends BaseCaseFragment {
 
     @Override
     public void initView(View view) {
+        resTv = ((DevelopkitActivityDaggerLayoutBinding) binding).activityDevelopkitDaggerResTv;
         //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
         PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(getActivity(), "wyq")).build();
         component.inject(this);
         StringBuilder builder = new StringBuilder();
-        builder.append(person1.logPerson()+"\n");
-        builder.append(person2.logPerson()+"\n");
-        builder.append(personLazy.get().logPerson()+"\n");
-        builder.append(personProvider.get().logPerson()+"\n");
+        builder.append(person1.logPerson() + "\n");
+        builder.append(person2.logPerson() + "\n");
+        builder.append(personLazy.get().logPerson() + "\n");
+        builder.append(personProvider.get().logPerson() + "\n");
         resTv.setText(builder);
 
         //1. ActivityModule 也需要创建Person时的Context对象，但是本类中却没有 providesContext() 的方法，因为它通过 ActivityComponent依赖于 AppComponent，所以可以通过 AppComponent中的 providesContext() 方法获取到Context对象。

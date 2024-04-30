@@ -165,7 +165,7 @@ public class BluetoothLeService extends Service {
                 for(byte byteChar : data) {
                     stringBuilder.append(String.format("%02X ", byteChar));
                 }
-                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder.toString());
+                intent.putExtra(EXTRA_DATA, new String(data) + "\n" + stringBuilder);
             }
         }
         sendBroadcast(intent);
@@ -206,7 +206,7 @@ public class BluetoothLeService extends Service {
             return false;
         }
 
-        if (mBluetoothDeviceAddress != null && address.equals(mBluetoothDeviceAddress) && mBluetoothGatt != null) {
+        if (address.equals(mBluetoothDeviceAddress) && mBluetoothGatt != null) {
             Log.d(TAG, "Trying to use an existing mBluetoothGatt for connection.");
             if (mBluetoothGatt.connect()) {
                 mConnectionState = STATE_CONNECTING;

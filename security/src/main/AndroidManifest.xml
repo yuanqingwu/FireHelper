@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wyq.firehelper.security">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <activity android:name=".SecurityActivity">
+        <activity android:name=".SecurityActivity" android:exported="true">
         </activity>
-        <activity android:name=".encryption.EncryptActivity" />
+        <activity android:name=".encryption.EncryptActivity" android:exported="true"/>
     </application>
 
 </manifest>

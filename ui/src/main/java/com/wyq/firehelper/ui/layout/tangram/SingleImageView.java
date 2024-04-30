@@ -53,7 +53,7 @@ public class SingleImageView extends LinearLayout implements ITangramViewLifeCyc
 
     public TextView titleTextView;
 
-    private Context context;
+    private final Context context;
 
     private final int DEFAULT_ICON_SIZE = Style.dp2px(100);
 
@@ -116,7 +116,7 @@ public class SingleImageView extends LinearLayout implements ITangramViewLifeCyc
                 }
             }).subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
-            .compose(lifeCycleProvider.<String>bindUntil(BDE.UNBIND))
+            .compose(lifeCycleProvider.bindUntil(BDE.UNBIND))
             .subscribe(new Consumer<String>() {
                 @Override
                 public void accept(String s) throws Exception {
@@ -139,7 +139,7 @@ public class SingleImageView extends LinearLayout implements ITangramViewLifeCyc
                 }
             }).subscribeOn(Schedulers.computation())
                 .observeOn(AndroidSchedulers.mainThread())
-                .compose(lifeCycleProvider.<Integer>bindUntil(BDE.UNBIND))
+                .compose(lifeCycleProvider.bindUntil(BDE.UNBIND))
                 .subscribe(new Consumer<Integer>() {
                     @Override
                     public void accept(Integer s) throws Exception {

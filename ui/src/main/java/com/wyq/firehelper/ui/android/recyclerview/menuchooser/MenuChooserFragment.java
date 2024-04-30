@@ -1,23 +1,26 @@
 package com.wyq.firehelper.ui.android.recyclerview.menuchooser;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiFragmentMenuChooserBinding;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * @author yuanqingwu
@@ -29,7 +32,6 @@ public class MenuChooserFragment extends BaseCaseFragment implements SelectListe
     private LinearLayoutManager linearLayoutManager;
     private TvRecyclerViewAdapter adapter;
 
-    @BindView(R2.id.ui_activity_recycler_view)
     public RecyclerView recyclerView;
 
     @Override
@@ -43,8 +45,8 @@ public class MenuChooserFragment extends BaseCaseFragment implements SelectListe
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_menu_chooser;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentMenuChooserBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -54,6 +56,7 @@ public class MenuChooserFragment extends BaseCaseFragment implements SelectListe
 
     @Override
     protected void initView(View view) {
+        recyclerView = ((UiFragmentMenuChooserBinding)binding).uiActivityRecyclerView;
         linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL));
@@ -76,7 +79,7 @@ public class MenuChooserFragment extends BaseCaseFragment implements SelectListe
         detailRVFragment.setSelectListener(this);
         fragmentSelect(detailRVFragment, detailRVFragment.getClass().getSimpleName());
         if (detailRVFragment instanceof SelectListener) {
-            this.selectListener = (SelectListener) detailRVFragment;
+            this.selectListener = detailRVFragment;
         }
     }
 

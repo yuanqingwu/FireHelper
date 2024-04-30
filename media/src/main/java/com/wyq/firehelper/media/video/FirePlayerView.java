@@ -72,7 +72,7 @@ public class FirePlayerView extends SurfaceView implements MediaController.Media
     private AudioFocusRequest mAudioFocusRequest;
     private int mAudioSession;
     private int mAudioFocusType = AudioManager.AUDIOFOCUS_GAIN; // legacy focus gain
-    private Context mContext;
+    private final Context mContext;
 
     private SurfaceHolder mSurfaceHolder = null;
 //    private MediaController mMediaController;

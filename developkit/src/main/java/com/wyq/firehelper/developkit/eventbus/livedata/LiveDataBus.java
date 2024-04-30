@@ -36,7 +36,7 @@ public class LiveDataBus {
     }
 
     protected void remove(String key){
-        if(mBus != null && mBus.containsKey(key)){
+        if(mBus != null){
             mBus.remove(key);
         }
     }

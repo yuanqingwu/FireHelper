@@ -62,7 +62,7 @@ package com.wyq.firehelper.base.utils.common;
             throw new IllegalArgumentException("bcdToStr input arg is null");
         }
 
-        char HEX_DIGITS[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+        char[] HEX_DIGITS = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
         StringBuilder sb = new StringBuilder(b.length * 2);
         for (int i = 0; i < b.length; i++) {
             sb.append(HEX_DIGITS[(b[i] & 0xf0) >>> 4]);
@@ -87,11 +87,11 @@ package com.wyq.firehelper.base.utils.common;
             }
             len = str.length();
         }
-        byte abt[] = new byte[len];
+        byte[] abt = new byte[len];
         if (len >= 2) {
             len = len / 2;
         }
-        byte bbt[] = new byte[len];
+        byte[] bbt = new byte[len];
         abt = str.getBytes();
         int j, k;
         for (int p = 0; p < str.length() / 2; p++) {
@@ -254,13 +254,13 @@ package com.wyq.firehelper.base.utils.common;
         }
 
         if (endian == EEndian.BIG_ENDIAN) {
-            return ((from[offset] << 56) & 0xff00000000000000L) | ((from[offset + 1] << 48) & 0xff000000000000L)
-                    | ((from[offset + 2] << 40) & 0xff0000000000L) | ((from[offset + 3] << 32) & 0xff00000000L)
+            return (((long) from[offset] << 56) & 0xff00000000000000L) | (((long) from[offset + 1] << 48) & 0xff000000000000L)
+                    | (((long) from[offset + 2] << 40) & 0xff0000000000L) | (((long) from[offset + 3] << 32) & 0xff00000000L)
                     | ((from[offset + 4] << 24) & 0xff000000) | ((from[offset + 5] << 16) & 0xff0000)
                     | ((from[offset + 6] << 8) & 0xff00) | (from[offset + 7] & 0xff);
         } else {
-            return ((from[offset + 7] << 56) & 0xff00000000000000L) | ((from[offset + 6] << 48) & 0xff000000000000L)
-                    | ((from[offset + 5] << 40) & 0xff0000000000L) | ((from[offset + 4] << 32) & 0xff00000000L)
+            return (((long) from[offset + 7] << 56) & 0xff00000000000000L) | (((long) from[offset + 6] << 48) & 0xff000000000000L)
+                    | (((long) from[offset + 5] << 40) & 0xff0000000000L) | (((long) from[offset + 4] << 32) & 0xff00000000L)
                     | ((from[offset + 3] << 24) & 0xff000000) | ((from[offset + 2] << 16) & 0xff0000)
                     | ((from[offset + 1] << 8) & 0xff00) | (from[offset] & 0xff);
         }
@@ -326,7 +326,7 @@ package com.wyq.firehelper.base.utils.common;
      * padding position
      * 
      */
-    public static enum EPaddingPosition {
+    public enum EPaddingPosition {
         /**
          * padding left
          */
@@ -341,7 +341,7 @@ package com.wyq.firehelper.base.utils.common;
      * endian type
      * 
      */
-    public static enum EEndian {
+    public enum EEndian {
         /**
          * little endian
          */

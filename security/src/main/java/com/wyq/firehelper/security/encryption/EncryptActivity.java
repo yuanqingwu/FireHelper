@@ -2,6 +2,7 @@ package com.wyq.firehelper.security.encryption;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,8 +18,7 @@ import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.base.aop.aspectj.FireSingleClick;
 import com.wyq.firehelper.base.utils.common.LogUtils;
-import com.wyq.firehelper.security.R;
-import com.wyq.firehelper.security.R2;
+import com.wyq.firehelper.security.databinding.SecurityActivityEncryptMainBinding;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
@@ -27,22 +27,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class EncryptActivity extends BaseCaseActivity {
 
-    @BindView(R2.id.activity_encrypt_spinner)
     public Spinner spinner;
-    @BindView(R2.id.activity_encrypt_result_tv)
     public TextView resultTv;
-    @BindView(R2.id.activity_encrypt_invoke_bt)
     public Button button;
-    @BindView(R2.id.activity_encrypt_param_layout)
     public LinearLayout linearLayout;
-    @BindView(R2.id.activity_encrypt_text_input_layout)
     public TextInputLayout textInputLayout;
-    @BindView(R2.id.activity_encrypt_edittext)
     public TextInputEditText inputEt;
 
     private List<Method> methods = null;
@@ -53,8 +48,8 @@ public class EncryptActivity extends BaseCaseActivity {
     private int checkedPosition = 0;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.security_activity_encrypt_main;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return SecurityActivityEncryptMainBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -92,7 +87,12 @@ public class EncryptActivity extends BaseCaseActivity {
 
     @Override
     public void initView() {
-//        inputLayouts = new ArrayList<>();
+         spinner = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptSpinner;
+        resultTv = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptResultTv;
+        button = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptInvokeBt;
+        linearLayout = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptParamLayout;
+        textInputLayout = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptTextInputLayout;
+        inputEt = ((SecurityActivityEncryptMainBinding)viewBinding).activityEncryptEdittext;
 
         textInputLayout.setHint("data");
 
@@ -195,7 +195,7 @@ public class EncryptActivity extends BaseCaseActivity {
                     if (returnType != null) {
                         name = returnType.getSimpleName() + "  " + name;
                     }
-                    if (parameterTypes != null && parameterTypes.length > 0) {
+                    if (parameterTypes != null) {
                         for (Class clazzType : parameterTypes) {
                             name += "  " + clazzType.getSimpleName();
                         }

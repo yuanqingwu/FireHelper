@@ -138,7 +138,7 @@ public class LogUtils {
     }
 
     private static class FileLogger implements Runnable {
-        private static FileLogger inst = new FileLogger();
+        private static final FileLogger inst = new FileLogger();
         private String logPath;// 日志存放的路径
 
         private final ArrayList<String> logList = new ArrayList<String>();
@@ -183,7 +183,7 @@ public class LogUtils {
                 }
                 Throwable cause = e.getCause();
                 if (cause != null) {
-                    logList.add("    Caused by: " + cause.toString());
+                    logList.add("    Caused by: " + cause);
                     elements = cause.getStackTrace();
                     for (int i = 0; i < elements.length; i++) {
                         StackTraceElement element = elements[i];
@@ -224,9 +224,9 @@ public class LogUtils {
             }
         }
 
-        private static SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd HH:mm:ss.SSS",
+        private static final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("MM-dd HH:mm:ss.SSS",
                 Locale.getDefault());
-        private static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",
+        private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd",
                 Locale.getDefault());
 
         public static String getTime() {

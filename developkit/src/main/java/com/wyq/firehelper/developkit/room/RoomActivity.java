@@ -57,7 +57,7 @@ public class RoomActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
         String firstName = roomBinding.developkitActivityRoomFirstEt.getText().toString();
         String lastName = roomBinding.developkitActivityRoomLastEt.getText().toString();
-        UserEntity user = (UserEntity) userViewModel.getObservableUser().getValue();
+        UserEntity user = userViewModel.getObservableUser().getValue();
         if (user == null) {
             user = new UserEntity();
         }

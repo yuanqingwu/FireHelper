@@ -1,26 +1,25 @@
 package com.wyq.firehelper.developkit.dagger;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.widget.TextView;
 
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.base.BaseCaseActivity;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityDaggerLayoutBinding;
 
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
+
 import dagger.Lazy;
 
 public class DaggerActivity extends BaseCaseActivity {
-
-    public TextView textView1;
-    @BindView(R2.id.activity_developkit_dagger_res_tv)
     public TextView resTv;
 
     //@Named("context")
@@ -48,6 +47,8 @@ public class DaggerActivity extends BaseCaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        resTv = ((DevelopkitActivityDaggerLayoutBinding)viewBinding).activityDevelopkitDaggerResTv;
         //        PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this)).build();
         PersonComponent component = DaggerPersonComponent.builder().personModule(new PersonModule(this, "wyq")).build();
         component.inject(this);
@@ -66,8 +67,8 @@ public class DaggerActivity extends BaseCaseActivity {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.developkit_activity_dagger_layout;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DevelopkitActivityDaggerLayoutBinding.inflate(layoutInflater);
     }
 
     @Override

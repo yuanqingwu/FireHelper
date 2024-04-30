@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wyq.firehelper.ui">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.VIBRATE" />
     <application>
-        <activity android:name=".UIMainActivity"></activity>
-        <activity android:name=".layout.tangram.TangramActivity" />
+        <activity android:name=".UIMainActivity" android:exported="true"/>
+        <activity android:name=".layout.tangram.TangramActivity" android:exported="true"/>
     </application>
 
 </manifest>

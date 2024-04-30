@@ -1,18 +1,16 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 //apply plugin: 'kotlin-android'
 //apply plugin: 'kotlin-android-extensions'
 //apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.wyq.firehelper.developkit'
+    compileSdkVersion build_versions.target_sdk
 
     defaultConfig {
 //        applicationId "com.wyq.firehelper.developkit"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -30,6 +28,9 @@ android {
     dataBinding {
         enabled = true
     }
+    viewBinding {
+        enabled = true
+    }
 
     buildTypes {
         release {
@@ -41,11 +42,13 @@ android {
 //    kapt {
 //        generateStubs = true
 //    }
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+//    kotlinOptions {
+//        jvmTarget = '17'
+//    }
 }
 
 dependencies {
@@ -56,8 +59,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'androidx.room:room-runtime:2.1.0-alpha03'
-    annotationProcessor "androidx.room:room-compiler:2.1.0-alpha03"
+    implementation 'androidx.room:room-runtime:2.6.0-alpha01'
+    annotationProcessor "androidx.room:room-compiler:2.6.0-alpha01"
     implementation deps.dagger.runtime
     annotationProcessor deps.dagger.compiler
     implementation deps.glide.runtime
@@ -65,9 +68,8 @@ dependencies {
     implementation deps.picasso
     implementation deps.eventbus
 
-//    implementation 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation deps.arouter.api
+    annotationProcessor deps.arouter.compiler
     annotationProcessor deps.glide.compiler
     annotationProcessor deps.dagger.compiler
 

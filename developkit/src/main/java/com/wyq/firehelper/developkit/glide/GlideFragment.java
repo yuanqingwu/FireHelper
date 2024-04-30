@@ -1,35 +1,26 @@
 package com.wyq.firehelper.developkit.glide;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
+
 import com.bumptech.glide.Glide;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
-
-import butterknife.BindView;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityGlideLayoutBinding;
 
 public class GlideFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.activity_developkit_glide_img_1)
     public ImageView imageView;
-    @BindView(R2.id.activity_developkit_glide_tv)
-    public TextView textView;
-
-//    @Nullable
-//    @Override
-//    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-//        View view = inflater.inflate(R.layout.developkit_activity_glide_layout,container,false);
-//        initData();
-//        initView();
-//        return view;
-//    }
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_activity_glide_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitActivityGlideLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -38,6 +29,7 @@ public class GlideFragment extends BaseCaseFragment {
 
     @Override
     public void initView(View view) {
+        imageView = ((DevelopkitActivityGlideLayoutBinding)binding).activityDevelopkitGlideImg1;
         Glide.with(getActivity()).load("https://github.com/bumptech/glide/raw/master/static/glide_logo.png")
                 .into(imageView);
     }

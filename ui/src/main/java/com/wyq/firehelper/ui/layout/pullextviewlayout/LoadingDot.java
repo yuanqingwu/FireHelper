@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 
 public class LoadingDot extends View {
     private Paint paint;
-    private Context context;
+    private final Context context;
     private boolean shouldVibrator = true;
 
     //default size in 160dpi
@@ -25,9 +25,9 @@ public class LoadingDot extends View {
     private int color = Color.GRAY;
 
     //一个小圆点开始分裂为三个的百分比阈值
-    private float percentThresholdSplit = 0.25f;
+    private final float percentThresholdSplit = 0.25f;
     //三个小圆点开始慢慢消失的百分比阈值
-    private float percentThresholdHide = 0.5f;
+    private final float percentThresholdHide = 0.5f;
 
 
     public LoadingDot(Context context) {

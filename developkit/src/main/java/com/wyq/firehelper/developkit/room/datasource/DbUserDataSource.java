@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 public class DbUserDataSource implements UserDataSource {
 
-    private UserDao userDao;
+    private final UserDao userDao;
 
     public DbUserDataSource(UserDao userDao) {
         this.userDao = userDao;

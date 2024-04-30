@@ -14,7 +14,7 @@ import androidx.customview.widget.ViewDragHelper;
 
 public class DragLayout extends LinearLayout {
 
-    private ViewDragHelper dragHelper;
+    private final ViewDragHelper dragHelper;
 
     public DragLayout(Context context) {
         this(context,null);

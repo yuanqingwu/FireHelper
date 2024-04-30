@@ -1,23 +1,21 @@
 package com.wyq.firehelper.ui.android.transition;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiActivityTransitionBinding;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.transition.Scene;
 import androidx.transition.TransitionInflater;
 import androidx.transition.TransitionManager;
-import butterknife.BindView;
-import butterknife.OnClick;
+import androidx.viewbinding.ViewBinding;
 
 public class TransitionFragment extends BaseCaseFragment {
-
-    @BindView(R2.id.ui_activity_transition_bt)
-    public Button changeBt;
 
     private Scene scene1;
     private Scene scene2;
@@ -39,8 +37,8 @@ public class TransitionFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_transition;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityTransitionBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -51,8 +49,8 @@ public class TransitionFragment extends BaseCaseFragment {
     @Override
     protected void initView(View view) {
 
-        mSceneRoot = (ViewGroup)view.findViewById(R.id.ui_activity_transition_scene_root);
-        scene1 = new Scene(mSceneRoot,(ViewGroup)mSceneRoot.findViewById(R.id.ui_activity_transition_scene_container));
+        mSceneRoot = view.findViewById(R.id.ui_activity_transition_scene_root);
+        scene1 = new Scene(mSceneRoot, mSceneRoot.findViewById(R.id.ui_activity_transition_scene_container));
         scene2 = Scene.getSceneForLayout(mSceneRoot,R.layout.ui_activty_transition_scene_2,getContext());
 
         mTransitionManager = TransitionInflater.from(getContext()).inflateTransitionManager(R.transition.changebounds_translate_manager,mSceneRoot);
@@ -60,12 +58,11 @@ public class TransitionFragment extends BaseCaseFragment {
         //default
         TransitionManager.go(scene1);
 
-    }
+        ((UiActivityTransitionBinding)binding).uiActivityTransitionBt.setOnClickListener(v -> {
+            mTransitionManager.transitionTo(flag?scene2:scene1);
 
-    @OnClick(R2.id.ui_activity_transition_bt)
-    public void onClick(){
-        mTransitionManager.transitionTo(flag?scene2:scene1);
+            flag = !flag;
+        });
 
-        flag = !flag;
     }
 }

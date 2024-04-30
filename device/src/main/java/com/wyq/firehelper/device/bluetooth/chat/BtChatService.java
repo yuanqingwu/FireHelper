@@ -35,7 +35,7 @@ public class BtChatService {
     private ConnectThread connectThread;
     private ChatThread chatThread;
 
-    private BluetoothAdapter adapter;
+    private final BluetoothAdapter adapter;
 
     public List<BtMessage> messageList;
 
@@ -180,7 +180,7 @@ public class BtChatService {
     }
 
     private class AcceptThread extends Thread {
-        private BluetoothServerSocket serverSocket;
+        private final BluetoothServerSocket serverSocket;
 
         public AcceptThread(boolean secure) {
             BluetoothServerSocket tmp = null;
@@ -241,8 +241,8 @@ public class BtChatService {
     }
 
     private class ConnectThread extends Thread {
-        private BluetoothDevice device;
-        private BluetoothSocket socket;
+        private final BluetoothDevice device;
+        private final BluetoothSocket socket;
 
         public ConnectThread(BluetoothDevice device, boolean secure) {
             this.device = device;
@@ -294,9 +294,9 @@ public class BtChatService {
     }
 
     private class ChatThread extends Thread {
-        private BluetoothSocket socket;
-        private InputStream is;
-        private OutputStream os;
+        private final BluetoothSocket socket;
+        private final InputStream is;
+        private final OutputStream os;
 
         public ChatThread(BluetoothSocket socket) {
             this.socket = socket;

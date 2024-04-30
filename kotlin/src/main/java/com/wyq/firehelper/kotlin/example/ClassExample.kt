@@ -30,9 +30,7 @@ class ClassExample(val className: String) {
      * 末尾的 :this(参数:参数类型) 表示构造函数委托，参数个数由被委托方决定。
      * 如果类有主构造函数，那么每个次构造函数都需要委托给主构造函数，可以直接委托或者通过别的次构造 函数间接委托。
      */
-    constructor(className: String, at: Int) : this(className) {
-
-    }
+    constructor(className: String, at: Int) : this(className)
 
     /**
      * 声明一个扩展函数，我们需要用一个 接收者类型 也就是被扩展的类型来作为他的前缀。 下面
@@ -58,9 +56,7 @@ class ClassExample(val className: String) {
 /**
  * 如果构造函数有注解或可见性修饰符，这个 constructor 关键字是必需的，并且这些修饰符在它前面
  */
-class Customer public @Inject constructor(name: String) {
-
-}
+class Customer @Inject public constructor(name: String)
 
 /**
  * 如果派生类有一个主构造函数，其基类型可以（并且必须） 用基类的主构造函数参数就地初始化。
@@ -74,7 +70,7 @@ class MyView : View {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
     /**
      * 注意 Kotlin 并没有 new 关键字。
      *

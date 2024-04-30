@@ -56,7 +56,7 @@ public class VideoRecyclerViewAdapter extends RecyclerView.Adapter {
     protected class VideoViewHolder extends RecyclerView.ViewHolder {
 
 //        private FireVideoControllerView videoControllerView;
-        private FirePlayerView firePlayerView;
+        private final FirePlayerView firePlayerView;
 
         public VideoViewHolder(@NonNull View itemView) {
             super(itemView);

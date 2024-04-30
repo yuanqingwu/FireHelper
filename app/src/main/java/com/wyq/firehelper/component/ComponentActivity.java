@@ -27,12 +27,8 @@ public class ComponentActivity extends BaseRecyclerViewActivity {
         return new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                switch (position) {
-                    case 0:
-                        CaseActivity.instance(ComponentActivity.this,ShareFragment.class.getName());
-                        break;
-                    default:
-                        break;
+                if (position == 0) {
+                    CaseActivity.instance(ComponentActivity.this, ShareFragment.class.getName());
                 }
             }
         };

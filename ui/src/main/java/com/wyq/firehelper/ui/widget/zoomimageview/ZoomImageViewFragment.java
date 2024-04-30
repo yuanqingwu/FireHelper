@@ -1,5 +1,6 @@
 package com.wyq.firehelper.ui.widget.zoomimageview;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -7,24 +8,24 @@ import android.widget.ImageView;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiFragmentZoomImageViewBinding;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.BindView;
 
 public class ZoomImageViewFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.zoom_viewpager)
     public ViewPager mViewPager;
 
-    @BindView(R2.id.ui_activity_image_view_photo_view)
     public PhotoView photoView;
 
-    private int[] mImgs = new int[]{R.drawable.aurora1, R.drawable.aurora2,
+    private final int[] mImgs = new int[]{R.drawable.aurora1, R.drawable.aurora2,
             R.drawable.aurora3};
 
-    private ImageView[] mImageViews = new ImageView[mImgs.length];
+    private final ImageView[] mImageViews = new ImageView[mImgs.length];
 
 
     @Override
@@ -37,9 +38,10 @@ public class ZoomImageViewFragment extends BaseCaseFragment {
         return "ZoomImageView";
     }
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_zoom_image_view;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentZoomImageViewBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -49,6 +51,8 @@ public class ZoomImageViewFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
+        mViewPager = ((UiFragmentZoomImageViewBinding)binding).zoomViewpager;
+        photoView = ((UiFragmentZoomImageViewBinding)binding).uiActivityImageViewPhotoView;
         photoView.setImageResource(mImgs[0]);
 
         mViewPager.setAdapter(new PagerAdapter() {

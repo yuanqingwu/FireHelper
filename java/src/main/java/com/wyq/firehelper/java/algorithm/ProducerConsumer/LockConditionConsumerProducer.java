@@ -33,7 +33,7 @@ public class LockConditionConsumerProducer {
  * 消费者线程
  */
 class ConsumerThread2 extends Thread{
-    private Resource2 resource;
+    private final Resource2 resource;
     public ConsumerThread2(Resource2 resource){
         this.resource = resource;
         //setName("消费者");
@@ -55,7 +55,7 @@ class ConsumerThread2 extends Thread{
  *
  */
 class ProducerThread2 extends Thread{
-    private Resource2 resource;
+    private final Resource2 resource;
     public ProducerThread2(Resource2 resource){
         this.resource = resource;
         setName("生产者");
@@ -78,10 +78,10 @@ class ProducerThread2 extends Thread{
  */
 class Resource2{
     private int num = 0;//当前资源数量
-    private int size = 10;//资源池中允许存放的资源数目
-    private Lock lock;
-    private Condition producerCondition;
-    private Condition consumerCondition;
+    private final int size = 10;//资源池中允许存放的资源数目
+    private final Lock lock;
+    private final Condition producerCondition;
+    private final Condition consumerCondition;
     public Resource2(Lock lock, Condition producerCondition, Condition consumerCondition) {
         this.lock = lock;
         this.producerCondition = producerCondition;

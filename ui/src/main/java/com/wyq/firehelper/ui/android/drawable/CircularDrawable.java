@@ -12,7 +12,7 @@ import androidx.annotation.Nullable;
 
 public class CircularDrawable extends Drawable {
 
-    private Paint paint;
+    private final Paint paint;
 
     public CircularDrawable(int color) {
         paint = new Paint(Paint.ANTI_ALIAS_FLAG);

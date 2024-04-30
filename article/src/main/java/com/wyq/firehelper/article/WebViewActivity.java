@@ -34,19 +34,13 @@ import com.wyq.firehelper.base.navigation.NavigationManager;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 @Route(path = NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
 public class WebViewActivity extends AppCompatActivity {
 
-    @BindView(R2.id.activity_webview_webview)
     public WebView webView;
-    @BindView(R2.id.activity_webview_progress_bar)
     public ProgressBar progressBar;
-    @BindView(R2.id.activity_webview_toolbar)
     public Toolbar toolbar;
-    @BindView(R2.id.activity_webview_toolbar_nail)
     public ImageView nailImage;
 
     private static final String PARAM_NAME = "URL";
@@ -79,7 +73,6 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.webview_activity_layout);
-        ButterKnife.bind(this);
         ARouter.getInstance().inject(this);
 
 //        url = getIntent().getStringExtra(PARAM_NAME);
@@ -88,6 +81,10 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     public void initView() {
+        webView = findViewById(R.id.activity_webview_webview);
+        progressBar = findViewById(R.id.activity_webview_progress_bar);
+        toolbar = findViewById(R.id.activity_webview_toolbar);
+        nailImage = findViewById(R.id.activity_webview_toolbar_nail);
         toolbar.setTitle(url);
         setSupportActionBar(toolbar);
         initToolbarNav(toolbar);
@@ -135,13 +132,13 @@ public class WebViewActivity extends AppCompatActivity {
         ArticleResource resource = ArticleConstants.getArticleByUrl(url);
         int scrollY = webView.getScrollY();
         float scaleSize = webView.getScaleY();
-        Bitmap webIcon = webFavicon == null ? BitmapFactory.decodeResource(getResources(), R.drawable.ic_image_place_holder_128px) : webFavicon;
+        Bitmap webIcon = webFavicon == null ? BitmapFactory.decodeResource(getResources(), com.wyq.firehelper.base.R.drawable.ic_image_place_holder_128px) : webFavicon;
         String title = (webTitle == null || webTitle.isEmpty()) ? url : webTitle;
         ArticleSaveEntity saveEntity = new ArticleSaveEntity(resource, title, webIcon, newUrl, scrollY, scaleSize, "", System.currentTimeMillis());
         boolean result = ArticleRepository.getInstance().save(url, saveEntity);
         if (result) {
             isSaved = true;
-            nailImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_nail_purple_64px));
+            nailImage.setImageDrawable(getResources().getDrawable(com.wyq.firehelper.base.R.drawable.ic_nail_purple_64px));
         }
         return result;
     }
@@ -156,11 +153,11 @@ public class WebViewActivity extends AppCompatActivity {
         boolean hasSaved = ArticleRepository.getInstance().contains(url);
 //        Logger.i("hasSaved:" + hasSaved + " url:" + url);
         if (hasSaved) {
-            nailImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_nail_purple_64px));
+            nailImage.setImageDrawable(getResources().getDrawable(com.wyq.firehelper.base.R.drawable.ic_nail_purple_64px));
             //恢复上次阅读位置
             recoverLocation();
         } else {
-            nailImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_nail_white_64px));
+            nailImage.setImageDrawable(getResources().getDrawable(com.wyq.firehelper.base.R.drawable.ic_nail_white_64px));
         }
 
         return hasSaved;
@@ -169,7 +166,7 @@ public class WebViewActivity extends AppCompatActivity {
     public void cancelSave() {
         if (ArticleRepository.getInstance().delete(url)) {
             isSaved = false;
-            nailImage.setImageDrawable(getResources().getDrawable(R.drawable.ic_nail_white_64px));
+            nailImage.setImageDrawable(getResources().getDrawable(com.wyq.firehelper.base.R.drawable.ic_nail_white_64px));
         }
     }
 
@@ -339,9 +336,9 @@ public class WebViewActivity extends AppCompatActivity {
         settings.setCacheMode(WebSettings.LOAD_DEFAULT);
         settings.setDomStorageEnabled(true);
         String webViewCacheDir = getFilesDir().getAbsolutePath() + WEBVIEW_CACHE_DIR;
-        settings.setAppCachePath(webViewCacheDir);
+//        settings.setAppCachePath(webViewCacheDir);
         settings.setDatabaseEnabled(true);
-        settings.setAppCacheEnabled(true);
+//        settings.setAppCacheEnabled(true);
 
         settings.setLoadsImagesAutomatically(true); //支持自动加载图片
         //缩放操作

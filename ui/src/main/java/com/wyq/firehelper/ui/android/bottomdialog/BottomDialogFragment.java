@@ -1,28 +1,26 @@
 package com.wyq.firehelper.ui.android.bottomdialog;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiActivityBottomDialogLayoutBinding;
 import com.wyq.firehelper.ui.widget.firetoast.FireToast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 public class BottomDialogFragment extends BaseCaseFragment implements View.OnClickListener {
 
-    @BindView(R2.id.ui_activity_bottom_dialog_show_bt)
     public Button button;
-    @BindView(R2.id.ui_activity_bottom_dialog_show_list_bt)
     public Button listBt;
 
     public Button okButton;
@@ -31,10 +29,9 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
     private BottomSheetDialog bottomSheetDialog;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_bottom_dialog_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityBottomDialogLayoutBinding.inflate(inflater,container,false);
     }
-
 
     @Override
     public String[] getArticleFilters() {
@@ -53,6 +50,8 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
 
     @Override
     protected void initView(View view) {
+        button = ((UiActivityBottomDialogLayoutBinding)binding).uiActivityBottomDialogShowBt;
+        listBt = ((UiActivityBottomDialogLayoutBinding)binding).uiActivityBottomDialogShowListBt;
         button.setText("showBottomSheetDialog");
         button.setOnClickListener(this);
 
@@ -66,8 +65,8 @@ public class BottomDialogFragment extends BaseCaseFragment implements View.OnCli
         bottomSheetDialog.setCanceledOnTouchOutside(true);
         bottomSheetDialog.setContentView(R.layout.ui_dialog_bottom_dialog_layout);
 
-        okButton = (Button) bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
-        cancelButton = (Button) bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
+        okButton = bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
+        cancelButton = bottomSheetDialog.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
         okButton.setOnClickListener(this);
         cancelButton.setOnClickListener(this);
     }

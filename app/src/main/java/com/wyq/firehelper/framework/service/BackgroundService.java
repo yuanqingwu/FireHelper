@@ -23,7 +23,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
  */
 public class BackgroundService extends BackTaskService {
 
-    private static String ACTION = "BackgroundService";
+    private static final String ACTION = "BackgroundService";
     public BackgroundService() {
 
     }

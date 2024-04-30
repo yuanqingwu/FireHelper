@@ -1,58 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <data class="MvvmBinding">
-
-        <import type="com.wyq.firehelper.architecture.mvvm.NameUtils" />
-
-        <import type="android.view.View" />
-
-        <variable
-            name="name"
-            type="com.wyq.firehelper.architecture.mvvm.NameModel" />
-
-        <variable
-            name="isShow"
-            type="boolean" />
-
-        <variable
-            name="imageUrl"
-            type="String" />
-    </data>
-
-    <LinearLayout
+    <EditText
+        android:id="@+id/mvvm_activity_et"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:inputType="textNoSuggestions" />
 
-        <EditText
-            android:id="@+id/mvvm_activity_et"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textNoSuggestions"
-            android:text="@={name.name}" />
+    <CheckBox
+        android:id="@+id/isShowName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
-        <CheckBox
-            android:id="@+id/isShowName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="@{isShow}" />
+    <TextView
+        android:id="@+id/mvvm_activity_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/mvvm_activity_tv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text='@{NameUtils.capitalize(name.name)}'
-            android:visibility="@{isShow?View.VISIBLE:View.INVISIBLE}" />
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 
-        <ImageView
-            headImage="@{imageUrl}"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mvvm_activity_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
-    </LinearLayout>
-</layout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mvvm_activity_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>

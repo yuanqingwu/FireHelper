@@ -44,10 +44,7 @@ public class CommonUtils {
      * @return
      */
     public static boolean isFileExist(File file) {
-        if (file != null && file.exists()) {
-            return true;
-        }
-        return false;
+        return file != null && file.exists();
     }
 
     /**
@@ -104,9 +101,7 @@ public class CommonUtils {
      */
     public static boolean sdCardIsAvailable() {
         String status = Environment.getExternalStorageState();
-        if (!status.equals(Environment.MEDIA_MOUNTED))
-            return false;
-        return true;
+        return status.equals(Environment.MEDIA_MOUNTED);
     }
 
     /**
@@ -116,10 +111,7 @@ public class CommonUtils {
      * @return
      */
     public static boolean validateMobileNumber(String mobileNumber) {
-        if (matchingText("^(13[0-9]|15[0-9]|18[7|8|9|6|5])\\d{4,8}$", mobileNumber)) {
-            return true;
-        }
-        return false;
+        return matchingText("^(13[0-9]|15[0-9]|18[7|8|9|6|5])\\d{4,8}$", mobileNumber);
     }
 
     /**
@@ -142,11 +134,7 @@ public class CommonUtils {
     public static boolean hasNetwork(Context context) {
         ConnectivityManager cManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = cManager.getActiveNetworkInfo();
-        if (info != null && info.isAvailable()) {
-            return true;
-        } else {
-            return false;
-        }
+        return info != null && info.isAvailable();
     }
 
     /**
@@ -178,11 +166,8 @@ public class CommonUtils {
         //获取系统的连接服�?
         NetworkInfo activeNetInfo = connectivityManager.getActiveNetworkInfo();
         //获取网络的连接情�?
-        if (activeNetInfo != null && activeNetInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
-            //判断3G�?
-            return true;
-        }
-        return false;
+        //判断3G�?
+        return activeNetInfo != null && activeNetInfo.getType() == ConnectivityManager.TYPE_MOBILE;
     }
 
     /**
@@ -316,10 +301,7 @@ public class CommonUtils {
      * @return
      */
     public static boolean isEmpty(String str) {
-        if (str != null && str.length() > 0) {
-            return false;
-        }
-        return true;
+        return str == null || str.length() <= 0;
     }
 
     /**
@@ -544,12 +526,8 @@ public class CommonUtils {
         final char MIN_UPPERCASE = 'A';
         final char MAX_UPPERCASE = 'Z';
 
-        if ((ch >= DIGITAL_ZERO && ch <= DIGITAL_NINE) || (ch >= MIN_LOWERCASE && ch <= MAX_LOWERCASE)
-                || (ch >= MIN_UPPERCASE && ch <= MAX_UPPERCASE)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (ch >= DIGITAL_ZERO && ch <= DIGITAL_NINE) || (ch >= MIN_LOWERCASE && ch <= MAX_LOWERCASE)
+                || (ch >= MIN_UPPERCASE && ch <= MAX_UPPERCASE);
     }
 
     /**

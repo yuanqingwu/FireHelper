@@ -190,7 +190,7 @@ public class FirePopupWindow {
         } else {
             View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
             PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
-            RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+            RecyclerView recyclerView = popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
             TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);
@@ -212,7 +212,7 @@ public class FirePopupWindow {
         Context context = parent.getContext();
         View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
         final PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getHeightPX(context) / 2);
-        RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+        RecyclerView recyclerView = popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);

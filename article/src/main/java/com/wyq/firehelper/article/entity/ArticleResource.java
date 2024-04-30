@@ -73,7 +73,7 @@ public class ArticleResource implements Serializable {
     public String toString() {
        StringBuffer buffer = new StringBuffer(", tag=");
         for(String s : tag){
-            buffer.append("'"+s+"\'");
+            buffer.append("'"+s+ "'");
         }
         return "ArticleResource{" +
                 "url='" + url + '\'' +

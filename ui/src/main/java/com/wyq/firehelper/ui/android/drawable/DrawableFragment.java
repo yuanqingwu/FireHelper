@@ -1,23 +1,21 @@
 package com.wyq.firehelper.ui.android.drawable;
 
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
-import butterknife.BindView;
-import butterknife.OnClick;
+import com.wyq.firehelper.base.BaseCaseFragment;
+import com.wyq.firehelper.ui.databinding.UiActivityDrawableBinding;
 
 public class DrawableFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_activity_drawable_iv)
     public ImageView imageView;
-    @BindView(R2.id.ui_activity_drawable_vector_iv)
-    public ImageView vectorIV;
-    @BindView(R2.id.ui_activity_drawable_avd_iv)
     public ImageView animVDIV;
 
     private boolean isChecked = false;
@@ -33,8 +31,8 @@ public class DrawableFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_drawable;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityDrawableBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -44,13 +42,15 @@ public class DrawableFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
-        imageView.setImageDrawable(new CircularDrawable(Color.CYAN));
-    }
+        imageView = ((UiActivityDrawableBinding)binding).uiActivityDrawableIv;
+        animVDIV = ((UiActivityDrawableBinding)binding).uiActivityDrawableAvdIv;
 
-    @OnClick(R2.id.ui_activity_drawable_avd_iv)
-    public void click() {
-        isChecked = !isChecked;
-        int[] state = {android.R.attr.state_checked * (isChecked ? 1 : -1)};
-        animVDIV.setImageState(state, true);
+        imageView.setImageDrawable(new CircularDrawable(Color.CYAN));
+
+        animVDIV.setOnClickListener(v -> {
+            isChecked = !isChecked;
+            int[] state = {android.R.attr.state_checked * (isChecked ? 1 : -1)};
+            animVDIV.setImageState(state, true);
+        });
     }
 }

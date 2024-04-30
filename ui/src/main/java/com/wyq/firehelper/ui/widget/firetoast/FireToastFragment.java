@@ -1,10 +1,17 @@
 package com.wyq.firehelper.ui.widget.firetoast;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
+import com.wyq.firehelper.ui.databinding.UiActivityFireToastLayoutBinding;
 
 public class FireToastFragment extends BaseCaseFragment {
     @Override
@@ -18,8 +25,8 @@ public class FireToastFragment extends BaseCaseFragment {
     }
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.ui_activity_fire_toast_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityFireToastLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override

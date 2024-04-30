@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.9.0'
     apply from: 'versions.gradle'
     addRepos(repositories)
     dependencies {
@@ -13,7 +13,6 @@ buildscript {
         classpath deps.aspectj.weaver
 
         //在library中使用
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
 //        classpath 'com.android.tools.build:gradle:3.1.4'
@@ -25,7 +24,7 @@ buildscript {
         // in the individual module build.gradle files
     }
     repositories {
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven{ url 'https://maven.aliyun.com/nexus/content/groups/public/'}
         google()
         jcenter()
         mavenCentral()

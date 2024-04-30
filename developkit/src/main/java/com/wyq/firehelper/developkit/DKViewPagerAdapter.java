@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 public class DKViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private List<DevelopKit> kitList = null;
-    private Context context;
+    private final Context context;
 
     public DKViewPagerAdapter(FragmentManager fm, Context context, List<DevelopKit> kitList) {
         super(fm);

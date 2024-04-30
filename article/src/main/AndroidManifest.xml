@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wyq.firehelper.article">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-        <activity android:name=".ArticleMainActivity">
+        <activity
+            android:name=".ArticleMainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
@@ -14,6 +15,7 @@
 
         <activity
             android:name=".WebViewActivity"
+            android:exported="true"
             android:launchMode="singleTask"
             android:process=":support">
             <intent-filter>

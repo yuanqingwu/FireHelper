@@ -21,7 +21,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
      */
     private RecyclerView headRecyclerView;
     private View headView;
-    private Scroller scroller;
+    private final Scroller scroller;
     /**
      * 头部长度
      */
@@ -164,11 +164,7 @@ public class ExtRecyclerViewLayout extends LinearLayout {
                 float dy = y - lastIntercepty;
 
 //                Logger.i("intercept " + "lastIntercepty:" + lastIntercepty + " maxheight:" + maxHeadHeight + " scrolly:" + getScrollY() + " gety:" + getY() + " gettop:" + getTop());
-                if (Math.abs(dy) > Math.abs(dx)) {
-                    intercept = true;
-                } else {
-                    intercept = false;
-                }
+                intercept = Math.abs(dy) > Math.abs(dx);
 
                 break;
             case MotionEvent.ACTION_UP:

@@ -1,16 +1,20 @@
 package com.wyq.firehelper.article.base;
 
 import android.content.Intent;
+import android.view.LayoutInflater;
 
 import com.wyq.firehelper.article.R;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
+import com.wyq.firehelper.article.databinding.BaseListActivityLayoutBinding;
 
 import java.util.Arrays;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
 
@@ -22,8 +26,8 @@ public abstract class BaseRecyclerViewActivity extends BaseCaseActivity {
     public RecyclerView baseRV;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.base_list_activity_layout;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return BaseListActivityLayoutBinding.inflate(layoutInflater);
     }
 
     @CallSuper

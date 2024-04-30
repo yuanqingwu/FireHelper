@@ -30,11 +30,11 @@ public class RuntimeConstantPool {
      * 回的引用和StringBuilder创建的那个字符串实例是同一个。
      */
     public void cmp() {
-        String str1 = new StringBuilder("计算机").append("软件").toString();
+        String str1 = "计算机" + "软件";
         System.out.println(str1.intern() == str1);
 
         String str = "java";//TODO 注释这句观察结果差异（是否首次出现）
-        String str2 = new StringBuilder("ja").append("va").toString();
+        String str2 = "ja" + "va";
         System.out.println(str2.intern() == str2);
     }
 }

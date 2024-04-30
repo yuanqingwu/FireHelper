@@ -28,7 +28,7 @@ public class BlockingQueueConsumerProducer {
  *
  */
 class ConsumerThread3 extends Thread {
-    private Resource3 resource3;
+    private final Resource3 resource3;
 
     public ConsumerThread3(Resource3 resource) {
         this.resource3 = resource;
@@ -52,7 +52,7 @@ class ConsumerThread3 extends Thread {
  *
  */
 class ProducerThread3 extends Thread{
-    private Resource3 resource3;
+    private final Resource3 resource3;
     public ProducerThread3(Resource3 resource) {
         this.resource3 = resource;
         //setName("生产者");
@@ -71,7 +71,7 @@ class ProducerThread3 extends Thread{
     }
 }
 class Resource3{
-    private BlockingQueue resourceQueue = new LinkedBlockingQueue(10);
+    private final BlockingQueue resourceQueue = new LinkedBlockingQueue(10);
     /**
      * 向资源池中添加资源
      */

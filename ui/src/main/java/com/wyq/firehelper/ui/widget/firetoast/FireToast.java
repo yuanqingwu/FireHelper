@@ -48,11 +48,11 @@ public class FireToast {
     private int headImgWidth = 40;
     private int headImgHeight = 40;
     private long startTime;
-    private Context context;
+    private final Context context;
     private OnDoubleClickListener onDoubleClickListener;
     private HashMap<String, FireToast> toastList;
 
-    private Handler mainThreadHandler = new Handler(Looper.getMainLooper());
+    private final Handler mainThreadHandler = new Handler(Looper.getMainLooper());
 
     private FireToast(Context context, String name) {
         this.context = context;
@@ -306,8 +306,7 @@ public class FireToast {
             mTN = getField(toast, "mTN");
             if (mTN != null) {
                 Object mParams = getField(mTN, "mParams");
-                if (mParams != null && mParams instanceof WindowManager.LayoutParams) {
-                    WindowManager.LayoutParams params = (WindowManager.LayoutParams) mParams;
+                if (mParams != null && mParams instanceof WindowManager.LayoutParams params) {
                     // Toast可点击
                     params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                             | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;

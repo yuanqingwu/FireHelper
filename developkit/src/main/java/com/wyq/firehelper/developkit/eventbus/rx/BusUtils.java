@@ -2,6 +2,7 @@ package com.wyq.firehelper.developkit.eventbus.rx;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.Objects;
 
 /**
  * @author yuanqingwu
@@ -17,7 +18,7 @@ public class BusUtils {
      * @return {@code true}: 相等<br>{@code false}: 不相等
      */
     public static boolean equals(Object o1, Object o2) {
-        return o1 == o2 || (o1 != null && o1.equals(o2));
+        return Objects.equals(o1, o2);
     }
 
     public static void requireNonNull(final Object... objects) {

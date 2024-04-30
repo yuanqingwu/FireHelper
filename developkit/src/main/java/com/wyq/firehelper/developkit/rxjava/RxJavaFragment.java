@@ -2,17 +2,21 @@ package com.wyq.firehelper.developkit.rxjava;
 
 import android.text.Html;
 import android.text.Spanned;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityRxjavaLayoutBinding;
 
 import java.util.concurrent.TimeUnit;
 
-import butterknife.BindView;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Completable;
 import io.reactivex.CompletableEmitter;
@@ -159,21 +163,17 @@ public class RxJavaFragment extends BaseCaseFragment {
             "Completable \t它从来不发射数据，只处理 onComplete 和 onError 事件。可以看成是Rx的Runnable。\n" +
             "Maybe<T> \t能够发射0或者1个数据，要么成功，要么失败。有点类似于Optional\n";
 
-    @BindView(R2.id.activity_developkit_rxjava_res_tv)
     public TextView resTv;
 
-    @BindView(R2.id.activity_developkit_rxjava_tv_1)
     public TextView textView1;
 
-    @BindView(R2.id.activity_developkit_rxjava_tv_2)
     public TextView textView2;
 
-    @BindView(R2.id.activity_developkit_rxjava_tv_3)
     public TextView textView3;
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_activity_rxjava_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitActivityRxjavaLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -182,6 +182,11 @@ public class RxJavaFragment extends BaseCaseFragment {
 
     @Override
     public void initView(View view) {
+        resTv = ((DevelopkitActivityRxjavaLayoutBinding)binding).activityDevelopkitRxjavaResTv;
+        textView1 = ((DevelopkitActivityRxjavaLayoutBinding)binding).activityDevelopkitRxjavaTv1;
+        textView2 = ((DevelopkitActivityRxjavaLayoutBinding)binding).activityDevelopkitRxjavaTv2;
+        textView3 = ((DevelopkitActivityRxjavaLayoutBinding)binding).activityDevelopkitRxjavaTv3;
+
         textView1.setText(observableType);
         textView2.setText(schedulers);
         Spanned spanned = Html.fromHtml(operator);
@@ -264,21 +269,11 @@ public class RxJavaFragment extends BaseCaseFragment {
     }
 
     public void consumer() {
-        Observable.create(new ObservableOnSubscribe<String>() {
-            @Override
-            public void subscribe(ObservableEmitter<String> emitter) throws Exception {
-                emitter.onNext("Consumer");
-            }
-        }).subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {
-            @Override
-            public void accept(String s) throws Exception {
-                resTv.append("\n" + s);
-            }
-        }, new Consumer<Throwable>() {
-            @Override
-            public void accept(Throwable throwable) throws Exception {
+        Observable.create((ObservableOnSubscribe<String>) emitter -> emitter.onNext("Consumer"))
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> resTv.append("\n" + s), throwable -> {
 
-            }
         });
     }
 

@@ -19,11 +19,11 @@ public class StickHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private int contentLayout = 0;
 
-    private Context context;
-    private Paint paint;
-    private float headTextHeight;
-    private float headViewHeight;
-    private float headTextPadding = 10;
+    private final Context context;
+    private final Paint paint;
+    private final float headTextHeight;
+    private final float headViewHeight;
+    private final float headTextPadding = 10;
 
     private String headText = "";
 
@@ -70,7 +70,7 @@ public class StickHeaderDecoration extends RecyclerView.ItemDecoration {
 
     private void drawHeadView(RecyclerView parent, Canvas canvas) {
         View topTitleView = LayoutInflater.from(context).inflate(getContentLayout(), parent, false);
-        TextView titleText = (TextView) topTitleView.findViewById(R.id.recyclerview_item_title_tv);
+        TextView titleText = topTitleView.findViewById(R.id.recyclerview_item_title_tv);
         titleText.setText(headText);
         int toDrawWidthSpec;//用于测量的widthMeasureSpec
         int toDrawHeightSpec;//用于测量的heightMeasureSpec

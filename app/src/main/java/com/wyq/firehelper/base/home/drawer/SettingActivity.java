@@ -2,9 +2,13 @@ package com.wyq.firehelper.base.home.drawer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 
-import com.wyq.firehelper.R;
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
+
 import com.wyq.firehelper.article.base.BaseCaseActivity;
+import com.wyq.firehelper.databinding.DrawerActivitySettingBinding;
 
 import java.util.List;
 
@@ -24,9 +28,10 @@ public class SettingActivity extends BaseCaseActivity {
         return null;
     }
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.drawer_activity_setting;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DrawerActivitySettingBinding.inflate(layoutInflater);
     }
 
     @Override

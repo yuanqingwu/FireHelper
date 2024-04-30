@@ -28,10 +28,10 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
     // 放大的最大值
     private float mMaxScale;
 
-    private Matrix mScaleMatrix;
+    private final Matrix mScaleMatrix;
 
     // 捕获用户多点触控时缩放比例
-    private ScaleGestureDetector mScaleGestureDetector;
+    private final ScaleGestureDetector mScaleGestureDetector;
 
     // ----------------------自由移动
     // 记录上一次多点触控的数量
@@ -40,7 +40,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
     private float mLastX;
     private float mLastY;
 
-    private int mTouchSlop;
+    private final int mTouchSlop;
     private boolean isCanDrag;
 
     private RectF matrixRectF;
@@ -48,7 +48,7 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
     private boolean isCheckTopAndBottom;
 
     // ----------------------------双击放大缩小
-    private GestureDetector mGestureDetector;
+    private final GestureDetector mGestureDetector;
 
     private boolean isAutoScale;
 
@@ -99,10 +99,10 @@ public class ZoomImageView extends androidx.appcompat.widget.AppCompatImageView 
     private class AutoScaleRunnable implements Runnable {
 
         // 缩放的目标值
-        private float mTargetScale;
+        private final float mTargetScale;
         // 缩放的中心点
-        private float x;
-        private float y;
+        private final float x;
+        private final float y;
 
         private final float BIGGER = 1.07f;
         private final float SMALL = 0.93f;

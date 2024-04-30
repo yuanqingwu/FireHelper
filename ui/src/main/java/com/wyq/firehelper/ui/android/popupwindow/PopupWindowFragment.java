@@ -12,20 +12,20 @@ import android.widget.PopupWindow;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiActivityPopupWindowLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class PopupWindowFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_activity_popup_window_bt)
     public Button button;
-    @BindView(R2.id.ui_activity_popup_window_bootom_bt)
     public Button bottomBt;
 
     public PopupWindow popupWindow;
@@ -41,8 +41,8 @@ public class PopupWindowFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_popup_window_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityPopupWindowLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -52,6 +52,9 @@ public class PopupWindowFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
+        button = ((UiActivityPopupWindowLayoutBinding)binding).uiActivityPopupWindowBt;
+        bottomBt = ((UiActivityPopupWindowLayoutBinding)binding).uiActivityPopupWindowBootomBt;
+
         button.setText("showPopupWindow");
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +90,7 @@ public class PopupWindowFragment extends BaseCaseFragment {
         popupWindow.setOutsideTouchable(true);
         popupWindow.setClippingEnabled(true);
 
-        RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+        RecyclerView recyclerView = popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {

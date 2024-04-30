@@ -6,10 +6,10 @@ import java.nio.FloatBuffer;
 
 public class Triangle {
 
-    private FloatBuffer vertexBuffer;
-    private FloatBuffer colorBuffer;
+    private final FloatBuffer vertexBuffer;
+    private final FloatBuffer colorBuffer;
 
-    private int mProgram;
+    private final int mProgram;
 
     private int mPositionHandle;
     private int mColorHandle;
@@ -22,13 +22,13 @@ public class Triangle {
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4;
 
-    static float triangleCoords[] = {   // in counterclockwise order:
+    static float[] triangleCoords = {   // in counterclockwise order:
             0.0f, 0.5f, 0.0f, // top
             -0.5f, -0.5f, 0.0f, // bottom left
             0.5f, -0.5f, 0.0f  // bottom right
     };
 
-    float color[] = {
+    float[] color = {
             1.0f, 0f, 0f, 1.0f,
             0f, 1.0f, 0f, 1.0f,
             0f, 0f, 1.0f, 1.0f,

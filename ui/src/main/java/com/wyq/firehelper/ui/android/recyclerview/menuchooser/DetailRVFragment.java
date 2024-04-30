@@ -3,21 +3,24 @@ package com.wyq.firehelper.ui.android.recyclerview.menuchooser;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseFragment;
-import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiFragmentRecyclerViewDetailLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -42,7 +45,6 @@ public class DetailRVFragment extends BaseFragment implements SelectListener {
     private LinearLayoutManager linearLayoutManager;
     private StickHeaderDecoration stickHeaderDecoration;
 
-    @BindView(R2.id.ui_fragment_recycler_view_detail_rv)
     public RecyclerView recyclerView;
 
     public DetailRVFragment() {
@@ -76,8 +78,8 @@ public class DetailRVFragment extends BaseFragment implements SelectListener {
     }
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.ui_fragment_recycler_view_detail_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentRecyclerViewDetailLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -87,6 +89,7 @@ public class DetailRVFragment extends BaseFragment implements SelectListener {
 
     @Override
     public void initView(View view) {
+        recyclerView = ((UiFragmentRecyclerViewDetailLayoutBinding)binding).uiFragmentRecyclerViewDetailRv;
         linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
         stickHeaderDecoration = new StickHeaderDecoration(getContext());

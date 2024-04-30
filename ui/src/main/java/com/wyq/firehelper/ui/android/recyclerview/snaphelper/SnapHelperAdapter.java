@@ -21,20 +21,20 @@ public class SnapHelperAdapter extends BaseQuickAdapter<String, BaseViewHolder> 
     private int mBackgroundColor;
 
     public SnapHelperAdapter(@Nullable List<String> data) {
-        super(R.layout.base_textview, data);
+        super(com.wyq.firehelper.article.R.layout.base_textview, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         if (mLayoutParams != null) {
-            helper.getView(R.id.base_text_view).setLayoutParams(mLayoutParams);
+            helper.getView(com.wyq.firehelper.article.R.id.base_text_view).setLayoutParams(mLayoutParams);
         }
 
         if(mBackgroundColor != 0){
-            helper.setBackgroundColor(R.id.base_text_view,mBackgroundColor);
+            helper.setBackgroundColor(com.wyq.firehelper.article.R.id.base_text_view,mBackgroundColor);
         }
 
-        helper.setText(R.id.base_text_view, item);
+        helper.setText(com.wyq.firehelper.article.R.id.base_text_view, item);
     }
 
     public void setLayoutParams(ViewGroup.LayoutParams layoutParams) {

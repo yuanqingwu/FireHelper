@@ -7,9 +7,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.BatteryManager;
 import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.article.ArticleConstants;
@@ -17,30 +21,21 @@ import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.base.utils.common.BatteryUtils;
 import com.wyq.firehelper.base.utils.common.ConnectivityUtils;
 import com.wyq.firehelper.base.utils.common.ScreenUtils;
-import com.wyq.firehelper.device.R;
-import com.wyq.firehelper.device.R2;
+import com.wyq.firehelper.device.databinding.DeviceActivityPhoneInfoBinding;
 
 import java.util.List;
-
-import butterknife.BindView;
-
 public class PhoneInfoActivity extends BaseCaseActivity {
 
-    //    @BindView(R2.id.device_activity_phone_info_refresh_bt)
     public Button refreshBt;
 
-    @BindView(R2.id.device_activity_phone_info_screen_tv)
     public TextView screenInfoTv;
-    @BindView(R2.id.device_activity_phone_info_battery_tv)
     public TextView batteryInfoTv;
-    @BindView(R2.id.device_activity_phone_info_connectivity_tv)
     public TextView connectivityinfoTv;
-    @BindView(R2.id.device_activity_phone_info_app_tv)
     public TextView appInfoTv;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.device_activity_phone_info;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DeviceActivityPhoneInfoBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -55,7 +50,12 @@ public class PhoneInfoActivity extends BaseCaseActivity {
 
     @Override
     public void initView() {
-        refreshBt = findViewById(R.id.device_activity_phone_info_refresh_bt);
+        refreshBt = ((DeviceActivityPhoneInfoBinding)viewBinding).deviceActivityPhoneInfoRefreshBt;
+        screenInfoTv = ((DeviceActivityPhoneInfoBinding)viewBinding).deviceActivityPhoneInfoScreenTv;
+        batteryInfoTv = ((DeviceActivityPhoneInfoBinding)viewBinding).deviceActivityPhoneInfoBatteryTv;
+        connectivityinfoTv = ((DeviceActivityPhoneInfoBinding)viewBinding).deviceActivityPhoneInfoConnectivityTv;
+        appInfoTv = ((DeviceActivityPhoneInfoBinding)viewBinding).deviceActivityPhoneInfoAppTv;
+
         refreshBt.setText("refresh");
         refreshBt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,37 +69,34 @@ public class PhoneInfoActivity extends BaseCaseActivity {
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private void refreshData() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Screen:\n");
-        builder.append("\nsize:" + ScreenUtils.getScreenSizeInch(this)+" inch");
-        builder.append("\ndensity:" + ScreenUtils.getDensity(this));
-        builder.append("\nXdpi:" + ScreenUtils.getXdpi(this) + " dpi");
-        builder.append("\nYdpi:" + ScreenUtils.getYdpi(this) + " dpi");
-        builder.append("\nwidth:" + ScreenUtils.getWidthPX(this) + " px");
-        builder.append("\nheight:" + ScreenUtils.getHeightPX(this) + " px");
-        builder.append("\nScreenWidth:" + ScreenUtils.getScreenWidthPX(this) + " px");
-        builder.append("\nScreenHeight:" + ScreenUtils.getScreenHeightPX(this) + " px");
-        builder.append("\nNavigationBarHeight:" + ScreenUtils.getNavigationBarHeight(this) + " px");
-        builder.append("\nStatusBarHeight:" + ScreenUtils.getStatusBarHeight(this) + " px");
-        screenInfoTv.setText(builder.toString());
+        String builder = "Screen:\n" +
+                "\nsize:" + ScreenUtils.getScreenSizeInch(this) + " inch" +
+                "\ndensity:" + ScreenUtils.getDensity(this) +
+                "\nXdpi:" + ScreenUtils.getXdpi(this) + " dpi" +
+                "\nYdpi:" + ScreenUtils.getYdpi(this) + " dpi" +
+                "\nwidth:" + ScreenUtils.getWidthPX(this) + " px" +
+                "\nheight:" + ScreenUtils.getHeightPX(this) + " px" +
+                "\nScreenWidth:" + ScreenUtils.getScreenWidthPX(this) + " px" +
+                "\nScreenHeight:" + ScreenUtils.getScreenHeightPX(this) + " px" +
+                "\nNavigationBarHeight:" + ScreenUtils.getNavigationBarHeight(this) + " px" +
+                "\nStatusBarHeight:" + ScreenUtils.getStatusBarHeight(this) + " px";
+        screenInfoTv.setText(builder);
 
-        StringBuilder batteryInfo = new StringBuilder();
-        batteryInfo.append("Battery:\n");
-        batteryInfo.append("\nscale:" + BatteryUtils.getScale(this));
-        batteryInfo.append("\nlevel:" + BatteryUtils.getLevel(this));
-        batteryInfo.append("\npercent:" + BatteryUtils.getPercent(this));
-        batteryInfo.append("\nisCharging:" + BatteryUtils.isCharging(this));
-        batteryInfo.append("\nChargePlug:" + convertChargePlug2Str(BatteryUtils.getChargePlug(this)));
-        batteryInfo.append("\nisDocked:" + BatteryUtils.isDocked(this));
-        batteryInfo.append("\nisCarDock:" + BatteryUtils.isCarDock(this));
-        batteryInfo.append("\nisDeskDock:" + BatteryUtils.isDeskDock(this));
-        batteryInfoTv.setText(batteryInfo.toString());
+        String batteryInfo = "Battery:\n" +
+                "\nscale:" + BatteryUtils.getScale(this) +
+                "\nlevel:" + BatteryUtils.getLevel(this) +
+                "\npercent:" + BatteryUtils.getPercent(this) +
+                "\nisCharging:" + BatteryUtils.isCharging(this) +
+                "\nChargePlug:" + convertChargePlug2Str(BatteryUtils.getChargePlug(this)) +
+                "\nisDocked:" + BatteryUtils.isDocked(this) +
+                "\nisCarDock:" + BatteryUtils.isCarDock(this) +
+                "\nisDeskDock:" + BatteryUtils.isDeskDock(this);
+        batteryInfoTv.setText(batteryInfo);
 
-        StringBuilder connectivityInfo = new StringBuilder();
-        connectivityInfo.append("Connectivity\n");
-        connectivityInfo.append("\nisConnected:" + ConnectivityUtils.isConnected(this));
-        connectivityInfo.append("\nActiveNetworkType:" + convertNetType2Str(ConnectivityUtils.getActiveNetworkType(this)));
-        connectivityinfoTv.setText(connectivityInfo.toString());
+        String connectivityInfo = "Connectivity\n" +
+                "\nisConnected:" + ConnectivityUtils.isConnected(this) +
+                "\nActiveNetworkType:" + convertNetType2Str(ConnectivityUtils.getActiveNetworkType(this));
+        connectivityinfoTv.setText(connectivityInfo);
 
 
         ActivityManager am = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);

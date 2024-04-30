@@ -29,7 +29,7 @@ class ArrayExample {
     /**
      * Returns the range of valid indices for the array.
      */
-    public val <T> Array<out T>.indices: IntRange
+    val <T> Array<out T>.indices: IntRange
         get() = IntRange(0, lastIndex)
 
 

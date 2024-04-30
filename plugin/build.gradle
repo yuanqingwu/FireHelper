@@ -1,0 +1,32 @@
+apply plugin: 'groovy'
+//添加maven plugin, 用于发布我们的jar
+apply plugin: 'maven-publish'
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+}
+
+repositories {
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        publish2Local(MavenPublication){
+            groupId = project.group
+            artifactId = "$project.name"
+            version = 0.1
+
+            //暂时发布在本地文件夹
+//            repository(url:uri('plugin/release'))
+        }
+    }
+
+    repositories {
+        maven {
+            url = "plugin/release"
+        }
+    }
+}
+

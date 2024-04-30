@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class DataRepository {
 
-    private UserDataSource dataSource;
-    private MediatorLiveData<UserEntity> mObservableUser;
+    private final UserDataSource dataSource;
+    private final MediatorLiveData<UserEntity> mObservableUser;
 
     private static DataRepository sInstance;
 

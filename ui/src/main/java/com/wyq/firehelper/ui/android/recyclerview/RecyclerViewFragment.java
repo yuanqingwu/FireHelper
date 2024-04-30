@@ -1,38 +1,29 @@
 package com.wyq.firehelper.ui.android.recyclerview;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
-import com.wyq.firehelper.ui.android.recyclerview.menuchooser.DetailRVFragment;
 import com.wyq.firehelper.ui.android.recyclerview.menuchooser.MenuChooserFragment;
-import com.wyq.firehelper.ui.android.recyclerview.menuchooser.SelectListener;
 import com.wyq.firehelper.ui.android.recyclerview.snaphelper.SnapHelperFragment;
+import com.wyq.firehelper.ui.databinding.UiFragmentRecyclerViewBinding;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import butterknife.BindView;
-import butterknife.OnClick;
+import androidx.viewbinding.ViewBinding;
 
 /**
  * @author yuanqingwu
  */
 public class RecyclerViewFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_fragment_recycler_view_menu_chooser_bt)
     public Button menuChooserBt;
-    @BindView(R2.id.ui_fragment_recycler_view_snap_helper_bt)
     public Button snapHelperBt;
 
     @Override
@@ -46,8 +37,8 @@ public class RecyclerViewFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_recycler_view;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentRecyclerViewBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -58,19 +49,12 @@ public class RecyclerViewFragment extends BaseCaseFragment {
     @Override
     protected void initView(View view) {
 
+        menuChooserBt = ((UiFragmentRecyclerViewBinding)binding).uiFragmentRecyclerViewMenuChooserBt;
+        snapHelperBt = ((UiFragmentRecyclerViewBinding)binding).uiFragmentRecyclerViewSnapHelperBt;
+
+        menuChooserBt.setOnClickListener(v -> fragmentSelect(new MenuChooserFragment(), "menu_chooser"));
+        snapHelperBt.setOnClickListener(v -> fragmentSelect(new SnapHelperFragment(), "snap_helper"));
     }
-
-    @OnClick(R2.id.ui_fragment_recycler_view_menu_chooser_bt)
-    public void menuChooser() {
-        fragmentSelect(new MenuChooserFragment(), "menu_chooser");
-    }
-
-
-    @OnClick(R2.id.ui_fragment_recycler_view_snap_helper_bt)
-    public void snapHelper() {
-        fragmentSelect(new SnapHelperFragment(), "snap_helper");
-    }
-
     private void fragmentSelect(Fragment fragment, String tag) {
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();

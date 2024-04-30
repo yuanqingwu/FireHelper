@@ -31,8 +31,8 @@ public class FireNotification {
     private NotificationManager notificationManager;
 
 
-    private String text  = "";
-    private String title = "";
+    private final String text  = "";
+    private final String title = "";
     private int smallIcon;
     private Bitmap largeIcon;
     private boolean showWhen;

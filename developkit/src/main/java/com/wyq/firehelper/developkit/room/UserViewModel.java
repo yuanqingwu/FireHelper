@@ -14,9 +14,9 @@ import androidx.lifecycle.ViewModelProvider;
 
 public class UserViewModel extends ViewModel {
 
-    private MediatorLiveData<UserEntity> mObservableUser = new MediatorLiveData<>();
+    private final MediatorLiveData<UserEntity> mObservableUser = new MediatorLiveData<>();
 
-    private DataRepository repository;
+    private final DataRepository repository;
 
     public UserViewModel(DataRepository repository) {
         this.repository = repository;
@@ -54,7 +54,7 @@ public class UserViewModel extends ViewModel {
      */
     public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
-        private DataRepository repository;
+        private final DataRepository repository;
 
         public Factory(DataRepository repository) {
             this.repository = repository;

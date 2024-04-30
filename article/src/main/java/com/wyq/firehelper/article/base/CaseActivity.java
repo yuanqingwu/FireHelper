@@ -3,18 +3,22 @@ package com.wyq.firehelper.article.base;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 import com.wyq.firehelper.article.ArticleRepository;
 import com.wyq.firehelper.article.R;
+import com.wyq.firehelper.article.databinding.BaseActivityCaseBinding;
 import com.wyq.firehelper.base.BaseCaseFragment;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewbinding.ViewBinding;
 
 public class CaseActivity extends BaseCaseActivity {
 
@@ -33,8 +37,8 @@ public class CaseActivity extends BaseCaseActivity {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.base_activity_case;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return BaseActivityCaseBinding.inflate(layoutInflater);
     }
 
     @Override

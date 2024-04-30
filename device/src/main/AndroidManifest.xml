@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wyq.firehelper.device">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Declare this required feature if you want to make the app available to BLE-capable
    devices only.  If you want to make your app available to devices that don't support BLE,
@@ -13,12 +12,15 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
     <application>
         <activity android:name=".DeviceActivity"></activity>
         <activity android:name=".bluetooth.chat.BtActivity" />
         <activity android:name=".bluetooth.chat.BtChatActivity" />
         <activity android:name=".camera.CameraActivity" />
-        <activity android:name=".PhoneInfo.PhoneInfoActivity">
+        <activity android:name=".PhoneInfo.PhoneInfoActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_DOCK_EVENT" />
             </intent-filter>

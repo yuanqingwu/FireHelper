@@ -2,34 +2,28 @@ package com.wyq.firehelper.developkit.mmkv;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.LayoutInflater;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
 import com.tencent.mmkv.MMKV;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityMmkvBinding;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 public class MMKVActivity extends BaseCaseActivity {
 
-    @BindView(R2.id.developkit_activity_mmkv_tv)
     public TextView textView;
 
     public MMKV mmkv;
     public SharedPreferences preferences;
 
     public String data;
-
-
-    @Override
-    protected int attachLayoutRes() {
-        return R.layout.developkit_activity_mmkv;
-    }
 
     @Override
     public String getToolBarTitle() {
@@ -42,7 +36,13 @@ public class MMKVActivity extends BaseCaseActivity {
     }
 
     @Override
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DevelopkitActivityMmkvBinding.inflate(layoutInflater);
+    }
+
+    @Override
     public void initView() {
+        textView = ((DevelopkitActivityMmkvBinding)viewBinding).developkitActivityMmkvTv;
         data = FireHelperUtils.readAssets2String(this, "developKit.json");
 
         textView.setText("MMKV \nwrite:" + initMMKV() + " ns\n" + "read :" + readMMKV() + " ns\n");

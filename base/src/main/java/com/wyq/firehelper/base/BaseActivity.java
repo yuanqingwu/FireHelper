@@ -1,24 +1,21 @@
 package com.wyq.firehelper.base;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 
 import com.orhanobut.logger.Logger;
 
 import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.ButterKnife;
+import androidx.viewbinding.ViewBinding;
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity<VB extends ViewBinding> extends AppCompatActivity {
 
-    /**
-     * 绑定布局文件
-     *
-     * @return 布局文件ID
-     */
-    @LayoutRes
-    protected abstract int attachLayoutRes();
+    protected VB viewBinding;
+    protected abstract VB inflateViewBinding(@NonNull LayoutInflater layoutInflater);
 
     public abstract void initToolBar();
 
@@ -27,11 +24,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(attachLayoutRes());
-        ButterKnife.bind(this);
+        viewBinding = inflateViewBinding(getLayoutInflater());
+        setContentView(viewBinding.getRoot());
 
-        initToolBar();
         initView();
+        initToolBar();
     }
 
     public void initToolBar(Toolbar toolbar, String title, boolean isShowBackIcon) {

@@ -31,12 +31,8 @@ public class SecurityActivity extends BaseRecyclerViewActivity {
         return new TvRecyclerViewAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                switch (position) {
-                    case 0:
-                        EncryptActivity.instance(SecurityActivity.this);
-                        break;
-                    default:
-                        break;
+                if (position == 0) {
+                    EncryptActivity.instance(SecurityActivity.this);
                 }
             }
         };

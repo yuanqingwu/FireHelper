@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.wyq.firehelper.media">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-feature android:name="android.hardware.location.gps" /> <!-- 使用OpenGL ES 2.0 -->
     <uses-feature
@@ -8,10 +7,10 @@
         android:required="true" />
 
     <application>
-        <activity android:name=".MediaActivity">
+        <activity android:name=".MediaActivity" android:exported="true">
         </activity>
-        <activity android:name=".opengles.OpenGLESActivity" />
-        <activity android:name=".video.VideoActivity" />
+        <activity android:name=".opengles.OpenGLESActivity" android:exported="true"/>
+        <activity android:name=".video.VideoActivity" android:exported="true"/>
     </application>
 
 </manifest>

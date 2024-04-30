@@ -58,8 +58,8 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
         this.onTvImgItemLongClickListener = onItemLongClickListener;
     }
 
-    private List<?> list = new ArrayList<>();
-    private Context context;
+    private final List<?> list = new ArrayList<>();
+    private final Context context;
     private int orientation = VERTICAL;
 
     public static final int HORIZONTAL = 0;
@@ -118,10 +118,9 @@ public class TvImgRecyclerViewAdapter extends RecyclerView.Adapter<TvImgRecycler
     public void onBindViewHolder(@NonNull TvViewHolder holder, final int position) {
 
         if (list.get(position) instanceof FireModule) {
-            holder.textView.setText(((FireModule) list.get(position)).getTitleZh().toString());
+            holder.textView.setText(((FireModule) list.get(position)).getTitleZh());
             holder.imageView.setImageBitmap(getBitmapByName(((FireModule) list.get(position)).getHeadImage()));
-        } else if (list.get(position) instanceof ArticleSaveEntity) {
-            ArticleSaveEntity entity = (ArticleSaveEntity) list.get(position);
+        } else if (list.get(position) instanceof ArticleSaveEntity entity) {
             holder.textView.setText(entity.getWebTitle());
             holder.imageView.setImageBitmap(entity.getWebIcon());
         } else {

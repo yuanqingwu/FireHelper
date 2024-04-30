@@ -3,19 +3,21 @@ package com.wyq.firehelper.ui.layout.ultraviewpager;
 import android.graphics.Color;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.tmall.ultraviewpager.UltraViewPager;
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiActivityUltraViewPagerLayoutBinding;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.PagerAdapter;
-import butterknife.BindView;
 
 public class UltraViewPagerFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_activity_ultra_view_pager)
     public UltraViewPager ultraViewPager;
 
     @Override
@@ -28,9 +30,10 @@ public class UltraViewPagerFragment extends BaseCaseFragment {
         return "UltraViewPager";
     }
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_ultra_view_pager_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityUltraViewPagerLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -40,6 +43,8 @@ public class UltraViewPagerFragment extends BaseCaseFragment {
 
     @Override
     protected void initView(View view) {
+        ultraViewPager = ((UiActivityUltraViewPagerLayoutBinding)binding).uiActivityUltraViewPager;
+
         ultraViewPager.setScrollMode(UltraViewPager.ScrollMode.HORIZONTAL);
         PagerAdapter adapter = new UltraPagerAdapter();
         ultraViewPager.setAdapter(adapter);

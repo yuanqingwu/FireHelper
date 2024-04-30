@@ -6,7 +6,9 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
@@ -17,21 +19,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.ui.R;
-import com.wyq.firehelper.ui.R2;
+import com.wyq.firehelper.ui.databinding.UiActivityAnimationLayoutBinding;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class AnimationFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.ui_activity_animation_property_Bt)
     public Button propertyButton;
-    @BindView(R2.id.ui_activity_animation_tween_Bt)
     public Button tweenButton;
-    @BindView(R2.id.ui_activity_animation_tween_Bt1)
     public Button tweenButton1;
-    @BindView(R2.id.ui_activity_animation_frame_iv)
     public ImageView frameIv;
 
     private ValueAnimator valueAnimator, floatAnimator;
@@ -49,8 +48,8 @@ public class AnimationFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_animation_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiActivityAnimationLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -61,6 +60,11 @@ public class AnimationFragment extends BaseCaseFragment {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void initView(View view) {
+        propertyButton = ((UiActivityAnimationLayoutBinding)binding).uiActivityAnimationPropertyBt;
+        tweenButton = ((UiActivityAnimationLayoutBinding)binding).uiActivityAnimationTweenBt;
+        tweenButton1 = ((UiActivityAnimationLayoutBinding)binding).uiActivityAnimationTweenBt1;
+        frameIv = ((UiActivityAnimationLayoutBinding)binding).uiActivityAnimationFrameIv;
+
         animationProperty();
         animationTween();
         animationFrame();

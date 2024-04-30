@@ -6,11 +6,11 @@ import androidx.annotation.Nullable;
 public class Resource<T> {
 
     @NonNull
-    private NetStatus netStatus;
+    private final NetStatus netStatus;
     @Nullable
-    private T data;
+    private final T data;
     @Nullable
-    private String message;
+    private final String message;
 
     private Resource(@NonNull NetStatus netStatus, @Nullable T data, @Nullable String message) {
         this.netStatus = netStatus;

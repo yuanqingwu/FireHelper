@@ -32,6 +32,7 @@ import com.wyq.firehelper.base.utils.FireHelperUtils;
 import com.wyq.firehelper.base.utils.MMKVContract;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 import com.wyq.firehelper.component.ComponentActivity;
+import com.wyq.firehelper.databinding.HomeActivityMainDrawerLayoutBinding;
 import com.wyq.firehelper.framework.FrameworkActivity;
 
 import org.json.JSONArray;
@@ -53,8 +54,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.functions.Consumer;
 
 /**
@@ -63,24 +62,16 @@ import io.reactivex.functions.Consumer;
 public class MainActivity extends AppCompatActivity implements TvImgRecyclerViewAdapter.OnTvImgItemClickListener, TvImgRecyclerViewAdapter.OnTvImgItemLongClickListener,
         NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.home_activity_main_drawer)
     public DrawerLayout drawerLayout;
-    @BindView(R.id.home_activity_main_drawer_nav_view)
     public NavigationView navigationView;
-
-    @BindView(R.id.activity_main_rv)
     public RecyclerView baseRV;
-    @BindView(R.id.ui_activity_pull_ext_view_rv)
     public RecyclerView exRecyclerView;
-    @BindView(R.id.toolbar)
     public Toolbar toolbar;
-    @BindView(R.id.main_activity_article_hot_rv)
     public RecyclerView hotRecyclerView;
-    @BindView(R.id.main_activity_article_count_tv)
     public TextView countTv;
-    @BindView(R.id.main_activity_article_hot_more_tv)
     public TextView moreTv;
 
+    HomeActivityMainDrawerLayoutBinding mainDrawerLayoutBinding;
     private List<ArticleSaveEntity> articleSaveEntities;
     private TvImgRecyclerViewAdapter extAdapter = null;
     private TvRecyclerViewAdapter hotAdapter = null;
@@ -105,8 +96,17 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.home_activity_main_drawer_layout);
-        ButterKnife.bind(this);
+        mainDrawerLayoutBinding = HomeActivityMainDrawerLayoutBinding.inflate(getLayoutInflater());
+        setContentView(mainDrawerLayoutBinding.getRoot());
+
+        drawerLayout = mainDrawerLayoutBinding.homeActivityMainDrawer;
+        navigationView = mainDrawerLayoutBinding.homeActivityMainDrawerNavView;
+        baseRV = mainDrawerLayoutBinding.homeActivityMainLayout.activityMainRv;
+        exRecyclerView = mainDrawerLayoutBinding.homeActivityMainLayout.externalViewRvLayout.uiActivityPullExtViewRv;
+        toolbar = mainDrawerLayoutBinding.homeActivityMainLayout.toolbarLayout.toolbar;
+        hotRecyclerView = mainDrawerLayoutBinding.homeActivityMainLayout.mainActivityArticleHotRv;
+        countTv = mainDrawerLayoutBinding.homeActivityMainLayout.mainActivityArticleCountTv;
+        moreTv = mainDrawerLayoutBinding.homeActivityMainLayout.mainActivityArticleHotMoreTv;
 
 //        initToolBar(toolbar, getString(R.string.app_name));
         initToolBar(toolbar, null);
@@ -126,6 +126,7 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     }
 
     public void initView() {
+
         initDrawer();
         initRecyclerView();
 
@@ -295,21 +296,15 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_night_mode_system:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
-                break;
-            case R.id.menu_night_mode_day:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                break;
-            case R.id.menu_night_mode_night:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                break;
-            case R.id.menu_night_mode_auto:
-                setNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
-                break;
-            default:
-                break;
+        int itemId = item.getItemId();
+        if (itemId == R.id.menu_night_mode_system) {
+            setNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+        } else if (itemId == R.id.menu_night_mode_day) {
+            setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        } else if (itemId == R.id.menu_night_mode_night) {
+            setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else if (itemId == R.id.menu_night_mode_auto) {
+            setNightMode(AppCompatDelegate.MODE_NIGHT_AUTO);
         }
         return super.onOptionsItemSelected(item);
     }
@@ -336,80 +331,70 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     @Override
     public void onItemClick(View view, int position) {
-        switch (view.getId()) {
-            case R.id.recyclerview_item_tv_img_layout_h:
-                //点击头部收藏文章时跳转浏览界面
+        int id = view.getId();
+        if (id == com.wyq.firehelper.article.R.id.recyclerview_item_tv_img_layout_h) {//点击头部收藏文章时跳转浏览界面
 //                WebViewActivity.instance(MainActivity.this, articleSaveEntities.get(position).getResource().getUrl());
-                ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
-                        .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, articleSaveEntities.get(position).getResource().getUrl())
-                        .navigation(MainActivity.this);
-                break;
-            case R.id.recyclerview_item_tv_img_layout_v:
-                switch (position) {
-                    case 0:
+            ARouter.getInstance().build(NavigationManager.NAVIGATION_ARTICLE_WEBVIEW_ACTIVITY)
+                    .withString(NavigationManager.NAVIGATION_KEY_ARTICLE_URL, articleSaveEntities.get(position).getResource().getUrl())
+                    .navigation(MainActivity.this);
+        } else if (id == com.wyq.firehelper.article.R.id.recyclerview_item_tv_img_layout_v) {
+            switch (position) {
+                case 0:
 //                        DeviceActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVICE_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 1:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVICE_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 1:
 //                        UiMainActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 2:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 2:
 //                        SecurityActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_SECURITY_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 3:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_SECURITY_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 3:
 //                        DevelopKitMainActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 4:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_DEVELOP_KIT_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 4:
 //                        ArchitectureActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 5:
-                        FrameworkActivity.instance(MainActivity.this);
-                        break;
-                    case 6:
-                        ComponentActivity.instance(MainActivity.this);
-                        break;
-                    case 7:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_ARCHITECTURE_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 5:
+                    FrameworkActivity.instance(MainActivity.this);
+                    break;
+                case 6:
+                    ComponentActivity.instance(MainActivity.this);
+                    break;
+                case 7:
 //                        MediaActivity.instance(MainActivity.this);
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 8:
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_HYBRID_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
-                    case 9:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_MEDIA_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 8:
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_HYBRID_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
+                case 9:
 //                        startActivity(new Intent(MainActivity.this,
 //                                GitHubMainActivity.class));
-                        ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation(MainActivity.this);
-                        break;
+                    ARouter.getInstance().build(NavigationManager.NAVIGATION_KOTLIN_MAIN_ACTIVITY).navigation(MainActivity.this);
+                    break;
 
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
+                default:
+                    break;
+            }
         }
     }
 
     @Override
     public void onItemLongClick(View view, int position) {
-        switch (view.getId()) {
-            case R.id.recyclerview_item_tv_img_layout_h:
-                FirePopupWindow.text("删除").setBackgroundDrawable(new ColorDrawable(Color.LTGRAY)).showAsDropDown(view).setOnClickListener(new FirePopupWindow.OnClickListener() {
-                    @Override
-                    public void onClick(String text) {
-                        if (text.equals("删除")) {
-                            extAdapter.refreshData(deleteSavedArticle(position));
-                        }
+        if (view.getId() == com.wyq.firehelper.article.R.id.recyclerview_item_tv_img_layout_h) {
+            FirePopupWindow.text("删除").setBackgroundDrawable(new ColorDrawable(Color.LTGRAY)).showAsDropDown(view).setOnClickListener(new FirePopupWindow.OnClickListener() {
+                @Override
+                public void onClick(String text) {
+                    if (text.equals("删除")) {
+                        extAdapter.refreshData(deleteSavedArticle(position));
                     }
-                });
-
-                break;
-            default:
-                break;
+                }
+            });
         }
     }
 
@@ -425,32 +410,25 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_home_drawer_setting:
-                SettingActivity.instance(MainActivity.this);
-                break;
-            case R.id.menu_home_drawer_skin:
-                SkinActivity.instance(MainActivity.this);
-                break;
-            case R.id.menu_home_drawer_night_mode:
-                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
-                if (nightMode) {
-                    MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, false);
-                    item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
-                    item.setTitle(R.string.day_mode);
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                } else {
-                    MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, true);
-                    item.setTitle(R.string.night_mode);
-                    item.setIcon(R.drawable.ic_vd_brightness_2_gray_24dp);
-                    setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                }
-                break;
-            case R.id.menu_home_drawer_share:
-                ShareActivity.instance(MainActivity.this);
-                break;
-            default:
-                break;
+        if (id == R.id.menu_home_drawer_setting) {
+            SettingActivity.instance(MainActivity.this);
+        } else if (id == R.id.menu_home_drawer_skin) {
+            SkinActivity.instance(MainActivity.this);
+        } else if (id == R.id.menu_home_drawer_night_mode) {
+            boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
+            if (nightMode) {
+                MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, false);
+                item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
+                item.setTitle(R.string.day_mode);
+                setNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            } else {
+                MMKV.defaultMMKV().encode(MMKVContract.KEY_NIGHT_MODE, true);
+                item.setTitle(R.string.night_mode);
+                item.setIcon(R.drawable.ic_vd_brightness_2_gray_24dp);
+                setNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }
+        } else if (id == R.id.menu_home_drawer_share) {
+            ShareActivity.instance(MainActivity.this);
         }
         if (drawerLayout != null) {
             drawerLayout.closeDrawer(GravityCompat.START);
@@ -462,21 +440,17 @@ public class MainActivity extends AppCompatActivity implements TvImgRecyclerView
 
     private void initDrawerNavItem(MenuItem item){
         int id = item.getItemId();
-        switch (id) {
-            case R.id.menu_home_drawer_night_mode:
-                boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
-                if (nightMode) {
-                    item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
-                    item.setTitle(R.string.day_mode);
-                    setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else {
-                    item.setTitle(R.string.night_mode);
-                    item.setIcon(R.drawable.ic_vd_brightness_2_gray_24dp);
-                    setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-                break;
-            default:
-                break;
+        if (id == R.id.menu_home_drawer_night_mode) {
+            boolean nightMode = MMKV.defaultMMKV().getBoolean(MMKVContract.KEY_NIGHT_MODE, false);
+            if (nightMode) {
+                item.setIcon(R.drawable.ic_vd_brightness_7_gray_24dp);
+                item.setTitle(R.string.day_mode);
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            } else {
+                item.setTitle(R.string.night_mode);
+                item.setIcon(R.drawable.ic_vd_brightness_2_gray_24dp);
+                setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
         }
     }
 }

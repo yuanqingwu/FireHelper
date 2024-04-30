@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.wyq.firehelper.architecture.mvp.translation.view.MvpActivity;
 import com.wyq.firehelper.architecture.mvvm.MvvmActivity;
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
@@ -19,7 +18,7 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"MVP[翻译]","MVVM","AOP"};
+        return new String[]{"MVVM","AOP"};
     }
 
     @Override
@@ -29,12 +28,9 @@ public class ArchitectureActivity extends BaseRecyclerViewActivity {
             public void onItemClick(View view, int position) {
                 switch (position) {
                     case 0:
-                        startActivity(MvpActivity.class);
-                        break;
-                    case 1:
                         startActivity(MvvmActivity.class);
                         break;
-                    case 2:
+                    case 1:
 //                        startActivity(AopActivity.class);
                         break;
                     default:

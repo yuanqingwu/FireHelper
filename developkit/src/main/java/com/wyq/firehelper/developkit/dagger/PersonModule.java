@@ -10,8 +10,8 @@ import dagger.Provides;
 @Module
 public class PersonModule {
 
-    private Context context;
-    private String name;
+    private final Context context;
+    private final String name;
 
     public PersonModule(Context context, String name){
         this.context = context;

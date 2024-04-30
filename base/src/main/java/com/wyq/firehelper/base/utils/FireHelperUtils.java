@@ -6,6 +6,7 @@ import com.wyq.firehelper.base.utils.common.CloseUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 
 public class FireHelperUtils {
 
@@ -17,7 +18,7 @@ public class FireHelperUtils {
                 int len = is.available();
                 byte[] buffer = new byte[len];
                 is.read(buffer);
-                return new String(buffer,"UTF-8");
+                return new String(buffer, StandardCharsets.UTF_8);
             }
         } catch (IOException e) {
             e.printStackTrace();

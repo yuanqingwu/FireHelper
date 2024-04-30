@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.text.method.ScrollingMovementMethod;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.ValueCallback;
 import android.webkit.WebChromeClient;
@@ -15,25 +16,21 @@ import com.github.lzyzsd.jsbridge.BridgeHandler;
 import com.github.lzyzsd.jsbridge.BridgeWebView;
 import com.github.lzyzsd.jsbridge.CallBackFunction;
 import com.wyq.firehelper.base.BaseActivity;
-import com.wyq.firehelper.hybrid.R;
-import com.wyq.firehelper.hybrid.R2;
+import com.wyq.firehelper.hybrid.databinding.ActivityJsBridgeBinding;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class JsBridgeActivity extends BaseActivity implements View.OnClickListener {
 
-    @BindView(R2.id.toolbar_article)
     public Toolbar toolbar;
-    @BindView(R2.id.js_bridge_activity_webview)
     public BridgeWebView bridgeWebView;
-    @BindView(R2.id.js_bridge_activity_operate_bt)
     public Button operateBt;
-    @BindView(R2.id.js_bridge_activity_operate_tv)
     public TextView operateTv;
 
-    private int RESULT_CODE = 0;
+    private final int RESULT_CODE = 0;
     private ValueCallback<Uri> mUploadMessage;
 
     private ValueCallback<Uri[]> mUploadMessageArray;
@@ -46,8 +43,8 @@ public class JsBridgeActivity extends BaseActivity implements View.OnClickListen
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.activity_js_bridge;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return ActivityJsBridgeBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -57,6 +54,11 @@ public class JsBridgeActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void initView() {
+        toolbar = ((ActivityJsBridgeBinding)viewBinding).jsBridgeActivityToolBar.toolbarArticle;
+        bridgeWebView = ((ActivityJsBridgeBinding)viewBinding).jsBridgeActivityWebview;
+        operateBt = ((ActivityJsBridgeBinding)viewBinding).jsBridgeActivityOperateBt;
+        operateTv = ((ActivityJsBridgeBinding)viewBinding).jsBridgeActivityOperateTv;
+
         operateTv.setMovementMethod(ScrollingMovementMethod.getInstance());
         operateBt.setOnClickListener(this);
 

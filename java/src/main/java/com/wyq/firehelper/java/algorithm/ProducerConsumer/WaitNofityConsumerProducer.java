@@ -36,7 +36,7 @@ class Resource{//重要
     //当前资源数量
     private int num = 0;
     //资源池中允许存放的资源数目
-    private int size = 10;
+    private final int size = 10;
 
     /**
      * 从资源池中取走资源
@@ -82,7 +82,7 @@ class Resource{//重要
  * 消费者线程
  */
 class ConsumerThread extends Thread{
-    private Resource resource;
+    private final Resource resource;
     public ConsumerThread(Resource resource){
         this.resource = resource;
     }
@@ -102,7 +102,7 @@ class ConsumerThread extends Thread{
  * 生产者线程
  */
 class ProducerThread extends Thread{
-    private Resource resource;
+    private final Resource resource;
     public ProducerThread(Resource resource){
         this.resource = resource;
     }

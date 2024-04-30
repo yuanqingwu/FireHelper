@@ -35,7 +35,7 @@ public class MetroImageView extends androidx.appcompat.widget.AppCompatImageView
     /**
      * 设置一个缩放的常量
      */
-    private float mMinScale = 0.85f;
+    private final float mMinScale = 0.85f;
     /**
      * 缩放是否结束
      */
@@ -91,8 +91,8 @@ public class MetroImageView extends androidx.appcompat.widget.AppCompatImageView
     /**
      * 控制缩放的Handler
      */
-    private Handler mScaleHandler = new Handler() {
-        private Matrix matrix = new Matrix();
+    private final Handler mScaleHandler = new Handler() {
+        private final Matrix matrix = new Matrix();
         private int count = 0;
         private float s;
         /**

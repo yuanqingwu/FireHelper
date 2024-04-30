@@ -3,25 +3,26 @@ package com.wyq.firehelper.framework.service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
-import com.wyq.firehelper.R;
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
+
 import com.wyq.firehelper.article.ArticleConstants;
 import com.wyq.firehelper.article.base.BaseCaseActivity;
+import com.wyq.firehelper.databinding.FrameworkActivityServiceBinding;
 
 import java.util.List;
 
-import butterknife.BindView;
-
 public class ServiceActivity extends BaseCaseActivity implements View.OnClickListener {
 
-    @BindView(R.id.service_activity_main_bt1)
     public Button button1;
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.framework_activity_service;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return FrameworkActivityServiceBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -36,6 +37,7 @@ public class ServiceActivity extends BaseCaseActivity implements View.OnClickLis
 
     @Override
     public void initView() {
+        button1 = ((FrameworkActivityServiceBinding)viewBinding).serviceActivityMainBt1;
         button1.setText("start service");
         button1.setOnClickListener(this);
     }

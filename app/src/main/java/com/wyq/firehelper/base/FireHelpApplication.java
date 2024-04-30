@@ -9,7 +9,6 @@ import com.orhanobut.logger.LogcatLogStrategy;
 import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.tencent.mmkv.MMKV;
-import com.wyq.firehelper.BuildConfig;
 import com.wyq.firehelper.base.aop.aspectj.FireLogTime;
 import com.wyq.firehelper.developkit.room.AppExecutors;
 
@@ -22,7 +21,7 @@ public class FireHelpApplication extends MultiDexApplication {
      * 当前版本是否为debug版本
      * 1.控制是否打印调试日志
      */
-    public static final boolean isDebug = BuildConfig.DEBUG;
+    public static final boolean isDebug = true;
 
     private AppExecutors appExecutors;
 

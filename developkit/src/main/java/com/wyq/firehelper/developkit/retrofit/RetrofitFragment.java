@@ -1,30 +1,28 @@
 package com.wyq.firehelper.developkit.retrofit;
 
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
+
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityRetrofitLayoutBinding;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import butterknife.BindView;
-
 public class RetrofitFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.activity_developkit_retrofit_res_tv)
     public TextView resTv;
 
-    @BindView(R2.id.activity_developkit_retrofit_iv)
-    public ImageView imageView;
-
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_activity_retrofit_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitActivityRetrofitLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -34,6 +32,7 @@ public class RetrofitFragment extends BaseCaseFragment {
     @Override
     public void initView(View view) {
 
+        resTv = ((DevelopkitActivityRetrofitLayoutBinding)binding).activityDevelopkitRetrofitResTv;
         IName name = proxy(IName.class);
         String res = "proxy class name:"+name.getClass().getName()+"\n"+name.getName();
 

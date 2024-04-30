@@ -111,7 +111,7 @@ public class CountEditTextLayout extends RelativeLayout {
                         public CharSequence filter(CharSequence source, int start, int end, Spanned dest, int dstart, int dend) {
                             //start为0; end代表本次输入字数; dest 代表之前的文字内容 dstart与dend代表之前的文字长度 keep代表还可以输入的文字个数
                             int keep = countLimit - (dest.length() - (dend - dstart));
-                            Logger.d("keep:" + keep + " start：" + start + " end:" + end + "[" + dest.toString() + "] dstart:" + dstart + " dend:" + dend);
+                            Logger.d("keep:" + keep + " start：" + start + " end:" + end + "[" + dest + "] dstart:" + dstart + " dend:" + dend);
                             if ( (keep >= 0 && (end - keep > 0))) {
                                 Toast.makeText(getContext(),"不能再输入了，最多输入" + countLimit + "个汉字",Toast.LENGTH_SHORT).show();
                                 Logger.d("toast toast");

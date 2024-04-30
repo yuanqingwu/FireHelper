@@ -5,9 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wyq.fireapt.FireApt;
-import com.wyq.fireapt.annotation.FireBindView;
 import com.wyq.firehelper.java.R;
-import com.wyq.firehelper.java.R2;
 import com.wyq.firehelper.java.aop.aspectj.FireLogTime;
 
 import androidx.appcompat.widget.Toolbar;
@@ -15,9 +13,7 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
 
 public class AptActivity extends SwipeBackActivity {
 
-    @FireBindView(R2.id.toolbar)
     public Toolbar toolbar;
-    @FireBindView(R2.id.aop_activity_apt_tv)
     public TextView textView;
 
     @Override
@@ -25,6 +21,8 @@ public class AptActivity extends SwipeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.aop_activity_apt_layout);
         FireApt.bind(this);
+        toolbar = findViewById(R.id.aop_activity_apt_toolbar);
+        textView = findViewById(R.id.aop_activity_apt_tv);
         initToolBar(toolbar, "APT", true);
 
         textView.setText("Hello APT");
@@ -41,7 +39,7 @@ public class AptActivity extends SwipeBackActivity {
     }
 
     private void initToolbarNav(Toolbar toolbar) {
-        toolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_24dp);
+        toolbar.setNavigationIcon(com.wyq.firehelper.base.R.drawable.ic_arrow_back_white_24dp);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

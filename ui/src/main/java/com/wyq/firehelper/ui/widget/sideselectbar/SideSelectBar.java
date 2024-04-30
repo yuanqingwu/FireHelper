@@ -31,11 +31,11 @@ public class SideSelectBar extends View {
     /**
      * 最大文字长度
      */
-    private int textLenMax = 2;
+    private final int textLenMax = 2;
     /**
      * 文字间的间隔
      */
-    private float defaultPadding = 10;
+    private final float defaultPadding = 10;
     /**
      * 最大文字宽度
      */

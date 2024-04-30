@@ -112,11 +112,11 @@ class CoroutinesExample {
 
     suspend fun doSomeThing1(): Int {
         delay(1000L)
-        return 1;
+        return 1
     }
 
     suspend fun doSomeThing2(): Int {
         delay(1000L)
-        return 2;
+        return 2
     }
 }

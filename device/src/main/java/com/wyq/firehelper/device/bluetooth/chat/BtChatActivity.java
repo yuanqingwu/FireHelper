@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,18 +18,18 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.device.R;
-import com.wyq.firehelper.device.R2;
+import com.wyq.firehelper.device.databinding.DevicesActivityBtChatLayoutBinding;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Date;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class BtChatActivity extends BaseActivity {
 
-    @BindView(R2.id.toolbar)
     public Toolbar toolbar;
     private ListView chatListView;
     private EditText editText;
@@ -43,10 +44,10 @@ public class BtChatActivity extends BaseActivity {
 
     private static final String DEVICE_NAME = "DEVICE_NAME";
 
-    private Handler chatHandler = new ChatHandler(this);
+    private final Handler chatHandler = new ChatHandler(this);
 
     public class ChatHandler extends Handler {
-        private WeakReference<BtChatActivity> chatActivity;
+        private final WeakReference<BtChatActivity> chatActivity;
 
         public ChatHandler(BtChatActivity activity) {
             chatActivity = new WeakReference<BtChatActivity>(activity);
@@ -89,13 +90,15 @@ public class BtChatActivity extends BaseActivity {
         }
     }
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.devices_activity_bt_chat_layout;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DevicesActivityBtChatLayoutBinding.inflate(layoutInflater);
     }
 
     @Override
     public void initToolBar() {
+        toolbar = ((DevicesActivityBtChatLayoutBinding)viewBinding).toolbar.toolbar;
         initToolBar(toolbar, "Chat", true);
     }
 
@@ -113,9 +116,9 @@ public class BtChatActivity extends BaseActivity {
         btChatService = BtChatService.getInstance();
         btChatService.setHandler(chatHandler);
 
-        chatListView = (ListView) findViewById(R.id.bt_chat_listview);
-        editText = (EditText) findViewById(R.id.bt_chat_edit);
-        sendButton = (Button) findViewById(R.id.bt_chat_sendbt);
+        chatListView =  findViewById(R.id.bt_chat_listview);
+        editText =  findViewById(R.id.bt_chat_edit);
+        sendButton =  findViewById(R.id.bt_chat_sendbt);
 
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 

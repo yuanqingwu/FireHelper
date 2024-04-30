@@ -3,13 +3,18 @@ package com.wyq.firehelper.ui.android.recyclerview.snaphelper;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewbinding.ViewBinding;
 
 import com.wyq.firehelper.base.BaseCaseFragment;
 import com.wyq.firehelper.ui.R;
+import com.wyq.firehelper.ui.databinding.UiFragmentSnapHelperBinding;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +27,7 @@ public class SnapHelperFragment extends BaseCaseFragment {
 
     private RecyclerView recyclerView;
 
-    private List<String> nameList = new ArrayList<>();
+    private final List<String> nameList = new ArrayList<>();
 
     @Override
     public String[] getArticleFilters() {
@@ -35,8 +40,8 @@ public class SnapHelperFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_snap_helper;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentSnapHelperBinding.inflate(inflater,container,false);
     }
 
     @Override

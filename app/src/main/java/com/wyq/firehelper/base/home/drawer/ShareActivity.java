@@ -2,14 +2,18 @@ package com.wyq.firehelper.base.home.drawer;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.viewbinding.ViewBinding;
 
 import com.wyq.firehelper.R;
 import com.wyq.firehelper.article.base.BaseCaseActivity;
 import com.wyq.firehelper.component.share.FireShare;
+import com.wyq.firehelper.databinding.DrawerActivityShareBinding;
 
 import java.util.List;
-
-import butterknife.OnClick;
 
 public class ShareActivity extends BaseCaseActivity {
 
@@ -19,8 +23,8 @@ public class ShareActivity extends BaseCaseActivity {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.drawer_activity_share;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DrawerActivityShareBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -36,10 +40,12 @@ public class ShareActivity extends BaseCaseActivity {
     @Override
     public void initView() {
 
-    }
+        ((DrawerActivityShareBinding)viewBinding).drawerActivityShareBt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FireShare.shareTextWithSys(ShareActivity.this, "https://github.com/wuyuanqing527/FireHelper", "share");
 
-    @OnClick(R.id.drawer_activity_share_bt)
-    public void onClick() {
-        FireShare.shareTextWithSys(ShareActivity.this, "https://github.com/wuyuanqing527/FireHelper", "share");
+            }
+        });
     }
 }

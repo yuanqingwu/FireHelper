@@ -5,14 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar" />
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar" />
 
     <com.wyq.firehelper.ui.layout.pullextviewlayout.ExtRecyclerViewLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/external_view_rv_layout" />
+        <include
+            android:id="@+id/external_view_rv_layout"
+            layout="@layout/external_view_rv_layout" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/main_activity_article_cardview"
@@ -36,8 +40,8 @@
                         android:layout_height="60dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="40dp"
-                        app:srcCompat="@drawable/article"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        app:srcCompat="@drawable/article" />
 
                     <LinearLayout
                         android:id="@+id/main_activity_article_title_layout"
@@ -73,9 +77,9 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
+                        android:layout_marginRight="20dp"
                         android:layout_toRightOf="@id/main_activity_article_title_layout"
-                        android:layout_marginRight="20dp"></androidx.recyclerview.widget.RecyclerView>
+                        android:focusable="false" />
 
                 </RelativeLayout>
 
@@ -84,10 +88,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginTop="5dp"
-                    android:paddingRight="10dp"
-                    android:drawableRight="@drawable/arrow_right"
                     android:background="@drawable/shadow_right"
+                    android:drawableRight="@drawable/arrow_right"
                     android:gravity="right|center_vertical"
+                    android:paddingRight="10dp"
                     android:text="@string/home_article_more_tv" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -95,6 +99,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/activity_main_rv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content" />
     </com.wyq.firehelper.ui.layout.pullextviewlayout.ExtRecyclerViewLayout>
 </LinearLayout>

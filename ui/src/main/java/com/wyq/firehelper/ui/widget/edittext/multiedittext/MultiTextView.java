@@ -15,7 +15,7 @@ public class MultiTextView extends AppCompatTextView implements MultiEditText {
 
     private int strokeColor;
 
-    private TextView backgroundTextView;
+    private final TextView backgroundTextView;
 
     public MultiTextView(Context context) {
         this(context, null);

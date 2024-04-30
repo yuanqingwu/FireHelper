@@ -2,6 +2,7 @@ package com.wyq.firehelper.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.tabs.TabLayout;
@@ -10,27 +11,27 @@ import com.google.gson.JsonArray;
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
+import com.wyq.firehelper.ui.databinding.UiActivityMainLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.viewbinding.ViewBinding;
 import androidx.viewpager.widget.ViewPager;
-import butterknife.BindView;
 
 @Route(path = NavigationManager.NAVIGATION_UI_MAIN_ACTIVITY)
 public class UIMainActivity extends BaseActivity {
 
-    @BindView(R2.id.ui_activity_main_toolbar)
     public Toolbar toolbar;
-    @BindView(R2.id.ui_activity_main_viewpager)
     public ViewPager viewPager;
-    @BindView(R2.id.ui_activity_main_tablayout)
     public TabLayout tabLayout;
 
+
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_activity_main_layout;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return UiActivityMainLayoutBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -40,6 +41,11 @@ public class UIMainActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        toolbar = ((UiActivityMainLayoutBinding)viewBinding).uiActivityMainToolbar;
+        viewPager = ((UiActivityMainLayoutBinding)viewBinding).uiActivityMainViewpager;
+        tabLayout = ((UiActivityMainLayoutBinding)viewBinding).uiActivityMainTablayout;
+
+
         for (UiBean type : getUiName()) {
             tabLayout.addTab(tabLayout.newTab().setText(type.getCategory()));
         }

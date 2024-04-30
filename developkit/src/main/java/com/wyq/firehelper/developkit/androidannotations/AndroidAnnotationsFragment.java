@@ -1,22 +1,22 @@
 package com.wyq.firehelper.developkit.androidannotations;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.developkit.R;
-import com.wyq.firehelper.developkit.R2;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
-import butterknife.BindView;
+import com.wyq.firehelper.base.BaseCaseFragment;
+import com.wyq.firehelper.developkit.databinding.DevelopkitActivityAndroidAnnotationsLayoutBinding;
 
 public class AndroidAnnotationsFragment extends BaseCaseFragment {
 
-    @BindView(R2.id.activity_developkit_androidannotations_tv_1)
-    public TextView textView;
-
     @Override
-    public int attachLayoutRes() {
-        return R.layout.developkit_activity_android_annotations_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return DevelopkitActivityAndroidAnnotationsLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override

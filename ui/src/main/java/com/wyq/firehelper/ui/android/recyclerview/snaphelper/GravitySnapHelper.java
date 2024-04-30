@@ -62,7 +62,7 @@ public class GravitySnapHelper extends LinearSnapHelper {
     private OrientationHelper horizontalHelper;
     private GravitySnapHelper.SnapListener listener;
     private RecyclerView recyclerView;
-    private RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
+    private final RecyclerView.OnScrollListener scrollListener = new RecyclerView.OnScrollListener() {
         @Override
         public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
             super.onScrollStateChanged(recyclerView, newState);
@@ -174,11 +174,9 @@ public class GravitySnapHelper extends LinearSnapHelper {
 
         int[] out = new int[2];
 
-        if (!(layoutManager instanceof LinearLayoutManager)) {
+        if (!(layoutManager instanceof LinearLayoutManager lm)) {
             return out;
         }
-
-        LinearLayoutManager lm = (LinearLayoutManager) layoutManager;
 
         if (lm.canScrollHorizontally()) {
             if ((isRtl && gravity == Gravity.END) || (!isRtl && gravity == Gravity.START)) {
@@ -554,11 +552,9 @@ public class GravitySnapHelper extends LinearSnapHelper {
                           int gravity,
                           boolean checkEdgeOfList) {
 
-        if (layoutManager.getChildCount() == 0 || !(layoutManager instanceof LinearLayoutManager)) {
+        if (layoutManager.getChildCount() == 0 || !(layoutManager instanceof final LinearLayoutManager lm)) {
             return null;
         }
-
-        final LinearLayoutManager lm = (LinearLayoutManager) layoutManager;
 
         // If we're at an edge of the list, we shouldn't snap
         // to avoid having the last item not completely visible.

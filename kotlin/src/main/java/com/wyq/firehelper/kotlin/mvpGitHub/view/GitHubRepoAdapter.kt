@@ -3,10 +3,10 @@ package com.wyq.firehelper.kotlin.mvpGitHub.view
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.wyq.firehelper.kotlin.R
 import com.wyq.firehelper.kotlin.mvpGitHub.model.Repository
 import com.wyq.firehelper.kotlin.mvpGitHub.model.RepositoryDetail
-import kotlinx.android.synthetic.main.kotlin_activity_mvp_github_recycler_view_item.view.*
 
 class GitHubRepoAdapter(private val repos: MutableList<Repository>) : androidx.recyclerview.widget.RecyclerView.Adapter<GitHubRepoAdapter.ViewHolder>() {
 
@@ -43,13 +43,13 @@ class GitHubRepoAdapter(private val repos: MutableList<Repository>) : androidx.r
 
         fun bindData(repository: Repository,repoDetails: MutableMap<Long,RepositoryDetail>?) {
             with(repository) {
-                itemView.kotlin_activity_mvp_github_rv_title.text = repository.name
-                itemView.kotlin_activity_mvp_github_rv_desc.text = repository.description
+                itemView.findViewById<TextView>(R.id.kotlin_activity_mvp_github_rv_title).text = repository.name
+                itemView.findViewById<TextView>(R.id.kotlin_activity_mvp_github_rv_desc).text = repository.description
             }
             if(repoDetails?.get(repository.id)!=null){
                 with(repoDetails.get(repository.id)){
-                    itemView.kotlin_activity_mvp_github_rv_star.text = this?.stargazers_count
-                    itemView.kotlin_activity_mvp_github_rv_fork.text = this?.forks_count
+                    itemView.findViewById<TextView>(R.id.kotlin_activity_mvp_github_rv_star).text = this?.stargazers_count
+                    itemView.findViewById<TextView>(R.id.kotlin_activity_mvp_github_rv_fork).text = this?.forks_count
                 }
             }
         }

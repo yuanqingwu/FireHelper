@@ -24,7 +24,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/ui_activity_pull_ext_view_title_layout"
         android:overScrollMode="never"
-        android:scrollbars="none"></androidx.recyclerview.widget.RecyclerView>
+        android:scrollbars="none"/>
 
     <com.wyq.firehelper.ui.layout.pullextviewlayout.LoadingDot
         android:layout_width="match_parent"

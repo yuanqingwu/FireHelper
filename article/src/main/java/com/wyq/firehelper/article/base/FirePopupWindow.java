@@ -143,12 +143,12 @@ public class FirePopupWindow {
 
         if (contentList == null) {
 
-            LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_layout, null);
+            LinearLayout popView = (LinearLayout) LayoutInflater.from(context).inflate(com.wyq.firehelper.base.R.layout.ui_dialog_bottom_dialog_layout, null);
             popView.setOrientation(orientation);
 
             final PopupWindow popupWindow = new PopupWindow(popView, width, height);
-            Button positiveBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_ok_bt);
-            Button negativeBt = popView.findViewById(R.id.ui_dialog_bottom_dialog_cancel_bt);
+            Button positiveBt = popView.findViewById(com.wyq.firehelper.base.R.id.ui_dialog_bottom_dialog_ok_bt);
+            Button negativeBt = popView.findViewById(com.wyq.firehelper.base.R.id.ui_dialog_bottom_dialog_cancel_bt);
 
             if (positiveText.length() == 0) {
                 positiveBt.setVisibility(View.GONE);
@@ -188,9 +188,9 @@ public class FirePopupWindow {
             }
             popupWindow.showAsDropDown(anchor, xoff, yoff);
         } else {
-            View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
+            View popView = LayoutInflater.from(context).inflate(com.wyq.firehelper.base.R.layout.ui_dialog_bottom_dialog_list_layout, null);
             PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, 480);
-            RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+            RecyclerView recyclerView = popupWindow.getContentView().findViewById(com.wyq.firehelper.base.R.id.ui_dialog_bottom_dialog_recycler_view);
             recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
             recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
             TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);
@@ -210,9 +210,9 @@ public class FirePopupWindow {
 
     public FirePopupWindow showLocation(View parent) {
         Context context = parent.getContext();
-        View popView = LayoutInflater.from(context).inflate(R.layout.ui_dialog_bottom_dialog_list_layout, null);
+        View popView = LayoutInflater.from(context).inflate(com.wyq.firehelper.base.R.layout.ui_dialog_bottom_dialog_list_layout, null);
         final PopupWindow popupWindow = new PopupWindow(popView, ViewGroup.LayoutParams.MATCH_PARENT, ScreenUtils.getHeightPX(context) / 2);
-        RecyclerView recyclerView = (RecyclerView) popupWindow.getContentView().findViewById(R.id.ui_dialog_bottom_dialog_recycler_view);
+        RecyclerView recyclerView = popupWindow.getContentView().findViewById(com.wyq.firehelper.base.R.id.ui_dialog_bottom_dialog_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(context, orientation, false));
         recyclerView.addItemDecoration(new DividerItemDecoration(context, DividerItemDecoration.VERTICAL));
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(contentList);

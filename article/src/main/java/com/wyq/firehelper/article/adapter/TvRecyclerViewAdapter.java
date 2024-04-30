@@ -48,7 +48,7 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
     }
 
 
-    private List list = new ArrayList<>();
+    private final List list = new ArrayList<>();
 
     private Context context;
     private int selectPosition = -1;
@@ -136,8 +136,9 @@ public class TvRecyclerViewAdapter extends RecyclerView.Adapter<TvRecyclerViewAd
         return TYPE_CONTENT;
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull final TvViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final TvViewHolder holder, int position) {
         if (list.get(position) instanceof ArticleResource) {
             if (layoutParams != null) {
                 ((LinearLayout) holder.textView.getParent()).setLayoutParams(layoutParams);

@@ -1,15 +1,14 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.wyq.firehelper.architecture'
+    compileSdkVersion build_versions.target_sdk
+    buildToolsVersion build_versions.build_tools
 
     defaultConfig {
 //        applicationId "com.wyq.firehelper.architecture"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -20,8 +19,8 @@ android {
         }
     }
 
-    dataBinding {
-        enabled true
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -32,9 +31,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
+//    kotlinOptions {
+//        jvmTarget = '17'
+//    }
 }
 
 dependencies {
@@ -53,9 +55,8 @@ dependencies {
     implementation deps.dagger.runtime
     annotationProcessor deps.dagger.compiler
 
-//    implementation 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation deps.arouter.api
+    annotationProcessor deps.arouter.compiler
     annotationProcessor deps.glide.compiler
 //    implementation project(':base')
     implementation project(':article')

@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".base.home.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/SplashTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -35,7 +36,8 @@
         </activity>
         <activity
             android:name=".base.home.MainActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:exported="true"/>
 
 
         <!-- <activity android:name=".article.SearchableActivity" android:launchMode="singleTop"> -->
@@ -51,10 +53,10 @@
             android:name=".framework.service.ServiceActivity"
             android:launchMode="singleTask" />
 
-        <service android:name=".base.AppInitIntentService" />
-        <service android:name=".framework.service.FireService" />
+        <service android:name=".base.AppInitIntentService" android:exported="false"/>
+        <service android:name=".framework.service.FireService" android:exported="true"/>
         <service android:name=".framework.service.BackgroundService" />
-        <receiver android:name=".framework.battery.PowerConnectionReceiver">
+        <receiver android:name=".framework.battery.PowerConnectionReceiver" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
                 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
@@ -67,12 +69,13 @@
         <activity android:name=".base.home.drawer.SkinActivity" />
         <activity android:name=".base.home.drawer.SettingActivity" />
 
-        <activity android:name=".component.ComponentActivity" />
+        <activity android:name=".component.ComponentActivity" android:exported="true"/>
 
         <service
             android:name=".framework.service.FireTileService"
             android:icon="@mipmap/ic_launcher"
             android:label="@string/app_name"
+            android:exported="true"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
             <intent-filter>
                 <action android:name="android.service.quicksettings.action.QS_TILE" />

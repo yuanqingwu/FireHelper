@@ -60,7 +60,7 @@ public class TestView extends FrameLayout implements ITangramViewLifeCycle, Samp
 
     private void init() {
         inflate(getContext(), R.layout.ui_activity_tangram_item, this);
-        textView = (TextView) findViewById(R.id.title);
+        textView = findViewById(R.id.title);
     }
 
     @Override

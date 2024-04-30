@@ -21,12 +21,12 @@ import androidx.lifecycle.Observer;
  */
 public class LiveDataEvent<T> implements EventObservable<T> {
 
-    private String key;
+    private final String key;
 
-    private boolean lifecycleObserverAlwaysActive = true;
-    private LifecycleLiveData<T> liveData;
+    private final boolean lifecycleObserverAlwaysActive = true;
+    private final LifecycleLiveData<T> liveData;
     private final Map<Observer, ObserverWrapper<T>> observerMap = new HashMap<>();
-    private Handler mainHandler = new Handler(Looper.getMainLooper());
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
 
     public LiveDataEvent(String key) {
         this.key = key;
@@ -167,7 +167,7 @@ public class LiveDataEvent<T> implements EventObservable<T> {
     private static class ObserverWrapper<T> implements Observer<T> {
 
         @NonNull
-        private Observer<T> mObserver;
+        private final Observer<T> mObserver;
 
         private boolean ignoreUtilObserver = true;
 

@@ -2,7 +2,9 @@ package com.wyq.firehelper.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -10,25 +12,27 @@ import com.google.gson.JsonArray;
 import com.wyq.firehelper.article.base.CaseActivity;
 import com.wyq.firehelper.base.BaseFragment;
 import com.wyq.firehelper.base.utils.FireHelperUtils;
+import com.wyq.firehelper.ui.databinding.UiListFragmentChildLayoutBinding;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class UIPagerChildFragment extends BaseFragment {
 
     private List<UiInfoBean> uiInfoBeans;
     private String uiType;
 
-    @BindView(R2.id.list_fragment_child_recycler_view)
     public RecyclerView recyclerView;
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.ui_list_fragment_child_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiListFragmentChildLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override
@@ -40,6 +44,7 @@ public class UIPagerChildFragment extends BaseFragment {
 
     @Override
     public void initView(View view) {
+        recyclerView = ((UiListFragmentChildLayoutBinding)binding).listFragmentChildRecyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false));
 
         UIRecyclerViewAdapter adapter = new UIRecyclerViewAdapter(getContext());

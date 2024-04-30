@@ -66,20 +66,12 @@ public class ArticleRepository {
         }
         articleMMKV.removeValueForKey(key);
         articleMMKV.clearMemoryCache();
-        if (articleMMKV.contains(key)) {
-            return false;
-        } else {
-            return true;
-        }
+        return !articleMMKV.contains(key);
     }
 
     public synchronized boolean clearAll() {
         articleMMKV.clearAll();
-        if (articleMMKV.totalSize() > 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return articleMMKV.totalSize() <= 0;
     }
 
     public synchronized ArticleSaveEntity get(String key) {
@@ -145,10 +137,7 @@ public class ArticleRepository {
 
         @Override
         protected boolean removeEldestEntry(Entry<K, V> eldest) {
-            if (size() > capacity) {
-                return true;
-            }
-            return false;
+            return size() > capacity;
         }
     }
 

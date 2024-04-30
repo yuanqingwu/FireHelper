@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -22,24 +23,21 @@ import android.widget.Toast;
 
 import com.wyq.firehelper.base.BaseActivity;
 import com.wyq.firehelper.device.R;
-import com.wyq.firehelper.device.R2;
+import com.wyq.firehelper.device.databinding.DevicesActivityBtBinding;
 
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 import java.util.Set;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public class BtActivity extends BaseActivity implements OnClickListener {
 
-    @BindView(R2.id.toolbar)
     public Toolbar toolbar;
-    @BindView(R2.id.device_bt_start_scan_bt)
     public Button scanBt;
-    @BindView(R2.id.device_bt_close_bt)
     public Button closeBt;
-    @BindView(R2.id.device_bt_finded_list_lv)
     public ListView listView;
 
     private BtReceiver btReceiver;
@@ -105,8 +103,8 @@ public class BtActivity extends BaseActivity implements OnClickListener {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.devices_activity_bt;
+    protected ViewBinding inflateViewBinding(@NonNull LayoutInflater layoutInflater) {
+        return DevicesActivityBtBinding.inflate(layoutInflater);
     }
 
     @Override
@@ -116,6 +114,11 @@ public class BtActivity extends BaseActivity implements OnClickListener {
 
     @Override
     public void initView() {
+        toolbar = ((DevicesActivityBtBinding)viewBinding).toolbar.toolbar;
+        scanBt = ((DevicesActivityBtBinding)viewBinding).deviceBtStartScanBt;
+        closeBt = ((DevicesActivityBtBinding)viewBinding).deviceBtCloseBt;
+        listView = ((DevicesActivityBtBinding)viewBinding).deviceBtFindedListLv;
+
         btInfoLinkedList = new LinkedList<String>();
         bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
         makeDiscoverable();
@@ -258,20 +261,15 @@ public class BtActivity extends BaseActivity implements OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case REQUEST_ENABLE_BT:
-                if (resultCode == Activity.RESULT_OK) {
-                    Toast.makeText(BtActivity.this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
-                    addBondedDevice();
-                } else {
-                    Toast.makeText(BtActivity.this, "Bluetooth was not enabled. Leaving Bluetooth Chat.",
-                            Toast.LENGTH_SHORT).show();
-                    finish();
-                }
-                break;
-
-            default:
-                break;
+        if (requestCode == REQUEST_ENABLE_BT) {
+            if (resultCode == Activity.RESULT_OK) {
+                Toast.makeText(BtActivity.this, "Bluetooth enabled", Toast.LENGTH_SHORT).show();
+                addBondedDevice();
+            } else {
+                Toast.makeText(BtActivity.this, "Bluetooth was not enabled. Leaving Bluetooth Chat.",
+                        Toast.LENGTH_SHORT).show();
+                finish();
+            }
         }
     }
 

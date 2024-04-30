@@ -63,7 +63,7 @@ public class FireShare {
         if (fileType == null) {
             fileType = ContentType.FILE;
         }
-        Logger.i("File path:"+fileType+"  "+fileUri.toString());
+        Logger.i("File path:"+fileType+"  "+ fileUri);
 //            Uri fileUri = getFileUri(context, file, fileType);
 
         intent.setType(fileType);

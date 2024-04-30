@@ -1,9 +1,15 @@
 package com.wyq.firehelper.ui.widget.metroimageview;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.wyq.firehelper.base.BaseCaseFragment;
-import com.wyq.firehelper.ui.R;
+import com.wyq.firehelper.ui.databinding.UiFragmentMetroImageLayoutBinding;
 
 public class MetroImageViewFragment extends BaseCaseFragment {
 
@@ -18,8 +24,8 @@ public class MetroImageViewFragment extends BaseCaseFragment {
     }
 
     @Override
-    protected int attachLayoutRes() {
-        return R.layout.ui_fragment_metro_image_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return UiFragmentMetroImageLayoutBinding.inflate(inflater,container,false);
     }
 
     @Override

@@ -15,10 +15,10 @@ import javax.lang.model.util.Elements;
 
 public class ClassCreator {
 
-    private String bindingClassName;
-    private String packageName;
-    private TypeElement typeElement;
-    private Map<Integer, VariableElement> variableElementMap = new HashMap<>();
+    private final String bindingClassName;
+    private final String packageName;
+    private final TypeElement typeElement;
+    private final Map<Integer, VariableElement> variableElementMap = new HashMap<>();
 
     public ClassCreator(Elements elementUtils, TypeElement classElement) {
         this.typeElement = classElement;

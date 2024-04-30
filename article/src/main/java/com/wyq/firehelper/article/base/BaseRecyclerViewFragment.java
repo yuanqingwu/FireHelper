@@ -1,21 +1,25 @@
 package com.wyq.firehelper.article.base;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 
 import com.wyq.firehelper.article.R;
-import com.wyq.firehelper.article.R2;
 import com.wyq.firehelper.article.adapter.TvRecyclerViewAdapter;
 import com.wyq.firehelper.base.BaseFragment;
+import com.wyq.firehelper.base.databinding.BaseListFragmentChildLayoutBinding;
 import com.wyq.firehelper.base.widget.recyclerview.itemtouchhelper.SimpleItemTouchHelperCallback;
 
 import java.util.Arrays;
 
 import androidx.annotation.CallSuper;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import butterknife.BindView;
+import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseRecyclerViewFragment extends BaseFragment {
 
@@ -23,17 +27,17 @@ public abstract class BaseRecyclerViewFragment extends BaseFragment {
 
     public abstract TvRecyclerViewAdapter.OnItemClickListener onListItemClickListener();
 
-    @BindView(R2.id.list_fragment_child_recycler_view)
     public RecyclerView baseRV;
 
     @Override
-    public int attachLayoutRes() {
-        return R.layout.base_list_fragment_child_layout;
+    protected ViewBinding getViewBinding(@NonNull LayoutInflater inflater, @Nullable ViewGroup container) {
+        return BaseListFragmentChildLayoutBinding.inflate(inflater,container,false);
     }
 
     @CallSuper
     @Override
     public void initView(View view) {
+        baseRV = view.findViewById(com.wyq.firehelper.base.R.id.list_fragment_child_recycler_view);
         TvRecyclerViewAdapter adapter = new TvRecyclerViewAdapter(Arrays.asList(listItemsNames()));
 //        if (getItemDecoration() != null) {
 //            baseRV.addItemDecoration(getItemDecoration());

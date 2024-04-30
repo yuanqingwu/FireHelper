@@ -44,7 +44,7 @@ public abstract class NetworkBoundResource<ResultType, RequestType> {
         return result;
     }
 
-    private MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
+    private final MediatorLiveData<Resource<ResultType>> result = new MediatorLiveData<>();
 
     NetworkBoundResource() {
         result.setValue(Resource.loading(null));

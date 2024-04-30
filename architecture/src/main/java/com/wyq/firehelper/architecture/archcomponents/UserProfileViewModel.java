@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 public class UserProfileViewModel extends ViewModel {
 
     private LiveData<UserEntity> user;
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     @Inject
     public UserProfileViewModel(UserRepository repository) {

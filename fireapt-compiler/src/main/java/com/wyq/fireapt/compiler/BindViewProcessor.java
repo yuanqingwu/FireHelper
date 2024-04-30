@@ -27,7 +27,7 @@ public class BindViewProcessor extends AbstractProcessor {
 
     private Messager messager;
     private Elements elementUtils;
-    private Map<String, ClassCreator> creatorMap = new HashMap<>();
+    private final Map<String, ClassCreator> creatorMap = new HashMap<>();
 
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {

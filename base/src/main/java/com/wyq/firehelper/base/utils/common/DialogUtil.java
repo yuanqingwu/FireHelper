@@ -22,7 +22,7 @@ public class DialogUtil {
 		int width = ScreenUtils.getWidthPX(context);
 		lp.width = (int)(0.6 * width);	
 		
-		TextView titleTxtv = (TextView) dialog.findViewById(R.id.tvLoad);
+		TextView titleTxtv = dialog.findViewById(R.id.tvLoad);
 		if (tip == null || tip.length() == 0)
 		{
 			titleTxtv.setText(R.string.common_default_load);

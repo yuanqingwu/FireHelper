@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.jakewharton.butterknife'
 apply from: 'aspectj.gradle'
 
 android {
-    compileSdkVersion 28
+    namespace 'com.wyq.firehelper.base'
+    compileSdkVersion build_versions.target_sdk
 
 //    resourcePrefix "base_"
 
@@ -11,8 +11,6 @@ android {
 //        applicationId "com.wyq.firehelper.base"
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -31,8 +29,15 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+    }
+//    kotlinOptions {
+//        jvmTarget = '17'
+//    }
+
+    viewBinding {
+        enabled = true
     }
 }
 
@@ -47,16 +52,14 @@ dependencies {
     api 'com.google.android.material:material:1.1.0-alpha02'
     api 'androidx.recyclerview:recyclerview:1.1.0-alpha01'
     api 'com.google.code.gson:gson:2.8.2'
-    api 'com.alibaba:arouter-api:1.4.1'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     api deps.retrofit.runtime
     api deps.retrofit.gson
     api deps.retrofit.rxjava2
     api deps.okhttp_logging_interceptor
     api 'io.reactivex.rxjava2:rxjava:2.1.14'
     api 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    api 'com.jakewharton:butterknife:10.1.0'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    implementation deps.arouter.api
+    annotationProcessor deps.arouter.compiler
     api 'com.orhanobut:logger:2.2.0'
     api 'com.tencent:mmkv:1.0.17'
     api deps.glide.runtime
@@ -73,11 +76,4 @@ dependencies {
     api project(':fireapt')
     api project(':fireapt-annotation')
     annotationProcessor project(':fireapt-compiler')
-    //    def aspectj_version = "1.8.9"
-    //    def aspectj = [:]
-    //    aspectj.tools = "org.aspectj:aspectjtools:$aspectj_version"
-    //    aspectj.weaver = "org.aspectj:aspectjweaver:$aspectj_version"
-    //    aspectj.rt = "org.aspectj:aspectjrt:$aspectj_version"
-    //    deps.aspectj = aspectj
-    //    api "org.aspectj:aspectjrt:$aspectj_version"
 }
