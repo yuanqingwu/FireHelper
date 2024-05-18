@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <!-- Declare this required feature if you want to make the app available to BLE-capable
+    <!--
+   Declare this required feature if you want to make the app available to BLE-capable
    devices only.  If you want to make your app available to devices that don't support BLE,
    you should omit this in the manifest.  Instead, determine BLE capability by using
-   PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE) -->
+   PackageManager.hasSystemFeature(FEATURE_BLUETOOTH_LE)
+    -->
     <uses-feature
         android:name="android.hardware.bluetooth_le"
         android:required="true" />
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
 
     <application>
-        <activity android:name=".DeviceActivity"></activity>
+        <activity
+            android:name=".touch.TouchExpActivity"
+            android:exported="false" />
+        <activity android:name=".DeviceActivity" />
         <activity android:name=".bluetooth.chat.BtActivity" />
         <activity android:name=".bluetooth.chat.BtChatActivity" />
         <activity android:name=".camera.CameraActivity" />
-        <activity android:name=".PhoneInfo.PhoneInfoActivity" android:exported="true">
+        <activity
+            android:name=".PhoneInfo.PhoneInfoActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.ACTION_DOCK_EVENT" />
             </intent-filter>

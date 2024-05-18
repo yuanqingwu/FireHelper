@@ -11,6 +11,7 @@ import com.wyq.firehelper.article.base.BaseRecyclerViewActivity;
 import com.wyq.firehelper.base.navigation.NavigationManager;
 import com.wyq.firehelper.device.PhoneInfo.PhoneInfoActivity;
 import com.wyq.firehelper.device.bluetooth.chat.BtActivity;
+import com.wyq.firehelper.device.touch.TouchExpActivity;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class DeviceActivity extends BaseRecyclerViewActivity {
 
     @Override
     public String[] listItemsNames() {
-        return new String[]{"PhoneInfo", "Bluetooth"};
+        return new String[]{"PhoneInfo", "Bluetooth","touch"};
     }
 
     @Override
@@ -37,6 +38,10 @@ public class DeviceActivity extends BaseRecyclerViewActivity {
                     case 1:
                         startActivity(new Intent(DeviceActivity.this,
                                 BtActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(DeviceActivity.this,
+                                TouchExpActivity.class));
                         break;
                     default:
                         break;

@@ -15,14 +15,15 @@ import androidx.appcompat.widget.Toolbar;
 
 public abstract class BaseCaseActivity extends BaseActivity {
 
-    //    @BindView(R2.id.toolbar_article)
     public Toolbar toolbar;
-    //    @BindView(R2.id.toolbar_article_iv)
     public ImageView articleIv;
 
     @Override
     public void initToolBar() {
         toolbar = findViewById(R.id.toolbar_article);
+        if(toolbar == null){
+            return;
+        }
         articleIv = toolbar.findViewById(R.id.toolbar_article_iv);
 
         initToolBar(toolbar, getToolBarTitle(), true);
@@ -49,10 +50,15 @@ public abstract class BaseCaseActivity extends BaseActivity {
     }
 
     public void refreshToolBarTitle() {
-        toolbar.setTitle(getToolBarTitle());
+        if(toolbar!= null) {
+            toolbar.setTitle(getToolBarTitle());
+        }
     }
 
     public void refreshArticleList() {
+        if(articleIv == null){
+            return;
+        }
         List articleList = getArticleList();
         if (articleList == null || articleList.size() == 0) {
             articleIv.setVisibility(View.GONE);

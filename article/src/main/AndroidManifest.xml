@@ -16,8 +16,7 @@
         <activity
             android:name=".WebViewActivity"
             android:exported="true"
-            android:launchMode="singleTask"
-            android:process=":support">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
             </intent-filter>
